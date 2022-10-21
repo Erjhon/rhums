@@ -13,6 +13,9 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 </script>
 <?php endif;?>
 <div class="card card-outline card-primary">
+	<div class="card-header">
+        <h2 class="card-title">Add User</h2>
+    </div>
 	<div class="card-body">
 		<div class="container-fluid">
 			<div id="msg"></div>
