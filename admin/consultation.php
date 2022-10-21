@@ -39,6 +39,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 										<th>Patient No.</th>
 										<th>Patient Name</th>
 										<th>Patient Contact No.</th>
+										<th>Patient Gender</th>
 										<th>View Records</th>
 										<th>Generate reports</th>
 									</tr>
@@ -54,6 +55,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 											<td><b>PA-<?php echo $row["id"]; ?></td>
 											<td><?php echo $row["fullname"]; ?></td>
 											<td><?php echo $row["contactNo"]; ?></td>
+											<td><?php echo $row["gender"]; ?></td>
 											<td>
 												<a href="<?php echo base_url ?>admin/?page=history" class="btn btn-sm btn-primary">View</a>
 												</td>
