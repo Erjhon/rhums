@@ -36,7 +36,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
                 </div>
                 <div class="form-group">
-                    <label for="contact" class="control-label">Contact</label>
+                    <label for="contact" class="control-label">Contact No.</label>
                     <input type="text" class="form-control" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required>
                 </div>
                 <div class="form-group">

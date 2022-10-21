@@ -117,7 +117,7 @@ if(isset($_POST['submit']))
                                 </div>
                             </div>
                             <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn" name="submit">Create Consultation</button>
+                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
                             </div>
                         </form>
                     </div>
