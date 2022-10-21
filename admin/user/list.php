@@ -67,7 +67,7 @@
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this User permanently?","delete_user",[$(this).attr('data-id')])
+			_conf("Are you sure you want to delete this user permanently?","delete_user",[$(this).attr('data-id')])
 		})
 		$('.table').dataTable();
 	})
