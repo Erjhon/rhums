@@ -60,15 +60,15 @@ Class Master extends DBConnection {
 		if($save_inv){
 			$patient_id = (empty($patient_id))? $this->conn->insert_id : $patient_id;
 			if(empty($id))
-			$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`ailment` = '{$ailment}' ";
+			$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' ";
 			else
-			$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`ailment` = '{$ailment}' where id = '{$id}' ";
+			$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 
 			$save_sched = $this->conn->query($sql);
 			$this->capture_err();
 			$data = "";
 			foreach($_POST as $k=> $v){
-				if(!in_array($k,array('lid','date_sched','status','ailment'))){
+				if(!in_array($k,array('lid','date_sched','status','reason'))){
 					if(!empty($data)) $data .=", ";
 					$data .= " ({$patient_id},'{$k}','{$v}')";
 				}

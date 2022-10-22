@@ -177,7 +177,7 @@ if (mysqli_num_rows($result) > 0) {
                 <thead>
                   <tr>
                     <th>Patient ID</th>
-                    <th>Reason for Appointment</th>
+                    <th>Reason of appointment</th>
                     <th>Schedule</th>
                   </tr>
                 </thead>

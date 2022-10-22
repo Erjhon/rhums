@@ -19,7 +19,7 @@
         <div class="row gx-0">
             <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
-                    <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Opening Hours: Mon - Fri : 7.00 am - 5.00 pm, SAturday & Sunday Closed </small>
+                  <marquee>  <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Opening Hours: Mon - Fri : 7.00 am - 5.00 pm, SAturday & Sunday Closed </small></marquee>
                 </div>
             </div>
             <div class="col-md-6 text-center text-lg-end">
@@ -71,7 +71,7 @@
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+            <div class="modal-content" style="background: rgba(6, 97, 12, .7);">
                 <div class="modal-header border-0">
                     <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -92,6 +92,14 @@
     to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(./assets/assets/img/brand/bg.jpg);">
         <div class="row py-3">
             <div class="col-12 text-center">
+                 <div class="text-center">
+          <a class="" href="#">
+          <img src="./assets/assets/img/brand/rhu.png"  height="100" width="100"/>
+        </a> 
+        <a class="" href="#">
+          <img src="./assets/assets/img/brand/doh.png"  height="100" width="100"/>
+        </a>
+        </div>
                 <h1 class="display-3 text-white animated zoomIn">Appointment</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>

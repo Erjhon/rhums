@@ -30,18 +30,18 @@
 
 			<tr>
 				<th>Patient No.</th>
-				<th>Reason for Appointment</th>
-				<th>Treatment</th>
-				<th>Prescription</th>
-				<th>Date of Consultation</th>
+				<th>Name</th>
+				<th>Contact No.</th>
+				<th>Gender</th>
+				<th>Date of Birth</th>
 			</tr>
 
 			<tr>
 				<td>PA-<?=$row["id"] ?></td>
-				<td><?=$row["ailment"] ?></td>
-				<td><?=$row["treatment"] ?></td>
-				<td><?=$row["prescription"] ?></td>
-				<td><?=$row["date"] ?></td>
+				<td><?=$row["fullname"] ?></td>
+				<td><?=$row["contactNo"] ?></td>
+				<td><?=$row["gender"] ?></td>
+				<td><?=$row["dob"] ?></td>
 			</tr>
 
 
