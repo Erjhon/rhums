@@ -271,7 +271,7 @@ require_once('../config.php');
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Patient ID</th>
-                    <th scope="col">Ailment</th>
+                    <th scope="col">Reason for Appointment</th>
                     <th scope="col">Appointment Schedule</th>
                   
                   </tr>

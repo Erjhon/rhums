@@ -31,7 +31,7 @@ CREATE TABLE `appointments` (
   `id` int(30) NOT NULL,
   `patient_id` int(30) NOT NULL,
   `date_sched` datetime NOT NULL,
-  `ailment` text NOT NULL,
+  `reason` text NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,7 +40,7 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `patient_id`, `date_sched`, `ailment`, `status`, `date_created`) VALUES
+INSERT INTO `appointments` (`id`, `patient_id`, `date_sched`, `reason`, `status`, `date_created`) VALUES
 (62, 73, '2022-10-21 15:47:00', 'aa', 0, '2022-10-21 15:48:00'),
 (63, 74, '2022-10-21 14:48:00', 'Check Up', 0, '2022-10-21 15:48:47');
 
@@ -89,7 +89,7 @@ INSERT INTO `location` (`id`, `location`, `description`, `max_a_day`, `date_crea
 
 CREATE TABLE `patients` (
   `id` int(11) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `password` varchar(100) DEFAULT NULL,
   `user_type` varchar(30) NOT NULL,
   `patient_id` int(11) NOT NULL
@@ -99,7 +99,7 @@ CREATE TABLE `patients` (
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`id`, `email`, `password`, `user_type`, `patient_id`) VALUES
+INSERT INTO `patients` (`id`, `username`, `password`, `user_type`, `patient_id`) VALUES
 (38, 'Tamihstick', '81dc9bdb52d04dc20036dbd8313ed055', 'user', 0),
 (55, 'hanna1234', '81dc9bdb52d04dc20036dbd8313ed055', 'user', 0),
 (56, 'josh', '81dc9bdb52d04dc20036dbd8313ed055', 'user', 0);
