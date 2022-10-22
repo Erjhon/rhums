@@ -60,14 +60,14 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
             <?php if($_settings->userdata('id') > 0): ?>
 
             <div class="form-group">
-                <label for="ailment" class="control-label">Reason for Appointment</label>
-                <textarea class="form-control" name="ailment" rows="1" required><?php echo isset($ailment)? $ailment : "" ?></textarea>
+                <label for="reason" class="control-label">Reason for Appointment</label>
+                <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason)? $reason : "" ?></textarea>
             </div>
             
             <?php else: ?>
                 <div class="form-group">
-                <label for="ailment" class="control-label">Reason for Appointment</label>
-                <textarea class="form-control" name="ailment" rows="1" required></textarea>
+                <label for="reason" class="control-label">Reason for Appointment</label>
+                <textarea class="form-control" name="reason" rows="1" required></textarea>
                 
             </div>
             <?php endif; ?>
