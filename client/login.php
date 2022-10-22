@@ -7,11 +7,11 @@
 if(isset($_POST['submit'])){
 
    // $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $username = mysqli_real_escape_string($conn, $_POST['username']);
    $password = md5($_POST['password']);
    // $user_type = $_POST['user_type'];
 
-   $select = " SELECT * FROM patients WHERE email = '$email' && password = '$password' ";
+   $select = " SELECT * FROM patients WHERE username = '$username' && password = '$password' ";
    $result = mysqli_query($conn, $select);
 
    if(mysqli_num_rows($result) > 0){
@@ -20,12 +20,12 @@ if(isset($_POST['submit'])){
 
       if($row['user_type'] == 'staff'){
 
-         $_SESSION['id'] = $row['email'];
+         $_SESSION['id'] = $row['username'];
          header('location:index.php');
 
       }elseif($row['user_type'] == 'user'){
 
-         $_SESSION['id'] = $row['email'];
+         $_SESSION['id'] = $row['username'];
          header('location:../dashboard.php');
 
       }
@@ -171,7 +171,7 @@ if(isset($_POST['submit'])){
                         <form id="loginp-frm" role="form" action="" method="post">
 
         <div class="input-group mb-3">
-          <input type="text" class="form-control" autofocus name="email" autofocus placeholder="Username" required>
+          <input type="text" class="form-control" autofocus name="username" autofocus placeholder="Username" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -223,7 +223,7 @@ if(isset($_POST['submit'])){
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
-                    <input class="form-control" name="email" placeholder="Username" type="username">
+                    <input class="form-control" name="username" placeholder="Username" type="username">
                   </div>
                 </div>
                 <div class="form-group">

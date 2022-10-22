@@ -19,7 +19,7 @@ class Login extends DBConnection {
 		extract($_POST);
 
 		$qry = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password') ");
-		$qry2 = $this->conn->query("SELECT * FROM patients WHERE email = '$username' && password = md5('$password') ");
+		$qry2 = $this->conn->query("SELECT * FROM patients WHERE username = '$username' && password = md5('$password') ");
 		if($qry->num_rows > 0){
 			foreach($qry->fetch_array() as $k => $v){
 				if(!is_numeric($k) && $k != 'password'){
