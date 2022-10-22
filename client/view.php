@@ -177,7 +177,7 @@ if (mysqli_num_rows($result) > 0) {
                 <thead>
                   <tr>
                     <th>Patient ID</th>
-                    <th>Ailment</th>
+                    <th>Reason for Appointment</th>
                     <th>Schedule</th>
                   </tr>
                 </thead>
@@ -190,7 +190,7 @@ while($row = mysqli_fetch_array($result)) {
 
                   <tr>
                     <td><b>PA-<?php echo $row["patient_id"]; ?></td>
-                    <td><?php echo $row["ailment"]; ?></td>
+                    <td><?php echo $row["reason"]; ?></td>
                     <td><?php echo $row["date_sched"]; ?></td>                    
                   </tr>
                   <?php

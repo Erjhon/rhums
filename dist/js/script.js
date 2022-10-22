@@ -42,7 +42,7 @@ $(document).ready(function(){
 						if(resp.is_admin == 1){
 							location.replace(_base_url_+'admin');
 						}else{
-							location.replace();
+							location.replace(_base_url_+'dashboard.php');
 						}
 					}else if(resp.status == 'incorrect'){
 						var _frm = $('#login-frm')
