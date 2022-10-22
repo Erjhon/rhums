@@ -7,18 +7,18 @@
     if(isset($_POST['submit'])){
 
 
-//       $select = mysqli_query($conn, "SELECT * FROM patients WHERE email = '".$_POST['email']."'");
+//       $select = mysqli_query($conn, "SELECT * FROM patients WHERE username = '".$_POST['username']."'");
 // if(mysqli_num_rows($select)) {
 //     exit('This username already exists');
 // }
 
        // $name = mysqli_real_escape_string($conn, $_POST['name']);
-       $email = mysqli_real_escape_string($conn, $_POST['email']);
+       $username = mysqli_real_escape_string($conn, $_POST['username']);
        $password = md5($_POST['password']);
        $cpass = md5($_POST['cpassword']);
        $user_type = $_POST['user_type'];
 
-       $select = " SELECT * FROM patients WHERE email = '$email' && password = '$password' ";
+       $select = " SELECT * FROM patients WHERE username = '$username' && password = '$password' ";
 
     $result = mysqli_query($conn, $select);
 
@@ -31,7 +31,7 @@
       if($password != $cpass){
          $error[] = 'Password not matched!';
       }else{
-             $insert = "INSERT INTO patients(email, password ,user_type) VALUES('$email','$password','$user_type')";
+             $insert = "INSERT INTO patients(username, password ,user_type) VALUES('$username','$password','$user_type')";
              mysqli_query($conn, $insert);
              echo "<script>alert('Account Added Successfully');
              window.location.href='../client/login.php';
@@ -140,7 +140,7 @@
                          <h4 class="text-dark">First Name</h4>
                       <div class="input-group input-group-alternative mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                          <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
                         </div>
                         <input class="form-control" placeholder="Firstname" name="firstname" type="firstname" required>
                       </div>
@@ -149,7 +149,7 @@
                          <h4 class="text-dark">Last Name</h4>
                       <div class="input-group input-group-alternative mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                          <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
                         </div>
                         <input class="form-control" placeholder="Lastname" name="lastname" type="lastname" required>
                       </div>
@@ -158,9 +158,9 @@
                          <h4 class="text-dark">Username</h4>
                       <div class="input-group input-group-alternative mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                          <span class="input-group-text"><i class="ni ni-username-83"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Username" name="email" type="username" required>
+                        <input class="form-control" placeholder="Username" name="username" type="username" required>
                       </div>
                     </div>
                     <div class="form-group">
@@ -178,7 +178,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Password" name ="cpassword" type="password" required>
+                        <input class="form-control" placeholder="Confirm Password" name ="cpassword" type="password" required>
                       </div>
                     </div>
 
