@@ -207,7 +207,7 @@
                     </div>
                     <br>
                            <div class="col-12 text-center">
-           Have an Account? <a href="../client/login.php">Log in</a>
+          Already have an account? <a href="../client/login.php">Log in</a>
           </div>
                     
                   </form>
