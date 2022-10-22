@@ -89,21 +89,11 @@
 </div>
 </div>
 </div>
-<!-- Form -->
-<!-- <form class="mt-4 mb-3 d-md-none">
-  <div class="input-group input-group-rounded input-group-merge">
-    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
-    <div class="input-group-prepend">
-      <div class="input-group-text">
-        <span class="fa fa-search"></span>
-    </div>
-</div>
-</div>
-</form> -->
+
 <!-- Navigation -->
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link " href="../index.php">
+    <a class="nav-link " href="../dashboard.php">
       <i class="ni ni-single-02 text-green"></i> Schedule Appointment
   </a>
 </li>
@@ -126,17 +116,7 @@
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">List of Appointments</a>
-        <!-- Form -->
-       <!--  <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
-            <input class="form-control" placeholder="Search" type="text">
-        </div>
-    </div>
-</form> -->
+ 
 
 
 <!-- User -->
@@ -217,8 +197,6 @@ while($row = mysqli_fetch_array($result)) {
 $i++;
 }
 ?>
-                </tbody>
-              </table>
                <?php
 }
 else{
@@ -230,12 +208,13 @@ else{
         </tbody>
       </table>
     </div>
-  </div>
-</div>
 
-
-
-            
+ <script type="text/javascript">
+  
+  $(document).ready( function () {
+    $('table').DataTable();
+} );
+</script>           
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -245,7 +224,5 @@ else{
 <script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 
-
-  
 </body>
 </html>

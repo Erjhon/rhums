@@ -40,8 +40,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 										<th>Patient Name</th>
 										<th>Patient Contact No.</th>
 										<th>Patient Gender</th>
-										<th>View Records</th>
-										<th>Generate reports</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -56,12 +55,21 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 											<td><?php echo $row["fullname"]; ?></td>
 											<td><?php echo $row["contactNo"]; ?></td>
 											<td><?php echo $row["gender"]; ?></td>
-											<td>
-												<a href="<?php echo base_url ?>admin/?page=history" class="btn btn-sm btn-primary">View</a>
-												</td>
-											<td>
-												<a target="_blank" href="generate_pdf.php?id=<?=$row['id']?>" class="btn btn-sm btn-primary">Generate PDF<i class="fa fa-file-pdf-o"></a>
-												</td>
+											<td align="center">
+								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+				                  		Action
+				                    <span class="sr-only">Toggle Dropdown</span>
+				                  </button>
+				                  <div class="dropdown-menu" role="menu">
+				                    <a class="dropdown-item view_data" href="<?php echo base_url ?>admin/?page=history"><span class="fa fa-search text-success"></span> View</a>
+									<div class="divider"></div>
+									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
+				                  </div>
+							</td>
+
+											<!-- 	
+												<a href="<?php echo base_url ?>admin/?page=history" class="btn btn-sm btn-primary">View</a>					
+												<a target="_blank" href="generate_pdf.php?id=<?=$row['id']?>" class="btn btn-sm btn-primary">Generate PDF<i class="fa fa-file-pdf-o"></a> -->
 											</tr>
 											<?php
 											$i++;

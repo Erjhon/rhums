@@ -145,7 +145,7 @@ if($total = mysqli_num_rows($patient_history_run)){
     </div>
     <div class="container-fluid mt--7">
       <div class="row">
-        <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="col-xl-9 mb-5 mb-xl-0">
           <div class="card bg-gradient shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
@@ -164,7 +164,7 @@ if($total = mysqli_num_rows($patient_history_run)){
         </div>
           </div>
         </div>
-        <div class="col-xl-4">
+        <div class="col-xl-3">
           <div class="card shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">

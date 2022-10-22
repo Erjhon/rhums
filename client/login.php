@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
       }elseif($row['user_type'] == 'user'){
 
          $_SESSION['id'] = $row['email'];
-         header('location:../index.php');
+         header('location:../dashboard.php');
 
       }
      
