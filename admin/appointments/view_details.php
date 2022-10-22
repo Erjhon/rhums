@@ -29,7 +29,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     <p><b>Contact #:</b> <?php echo $patient['contact'] ?></p>
     <!-- <p><b>Email #:</b> <?php echo $patient['email'] ?></p> -->
     <p><b>Address:</b> <?php echo $patient['address'] ?></p>
-    <p><b>Ailment:</b> <?php echo $ailment ?></p>
+    <p><b>Reason for Appointment:</b> <?php echo $reason ?></p>
     <p><b>Status:</b>
         <?php 
         switch($status){ 
