@@ -152,8 +152,8 @@ if(isset($_POST['submit'])){
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-dark mb-4">
                <!--  <small>Sign in with credentials</small> -->
-                <h1 class="text-dark">Patient Login</h1>
-
+                <h1 class="text-dark">Welcome Back!</h1>
+                <p class="sub-text">Login with your details to continue</p>
                  <?php
       if(isset($error)){
          foreach($error as $error){
@@ -212,7 +212,7 @@ if(isset($_POST['submit'])){
 
                          <div class="col-12 text-center">
                           <br>
-          Don't have an account yet? <a href="register.php"><small>Create an account</small></a>
+          Don't have an account? <a href="register.php"><small>Create an account</small></a>
           </div>
           </div>
       </form>
