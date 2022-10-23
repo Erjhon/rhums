@@ -151,7 +151,6 @@ if(isset($_POST['submit'])){
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-dark mb-4">
-               <!--  <small>Sign in with credentials</small> -->
                 <h1 class="text-dark">Welcome Back!</h1>
                 <p class="sub-text">Login with your details to continue</p>
                  <?php

@@ -89,7 +89,6 @@
             </div>
             <div class="card-body px-lg-5 py-lg-1">
               <div class="text-center text-dark mb-4">
-               <!--  <small>Sign in with credentials</small> -->
                 <h1 class="text-dark">Login</h1>
 
               <!--    <?php
