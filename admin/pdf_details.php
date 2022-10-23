@@ -24,7 +24,7 @@
 	<body>
 
 
-<h2>Medical Appointment and Record Management Sytem <br>RURAL HEALTH UNIT II</h2>
+<h2>Medical Appointment and Record Management System <br>RURAL HEALTH UNIT II</h2>
 
 		<table style="width:100%">
 

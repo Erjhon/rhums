@@ -63,7 +63,7 @@
 
     <body class="bg-neutral">
       <div class="main-content">
-     <div class="header py-8 py-lg-3" style="background: linear-gradient(
+     <div class="header py-8 py-lg-4" style="background: linear-gradient(
     to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.jpg);">
       
       <div class="container">
@@ -80,8 +80,7 @@
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
             <div class="col-lg-8 col-md-1">
-              <h1 class="text-white">Medical Appointment and Record Management System RURAL HEALTH UNIT II</h1>
-             <!--  <p class="text-lead text-black">Use these awesome forms to login or create new account in your project for free.</p> -->
+              <h1 class="text-white">RURAL HEALTH UNIT II</h1>
             </div>
           </div>
         </div>
@@ -93,7 +92,7 @@
       </div>
     </div>
         <!-- Page content -->
-        <div class="container mt--5 pb-5">
+        <div class="container mt--6 pb-5">
           <!-- Table -->
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">

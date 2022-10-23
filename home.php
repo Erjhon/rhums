@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
     <!-- Spinner Start -->
    <!--  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary m-1" role="status">
@@ -15,7 +15,7 @@
 
 
     <!-- Topbar Start -->
-    <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
+  <!--   <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
         <div class="row gx-0">
             <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
@@ -38,7 +38,7 @@
 
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+   <!--  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
         <a href="index.html" class="navbar-brand p-0">
             <h1 class="m-0 text-primary"><i class="fa fa me-2"></i>RHUMS</h1>
         </a>
@@ -64,12 +64,12 @@
             <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
             <a href="client/login.php" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
         </div>
-    </nav>
+    </nav> -->
     <!-- Navbar End -->
 
 
     <!-- Full Screen Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1">
+    <!-- <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="background: rgba(6, 97, 12, .7);">
                 <div class="modal-header border-0">
@@ -83,17 +83,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Full Screen Search End -->
 
 
     <!-- Hero Start -->
-    <div class="container-fluid bg-success py-5 hero-header mb-5" style="background: linear-gradient(
+     <!-- <div class="container-fluid bg-success py-5 hero-header mb-5" style="background: linear-gradient(
     to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(./assets/assets/img/brand/bg.jpg);">
         <div class="row py-3">
             <div class="col-12 text-center">
                  <div class="text-center">
-          <a class="" href="#">
+          <a class="" href="#">j
           <img src="./assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a> 
         <a class="" href="#">
@@ -106,12 +106,12 @@
                 <a href="" class="h4 text-white">Appointment</a>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Hero End -->
 
 
     <!-- Appointment Start -->
-    <div class="container-fluid bg-primary bg-appointment mb-5 wow fadeInUp" style="background: linear-gradient(
+    <!-- <div class="container-fluid bg-primary bg-appointment mb-5 wow fadeInUp" style="background: linear-gradient(
     to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(./assets/assets/img/brand/bg.jpg); data-wow-delay="0.1s" style="margin-top: 90px;">
         <div class="container">
             <div class="row gx-5">
@@ -121,7 +121,7 @@
                         <p class="text-white mb-0">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>
                     </div>
                 </div>
-             <!--    <div class="col-lg-6">
+                <div class="col-lg-6">
                     <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
                         <h1 class="text-white mb-4">Make Appointment</h1>
                         <form>
@@ -168,15 +168,15 @@
                             </div>
                         </form>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Appointment End -->
     
 
     <!-- Newsletter Start -->
-    <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
+    <!-- <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
         <div class="container">
             <div class="bg-primary p-5">
                 <form class="mx-auto" style="max-width: 600px;">
@@ -187,12 +187,12 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Newsletter End -->
     
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: -75px;">
+    <!-- <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: -75px;">
         <div class="container pt-5">
             <div class="row g-5 pt-4">
                 <div class="col-lg-3 col-md-6">
@@ -246,13 +246,89 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Footer End -->
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a> -->
 
+<!-- </body> -->
+
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/animations.css">  
+    <link rel="stylesheet" href="assets/css/main.css">  
+    <link rel="stylesheet" href="assets/css/index.css">
+    <title>Rural Health Unit II Online Medical Appointment</title>
+    <style>
+        table{
+            animation: transitionIn-Y-bottom 0.5s;
+        }
+    </style>
+        
+</head>
+<body>
+    
+    <div class="full-height bg-success py-3" style="background: linear-gradient(
+    to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(./assets/assets/img/brand/bg1.jpg);">
+        <center>
+        <table border="0">
+            <tr>
+                <td width="80%">
+                    <font class="edoc-logo">Medical Clinic </font>
+                    <font class="edoc-logo-sub">| Rural Health Unit II</font>
+                </td>
+                <td width="10%">
+                   <a href="client/login.php"  class="non-style-link"><p class="nav-item">LOGIN</p></a>
+                </td>
+                <td  width="10%">
+                    <a href="client/register.php" class="non-style-link"><p class="nav-item" style="padding-right: 10px;">REGISTER</p></a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td  colspan="3">
+                    <p class="heading-text">ONLINE MEDICAL APPOINTMENT</p>
+
+                </td>
+            </tr>
+            <tr>
+                <td  colspan="3">
+                    <p class="sub-text2">Avoid Hassles & Delays.<br> 
+                    A passion for putting patients first.</p> <br>
+                    <!-- <p class="sub-text2">How is health today, Sounds like not good!<br>Don't worry. Find your doctor online Book as you wish with eDoc. <br>
+                    We offer you a free doctor channeling service, Make your appointment now.</p> -->
+                </td>
+            </tr>
+            <tr>
+                
+                <td colspan="3">
+                    <center>
+                    <a href="./client/login.php" >
+                        <input type="button" value="Set an Appointment" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
+                    </a>
+                </center>
+                </td>
+                
+            </tr>
+            <tr>
+                <td colspan="3">
+                   
+                </td>
+            </tr>
+        </table>
+        <p class="sub-text2 footer-hashen">A Web Solution by Fraxinus.</p>
+    </center>
+    
+    </div>
 </body>
-
 </html>
