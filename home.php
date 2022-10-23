@@ -289,7 +289,9 @@
     <div class="full-height bg-success py-4" style="background: linear-gradient(
     to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(./assets/assets/img/brand/bg1.jpg);">
         <center>
+
         <table border="0">
+            
             <tr>
                 <td width="80%">
                     <font class="edoc-logo">Medical Clinic</font>
