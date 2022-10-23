@@ -13,7 +13,7 @@
           <!-- Card stats -->
           <div class="row">
             <div class="col-xl-3 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card card-stats mb-3 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
@@ -32,7 +32,7 @@ if($total = mysqli_num_rows($patient_query_run)){
 
                       <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
                     </div>
-                    <div class="col-auto">
+                    <div class="">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
                         <i class="fas fa-chart-bar"></i>
                       </div>
@@ -47,7 +47,7 @@ if($total = mysqli_num_rows($patient_query_run)){
             </div>
             <div class="col-xl-3 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
+                <div class="card-body ">
                   <div class="row">
                     <div class="col">
                       
@@ -64,7 +64,7 @@ if($total = mysqli_num_rows($appointment_run)){
 ?>
                       <span class="h1 font-weight-bold mb-0"><?php echo $total;?></span>
                     </div>
-                    <div class="col-auto">
+                    <div class=" ">
                       <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
                         <i class="fas fa-envelope" ></i>
                       </div>
