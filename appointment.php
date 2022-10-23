@@ -9,6 +9,15 @@
             </p>
         </div>
     </div>
+    <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block fixed-bottom">
+        <div class="row gx-0">
+            <div class="col-md-6 text-lg-start mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <small class="py-1"><i class="far fa-clock text-primary me-3"></i>Clinic Hours: Mon - Fri : 8:00 AM - 5:00 PM </small>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <!-- Section-->
 <?php 
