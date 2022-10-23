@@ -277,14 +277,22 @@
         
 </head>
 <body>
-    
-    <div class="full-height bg-success py-3" style="background: linear-gradient(
+    <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block fixed-top">
+        <div class="row gx-0">
+            <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                  <marquee>  <small class="py-2"><i class="far fa-clock text-primary me-4"></i>Clinic Hours: Mon - Fri : 8:00 AM - 5:00 PM </small></marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="full-height bg-success py-4" style="background: linear-gradient(
     to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(./assets/assets/img/brand/bg1.jpg);">
         <center>
         <table border="0">
             <tr>
                 <td width="80%">
-                    <font class="edoc-logo">Medical Clinic </font>
+                    <font class="edoc-logo">Medical Clinic</font>
                     <font class="edoc-logo-sub">| Rural Health Unit II</font>
                 </td>
                 <td width="10%">
@@ -326,9 +334,11 @@
                 </td>
             </tr>
         </table>
-        <p class="sub-text2 footer-hashen">A Web Solution by Fraxinus.</p>
+        <!-- <p class="sub-text2 footer-hashen">A Web Solution by Fraxinus.</p> -->
+
     </center>
     
-    </div>
+</div>
+
 </body>
 </html>
