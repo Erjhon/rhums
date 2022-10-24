@@ -12,7 +12,8 @@
 //     exit('This username already exists');
 // }
 
-       // $name = mysqli_real_escape_string($conn, $_POST['name']);
+       $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+       $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
        $username = mysqli_real_escape_string($conn, $_POST['username']);
        $password = md5($_POST['password']);
        $cpass = md5($_POST['cpassword']);
@@ -31,7 +32,7 @@
       if($password != $cpass){
          $error[] = 'Password not matched!';
       }else{
-             $insert = "INSERT INTO patients(username, password ,user_type) VALUES('$username','$password','$user_type')";
+             $insert = "INSERT INTO patients(firstname, lastname, username, password ,user_type) VALUES('$firstname','$lastname','$username','$password','$user_type')";
              mysqli_query($conn, $insert);
              echo "<script>alert('Account Added Successfully');
              window.location.href='../client/login.php';
@@ -135,13 +136,13 @@
          };
       };
       ?>
-               <!--      <div class="form-group">
+                    <div class="form-group">
                          <h4 class="text-dark">First Name</h4>
                       <div class="input-group input-group-alternative mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Firstname" name="firstname" type="firstname" required>
+                        <input class="form-control" placeholder="First Name" name="firstname" type="firstname" required>
                       </div>
                     </div>
                     <div class="form-group">
@@ -150,9 +151,9 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Lastname" name="lastname" type="lastname" required>
+                        <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
                       </div>
-                    </div> -->
+                    </div>
                     <div class="form-group">
                          <h4 class="text-dark">Username</h4>
                       <div class="input-group input-group-alternative mb-3">
