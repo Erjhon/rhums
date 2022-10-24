@@ -1,47 +1,45 @@
-   <?php
+<?php require_once('../config.php');
 
-    @include '../conn.php';
+if(isset($_POST['submit'])){
 
+   $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+   $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+   $username = mysqli_real_escape_string($conn, $_POST['username']);
+   $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+   $cpassword = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+   $user_type = mysqli_real_escape_string($conn, $_POST['user_type']);
+   $image = $_FILES['image']['name'];
+   $image_size = $_FILES['image']['size'];
+   $image_tmp_name = $_FILES['image']['tmp_name'];
+   $image_folder = '../assets/assets/img'.$image;
 
+   $select = mysqli_query($conn, "SELECT * FROM `patients` WHERE username = '$username' AND password = '$password'") or die('query failed');
 
-    if(isset($_POST['submit'])){
-
-
-//       $select = mysqli_query($conn, "SELECT * FROM patients WHERE username = '".$_POST['username']."'");
-// if(mysqli_num_rows($select)) {
-//     exit('This username already exists');
-// }
-
-       $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-       $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-       $username = mysqli_real_escape_string($conn, $_POST['username']);
-       $password = md5($_POST['password']);
-       $cpass = md5($_POST['cpassword']);
-       $user_type = $_POST['user_type'];
-
-       $select = " SELECT * FROM patients WHERE username = '$username' && password = '$password' ";
-
-    $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $error[] = 'User already exist!';
-
+   if(mysqli_num_rows($select) > 0){
+      $message[] = 'User already exist'; 
    }else{
-
-      if($password != $cpass){
-         $error[] = 'Password not matched!';
+      if($password != $cpassword){
+         $message[] = 'confirm password not matched!';
+      }elseif($image_size > 2000000){
+         $message[] = 'image size is too large!';
       }else{
-             $insert = "INSERT INTO patients(firstname, lastname, username, password ,user_type) VALUES('$firstname','$lastname','$username','$password','$user_type')";
-             mysqli_query($conn, $insert);
-             echo "<script>alert('Account Added Successfully');
-             window.location.href='../client/login.php';
-             </script>"; 
-          }
-       
+         $insert = mysqli_query($conn, "INSERT INTO `patients`(firstname,lastname, username, password,user_type,image) VALUES('$firstname','$lastname','$username', '$password','$user_type','$image')") or die('query failed');
+
+         if($insert){
+            move_uploaded_file($image_tmp_name, $image_folder);
+            $message[] = 'registered successfully!';
+            header('location:login.php');
+         }else{
+            $message[] = 'registeration failed!';
+         }
+      }
+   }
+
 }
-    };
-    ?>
+
+?>
+
+
     <!DOCTYPE html>
     <html lang="en">
 
@@ -120,15 +118,16 @@
                     <!-- <small>Or sign up with credentials</small> -->
                   </div>
                   <form role="form" action="" method="POST">
-                   <!--  <div class="form-group">
-                         <h4 class="text-dark">Name</h4>
-                      <div class="input-group input-group-alternative mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-single-02"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Name" name="name" type="text" required>
-                      </div>
-                    </div> -->
+               
+<?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"></i>'.$message.'</div>';
+         }
+      }
+      ?>
+
+
                                 <?php
       if(isset($error)){
          foreach($error as $error){
@@ -181,6 +180,8 @@
                         <input class="form-control" placeholder="Confirm Password" name ="cpassword" type="password" required>
                       </div>
                     </div>
+
+                    <!-- <input hidden type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png"> -->
 
                  <!-- <div class="text-center"> -->
                       <select hidden class="input-group input-group-alternative  text-muted" name="user_type" required>

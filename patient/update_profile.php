@@ -1,31 +1,68 @@
 <?php
 
-include '../config.php';
-//session_start();
+include 'config.php';
+session_start();
 $user_id = $_SESSION['user_id'];
 
-if(!isset($user_id)){
-   header('location:login.php');
-};
+if(isset($_POST['update_profile'])){
 
-if(isset($_GET['logout'])){
-   unset($user_id);
-   session_destroy();
-   header('location:login.php');
+   $update_name = mysqli_real_escape_string($conn, $_POST['update_name']);
+   $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
+
+   mysqli_query($conn, "UPDATE `patient` SET name = '$update_name', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
+
+   $old_pass = $_POST['old_pass'];
+   $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
+   $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
+   $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
+
+   if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
+      if($update_pass != $old_pass){
+         $message[] = 'old password not matched!';
+      }elseif($new_pass != $confirm_pass){
+         $message[] = 'confirm password not matched!';
+      }else{
+         mysqli_query($conn, "UPDATE `patient` SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
+         $message[] = 'password updated successfully!';
+      }
+   }
+
+   $update_image = $_FILES['update_image']['name'];
+   $update_image_size = $_FILES['update_image']['size'];
+   $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
+   $update_image_folder = 'uploaded_img/'.$update_image;
+
+   if(!empty($update_image)){
+      if($update_image_size > 2000000){
+         $message[] = 'image is too large';
+      }else{
+         $image_update_query = mysqli_query($conn, "UPDATE `patient` SET image = '$update_image' WHERE id = '$user_id'") or die('query failed');
+         if($image_update_query){
+            move_uploaded_file($update_image_tmp_name, $update_image_folder);
+         }
+         $message[] = 'image updated succssfully!';
+      }
+   }
+
 }
 
 ?>
-
-
  <!DOCTYPE html>
  <html lang="en">
-<?php require_once('../inc/header.php') ?>
+
  <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
     Medical Scheduling and Record Management for RHU II
 </title>
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
 <!-- Favicon -->
 <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
 <!-- Fonts -->
@@ -39,7 +76,7 @@ if(isset($_GET['logout'])){
 
 <style>
 #selectAll{
-	top:0
+   top:0
 }
 </style>
 <body class="">
@@ -71,7 +108,17 @@ if(isset($_GET['logout'])){
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
           <span class="avatar avatar-sm rounded-circle">
-            <img alt="Image placeholder" src="./assets/assets/img/theme/profile.jpg">
+           <?php
+         $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
+         if(mysqli_num_rows($select) > 0){
+            $fetch = mysqli_fetch_assoc($select);
+         }
+         if($fetch['image'] == ''){
+            echo '<img src="images/default-avatar.png">';
+         }else{
+            echo '<img src="uploaded_img/'.$fetch['image'].'">';
+         }
+      ?>
         </span>
     </div>
 </a>
@@ -94,7 +141,7 @@ if(isset($_GET['logout'])){
       <div class="row">
         <div class="col-6 collapse-brand">
           <a href="./index.php">
-            <img src="../assets/assets/img/brand/blue.png" height="100" width="100">
+              <img src="../assets/assets/img/brand/rhu.png"  height="60" width="40"/>
         </a>
     </div>
     <div class="col-6 collapse-close">
@@ -133,8 +180,6 @@ if(isset($_GET['logout'])){
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">List of Appointments</a>
  
-
-
 <!-- User -->
 <ul class="navbar-nav align-items-center d-none d-md-flex">
   <li class="nav-item dropdown">
@@ -180,67 +225,70 @@ if(isset($_GET['logout'])){
 </nav>
 <!-- End Navbar -->
 <!-- Header -->
-<div class="header pb-10 pt-10 pt-lg-7 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-  <!-- Mask -->
+<div class="header pb-10 pt-10 pt-lg-5 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+
+     <!-- Mask -->
   <span class="mask bg-gradient-default opacity-8"></span>
+
   <!-- Header container -->
-      <div class="container px-10 px-lg-6 my-7">
+      <div class="container px-10 px-lg-10 my-10">
 <div class="card card-outline">
   <div class="card-header">
-    <h2 class="card-title">View Appointments</h2>
+    <h2 class="card-title">Update your profile</h2>
    </div>
 
-   <div class="card-body">
-    <div class="container-fluid">
+<div class="update-profile">
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="table-responsive">
-              <table class="table table-border table-hover custom-table datatable mb-0 text-center">
+   <?php
+      $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
 
-        <?php
-$result = mysqli_query($conn,"SELECT * FROM appointments ");
-?>
-        <tbody>
-                        <?php
-if (mysqli_num_rows($result) > 0) {
-?>
-                <thead>
-                  <tr>
-                    <th>Patient ID</th>
-                    <th>Reason of appointment</th>
-                    <th>Schedule</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-$i=0;
-while($row = mysqli_fetch_array($result)) {
-?>
+   <form action="" method="post" enctype="multipart/form-data">
+      <?php
+         if($fetch['image'] == ''){
+            echo '<img src="images/default-avatar.png">';
+         }else{
+            echo '<img src="uploaded_img/'.$fetch['image'].'">';
+         }
+         if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="message">'.$message.'</div>';
+            }
+         }
+      ?>
+      <div class="flex">
+         <div class="inputBox">
+            <span>username :</span>
+            <input type="text" name="update_name" value="<?php echo $fetch['name']; ?>" class="box">
+            <span>your email :</span>
+            <input type="email" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
+            <span>update your pic :</span>
+            <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
+         </div>
+         <div class="inputBox">
+            <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
+            <span>old password :</span>
+            <input type="password" name="update_pass" placeholder="enter previous password" class="box">
+            <span>new password :</span>
+            <input type="password" name="new_pass" placeholder="enter new password" class="box">
+            <span>confirm password :</span>
+            <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
+         </div>
+      </div>
+      <input type="submit" value="update profile" name="update_profile" class="btn">
+      <a href="home.php" class="delete-btn">go back</a>
+   </form>
 
+</div>
 
-                  <tr>
-                    <td><b>PA-<?php echo $row["patient_id"]; ?></td>
-                    <td><?php echo $row["reason"]; ?></td>
-                    <td><?php echo $row["date_sched"]; ?></td>                    
-                  </tr>
-                  <?php
-$i++;
-}
-?>
-               <?php
-}
-else{
-    echo "No result found";
-}
-?>
+   
 
+                     
 
-        </tbody>
-      </table>
-    </div>
-
-</script>           
+</body>
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -249,6 +297,11 @@ else{
 <!--   Argon JS   -->
 <script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-
-</body>
+<script>
+    window.TrackJS &&
+    TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "argon-dashboard-free"
+    });
+</script>
 </html>
