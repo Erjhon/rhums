@@ -17,7 +17,7 @@ function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)
                     $ok = "success";
                     }        
                     else {
-                    // print("Please refer to API on Error : " . $fd);
+                     print("Please refer to API on Error : " . $fd);
                     $ok = "fail";
                     }
                         }           
