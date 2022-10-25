@@ -6,20 +6,40 @@
 
 if(isset($_POST['submit'])){
 
+   // $name = mysqli_real_escape_string($conn, $_POST['name']);
    $username = mysqli_real_escape_string($conn, $_POST['username']);
-   $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+   $password = md5($_POST['password']);
+   // $user_type = $_POST['user_type'];
 
-   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$password'") or die('query failed');
+   $select = " SELECT * FROM patients WHERE username = '$username' && password = '$password' ";
+   $result = mysqli_query($conn, $select);
 
-   if(mysqli_num_rows($select) > 0){
-      $row = mysqli_fetch_assoc($select);
-      $_SESSION['user_id'] = $row['id'];
-      header('location:../dashboard.php');
+   if(mysqli_num_rows($result) > 0){
+
+      $row = mysqli_fetch_array($result);
+
+      if($row['user_type'] == 'staff'){
+
+         $_SESSION['id'] = $row['username'];
+         header('location:index.php');
+
+      }elseif($row['user_type'] == 'user'){
+
+         $_SESSION['id'] = $row['username'];
+         header('location:../dashboard.php');
+
+      }
+     
    }else{
+
+    // Display the alert box 
+  
       $error[] = "";
+
+
    }
 
-}
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
