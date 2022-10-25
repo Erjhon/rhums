@@ -9,11 +9,10 @@
 
 
 <body class="bg-neutral">
-  
   <div class="main-content">
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
-      <div class="container px-4">
+      <div class="container px-3">
      
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -40,8 +39,8 @@
       </div>
     </nav>
     <!-- Header -->
-    <div class="header py-8 py-lg-3" style="background: linear-gradient(
-    to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.jpg);">
+    <div class="header py-8 py-lg-4" style="background: linear-gradient(
+    to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
       
       <div class="container">
         <div class="text-center">
@@ -52,13 +51,10 @@
           <img src="../assets/assets/img/brand/doh.png"  height="100" width="100"/>
         </a>
         </div>
-        <!--  <div class="text-white text-center mt-2 mb--3"><small class="display-4">Medical Appointment and Record Management for RHU II
-</small></div> -->
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
             <div class="col-lg-8 col-md-1">
-              <h1 class="text-white">Medical Appointment and Record Management System RURAL HEALTH UNIT II</h1>
-             <!--  <p class="text-lead text-black">Use these awesome forms to login or create new account in your project for free.</p> -->
+              <h1 class="text-white">RURAL HEALTH UNIT II</h1>
             </div>
           </div>
         </div>
@@ -70,22 +66,11 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--5 pb-5">
+    <div class="container mt--6 pb-5">
       <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-8">
+        <div class="col-lg-5 col-md-6">
           <div class="card bg-secondary shadow border-0">
             <div class="bg-transparent pb-5">
-             
-              <!-- <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
-              </div> -->
             </div>
             <div class="card-body px-lg-5 py-lg-1">
               <div class="text-center text-dark mb-4">
@@ -128,9 +113,8 @@
             <!-- <button type="submit" class="btn btn-primary btn-block">Sign In</button> -->
           </div> 
           <div class="text-center col-4">
-                      <button type="submit" name="submit" class="btn btn-primary mt-2">Log in</button>
-                    </div>
-                    <br>
+            <button type="submit" name="submit" class="btn btn-primary mt-2">Log in</button>
+          </div><br>
           <!-- /.col -->
         </div>
        <div class="row mt-3">
@@ -142,43 +126,11 @@
             </div> -->
           </div>
       </form>
-
             </div>
           </div>
-          
         </div>
-        
       </div>
     </div>
-    <!-- Foooter -->
-  <!--   <footer class="py-5">
-      <div class="container">
-        <div class="row align-items-center justify-content-xl-between">
-          <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-dark">
-              © 2022 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Team Fraxinus</a>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Team Fraxinuss</a>
-              </li>
-              <!-- <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li> -->
-              <!-- <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
