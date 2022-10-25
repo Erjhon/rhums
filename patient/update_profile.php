@@ -301,7 +301,7 @@ if(isset($_POST['update_profile'])){
             <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
          </div>
       </div>
-      <div class="form-group text-center w-50 form-group">
+      <div class="form-group text-center w-100 form-group">
         <input type="submit" class="btn btn-primary" value="Update profile" name="update_profile">
       </div>
       
