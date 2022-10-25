@@ -205,7 +205,7 @@ if(isset($_POST['submit'])){
                         <input class="form-control" placeholder="Confirm Password" name ="cpassword" type="password" required>
                       </div>
                     </div>
-
+                    <h4 class="text-dark">Add Profile Image</h4>
                     <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
 
         
