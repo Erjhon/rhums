@@ -2,7 +2,6 @@
 
 @include '../config.php';
 
-// session_start();
 
 if(isset($_POST['submit'])){
 
@@ -18,7 +17,7 @@ if(isset($_POST['submit'])){
    }else{
       $error[] = "";
    }
-}
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,8 +80,8 @@ if(isset($_POST['submit'])){
       </div>
     </nav>
      <!-- Header -->
-    <div class="header py-8 py-lg-4" style="background: linear-gradient(
-    to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
+
+    <div class="header py-8 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
       
       <div class="container">
         <div class="text-center">
@@ -93,13 +92,10 @@ if(isset($_POST['submit'])){
           <img src="../assets/assets/img/brand/doh.png"  height="100" width="100"/>
         </a>
         </div>
-        <!--  <div class="text-white text-center mt-2 mb--3"><small class="display-4">Medical Appointment and Record Management for RHU II
-</small></div> -->
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
             <div class="col-lg-8 col-md-1">
               <h1 class="text-white">RURAL HEALTH UNIT II</h1>
-             <!--  <p class="text-lead text-black">Use these awesome forms to login or create new account in your project for free.</p> -->
             </div>
           </div>
         </div>
@@ -116,17 +112,6 @@ if(isset($_POST['submit'])){
         <div class="col-lg-5 col-md-6">
           <div class="card bg-secondary shadow border-0">
             <div class="bg-transparent pb-1">
-              <!-- <div class="text-muted text-center mt-2 mb-3"><small class="display-4">Log In</small></div> -->
-              <!-- <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
-              </div> -->
             </div>
             <div class="card-body px-lg-5 py-lg-4">
               <div class="text-center text-dark mb-4">
@@ -165,21 +150,16 @@ if(isset($_POST['submit'])){
           </div>
         </div>
         <div class="row">
-         <!--  <div class="col-8">
+         <!-- <div class="col-8">
             <a href="<?php echo base_url ?>">Go to Website</a>
           </div> -->
-          <!-- /.col -->
-
 
           <div class="col-4 ">
             <!-- <button type="submit" class="btn btn-primary btn-block">Sign In</button> -->
           </div> 
           <div class="text-center col-4">
-                      <button type="submit" name="submit" class="btn btn-primary mt-2">
-                        Log in
-                      </button>
-                    </div>
-                    <br>
+            <button type="submit" name="submit" class="btn btn-primary mt-2">Log in</button>
+          </div><br>
 
           <!-- /.col -->
         </div>
@@ -188,75 +168,17 @@ if(isset($_POST['submit'])){
               <a href="forgot.php" class="nav-link"><small>Forgot password?</small></a>
             </div> -->
 
-                         <div class="col-12 text-center">
-                          <br>
-          Don't have an account? <a href="register.php"><small>Create an account</small></a>
+          <div class="col-12 text-center"><br>Don't have an account? <a href="register.php">
+            <small>Create an account</small></a>
           </div>
           </div>
       </form>
-           <!--    <form action="" method="POST" role="form">
-                <div class="form-group mb-3">
-                   <h4 class="text-dark">Username</h4>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
-                    </div>
-                    <input class="form-control" name="username" placeholder="Username" type="username">
-                  </div>
-                </div>
-                <div class="form-group">
-                     <h4 class="text-dark">Password</h4>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" name="password" placeholder="Password" type="password">
-                  </div>
-                </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-dark">Remember me</span>
-                  </label>
-                </div>
-                <div class="text-center">
-                  <button type="submit" name="submit" class="btn btn-primary my-4">Sign in</button>
-                </div>
-              </form> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Foooter -->
-  <!--   <footer class="py-5">
-      <div class="container">
-        <div class="row align-items-center justify-content-xl-between">
-          <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-dark">
-              © 2022 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Team Fraxinus</a>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Team Fraxinuss</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li> -->
-              <!-- <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
+            
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
