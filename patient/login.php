@@ -81,8 +81,8 @@ if(isset($_POST['submit'])){
       </div>
     </nav>
      <!-- Header -->
-    <div class="header py-8 py-lg-3" style="background: linear-gradient(
-    to bottom,rgba(23, 173, 106, 0.😎,rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
+    <div class="header py-8 py-lg-4" style="background: linear-gradient(
+    to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
       
       <div class="container">
         <div class="text-center">
@@ -128,7 +128,7 @@ if(isset($_POST['submit'])){
                 </a>
               </div> -->
             </div>
-            <div class="card-body px-lg-5 py-lg-5">
+            <div class="card-body px-lg-5 py-lg-4">
               <div class="text-center text-dark mb-4">
                 <h1 class="text-dark">Welcome Back!</h1>
                 <p class="sub-text">Login with your details to continue</p>
