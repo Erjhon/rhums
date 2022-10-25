@@ -64,6 +64,22 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="confirm_modal" role='dialog'>
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+      </div>
+      <div class="modal-body">
+        <div id="delete_content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id='confirm' onclick="">Continuefd</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
@@ -78,17 +94,13 @@
 			method:"POST",
 			data:{id: $id},
 			dataType:"json",
-			error:err=>{
-				console.log(err)
-				alert_toast("An error occured.",'error');
-				end_loader();
-			},
 			success:function(resp){
-				if(typeof resp== 'object' && resp.status == 'success'){
-					location.reload();
-				}else{
-					alert_toast("An error occured.",'error');
+				if(resp ==1){
+					location.href = './?page=user/list';
+				 }else{
+					alert_toast("An error occured",'error');
 					end_loader();
+                    console.log(resp)
 				}
 			}
 		})
