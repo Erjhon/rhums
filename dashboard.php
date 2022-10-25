@@ -122,7 +122,7 @@ if(isset($_GET['logout'])){
 
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link " href="client/view.php">
+    <a class="nav-link " href="patient/view.php">
       <i class="ni ni-ruler-pencil text-blue"></i> View Appointment
   </a>
 </li>
@@ -235,7 +235,7 @@ if(isset($_GET['logout'])){
       <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a type="button" class="btn btn-primary" href="client/logout.php?logout=<?php echo $user_id; ?>">Logout</a>
+        <a type="button" class="btn btn-primary" href="patient/logout.php?logout=<?php echo $user_id; ?>">Logout</a>
       </div>
     </div>
   </div>

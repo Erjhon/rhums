@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2022 at 10:06 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Oct 25, 2022 at 08:49 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,8 +41,9 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`id`, `patient_id`, `date_sched`, `reason`, `status`, `date_created`) VALUES
-(62, 73, '2022-10-21 15:47:00', 'aa', 0, '2022-10-21 15:48:00'),
-(63, 74, '2022-10-21 14:48:00', 'Check Up', 0, '2022-10-21 15:48:47');
+(70, 1, '2022-10-24 10:00:00', 'Asthma', 1, '2022-10-22 18:57:34'),
+(71, 2, '2022-10-24 11:30:00', 'FEVER', 1, '2022-10-22 19:27:06'),
+(72, 3, '2022-10-25 14:15:00', 'Check up for Fever', 1, '2022-10-25 14:15:18');
 
 -- --------------------------------------------------------
 
@@ -84,14 +85,41 @@ INSERT INTO `location` (`id`, `location`, `description`, `max_a_day`, `date_crea
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `patient`
+--
+
+CREATE TABLE `patient` (
+  `id` int(100) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`id`, `firstname`, `lastname`, `username`, `password`, `image`) VALUES
+(1, 'erjhon', 'baldoza', 'erjbaldoza', '81dc9bdb52d04dc20036dbd8313ed055', 'Screenshot (13).png'),
+(2, 'Joshua', 'Nilo', 'nilojosh', 'd93591bdf7860e1e4ee2fca799911215', 'UI_Costume_MonaCostumeWic.png'),
+(3, 'Joshua', 'Nilo', 'joshnilo', 'f58798914a1b6a68ce4bfc5454214795', '2.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `patients`
 --
 
 CREATE TABLE `patients` (
   `id` int(11) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) DEFAULT NULL,
-  `user_type` varchar(30) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `user_type` varchar(100) NOT NULL,
   `patient_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -99,10 +127,9 @@ CREATE TABLE `patients` (
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`id`, `username`, `password`, `user_type`, `patient_id`) VALUES
-(38, 'Tamihstick', '81dc9bdb52d04dc20036dbd8313ed055', 'user', 0),
-(55, 'hanna1234', '81dc9bdb52d04dc20036dbd8313ed055', 'user', 0),
-(56, 'josh', '81dc9bdb52d04dc20036dbd8313ed055', 'user', 0);
+INSERT INTO `patients` (`id`, `firstname`, `lastname`, `username`, `password`, `image`, `user_type`, `patient_id`) VALUES
+(70, 'Erjhon', 'Baldoza', 'erjbaldoza', '81dc9bdb52d04dc20036dbd8313ed055', '', 'user', 0),
+(73, 'Joshua', 'Nilo', 'nilojosh', '81dc9bdb52d04dc20036dbd8313ed055', '', 'user', 0);
 
 -- --------------------------------------------------------
 
@@ -145,8 +172,9 @@ CREATE TABLE `patient_list` (
 --
 
 INSERT INTO `patient_list` (`id`, `name`, `date_created`) VALUES
-(73, 'Nilo', '2022-10-21 15:48:00'),
-(74, 'otsot', '2022-10-21 15:48:46');
+(1, 'Erjhon Baldoza', '2022-10-22 18:57:34'),
+(2, 'Nilo Joshua', '2022-10-22 19:27:06'),
+(3, 'Joshua Nilo', '2022-10-25 14:15:18');
 
 -- --------------------------------------------------------
 
@@ -166,22 +194,30 @@ CREATE TABLE `patient_meta` (
 --
 
 INSERT INTO `patient_meta` (`patient_id`, `meta_field`, `meta_value`, `date_created`) VALUES
-(73, 'id', '', '2022-10-21 15:48:00'),
-(73, 'patient_id', '', '2022-10-21 15:48:00'),
-(73, 'name', 'Nilo', '2022-10-21 15:48:00'),
-(73, 'email', '', '2022-10-21 15:48:00'),
-(73, 'contact', '122', '2022-10-21 15:48:00'),
-(73, 'gender', 'Male', '2022-10-21 15:48:00'),
-(73, 'dob', '2000-02-06', '2022-10-21 15:48:00'),
-(73, 'address', 'Nabuas', '2022-10-21 15:48:00'),
-(74, 'id', '', '2022-10-21 15:48:47'),
-(74, 'patient_id', '', '2022-10-21 15:48:47'),
-(74, 'name', 'otsot', '2022-10-21 15:48:47'),
-(74, 'email', '', '2022-10-21 15:48:47'),
-(74, 'contact', '1234', '2022-10-21 15:48:47'),
-(74, 'gender', 'Male', '2022-10-21 15:48:47'),
-(74, 'dob', '2001-07-04', '2022-10-21 15:48:47'),
-(74, 'address', 'Nabua', '2022-10-21 15:48:47');
+(1, 'id', '', '2022-10-22 18:57:34'),
+(1, 'patient_id', '', '2022-10-22 18:57:34'),
+(1, 'name', 'Erjhon Baldoza', '2022-10-22 18:57:34'),
+(1, 'email', '', '2022-10-22 18:57:34'),
+(1, 'contact', '09381858656', '2022-10-22 18:57:34'),
+(1, 'gender', 'Male', '2022-10-22 18:57:34'),
+(1, 'dob', '2000-11-10', '2022-10-22 18:57:34'),
+(1, 'address', 'LA PURISIMA NABUA', '2022-10-22 18:57:34'),
+(2, 'id', '', '2022-10-22 19:27:06'),
+(2, 'patient_id', '', '2022-10-22 19:27:06'),
+(2, 'name', 'Nilo Joshua', '2022-10-22 19:27:06'),
+(2, 'email', '', '2022-10-22 19:27:06'),
+(2, 'contact', '12345678901', '2022-10-22 19:27:06'),
+(2, 'gender', 'Male', '2022-10-22 19:27:06'),
+(2, 'dob', '2002-02-10', '2022-10-22 19:27:06'),
+(2, 'address', 'LA PURISIMA NABUA', '2022-10-22 19:27:06'),
+(3, 'id', '', '2022-10-25 14:15:18'),
+(3, 'patient_id', '', '2022-10-25 14:15:18'),
+(3, 'name', 'Joshua Nilo', '2022-10-25 14:15:18'),
+(3, 'email', '', '2022-10-25 14:15:18'),
+(3, 'contact', '09093698614', '2022-10-25 14:15:18'),
+(3, 'gender', 'Male', '2022-10-25 14:15:18'),
+(3, 'dob', '2001-07-04', '2022-10-25 14:15:18'),
+(3, 'address', 'la Pursima Nabua Camarines Sur', '2022-10-25 14:15:18');
 
 -- --------------------------------------------------------
 
@@ -222,7 +258,7 @@ CREATE TABLE `system_info` (
 
 INSERT INTO `system_info` (`id`, `meta_field`, `meta_value`) VALUES
 (1, 'name', 'Medical Appointment and Record Management System Rural Health Unit II\r\n'),
-(6, 'short_name', 'Team Fraxinus'),
+(6, 'short_name', 'RHU2MS'),
 (11, 'logo', 'uploads/1630631400_clinic-logo.png'),
 (13, 'user_avatar', 'uploads/user_avatar.jpg'),
 (14, 'cover', 'uploads/1663952460_bg.jpg');
@@ -279,6 +315,12 @@ ALTER TABLE `location`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `patient`
+--
+ALTER TABLE `patient`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `patients`
 --
 ALTER TABLE `patients`
@@ -323,7 +365,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -338,10 +380,16 @@ ALTER TABLE `location`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `patient`
+--
+ALTER TABLE `patient`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `patient_history`
@@ -353,7 +401,7 @@ ALTER TABLE `patient_history`
 -- AUTO_INCREMENT for table `patient_list`
 --
 ALTER TABLE `patient_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `system_info`
@@ -365,11 +413,17 @@ ALTER TABLE `system_info`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient_list` (`id`);
 
 --
 -- Constraints for table `patient_meta`

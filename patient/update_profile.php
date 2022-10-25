@@ -238,7 +238,7 @@ if(isset($_POST['update_profile'])){
       <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a type="button" class="btn btn-primary" href="../client/logout.php?logout=<?php echo $user_id;?>" >Logout</a>
+        <a type="button" class="btn btn-primary" href="logout.php?logout=<?php echo $user_id;?>" >Logout</a>
       </div>
     </div>
   </div>
