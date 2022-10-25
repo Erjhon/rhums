@@ -1,5 +1,54 @@
 <?php 
+
 require_once('../../config.php');
+
+    
+function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)  
+            {           
+                        $query_string = "api.aspx?apiusername=".$user."&apipassword=".$pass;
+                        $query_string .= "&senderid=".rawurlencode($sms_from)."&mobileno=".rawurlencode($sms_to);
+                        $query_string .= "&message=".rawurlencode(stripslashes($sms_msg)) . "&languagetype=1";        
+                        $url = "http://gateway.onewaysms.com.au:10001/".$query_string;       
+                        $fd = @implode ('', file ($url));      
+                        if ($fd)  
+                        {                       
+                    if ($fd > 0) {
+                    // Print("MT ID : " . $fd);
+                    $ok = "success";
+                    }        
+                    else {
+                    // print("Please refer to API on Error : " . $fd);
+                    $ok = "fail";
+                    }
+                        }           
+                        else      
+                        {                       
+                                    // no contact with gateway                      
+                                    $ok = "fail";       
+                        }           
+                        return $ok;  
+            } 
+
+            function geturl(){
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+         $url = "https://";   
+    else  
+         $url = "http://";   
+    // Append the host(domain name, ip) to the URL.   
+    $url.= $_SERVER['HTTP_HOST'];   
+    
+    // Append the requested resource location to the URL   
+    $url.= $_SERVER['REQUEST_URI'];    
+    // $url.= $_SERVER['PHP_SELF'];    
+      
+    return $url;  
+}
+            if (isset($_GET['hcontact'])) {
+                echo gw_send_sms("APIHS50318YP5", "APIHS50318YP5HS503", "TEST", ''.$_GET['hcontact'], "test message");
+            }
+
+
+
 if(isset($_GET['id']) && $_GET['id'] > 0){
     $qry = $conn->query("SELECT * from `appointments` where id = '{$_GET['id']}' ");
     if($qry->num_rows > 0){
@@ -22,6 +71,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 }
 </style>
 <div class="container-fluid">
+<form action="<?php geturl()?>" method="GET" id="hiddenform">
+    <input type="hidden" name="hcontact" id="hiddencontact">
+    <input type="hidden" name="page" value="appointments" >
+</form>
+
     <form action="sendsms.php" id="appointment_form" method="POST" class="py-2">
     <div class="row" id="appointment">
         <div class="col-6" id="frm-field">
@@ -37,7 +91,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact No.</label>
-                    <input type="text" class="form-control" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required>
+                    <input type="text" class="form-control" id="scontact" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required>
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
@@ -118,7 +172,12 @@ $(function(){
 				},
 				success:function(resp){
 					if(typeof resp =='object' && resp.status == 'success'){
-                       location.reload()
+                        document.getElementById("hiddencontact").value = document.getElementById("scontact").value;
+                        // console.log(document.getElementById("hiddencontact").value);
+
+
+                        document.getElementById("hiddenform").submit();
+                       // location.reload()
 					}else if(resp.status == 'failed' && !!resp.msg){
                         var el = $('<div>')
                             el.addClass("alert alert-danger err-msg").text(resp.msg)

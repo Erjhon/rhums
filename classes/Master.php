@@ -21,41 +21,11 @@ Class Master extends DBConnection {
 			return json_encode($resp);
 			exit;
 		}
-	}
-	
-function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)  
-            {           
-                        $query_string = "api.aspx?apiusername=".$user."&apipassword=".$pass;
-                        $query_string .= "&senderid=".rawurlencode($sms_from)."&mobileno=".rawurlencode($sms_to);
-                        $query_string .= "&message=".rawurlencode(stripslashes($sms_msg)) . "&languagetype=1";        
-                        $url = "http://gateway.onewaysms.com.au:10001/".$query_string;       
-                        $fd = @implode ('', file ($url));      
-                        if ($fd)  
-                        {                       
-				    if ($fd > 0) {
-					Print("MT ID : " . $fd);
-					$ok = "success";
-				    }        
-				    else {
-					print("Please refer to API on Error : " . $fd);
-					$ok = "fail";
-				    }
-                        }           
-                        else      
-                        {                       
-                                    // no contact with gateway                      
-                                    $ok = "fail";       
-                        }           
-                        return $ok;  
-            }  
+	} 
    
 	function save_appointment(){
 		extract($_POST);
-		 isset($_POST['contact']){
-                 $contact = $_POST['contact']
-                  gw_send_sms("APIHS50318YP5", "APIHS50318YP5HS503", "senderid", $contact, "test message"); 
-            }
-
+		
 		$sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
 		$sched_set = array_column($sched_set_qry->fetch_all(MYSQLI_ASSOC),'meta_value','meta_field');
 		$morning_start = date("Y-m-d ") . explode(',',$sched_set['morning_schedule'])[0];
@@ -112,6 +82,8 @@ function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)
 			if($save_sched && $save_meta){
 				$resp['status'] = 'success';
 				$resp['name'] = $name;
+              
+           
 				$this->settings->set_flashdata('success',' Appointment successfully saved');
 			}else{
 				$resp['status'] = 'failed';
