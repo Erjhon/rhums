@@ -1,46 +1,31 @@
 <?php
 
-@include '../config.php';
-
-// session_start();
+include 'config.php';
+session_start();
 
 if(isset($_POST['submit'])){
 
-   // $name = mysqli_real_escape_string($conn, $_POST['name']);
    $username = mysqli_real_escape_string($conn, $_POST['username']);
-   $password = md5($_POST['password']);
-   // $user_type = $_POST['user_type'];
+   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
 
-   $select = " SELECT * FROM patients WHERE username = '$username' && password = '$password' ";
-   $result = mysqli_query($conn, $select);
+   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$pass'") or die('query failed');
 
-   if(mysqli_num_rows($result) > 0){
-
-      $row = mysqli_fetch_array($result);
-
-      if($row['user_type'] == 'staff'){
-
-         $_SESSION['id'] = $row['username'];
-         header('location:index.php');
-
-      }elseif($row['user_type'] == 'user'){
-
-         $_SESSION['id'] = $row['username'];
-         header('location:../dashboard.php');
-
-      }
-     
+   if(mysqli_num_rows($select) > 0){
+      $row = mysqli_fetch_assoc($select);
+      $_SESSION['user_id'] = $row['id'];
+      header('location:../dashboard.php');
    }else{
-
-    // Display the alert box 
-  
       $error[] = "";
-
-
    }
-
-};
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <script>
+    start_loader()
+  </script>
+
 <!DOCTYPE html>
 <html lang="en">
   <script>
@@ -107,7 +92,7 @@ if(isset($_POST['submit'])){
       
       <div class="container">
         <div class="text-center">
-          <a class="" href="../client/login.php">
+          <a class="" href="<?php echo base_url ?>">
           <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a> 
         <a class="" href="../admin/login.php">
@@ -307,4 +292,26 @@ if(isset($_POST['submit'])){
   </script>
 </body>
 
+</html>
+   
+<!-- <div class="form-container">
+
+   <form action="" method="post" enctype="multipart/form-data">
+      <h3>login now</h3>
+      <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '<div class="message">'.$message.'</div>';
+         }
+      }
+      ?>
+      <input type="email" name="email" placeholder="enter email" class="box" required>
+      <input type="password" name="password" placeholder="enter password" class="box" required>
+      <input type="submit" name="submit" value="login now" class="btn">
+      <p>don't have an account? <a href="register.php">regiser now</a></p>
+   </form>
+
+</div> -->
+
+</body>
 </html>

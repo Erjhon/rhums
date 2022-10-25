@@ -1,47 +1,46 @@
-   <?php
+<?php
 
-    @include '../conn.php';
+include 'config.php';
 
+if(isset($_POST['submit'])){
 
+    $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+   $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+   $username = mysqli_real_escape_string($conn, $_POST['username']);
+   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+   $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+   $image = $_FILES['image']['name'];
+   $image_size = $_FILES['image']['size'];
+   $image_tmp_name = $_FILES['image']['tmp_name'];
+   $image_folder = 'uploaded_img/'.$image;
 
-    if(isset($_POST['submit'])){
+   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$pass'") or die('query failed');
 
-
-//       $select = mysqli_query($conn, "SELECT * FROM patients WHERE username = '".$_POST['username']."'");
-// if(mysqli_num_rows($select)) {
-//     exit('This username already exists');
-// }
-
-       $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-       $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-       $username = mysqli_real_escape_string($conn, $_POST['username']);
-       $password = md5($_POST['password']);
-       $cpass = md5($_POST['cpassword']);
-       $user_type = $_POST['user_type'];
-
-       $select = " SELECT * FROM patients WHERE username = '$username' && password = '$password' ";
-
-    $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $error[] = 'User already exist!';
-
+   if(mysqli_num_rows($select) > 0){
+      $message[] = 'user already exist'; 
    }else{
-
-      if($password != $cpass){
-         $error[] = 'Password not matched!';
+      if($pass != $cpass){
+         $message[] = 'confirm password not matched!';
+      }elseif($image_size > 2000000){
+         $message[] = 'image size is too large!';
       }else{
-             $insert = "INSERT INTO patients(firstname, lastname, username, password ,user_type) VALUES('$firstname','$lastname','$username','$password','$user_type')";
-             mysqli_query($conn, $insert);
-             echo "<script>alert('Account Added Successfully');
-             window.location.href='../client/login.php';
-             </script>"; 
-          }
-       
+         $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,lastname, username, password, image) VALUES('$firstname','$lastname', '$username', '$pass', '$image')") or die('query failed');
+
+         if($insert){
+            move_uploaded_file($image_tmp_name, $image_folder);
+            $message[] = 'registered successfully!';
+            header('location:login.php');
+         }else{
+            $message[] = 'registeration failed!';
+         }
+      }
+   }
+
 }
-    };
-    ?>
+
+?>
+
+
     <!DOCTYPE html>
     <html lang="en">
 
@@ -52,12 +51,12 @@
         Medical Scheduling and Record Management for RHU II
       </title>
       <!-- Favicon -->
-      <link href="assets/assets/img/brand/doh.png" rel="icon" type="image/png">
+      <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
       <!-- Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
       <!-- Icons -->
-      <link href="assets/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
-      <link href="assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+      <link href="../assets/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+      <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
       <!-- CSS Files -->
       <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
     </head>
@@ -119,16 +118,17 @@
                       <h1 class="text-dark">Create Account</h1>
                     <!-- <small>Or sign up with credentials</small> -->
                   </div>
-                  <form role="form" action="" method="POST">
-                   <!--  <div class="form-group">
-                         <h4 class="text-dark">Name</h4>
-                      <div class="input-group input-group-alternative mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-single-02"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Name" name="name" type="text" required>
-                      </div>
-                    </div> -->
+                 
+               
+<?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"></i>'.$message.'</div>';
+         }
+      }
+      ?>
+
+
                                 <?php
       if(isset($error)){
          foreach($error as $error){
@@ -136,6 +136,30 @@
          };
       };
       ?>
+
+<!-- <div class="form-container">
+
+   <form action="" method="post" enctype="multipart/form-data">
+      <h3>register now</h3>
+      <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '<div class="message">'.$message.'</div>';
+         }
+      }
+      ?>
+      <input type="text" name="name" placeholder="enter username" class="box" required>
+      <input type="username" name="username" placeholder="enter username" class="box" required>
+      <input type="password" name="password" placeholder="enter password" class="box" required>
+      <input type="password" name="cpassword" placeholder="confirm password" class="box" required>
+      <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
+      <input type="submit" name="submit" value="register now" class="btn">
+      <p>already have an account? <a href="login.php">login now</a></p>
+   </form>
+
+</div> -->
+ <form role="form" action="" method="post" enctype="multipart/form-data">
+
                     <div class="form-group">
                          <h4 class="text-dark">First Name</h4>
                       <div class="input-group input-group-alternative mb-3">
@@ -182,13 +206,9 @@
                       </div>
                     </div>
 
-                 <!-- <div class="text-center"> -->
-                      <select hidden class="input-group input-group-alternative  text-muted" name="user_type" required>
-                          <option class="text-muted " value="user">Patient</option>                      
-                     </select>
-                <!-- </div> -->
-                     
+                    <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
 
+        
     <!-- Password Strength -->
                   <!--   <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
 
@@ -207,7 +227,7 @@
                     </div>
                     <br>
                            <div class="col-12 text-center">
-          Already have an account? <a href="../client/login.php">Log in</a>
+          Already have an account? <a href="../patient/login.php">Log in</a>
           </div>
                     
                   </form>
@@ -334,3 +354,22 @@
     </body>
 
     </html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>register</title>
+
+   <!-- custom css file link  -->
+   <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+</head>
+<body>
+    -->
+
+
+</body>
+</html>

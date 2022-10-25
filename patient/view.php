@@ -1,4 +1,20 @@
-<?php require_once('../config.php'); ?>
+<?php
+
+include '../config.php';
+//session_start();
+$user_id = $_SESSION['user_id'];
+
+if(!isset($user_id)){
+   header('location:login.php');
+};
+
+if(isset($_GET['logout'])){
+   unset($user_id);
+   session_destroy();
+   header('location:login.php');
+}
+
+?>
 
 
  <!DOCTYPE html>
@@ -101,7 +117,7 @@
 
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link active" href="<?php echo base_url ?>admin/?page=appointments">
+    <a class="nav-link active" href="view.php">
       <i class="ni ni-ruler-pencil text-blue"></i> View Appointment
   </a>
 </li>
@@ -125,10 +141,21 @@
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
         <span class="avatar avatar-sm rounded-circle">
-          <img alt="Image placeholder" src="../assets/assets/img/theme/profile.jpg">
+              <?php
+         $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
+         if(mysqli_num_rows($select) > 0){
+            $fetch = mysqli_fetch_assoc($select);
+         }
+         if($fetch['image'] == ''){
+            echo '<img src="../patient/images/default-avatar.png">';
+         }else{
+            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
+         }
+      ?>
+
       </span>
       <div class="media-body ml-2 d-none d-lg-block">
-          <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $_SESSION['id'] ?></span>
+          <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
   </div>
 </a>
@@ -136,9 +163,13 @@
   <div class=" dropdown-header noti-title">
     <h6 class="text-overflow m-0">Welcome!</h6>
 </div>
+<a href="../patient/update_profile.php" class="dropdown-item">
+    <i class="ni ni-single-02"></i>
+    <span>My profile</span>
+</a>
 
 <div class="dropdown-divider"></div>
-<a href="login.php" class="dropdown-item">
+<a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
     <i class="ni ni-user-run"></i>
     <span>Logout</span>
 </a>
@@ -147,6 +178,27 @@
 </ul>
 </div>
 </nav>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Ready to Leave?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-primary" href="logout.php?logout=<?php echo $user_id; ?>" >Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- End Navbar -->
 <!-- Header -->
 <div class="header pb-10 pt-10 pt-lg-7 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
@@ -209,11 +261,6 @@ else{
       </table>
     </div>
 
- <script type="text/javascript">
-  
-  $(document).ready( function () {
-    $('table').DataTable();
-} );
 </script>           
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>

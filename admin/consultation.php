@@ -61,7 +61,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item view_data" href="<?php echo base_url ?>admin/?page=history"><span class="fa fa-search text-success"></span> View</a>
+				                    <a class="dropdown-item view_data" href="history.php?id=<?=$row['id']?>"><span class="fa fa-search text-success"></span> View</a>
 									<div class="divider"></div>
 									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
 				                  </div>

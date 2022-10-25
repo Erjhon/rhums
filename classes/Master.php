@@ -21,9 +21,11 @@ Class Master extends DBConnection {
 			return json_encode($resp);
 			exit;
 		}
-	}
+	} 
+   
 	function save_appointment(){
 		extract($_POST);
+		
 		$sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
 		$sched_set = array_column($sched_set_qry->fetch_all(MYSQLI_ASSOC),'meta_value','meta_field');
 		$morning_start = date("Y-m-d ") . explode(',',$sched_set['morning_schedule'])[0];
@@ -80,6 +82,8 @@ Class Master extends DBConnection {
 			if($save_sched && $save_meta){
 				$resp['status'] = 'success';
 				$resp['name'] = $name;
+              
+           
 				$this->settings->set_flashdata('success',' Appointment successfully saved');
 			}else{
 				$resp['status'] = 'failed';

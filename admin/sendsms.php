@@ -1,7 +1,8 @@
-
-
-
 <?php
+
+
+
+
 function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)  
             {           
                         $query_string = "api.aspx?apiusername=".$user."&apipassword=".$pass;
@@ -27,5 +28,6 @@ function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)
                         }           
                         return $ok;  
             }  
-     Print("Sending to one way sms " . gw_send_sms("apiusername", "apipassword", "senderid", "61412345678", "test message"));
+   
+           
 ?>

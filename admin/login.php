@@ -45,7 +45,7 @@
       
       <div class="container">
         <div class="text-center">
-          <a class="" href="../client/login.php">
+          <a class="" href="<?php echo base_url ?>">
           <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a> 
         <a class="" href="../admin/login.php">
