@@ -22,7 +22,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 }
 </style>
 <div class="container-fluid">
-    <form action="sendsms.php" id="appointment_form" method="POST" class="py-2">
+    <form action="sendsms.php" id="appointment_form" class="py-2">
     <div class="row" id="appointment">
         <div class="col-6" id="frm-field">
             <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
@@ -89,7 +89,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
             <?php endif; ?>
         </div>
         <div class="form-group text-center w-100 form-group">
-            <button class="btn-primary btn" >Submit Appointment</button>
+            <button class="btn-primary btn">Submit Appointment</button>
             <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
         </div>
         </form>
