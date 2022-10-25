@@ -1,7 +1,7 @@
 <?php
 
-include 'config.php';
-session_start();
+include '../config.php';
+// session_start();
 $user_id = $_SESSION['user_id'];
 
 if(isset($_POST['update_profile'])){
@@ -282,11 +282,11 @@ if(isset($_POST['update_profile'])){
       ?>
       <div class="flex">
          <div class="inputBox">
-            <span>Firstname :</span>
+            <span>First Name :</span>
             <input type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>" class="box">
-            <span>Lastname :</span>
+            <span>Last Name :</span>
             <input type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>" class="box">
-            <span>Your username :</span>
+            <span>Username :</span>
             <input type="username" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
             <span>Update your pic :</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
@@ -294,15 +294,15 @@ if(isset($_POST['update_profile'])){
          <div class="inputBox">
             <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
             <span>Old password :</span>
-            <input type="password" name="update_pass" placeholder="enter previous password" class="box">
+            <input type="password" name="update_pass" placeholder="Enter previous password" class="box">
             <span>New password :</span>
-            <input type="password" name="new_pass" placeholder="enter new password" class="box">
+            <input type="password" name="new_pass" placeholder="Enter new password" class="box">
             <span>Confirm password :</span>
-            <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
+            <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
          </div>
       </div>
       <div class="form-group text-center w-50 form-group">
-        <input type="submit" class="btn btn-primary" value="update profile" name="update_profile">
+        <input type="submit" class="btn btn-primary" value="Update profile" name="update_profile">
       </div>
       
    </form>
