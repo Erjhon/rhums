@@ -6,10 +6,11 @@ $user_id = $_SESSION['user_id'];
 
 if(isset($_POST['update_profile'])){
 
-   $update_name = mysqli_real_escape_string($conn, $_POST['update_name']);
+   $update_fname = mysqli_real_escape_string($conn, $_POST['update_fname']);
+   $update_lname = mysqli_real_escape_string($conn, $_POST['update_lname']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE `patient` SET name = '$update_name', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
+   mysqli_query($conn, "UPDATE `patient` SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
 
    $old_pass = $_POST['old_pass'];
    $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
@@ -18,12 +19,12 @@ if(isset($_POST['update_profile'])){
 
    if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
       if($update_pass != $old_pass){
-         $message[] = 'old password not matched!';
+         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Old password not matched</div>';
       }elseif($new_pass != $confirm_pass){
-         $message[] = 'confirm password not matched!';
+         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Confirmed password not matched</div>';
       }else{
          mysqli_query($conn, "UPDATE `patient` SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
-         $message[] = 'password updated successfully!';
+         $message[] = '<div class="alert alert-success text-white err_msg"> <i class="fa fa-check"></i> Password updated successfully </div>';
       }
    }
 
@@ -40,7 +41,7 @@ if(isset($_POST['update_profile'])){
          if($image_update_query){
             move_uploaded_file($update_image_tmp_name, $update_image_folder);
          }
-         $message[] = 'image updated succssfully!';
+         $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> Image successfully updated </div>';
       }
    }
 
@@ -178,7 +179,7 @@ if(isset($_POST['update_profile'])){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">List of Appointments</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Update Profile</a>
  
 <!-- User -->
 <ul class="navbar-nav align-items-center d-none d-md-flex">
@@ -200,7 +201,7 @@ if(isset($_POST['update_profile'])){
 
       </span>
       <div class="media-body ml-2 d-none d-lg-block">
-          <span class="mb-0 text-sm text-white  font-weight-bold">  <?php echo $fetch['name']; ?></span>
+          <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
   </div>
 </a>
@@ -214,7 +215,7 @@ if(isset($_POST['update_profile'])){
 </a>
 
 <div class="dropdown-divider"></div>
-<a href="login.php" class="dropdown-item">
+ <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
     <i class="ni ni-user-run"></i>
     <span>Logout</span>
 </a>
@@ -223,6 +224,26 @@ if(isset($_POST['update_profile'])){
 </ul>
 </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Ready to Leave?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-primary" href="../client/logout.php?logout=<?php echo $user_id;?>" >Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- End Navbar -->
 <!-- Header -->
 <div class="header pb-10 pt-10 pt-lg-5 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
@@ -249,22 +270,24 @@ if(isset($_POST['update_profile'])){
    <form action="" method="post" enctype="multipart/form-data">
       <?php
          if($fetch['image'] == ''){
-            echo '<img src="images/default-avatar.png">';
+            echo '<div><img src="images/default-avatar.png"></div>';
          }else{
             echo '<img src="uploaded_img/'.$fetch['image'].'">';
          }
          if(isset($message)){
             foreach($message as $message){
-               echo '<div class="message">'.$message.'</div>';
+               echo '<div class="">'.$message.'</div>';
             }
          }
       ?>
       <div class="flex">
          <div class="inputBox">
-            <span>username :</span>
-            <input type="text" name="update_name" value="<?php echo $fetch['name']; ?>" class="box">
-            <span>your email :</span>
-            <input type="email" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
+            <span>Firstname :</span>
+            <input type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>" class="box">
+            <span>Lastname :</span>
+            <input type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>" class="box">
+            <span>your username :</span>
+            <input type="username" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
             <span>update your pic :</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
          </div>
@@ -278,17 +301,26 @@ if(isset($_POST['update_profile'])){
             <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
          </div>
       </div>
-      <input type="submit" value="update profile" name="update_profile" class="btn">
-      <a href="home.php" class="delete-btn">go back</a>
+      <div class="form-group text-center w-50 form-group">
+        <input type="submit" class="btn btn-primary" value="update profile" name="update_profile">
+      </div>
+      
    </form>
+   <script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
 
-</div>
+<div onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
 
-   
-
-                     
+</div>             
 
 </body>
+
+
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

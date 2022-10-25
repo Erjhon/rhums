@@ -86,7 +86,7 @@ if(isset($_GET['logout'])){
       <h6 class="text-overflow m-0">Welcome!</h6>
   </div>
   <div class="dropdown-divider"></div>
-  <a href="pages/logout.php" class="dropdown-item">
+  <a href="client/logout.php" class="dropdown-item">
       <i class="ni ni-user-run"></i>
       <span>Logout</span>
   </a>
@@ -176,7 +176,7 @@ if(isset($_GET['logout'])){
 
       </span>
       <div class="media-body ml-2 d-none d-lg-block">
-          <span class="mb-0 text-sm  font-weight-bold"> <?php echo $fetch['name']; ?></span>
+          <span class="mb-0 text-sm  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
   </div>
 </a>
@@ -235,7 +235,7 @@ if(isset($_GET['logout'])){
       <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a type="button" class="btn btn-primary" href="home.php?logout=<?php echo $user_id; ?>" >Logout</a>
+        <a type="button" class="btn btn-primary" href="client/logout.php?logout=<?php echo $user_id; ?>">Logout</a>
       </div>
     </div>
   </div>

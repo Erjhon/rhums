@@ -117,7 +117,7 @@ if(isset($_GET['logout'])){
 
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link active" href="<?php echo base_url ?>admin/?page=appointments">
+    <a class="nav-link active" href="view.php">
       <i class="ni ni-ruler-pencil text-blue"></i> View Appointment
   </a>
 </li>
@@ -155,7 +155,7 @@ if(isset($_GET['logout'])){
 
       </span>
       <div class="media-body ml-2 d-none d-lg-block">
-          <span class="mb-0 text-sm text-white  font-weight-bold">  <?php echo $fetch['name']; ?></span>
+          <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
   </div>
 </a>
@@ -169,7 +169,7 @@ if(isset($_GET['logout'])){
 </a>
 
 <div class="dropdown-divider"></div>
-<a href="login.php" class="dropdown-item">
+<a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
     <i class="ni ni-user-run"></i>
     <span>Logout</span>
 </a>
@@ -178,6 +178,27 @@ if(isset($_GET['logout'])){
 </ul>
 </div>
 </nav>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Ready to Leave?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-primary" href="client/logout.php?logout=<?php echo $user_id; ?>" >Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- End Navbar -->
 <!-- Header -->
 <div class="header pb-10 pt-10 pt-lg-7 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
