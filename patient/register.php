@@ -68,7 +68,7 @@ if(isset($_POST['submit'])){
       
       <div class="container">
         <div class="text-center">
-          <a class="" href="../client/login.php">
+          <a class="" href="#">
           <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a> 
         <a class="" href="../admin/login.php">

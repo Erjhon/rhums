@@ -1,7 +1,7 @@
 <?php
 
-include 'config.php';
-session_start();
+include '../config.php';
+// session_start();
 
 if(isset($_POST['submit'])){
 
