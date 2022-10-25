@@ -316,8 +316,6 @@
                 <td  colspan="3">
                     <p class="sub-text2">Avoid Hassles & Delays.<br> 
                     A passion for putting patients first.</p> <br>
-                    <!-- <p class="sub-text2">How is health today, Sounds like not good!<br>Don't worry. Find your doctor online Book as you wish with eDoc. <br>
-                    We offer you a free doctor channeling service, Make your appointment now.</p> -->
                 </td>
             </tr>
             <tr>
