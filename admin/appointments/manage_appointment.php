@@ -89,7 +89,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
             <?php endif; ?>
         </div>
         <div class="form-group text-center w-100 form-group">
-            <button class="btn-primary btn">Submit Appointment</button>
+            <button class="btn-primary btn" >Submit Appointment</button>
             <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
         </div>
         </form>

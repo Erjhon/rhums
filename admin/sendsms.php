@@ -29,7 +29,5 @@ function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)
                         return $ok;  
             }  
    
-            isset($_POST['contact']){
-                 Print("Sending to one way sms " . gw_send_sms("APIHS50318YP5", "APIHS50318YP5HS503", "senderid", $contact, "test message")); 
-            }
+           
 ?>
