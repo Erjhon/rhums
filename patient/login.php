@@ -6,9 +6,9 @@ include '../config.php';
 if(isset($_POST['submit'])){
 
    $username = mysqli_real_escape_string($conn, $_POST['username']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+   $password = mysqli_real_escape_string($conn, md5($_POST['password']));
 
-   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$pass'") or die('query failed');
+   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$password'") or die('query failed');
 
    if(mysqli_num_rows($select) > 0){
       $row = mysqli_fetch_assoc($select);
@@ -19,12 +19,6 @@ if(isset($_POST['submit'])){
    }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <script>
-    start_loader()
-  </script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -292,26 +286,4 @@ if(isset($_POST['submit'])){
   </script>
 </body>
 
-</html>
-   
-<!-- <div class="form-container">
-
-   <form action="" method="post" enctype="multipart/form-data">
-      <h3>login now</h3>
-      <?php
-      if(isset($message)){
-         foreach($message as $message){
-            echo '<div class="message">'.$message.'</div>';
-         }
-      }
-      ?>
-      <input type="email" name="email" placeholder="enter email" class="box" required>
-      <input type="password" name="password" placeholder="enter password" class="box" required>
-      <input type="submit" name="submit" value="login now" class="btn">
-      <p>don't have an account? <a href="register.php">regiser now</a></p>
-   </form>
-
-</div> -->
-
-</body>
 </html>
