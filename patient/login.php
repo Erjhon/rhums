@@ -1,6 +1,7 @@
 <?php
 
-include '../config.php';
+@include '../config.php';
+
 // session_start();
 
 if(isset($_POST['submit'])){
@@ -17,9 +18,9 @@ if(isset($_POST['submit'])){
    }else{
       $error[] = "";
    }
+
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <script>
