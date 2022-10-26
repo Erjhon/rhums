@@ -34,6 +34,7 @@
 				<th>Contact No.</th>
 				<th>Gender</th>
 				<th>Date of Birth</th>
+				<th>Medical History</th>
 			</tr>
 
 			<tr>
@@ -42,6 +43,7 @@
 				<td><?=$row["contactNo"] ?></td>
 				<td><?=$row["gender"] ?></td>
 				<td><?=$row["dob"] ?></td>
+				<td><?=$row["medHistory"] ?></td>
 			</tr>
 
 

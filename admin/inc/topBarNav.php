@@ -62,7 +62,7 @@
               </div>
           </li>
          -->
-         <h2 class="text-black">Welcome to <?php echo $_settings->info('name') ?></h1>
+         <h2 class="text-black ">Welcome to <?php echo $_settings->info('name') ?></h2>
   <!-- User -->
         <ul class="">
           <li class="nav-item dropdown">
