@@ -2,34 +2,7 @@
 
 require_once('../../config.php');
 
-    
-function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)  
-            {           
-                        $query_string = "api.aspx?apiusername=".$user."&apipassword=".$pass;
-                        $query_string .= "&senderid=".rawurlencode($sms_from)."&mobileno=".rawurlencode($sms_to);
-                        $query_string .= "&message=".rawurlencode(stripslashes($sms_msg)) . "&languagetype=1";        
-                        $url = "http://gateway.onewaysms.com.au:10001/".$query_string;       
-                        $fd = @implode ('', file ($url));      
-                        if ($fd)  
-                        {                       
-                    if ($fd > 0) {
-                    // Print("MT ID : " . $fd);
-                    $ok = "success";
-                    }        
-                    else {
-                     print("Please refer to API on Error : " . $fd);
-                    $ok = "fail";
-                    }
-                        }           
-                        else      
-                        {                       
-                                    // no contact with gateway                      
-                                    $ok = "fail";       
-                        }           
-                        return $ok;  
-            } 
-
-            function geturl(){
+function geturl(){
     if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
          $url = "https://";   
     else  
@@ -43,12 +16,7 @@ function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)
       
     return $url;  
 }
-            if (isset($_GET['hcontact'])) {
-                echo gw_send_sms("APIHS50318YP5", "APIHS50318YP5HS503", "TEST", ''.$_GET['hcontact'], "test message");
-            }
-
-
-
+        
 if(isset($_GET['id']) && $_GET['id'] > 0){
     $qry = $conn->query("SELECT * from `appointments` where id = '{$_GET['id']}' ");
     if($qry->num_rows > 0){
@@ -71,87 +39,78 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 }
 </style>
 <div class="container-fluid">
-
     <form action="sendsms.php" id="appointment_form" class="py-2">
+        <div class="row" id="appointment">
+            <div class="col-6" id="frm-field">
+                <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+                <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Fullname</label>
+                        <input type="text" class="form-control" name="name" value="<?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                    </div>
+                    <div hidden class="form-group">
+                        <label for="email" class="control-label">Email</label>
+                        <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact" class="control-label">Contact No.</label>
+                        <input type="text" class="form-control" id="scontact" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender" class="control-label">Gender</label>
+                        <select type="text" class="custom-select" name="gender" required>
+                        <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected": "" ?>>Male</option>
+                        <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected": "" ?>>Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob" class="control-label">Date of Birth</label>
+                        <input type="date" class="form-control" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>"  required>
+                    </div>
+            </div>
+            <div class="col-6">
+                    
+                    <div class="form-group">
+                        <label for="address" class="control-label">Address</label>
+                        <textarea class="form-control" name="address" rows="1" required><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea>
+                    </div>
+                <?php if($_settings->userdata('id') > 0): ?>
 
-<form action="<?php geturl()?>" method="GET" id="hiddenform">
-    <input type="hidden" name="hcontact" id="hiddencontact">
-    <input type="hidden" name="page" value="appointments" >
-</form>
-
-    <form action="sendsms.php" id="appointment_form" method="POST" class="py-2">
-
-    <div class="row" id="appointment">
-        <div class="col-6" id="frm-field">
-            <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
-            <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
                 <div class="form-group">
-                    <label for="name" class="control-label">Fullname</label>
-                    <input type="text" class="form-control" name="name" value="<?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                    <label for="reason" class="control-label">Reason for Appointment</label>
+                    <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason)? $reason : "" ?></textarea>
                 </div>
-                <div hidden class="form-group">
-                    <label for="email" class="control-label">Email</label>
-                    <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
+                
+                <?php else: ?>
+                    <div class="form-group">
+                    <label for="reason" class="control-label">Reason for Appointment</label>
+                    <textarea class="form-control" name="reason" rows="1" required></textarea>
+                    
                 </div>
+                <?php endif; ?>
                 <div class="form-group">
-                    <label for="contact" class="control-label">Contact No.</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required>
+                    <label for="date_sched" class="control-label">Appointment Date and Time</label>
+                    <input type="datetime-local" class="form-control" name="date_sched" value="<?php echo isset($date_sched)? date("Y-m-d\TH:i",strtotime($date_sched)) : "" ?>" required>
                 </div>
+                <?php if($_settings->userdata('id') > 0): ?>
                 <div class="form-group">
-                    <label for="gender" class="control-label">Gender</label>
-                    <select type="text" class="custom-select" name="gender" required>
-                    <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected": "" ?>>Male</option>
-                    <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected": "" ?>>Female</option>
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="custom custom-select">
+                        <option value="0"<?php echo isset($status) && $status == "0" ? "selected": "" ?>>Pending</option>
+                        <option value="1"<?php echo isset($status) && $status == "1" ? "selected": "" ?>>Confirmed</option>
+                        <option value="2"<?php echo isset($status) && $status == "2" ? "selected": "" ?>>Cancelled</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="dob" class="control-label">Date of Birth</label>
-                    <input type="date" class="form-control" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>"  required>
-                </div>
+                <?php else: ?>
+                    <input type="hidden" name="status" value="1">
+                <?php endif; ?>
+            </div>
+            <div class="form-group text-center w-100 form-group">
+                <button class="btn-primary btn">Submit Appointment</button>
+                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
-        <div class="col-6">
-                
-                <div class="form-group">
-                    <label for="address" class="control-label">Address</label>
-                    <textarea class="form-control" name="address" rows="1" required><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea>
-                </div>
-            <?php if($_settings->userdata('id') > 0): ?>
-
-            <div class="form-group">
-                <label for="reason" class="control-label">Reason for Appointment</label>
-                <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason)? $reason : "" ?></textarea>
-            </div>
-            
-            <?php else: ?>
-                <div class="form-group">
-                <label for="reason" class="control-label">Reason for Appointment</label>
-                <textarea class="form-control" name="reason" rows="1" required></textarea>
-                
-            </div>
-            <?php endif; ?>
-            <div class="form-group">
-                <label for="date_sched" class="control-label">Appointment Date and Time</label>
-                <input type="datetime-local" class="form-control" name="date_sched" value="<?php echo isset($date_sched)? date("Y-m-d\TH:i",strtotime($date_sched)) : "" ?>" required>
-            </div>
-            <?php if($_settings->userdata('id') > 0): ?>
-            <div class="form-group">
-                <label for="status" class="control-label">Status</label>
-                <select name="status" id="status" class="custom custom-select">
-                    <option value="0"<?php echo isset($status) && $status == "0" ? "selected": "" ?>>Pending</option>
-                    <option value="1"<?php echo isset($status) && $status == "1" ? "selected": "" ?>>Confirmed</option>
-                    <option value="2"<?php echo isset($status) && $status == "2" ? "selected": "" ?>>Cancelled</option>
-                </select>
-            </div>
-            <?php else: ?>
-                <input type="hidden" name="status" value="1">
-            <?php endif; ?>
-        </div>
-        <div class="form-group text-center w-100 form-group">
-            <button class="btn-primary btn">Submit Appointment</button>
-            <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
-        </div>
-        </form>
-    </div>
+    </form>
 </div>
 <script>
 $(function(){
@@ -166,22 +125,22 @@ $(function(){
                 cache: false,
                 contentType: false,
                 processData: false,
-                method: 'POST',
                 type: 'POST',
                 dataType: 'json',
-				error:err=>{
-					console.log(err)
-					alert_toast("An error occured",'error');
-					end_loader();
-				},
+				// error:err=>{
+				// 	console.log(err)
+				// 	alert_toast("An error occured",'error');
+				// 	end_loader();
+				// },
 				success:function(resp){
-					if(typeof resp =='object' && resp.status == 'success'){
-                        document.getElementById("hiddencontact").value = document.getElementById("scontact").value;
-                        // console.log(document.getElementById("hiddencontact").value);
-
-
-                        document.getElementById("hiddenform").submit();
-                       // location.reload()
+					if(resp.status == 'success'){
+                        // document.getElementById("hiddencontact").value = document.getElementById("scontact").value;
+                        // console.log(document.getElementById("hiddencontact").value)
+                        // document.getElementById("hiddenform").submit();
+                        
+                        alert(resp.msg);
+                        console.log(resp.sms_respond)
+                        location.reload()
 					}else if(resp.status == 'failed' && !!resp.msg){
                         var el = $('<div>')
                             el.addClass("alert alert-danger err-msg").text(resp.msg)
@@ -193,7 +152,13 @@ $(function(){
                         console.log(resp)
 					}
 						end_loader();
-				}
+                    console.log(resp)
+				},
+                error:function(err){
+                    console.log(err)
+					alert_toast("An error occured",'error');
+					end_loader();
+                }
 			})
     })
     $('#uni_modal').on('hidden.bs.modal', function (e) {

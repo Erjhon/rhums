@@ -1,5 +1,5 @@
 <?php
-class OneWaySMS
+class SMS
 {
     protected $api_username;
     protected $api_password;
