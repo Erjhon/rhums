@@ -14,14 +14,15 @@
 <!-- Navbar -->
       <nav class="navbar navbar-expand navbar-dark border border-white border-top-0 bg-gradient-success navbar-dark text-sm">
         <!-- Left navbar links -->
-    <!--     <ul class="navbar-nav">
+     <!--    <ul class="navbar-nav">
           <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
-          <li class="nav-item d-none d-sm-inline-block">
+          <li class="nav-item d-none d-lg-inline-block">
             <a href="<?php echo base_url ?>" class="nav-link"><?php echo (!isMobileDevice()) ? $_settings->info('name'):$_settings->info('short_name'); ?></a>
           </li>
         </ul> -->
+          <h3 class="text-black col-10 text-right m-b-5">Welcome to <?php echo $_settings->info('name') ?></h3>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
 
@@ -62,7 +63,7 @@
               </div>
           </li>
          -->
-         <h2 class="text-black ">Welcome to <?php echo $_settings->info('name') ?></h2>
+       
   <!-- User -->
         <ul class="">
           <li class="nav-item dropdown">
