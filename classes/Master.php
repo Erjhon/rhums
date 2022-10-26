@@ -21,6 +21,11 @@ Class Master extends DBConnection {
 			return json_encode($resp);
 			exit;
 		}
+
+	}
+	function save_appointment(){
+		extract($_POST);
+
 	} 
    
 	function save_appointment(){
