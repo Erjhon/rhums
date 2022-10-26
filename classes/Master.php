@@ -1,15 +1,23 @@
 <?php
 require_once('../config.php');
+include_once('SMS.php'); //include the SMS class
+
 Class Master extends DBConnection {
 	private $settings;
+
+	//instantiate sms class
+	private $sms;
+
 	public function __construct(){
 		global $_settings;
 		$this->settings = $_settings;
+		$this->sms = new SMS();
 		parent::__construct();
 	}
 	public function __destruct(){
 		parent::__destruct();
 	}
+
 	function capture_err(){
 		if(!$this->conn->error)
 			return false;
@@ -23,10 +31,11 @@ Class Master extends DBConnection {
 		}
 
 	}
-	function save_appointment(){
-		extract($_POST);
+	// function save_appointment(){
+	// 	extract($_POST);
 
-	} 
+	// 	return $contact;
+	// } 
    
 	function save_appointment(){
 		extract($_POST);
@@ -85,11 +94,27 @@ Class Master extends DBConnection {
 			$save_meta = $this->conn->query($sql);
 			$this->capture_err();
 			if($save_sched && $save_meta){
-				$resp['status'] = 'success';
-				$resp['name'] = $name;
-              
-           
-				$this->settings->set_flashdata('success',' Appointment successfully saved');
+				//formate date 
+				$new_sched = date('F d, Y H:i A', strtotime($date_sched));
+				//create message text
+				$message = "Miss/Ms/Mr/Mrs with RHU Nabua \n";
+				$message .= " On {$new_sched}";
+
+				//send sms
+				$res = $this->sms->sendSMS($contact, $message);
+
+				//return json encode to ajax
+				return json_encode([
+					'status' => 'success',
+					'msg' => 'Your appointment is set',
+					'sms_respond' => $res
+				]);
+
+				// bakit to naka flashdata pero naka ajax kayo?
+				/**
+				 this->settings->set_flashdata('success',' Appointment successfully saved');
+				 * 
+				*/
 			}else{
 				$resp['status'] = 'failed';
 				$resp['msg'] = "There's an error while submitting the data.";
@@ -101,6 +126,7 @@ Class Master extends DBConnection {
 		}
 		return json_encode($resp);
 	}
+
 	function multiple_action(){
 		extract($_POST);
 		if($_action != 'delete'){
