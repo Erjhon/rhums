@@ -29,6 +29,21 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         $patient[$row['meta_field']] = $row['meta_value'];
     }
 }
+
+//get user information from registered user/ or current logged in user
+
+//check if session is empty
+if(!empty($_SESSION['user_id'])){
+
+    $current_user_id = $_SESSION['user_id'];
+    $get_user_info = $conn->query("SELECT * FROM `patient` WHERE `id` = {$current_user_id}");
+    $row = $get_user_info->fetch_assoc();
+
+
+    $user_id = $row['id'];
+    $full_name = "{$row['firstname']} {$row['lastname']}";
+}
+
 ?>
 <style>
 #uni_modal .modal-content>.modal-footer{
@@ -39,14 +54,14 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 }
 </style>
 <div class="container-fluid">
-    <form action="sendsms.php" id="appointment_form" class="py-2">
+    <form action="" id="appointment_form" class="py-2">
         <div class="row" id="appointment">
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
                     <div class="form-group">
                         <label for="name" class="control-label">Fullname</label>
-                        <input type="text" class="form-control" name="name" value="<?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                        <input type="text" class="form-control" name="name" value="<?= $full_name ?>" required>
                     </div>
                     <div hidden class="form-group">
                         <label for="email" class="control-label">Email</label>
