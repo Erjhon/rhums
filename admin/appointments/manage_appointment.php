@@ -54,7 +54,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                     </div>
                     <div class="form-group">
                         <label for="contact" class="control-label">Contact No.</label>
-                        <input type="text" class="form-control" id="scontact" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required>
+                        <input type="text" class="form-control" id="scontact" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required maxlength = "11">
                     </div>
                     <div class="form-group">
                         <label for="gender" class="control-label">Gender</label>
