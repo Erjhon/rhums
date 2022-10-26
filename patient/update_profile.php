@@ -1,7 +1,7 @@
 <?php
 
-include 'config.php';
-session_start();
+include '../config.php';
+// session_start();
 $user_id = $_SESSION['user_id'];
 
 if(isset($_POST['update_profile'])){
@@ -10,7 +10,7 @@ if(isset($_POST['update_profile'])){
    $update_lname = mysqli_real_escape_string($conn, $_POST['update_lname']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE `patient` SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
+   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
 
    $old_pass = $_POST['old_pass'];
    $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
@@ -23,7 +23,7 @@ if(isset($_POST['update_profile'])){
       }elseif($new_pass != $confirm_pass){
          $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Confirmed password not matched</div>';
       }else{
-         mysqli_query($conn, "UPDATE `patient` SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
+         mysqli_query($conn, "UPDATE patient SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
          $message[] = '<div class="alert alert-success text-white err_msg"> <i class="fa fa-check"></i> Password updated successfully </div>';
       }
    }
@@ -37,7 +37,7 @@ if(isset($_POST['update_profile'])){
       if($update_image_size > 2000000){
          $message[] = 'image is too large';
       }else{
-         $image_update_query = mysqli_query($conn, "UPDATE `patient` SET image = '$update_image' WHERE id = '$user_id'") or die('query failed');
+         $image_update_query = mysqli_query($conn, "UPDATE patient SET image = '$update_image' WHERE id = '$user_id'") or die('query failed');
          if($image_update_query){
             move_uploaded_file($update_image_tmp_name, $update_image_folder);
          }
@@ -110,12 +110,12 @@ if(isset($_POST['update_profile'])){
         <div class="media align-items-center">
           <span class="avatar avatar-sm rounded-circle">
            <?php
-         $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
+         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($select) > 0){
             $fetch = mysqli_fetch_assoc($select);
          }
          if($fetch['image'] == ''){
-            echo '<img src="images/default-avatar.png">';
+            echo '<img src="images/default-avatar.png" class="custom-file-input rounded-circle">';
          }else{
             echo '<img src="uploaded_img/'.$fetch['image'].'">';
          }
@@ -188,7 +188,7 @@ if(isset($_POST['update_profile'])){
       <div class="media align-items-center">
         <span class="avatar avatar-sm rounded-circle">
               <?php
-         $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
+         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($select) > 0){
             $fetch = mysqli_fetch_assoc($select);
          }
@@ -258,10 +258,10 @@ if(isset($_POST['update_profile'])){
     <h2 class="card-title">Update your profile</h2>
    </div>
 
-<div class="update-profile">
+<div class="update-profile ">
 
    <?php
-      $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
       if(mysqli_num_rows($select) > 0){
          $fetch = mysqli_fetch_assoc($select);
       }
@@ -270,9 +270,9 @@ if(isset($_POST['update_profile'])){
    <form action="" method="post" enctype="multipart/form-data">
       <?php
          if($fetch['image'] == ''){
-            echo '<div><img src="images/default-avatar.png"></div>';
+            echo '<div ><img src="images/default-avatar.png"></div>';
          }else{
-            echo '<img src="uploaded_img/'.$fetch['image'].'">';
+            echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
          }
          if(isset($message)){
             foreach($message as $message){
@@ -282,27 +282,27 @@ if(isset($_POST['update_profile'])){
       ?>
       <div class="flex">
          <div class="inputBox">
-            <span>Firstname :</span>
+            <span>First Name :</span>
             <input type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>" class="box">
-            <span>Lastname :</span>
+            <span>Last Name :</span>
             <input type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>" class="box">
-            <span>your username :</span>
+            <span>Username :</span>
             <input type="username" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
-            <span>update your pic :</span>
+            <span>Update your pic :</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
          </div>
          <div class="inputBox">
             <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-            <span>old password :</span>
-            <input type="password" name="update_pass" placeholder="enter previous password" class="box">
-            <span>new password :</span>
-            <input type="password" name="new_pass" placeholder="enter new password" class="box">
-            <span>confirm password :</span>
-            <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
+            <span>Old password :</span>
+            <input type="password" name="update_pass" placeholder="Enter previous password" class="box">
+            <span>New password :</span>
+            <input type="password" name="new_pass" placeholder="Enter new password" class="box">
+            <span>Confirm password :</span>
+            <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
          </div>
       </div>
       <div class="form-group text-center w-50 form-group">
-        <input type="submit" class="btn btn-primary" value="update profile" name="update_profile">
+        <input type="submit" class="btn btn-primary" value="Update profile" name="update_profile">
       </div>
       
    </form>
