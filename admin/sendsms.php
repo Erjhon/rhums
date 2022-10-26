@@ -11,8 +11,8 @@ class OneWaySMS
     function __construct()
     {
         //instantiate variables
-        $this->api_username = 'APIHS50318YP5';
-        $this->api_password = 'APIHS50318YP5HS503';
+        $this->api_username = 'APIB2G4UDW4TD';
+        $this->api_password = 'APIB2G4UDW4TDB2G4U';
         $this->sms_from = 'rhums';
         $this->url = 'http://gateway.onewaysms.ph:10001/api.aspx?';
     }

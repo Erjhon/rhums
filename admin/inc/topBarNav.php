@@ -12,7 +12,7 @@
   }
 </style>
 <!-- Navbar -->
-      <nav class="main-header navbar navbar-expand navbar-dark border border-white border-top-0 bg-gradient-success border-left-0 border-right-0 navbar-dark text-sm">
+      <nav class="navbar navbar-expand navbar-dark border border-white border-top-0 bg-gradient-success navbar-dark text-sm">
         <!-- Left navbar links -->
     <!--     <ul class="navbar-nav">
           <li class="nav-item">
@@ -24,6 +24,7 @@
         </ul> -->
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
+
           <!-- Navbar Search -->
           <!-- <li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -61,7 +62,7 @@
               </div>
           </li>
          -->
-         
+         <h2 class="text-black">Welcome to <?php echo $_settings->info('name') ?></h1>
   <!-- User -->
         <ul class="">
           <li class="nav-item dropdown">
@@ -83,18 +84,6 @@
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-             <!--  <a href="./examples/profile.php" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
-              <a href="./examples/profile.php" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./examples/profile.php" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a> -->
               <div class="dropdown-divider"></div>
               <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
@@ -105,6 +94,8 @@
         </ul>
       </div>
     </nav>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,3 +126,5 @@
         </ul>
       </nav>
       <!-- /.navbar -->
+
+      

@@ -42,6 +42,8 @@ if(!empty($_SESSION['user_id'])){
 
     $user_id = $row['id'];
     $full_name = "{$row['firstname']} {$row['lastname']}";
+}else{
+     $full_name = "";
 }
 
 ?>
