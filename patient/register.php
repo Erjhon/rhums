@@ -99,7 +99,7 @@ if(isset($_POST['submit'])){
     <div class="container mt--6 pb-5">
       <!-- Table -->
       <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-9 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="bg-transparent pb-1">
 
@@ -116,8 +116,8 @@ if(isset($_POST['submit'])){
                   </div> -->
 
                 </div>
-                <div class="card-body px-lg-5 py-lg-5">
-                  <div class="text-center text-muted mb-4">
+                <div class="card-body px-lg-6 py-lg-4">
+                  <div class="text-center text-muted mb-3">
 
                     <h1 class="text-dark">Create Account</h1>
                     <!-- <small>Or sign up with credentials</small> -->
@@ -164,6 +164,65 @@ if(isset($_POST['submit'])){
  </div> -->
  <form role="form" action="" method="post" enctype="multipart/form-data">
 
+  <form action="" id="appointment_form" class="py-6">
+        <div class="row" id="appointment">
+            <div class="col-6" id="frm-field">
+                     <div class="form-group">
+   <h5 class="text-dark">First Name</h5>
+   <div class="input-group input-group-alternative mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
+    </div>
+    <input class="form-control" placeholder="First Name" name="firstname" type="firstname" required>
+  </div>
+</div>
+                  
+                   <div class="form-group">
+ <h5 class="text-dark">Username</h5>
+ <div class="input-group input-group-alternative mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+  </div>
+  <input class="form-control" placeholder="Username" name="username" type="username" required>
+</div>
+</div>
+                       <div class="form-group">
+ <h5 class="text-dark">Confirm Password</h5>
+ <div class="input-group input-group-alternative">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+  </div>
+  <input class="form-control" placeholder="Confirm Password" name ="cpassword" type="password" required>
+</div>
+</div>
+            </div>
+            <div class="col-6">
+               <div class="form-group">
+ <h5 class="text-dark">Last Name</h5>
+ <div class="input-group input-group-alternative mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+  </div>
+  <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
+</div>
+</div>
+                   <div class="form-group">
+ <h5 class="text-dark">Password</h5>
+ <div class="input-group input-group-alternative">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+  </div>
+  <input class="form-control" placeholder="Password" name ="password" type="password" required>
+</div>
+</div>
+                    <h5 class="text-dark">Add Profile Image</h5>
+<input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+               </div>
+             </div>
+   
+
+
+<!-- 
   <div class="form-group">
    <h4 class="text-dark">First Name</h4>
    <div class="input-group input-group-alternative mb-3">
@@ -211,14 +270,14 @@ if(isset($_POST['submit'])){
 </div>
 <h4 class="text-dark">Add Profile Image</h4>
 <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+ -->
 
+<!-- Password Strength
+   <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
 
-<!-- Password Strength -->
-<!--   <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
-
-<div class="row my-4">
+<div class="row my-2">
   <div class="col-12">
-    <div class="custom-control custom-control-alternative custom-checkbox">
+    <div class="custom-control custom-control-alternative custom-checkbox text-center">
       <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
       <label class="custom-control-label" for="customCheckRegister">
         <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>

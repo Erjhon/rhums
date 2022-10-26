@@ -19,6 +19,7 @@
 <?php endif;?>
 <!-- 
 
+
 <?php 
     $sql = "select * from appointments";
     $rs = mysqli_query($conn, $sql);
@@ -27,6 +28,7 @@
 ?> 
  -->
 <?php
+
 if(isset($_POST['submit']))
 {    
      $id = $_POST['id'];
@@ -56,16 +58,16 @@ if(isset($_POST['submit']))
    
     <div class="card-body">
         <div class="container-fluid">
-                <div class="row">
+                 <div class="row" id="appointment">
                     <div class="col-lg-8 offset-lg-2">
                         <form action method="POST">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Patient No.</label>
-                                        <input class="form-control" name="id" placeholder="Patient No.">
+                                        <input class="form-control" name="id" placeholder="Patient No." type="text" value="<?php echo $fetchRow['patient_id']?>">
                                     </div>
-                                    <!-- type="text" value="<?php echo $fetchRow['id']?>" -->
+                                    
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
