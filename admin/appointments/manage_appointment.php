@@ -63,7 +63,7 @@ if(!empty($_SESSION['user_id'])){
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
                     <div class="form-group">
                         <label for="name" class="control-label">Fullname</label>
-                        <input type="text" class="form-control" name="name" value="<?= $full_name ?>" required>
+                        <input type="text" class="form-control" name="name" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
                     </div>
                     <div hidden class="form-group">
                         <label for="email" class="control-label">Email</label>

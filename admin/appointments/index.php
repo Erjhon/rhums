@@ -99,9 +99,11 @@
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item view_data" href="javascript:void(0)" data-id="<?php echo $row['aid'] ?>"><span class="fa fa-search text-success"></span> View</a>
+				                    <a class="dropdown-item view_data" href="javascript:void(0)" data-id="<?php echo $row['aid'] ?>"> <span class="fa fa-search text-success"></span> View</a>
 									<div class="divider"></div>
 									<a class="dropdown-item edit_data" href="javascript:void(0)" data-id="<?php echo $row['aid'] ?>"> <span class="fa fa-edit text-danger"></span>Edit</a>
+									
+									<a class="dropdown-item edit_data" href="<?php echo base_url ?>admin/?page=add-record"> <span class="fa fa-file text-primary"></span> Add Record</a>
 				                  </div>
 							</td>
 						</tr>
