@@ -117,8 +117,16 @@ if(isset($_GET['logout'])){
 
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link active" href="view.php">
-      <i class="ni ni-ruler-pencil text-blue"></i> View Appointment
+    <a class="nav-link active bg-primary" href="view.php">
+      <i class="ni ni-ruler-pencil text-default"></i> View Appointment
+  </a>
+</li>
+</ul>
+
+<ul class="navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link" href="update_profile.php">
+      <i class="ni ni-single-02 text-pink"></i> Update Profile
   </a>
 </li>
 </ul>
@@ -203,7 +211,8 @@ if(isset($_GET['logout'])){
 <!-- Header -->
 <div class="header pb-10 pt-10 pt-lg-7 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
   <!-- Mask -->
-  <span class="mask bg-gradient-default opacity-8"></span>
+   <span class="mask"style="background: linear-gradient(
+    to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
   <!-- Header container -->
       <div class="container px-10 px-lg-6 my-7">
 <div class="card card-outline">
