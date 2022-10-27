@@ -97,8 +97,8 @@ Class Master extends DBConnection {
 				//formate date 
 				$new_sched = date('F d, Y H:i A', strtotime($date_sched));
 				//create message text
-				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \n";
-				$message .= "You are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
+				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
+				// $message .= "You are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
 
 				//send sms
 				$res = $this->sms->sendSMS($contact, $message);
