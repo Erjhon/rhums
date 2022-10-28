@@ -130,7 +130,7 @@ if(isset($_GET['logout'])){
 
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link" href="update_profile.php">
+    <a class="nav-link" href="patient/update_profile.php">
       <i class="ni ni-single-02 text-pink"></i> Update Profile
   </a>
 </li>

@@ -19,27 +19,30 @@
         <div class="container-fluid">
 			<div class="row" style="display:none" id="selected_opt">
 				<div class="w-100 d-flex">
-					<div class="col-2">
-						<label for="" class="controllabel"> With Selected:</label>
+					<!-- <div class="col-2">
+						<label for="" class="controllabel">Are you sure?</label>
+					</div> -->
+					<div class="col-1">
+						<button class="btn btn-danger" type="button" id="selected_go" value="delete">Delete</button>
 					</div>
 					<div class="col-3">
-						<select id="w_selected" class="custom-select select" >
+
+						<select hidden id="w_selected" class="custom-select select" >
 							<option value="delete">Delete</option>
-							<option  value="pending">Mark as Pending</option>
+							<!-- <option  value="pending">Mark as Pending</option>
 							<option  value="confirmed">Mark as Confirmed</option>
-							<option  value="cancelled">Mark as Cancelled</option>
+							<option  value="cancelled">Mark as Cancelled</option> -->
 						</select>
 					</div>
-					<div class="col">
-						<button class="btn btn-primary" type="button" id="selected_go">Go</button>
-					</div>
+					
 				</div>
 			</div>
+			<div class="table-responsive">
 			<table class="table table-bordered table-stripped" id="indi-list">
 				<colgroup>
 					<col width="5%">
 					<col width="5%">
-					<col width="25%">
+					<col width="10%">
 					<col width="25%">
 					<col width="20%">
 					<col width="20%">

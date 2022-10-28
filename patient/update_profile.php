@@ -165,7 +165,7 @@ if(isset($_POST['update_profile'])){
 
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link " href="<?php echo base_url ?>admin/?page=appointments">
+    <a class="nav-link " href="view.php">
       <i class="ni ni-ruler-pencil text-blue"></i> View Appointment
   </a>
 </li>
@@ -315,7 +315,7 @@ if(isset($_POST['update_profile'])){
       </div>
       
    </form>
-   <script type="text/javascript">
+ <!--   <script type="text/javascript">
     window.history.forward();
     function noBack()
     {
@@ -325,7 +325,7 @@ if(isset($_POST['update_profile'])){
 
 <div onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
 
-</div>             
+</div>  -->            
 
 </body>
 

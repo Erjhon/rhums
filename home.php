@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +26,7 @@
         </div>
     </div>
     <div class="full-height mySlides bg-success py-4" style="background: linear-gradient(
-    to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(./assets/assets/img/brand/bg.webp);">
+    to left,rgba(23, 173, 106, 0.9),rgba(23, 173, 160, 0.9)),url(./assets/assets/img/brand/bg.webp);">
     
         <center>
 
