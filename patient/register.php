@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
              window.location.href='login.php';
              </script>"; 
     }else{
-      $message[] = 'Registeration failed!';
+      $message[] = 'Registration failed!';
     }
   }
 }
@@ -117,9 +117,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="card-body px-lg-6 py-lg-4">
                   <div class="text-center text-muted mb-3">
-
                     <h1 class="text-dark">Create Account</h1>
-                    <!-- <small>Or sign up with credentials</small> -->
                   </div>
                   
                   
@@ -312,7 +310,7 @@ if(isset($_POST['submit'])){
         </button>
       </div>
       <div class="modal-body">
-        <h1>Privacy Policy for Rural Health UNit II</h1>
+        <h1>Privacy Policy for Rural Health Unit II</h1>
 
         <p>At Medical Appointment and Record Management System RURAL HEALTH UNIT II, accessible from rhums, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Medical Appointment and Record Management System RURAL HEALTH UNIT II and how we use it.</p>
 
