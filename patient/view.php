@@ -229,7 +229,7 @@ if(isset($_GET['logout'])){
               <table class="table table-border table-hover custom-table datatable mb-0 text-center">
 
         <?php
-$result = mysqli_query($conn,"SELECT * FROM appointments ");
+$result = mysqli_query($conn,"SELECT * FROM appointments WHERE `user_id` = {$user_id}");
 ?>
         <tbody>
                         <?php
@@ -252,7 +252,7 @@ while($row = mysqli_fetch_array($result)) {
                   <tr>
                     <td><b>PA-<?php echo $row["patient_id"]; ?></td>
                     <td><?php echo $row["reason"]; ?></td>
-                    <td><?php echo $row["date_sched"]; ?></td>                    
+                    <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>                    
                   </tr>
                   <?php
 $i++;

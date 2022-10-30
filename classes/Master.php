@@ -38,6 +38,10 @@ Class Master extends DBConnection {
 	// } 
    
 	function save_appointment(){
+
+		//GET current user id from session
+		$current_user_id = $_SESSION['user_id'];
+
 		extract($_POST);
 		
 		$sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
@@ -47,6 +51,8 @@ Class Master extends DBConnection {
 		$afternoon_start = date("Y-m-d ") . explode(',',$sched_set['afternoon_schedule'])[0];
 		$afternoon_end = date("Y-m-d ") . explode(',',$sched_set['afternoon_schedule'])[1];
 		$sched_time = date("Y-m-d ") . date("H:i",strtotime($date_sched));
+
+		//schedule filter
 		if(!in_array(strtolower(date("l",strtotime($date_sched))),explode(',',strtolower($sched_set['day_schedule'])))){
 			$resp['status'] = 'failed';
 			$resp['msg'] = "Selected Schedule Day of Week is invalid.";
@@ -65,30 +71,35 @@ Class Master extends DBConnection {
 			$resp['status'] = 'failed';
 			$resp['msg'] = "Selected Schedule DateTime conflicts to other appointment.";
 			return json_encode($resp);
-			exit;
+			exit; // no need for exit.. return automaticall exit after execution
 		}
+
+		//
 		if(empty($patient_id))
 		$sql = "INSERT INTO `patient_list` set name = '{$name}'  ";
 		else
 		$sql = "UPDATE `patient_list` set name = '{$name}' where id = '{$id}'  ";
 		$save_inv = $this->conn->query($sql);
 		$this->capture_err();
+
 		if($save_inv){
 			$patient_id = (empty($patient_id))? $this->conn->insert_id : $patient_id;
 			if(empty($id))
-			$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' ";
+			$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `user_id` = '{$current_user_id}' ";
 			else
 			$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 
 			$save_sched = $this->conn->query($sql);
 			$this->capture_err();
 			$data = "";
+
 			foreach($_POST as $k=> $v){
 				if(!in_array($k,array('lid','date_sched','status','reason'))){
 					if(!empty($data)) $data .=", ";
 					$data .= " ({$patient_id},'{$k}','{$v}')";
 				}
 			}
+
 			$sql = "INSERT INTO `patient_meta` (patient_id,meta_field,meta_value) VALUES $data ";
 			$this->conn->query("DELETE FROM `patient_meta` where patient_id = '{$patient_id}'");
 			$save_meta = $this->conn->query($sql);
@@ -100,14 +111,14 @@ Class Master extends DBConnection {
 				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
 				// $message .= "You are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
 
-				//send sms
-				$res = $this->sms->sendSMS($contact, $message);
+				//send sms enable this later
+				// $res = $this->sms->sendSMS($contact, $message);
 
 				//return json encode to ajax
 				return json_encode([
 					'status' => 'success',
 					'msg' => 'Your appointment is set',
-					'sms_respond' => $res
+					// 'sms_respond' => $res
 				]);
 
 				// bakit to naka flashdata pero naka ajax kayo?
@@ -150,6 +161,7 @@ Class Master extends DBConnection {
 		}
 		return json_encode($resp);
 	}
+
 	function save_sched_settings(){
 		$data = "";
 		foreach($_POST as $k => $v){
