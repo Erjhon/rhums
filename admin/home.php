@@ -12,7 +12,7 @@
         <div class="header-body">
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
               <div class="card card-stats mb-3 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
@@ -41,7 +41,7 @@ if($total = mysqli_num_rows($patient_query_run)){
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body ">
                   <div class="row">
@@ -70,7 +70,7 @@ if($total = mysqli_num_rows($appointment_run)){
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
