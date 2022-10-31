@@ -45,6 +45,9 @@ if(!empty($_SESSION['user_id'])){
 }else{
      $full_name = "";
 }
+else{
+    $full_name = "";
+}
 
 ?>
 <style>
@@ -172,7 +175,7 @@ $(function(){
                     console.log(resp)
 				},
                 error:function(err){
-                    console.log(err)
+                    console.log(err.responseText)
 					alert_toast("An error occured",'error');
 					end_loader();
                 }
