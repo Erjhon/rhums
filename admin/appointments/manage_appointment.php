@@ -43,6 +43,9 @@ if(!empty($_SESSION['user_id'])){
     $user_id = $row['id'];
     $full_name = "{$row['firstname']} {$row['lastname']}";
 }
+else{
+    $full_name = "";
+}
 
 ?>
 <style>
@@ -170,7 +173,7 @@ $(function(){
                     console.log(resp)
 				},
                 error:function(err){
-                    console.log(err)
+                    console.log(err.responseText)
 					alert_toast("An error occured",'error');
 					end_loader();
                 }
