@@ -42,8 +42,9 @@ Class Master extends DBConnection {
 		//GET current user id from session
 		if(isset($_SESSION['user_id'])){
 			$current_user_id = $_SESSION['user_id'];
-		}
+		}else{
 			$current_user_id = NULL;
+		}
 	
 		extract($_POST);
 		
