@@ -42,11 +42,10 @@ Class Master extends DBConnection {
 		//GET current user id from session
 		if(isset($_SESSION['user_id'])){
 			$current_user_id = $_SESSION['user_id'];
-		}
 		}else{
 			$current_user_id = NULL;
 		}
-
+	
 		extract($_POST);
 		
 		$sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
@@ -93,15 +92,16 @@ Class Master extends DBConnection {
 			//if user' patient is admin execute this if block else admin is login
 			if(!empty($current_user_id)){
 				if(empty($id))
-				$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `user_id` = '{$current_user_id}' ";
+				$sql = "INSERT INTO `appointments` SET `user_id` = '{$current_user_id}', `date_sched` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
+				else
+				$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
+			}else{
+				if(empty($id))
+				$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
 				else
 				$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 			}
-			// for admin insert appointment's user id is default to null
-			if(empty($id))
-			$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
-			else
-			$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
+			
 
 			$save_sched = $this->conn->query($sql);
 			$this->capture_err();
@@ -122,8 +122,8 @@ Class Master extends DBConnection {
 				//formate date 
 				$new_sched = date('F d, Y H:i A', strtotime($date_sched));
 				//create message text
-				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
-				// $message .= "You are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
+				$message = "Miss/Ms/Mr/Mrs with RHU Nabua \n";
+				$message .= " On {$new_sched}";
 
 				//send sms enable this later
 				// $res = $this->sms->sendSMS($contact, $message);
