@@ -40,12 +40,9 @@ Class Master extends DBConnection {
 	function save_appointment(){
 
 		//GET current user id from session
-		if(isset($_SESSION['user_id'])){
-			$current_user_id = $_SESSION['user_id'];
-		}
 		
-		$current_user_id = NULL;
-
+		$current_user_id = $_SESSION['user_id'];
+	
 		extract($_POST);
 		
 		$sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
@@ -92,15 +89,16 @@ Class Master extends DBConnection {
 			//if user' patient is admin execute this if block else admin is login
 			if(!empty($current_user_id)){
 				if(empty($id))
-				$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `user_id` = '{$current_user_id}' ";
+				$sql = "INSERT INTO `appointments` SET `user_id` = '{$current_user_id}', `date_sched` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
+				else
+				$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
+			}else{
+				if(empty($id))
+				$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
 				else
 				$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 			}
-			// for admin insert appointment's user id is default to null
-			if(empty($id))
-			$sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
-			else
-			$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
+			
 
 			$save_sched = $this->conn->query($sql);
 			$this->capture_err();
