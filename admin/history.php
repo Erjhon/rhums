@@ -79,46 +79,48 @@ if(isset($_POST['submit']))
            <th>Patient Reg Date</th>
           <td><?php  echo $row['CreationDate'];?></td>
         </tr>
- 
-<?php }?>
+    </tr>
 </table>
+<?php }?>
 <?php  
 
 $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'");
 
 
  ?>
-<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-  <tr align="center">
-    <th colspan="8" >Medical History</th> 
-  </tr>
-  <tr>
-    <th>#</th>
-    <th>Blood Pressure</th>
-    <th>Weight</th>
-    <th>Blood Sugar</th>
-    <th>Body Temprature</th>
-    <th>Medical Prescription</th>
-    <th>Visit Date</th>
-  </tr>
-<?php  
-while ($row=mysqli_fetch_array($ret)) { 
-  ?>
-  <tr>
-    <td><?php echo $cnt;?></td>
-    <td><?php  echo $row['BloodPressure'];?></td>
-    <td><?php  echo $row['Weight'];?></td>
-    <td><?php  echo $row['BloodSugar'];?></td> 
-    <td><?php  echo $row['Temperature'];?></td>
-    <td><?php  echo $row['MedicalPres'];?></td>
-    <td><?php  echo $row['CreationDate'];?></td> 
-  </tr>
+ <div class="table-responsive">
+    <table border="0" class="table table-bordered">
+      <tr align="center">
+        <th colspan="8" style="font-size:16px;color:blue" >Medical History</th> 
+      </tr>
+      <tr>
+        <th>#</th>
+        <th>Blood Pressure</th>
+        <th>Weight</th>
+        <th>Blood Sugar</th>
+        <th>Body Temprature</th>
+        <th>Medical Prescription</th>
+        <th>Visit Date</th>
+      </tr>
+    <?php  
+    while ($row=mysqli_fetch_array($ret)) { 
+      ?>
+      <tr>
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['BloodPressure'];?></td>
+        <td><?php  echo $row['Weight'];?></td>
+        <td><?php  echo $row['BloodSugar'];?></td> 
+        <td><?php  echo $row['Temperature'];?></td>
+        <td><?php  echo $row['MedicalPres'];?></td>
+        <td><?php  echo $row['CreationDate'];?></td> 
+      </tr>
 <?php $cnt=$cnt+1;} ?>
 </table>
 
     <p align="center"> <br>                          
      <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
 
+ </div>
 <?php  ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -155,11 +157,10 @@ while ($row=mysqli_fetch_array($ret)) {
           <td><textarea name="pres" placeholder="Medical Prescription" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
         </tr>  
   </table>
-</div>
+
     <div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-    <!--   </form> -->
     </div>
     </form>
 </div>
