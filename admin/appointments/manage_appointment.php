@@ -45,9 +45,6 @@ if(!empty($_SESSION['user_id'])){
 }else{
      $full_name = "";
 }
-else{
-    $full_name = "";
-}
 
 ?>
 <style>
