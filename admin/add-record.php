@@ -1,12 +1,10 @@
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
 <body>
-
 <?php if($_settings->chk_flashdata('success')): ?>
 <script>
     alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
-
 <style>
 #uni_modal .modal-content>.modal-footer{
     display:none;
@@ -20,12 +18,17 @@
 <?php 
     $sql = "select * from appointments";
     $rs = mysqli_query($conn, $sql);
+
+    
+          
+            
+
+  
     //get row
     $fetchRow = mysqli_fetch_assoc($rs);
 ?> 
  -->
 <?php
-
 if(isset($_POST['submit']))
 {    
      $id = $_POST['id'];
@@ -36,17 +39,14 @@ if(isset($_POST['submit']))
      $age = $_POST['age'];
      $address = $_POST['address'];
      $medHistory = $_POST['medHistory'];
-     $sql = "INSERT INTO patient_history (patient_id,fullname,contactNo,gender,dob,age,address,medHistory)
+     $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory)
      VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory')";
      if (mysqli_query($conn, $sql)) {
-
-        echo '<script>alert("Form submitted successfully")</script>';
-        // exit();
-        echo '<script>location.href = "http://localhost/rhums/admin/?page=consultation"</script>';
+        echo '<script>alert("Form submitted successfully")</script>';;
      } else {
         echo "Error: " . $sql . ":-" . mysqli_error($conn);
      }
-    //  mysqli_close($conn);
+     mysqli_close($conn);
 }
 
 //get age from date of birth function
@@ -114,7 +114,7 @@ $data_p = get_record_details($fetchRow['patient_id'], $conn);
                                     <label>Patient No.</label>
                                     <input class="form-control" name="id" placeholder="Patient No." type="text" value="<?php echo $fetchRow['patient_id']?>">
                                 </div>
-                                
+
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -145,7 +145,7 @@ $data_p = get_record_details($fetchRow['patient_id'], $conn);
                                     <input type="date" class="form-control" name="dob" value="<?php echo $data_p['dob']?>"  required>
                                 </div>
                             </div>
-                        
+
                             <div class="col-4">
                                 <div class="form-group">
                                     <label>Patient Age</label>
@@ -174,14 +174,20 @@ $data_p = get_record_details($fetchRow['patient_id'], $conn);
         </div>
     </div>
 
-            
+
         </div>
+
+    
+          
+            
+    
+
+          
+    
+    
+  
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-
-
 </body>
-
-
 <!-- add-patient24:07-->
 </html>
