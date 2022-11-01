@@ -105,7 +105,7 @@ if($total = mysqli_num_rows($patient_history_run)){
     </div>
     <div class="container-fluid mt--7">
       <div class="row">
-        <div class="col-xl-9 mb-8 mb-xl-0">
+        <div class="col-xl-12 mb-8 mb-xl-0">
           <div class="card bg-gradient shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
@@ -128,7 +128,7 @@ if($total = mysqli_num_rows($patient_history_run)){
 
 
         
-        <div class="col-xl-3">
+      <!--   <div class="col-xl-3">
           <div class="card shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
@@ -138,15 +138,15 @@ if($total = mysqli_num_rows($patient_history_run)){
                 </div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body"> -->
             <!-- Chart-- -->
-           <div class="chart">
+      <!--      <div class="chart">
                 <canvas id="chart-orders" class="chart-canvas"></canvas>
               </div>
             </div>
           </div>
         </div>
-      </div> 
+      </div>  -->
       <!-- <div class="row mt-5">
         <div class="col-xl-8 mb-5 mb-xl-0">
           <div class="card shadow">
