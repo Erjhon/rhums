@@ -29,6 +29,8 @@
 ?> 
  -->
 <?php
+
+$id = $_GET['id'];
 if(isset($_POST['submit']))
 {    
      $id = $_POST['id'];

@@ -25,27 +25,52 @@
 
 
 <h2>Medical Appointment and Record Management System <br>RURAL HEALTH UNIT II</h2>
-
+<br><h2>Patient Records</h2>
 		<table style="width:100%">
 
 			<tr>
 				<th>Patient No.</th>
+				<td>PA-<?=$row["id"] ?></td>
 				<th>Name</th>
-				<th>Contact No.</th>
-				<th>Gender</th>
-				<th>Date of Birth</th>
-				<th>Medical History</th>
+				<td><?=$row["fullname"] ?></td>
+
 			</tr>
 
 			<tr>
-				<td>PA-<?=$row["id"] ?></td>
-				<td><?=$row["fullname"] ?></td>
-				<td><?=$row["contactNo"] ?></td>
+				
+				<th>Gender</th>
 				<td><?=$row["gender"] ?></td>
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["medHistory"] ?></td>
-			</tr>
+				<th>Contact No.</th>
+				<td><?=$row["contactNo"] ?></td>
+				
+				
 
+				
+							</tr>
+
+							<tr>
+								<th>Date of Birth</th>
+				<td><?=$row["dob"] ?></td>
+				<th>Medical History</th>
+				<td><?=$row["medHistory"] ?></td>
+							</tr>
+
+
+		</table>
+
+<br><h2>Medical History</h2>
+			<table style="width:100%">
+        <th>Blood Pressure</th>
+        <th>Weight</th>
+        <th>Blood Sugar</th>
+        <th>Body Temprature</th>
+        <th>Medical Prescription</th>
+        <th>Visit Date</th>
+
+         <tr>
+         	<!-- <td><?=$row["BloodPressure"] ?></td> -->
+        
+      </tr>
 
 		</table>
 

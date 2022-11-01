@@ -110,11 +110,11 @@ if(!empty($_SESSION['user_id'])){
                     <input type="datetime-local" class="form-control" name="date_sched" value="<?php echo isset($date_sched)? date("Y-m-d\TH:i",strtotime($date_sched)) : "" ?>" required>
                 </div>
                 <?php if($_settings->userdata('id') > 0): ?>
-                <div class="form-group">
+                <div hidden class="form-group">
                     <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="custom custom-select">
-                        <option value="0"<?php echo isset($status) && $status == "0" ? "selected": "" ?>>Pending</option>
+                    <select  name="status" id="status" class="custom custom-select">
                         <option value="1"<?php echo isset($status) && $status == "1" ? "selected": "" ?>>Confirmed</option>
+                        <option value="0"<?php echo isset($status) && $status == "0" ? "selected": "" ?>>Pending</option>
                         <option value="2"<?php echo isset($status) && $status == "2" ? "selected": "" ?>>Cancelled</option>
                     </select>
                 </div>
