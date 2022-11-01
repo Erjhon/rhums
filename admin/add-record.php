@@ -39,15 +39,17 @@ if(isset($_POST['submit']))
      $age = $_POST['age'];
      $address = $_POST['address'];
      $medHistory = $_POST['medHistory'];
-     $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory)
+     $sql = "INSERT INTO patient_history (patient_id,fullname,contactNo,gender,dob,age,address,medHistory)
      VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory')";
      if (mysqli_query($conn, $sql)) {
 
-        echo '<script>alert("Form submitted successfully")</script>';;
+        echo '<script>alert("Form submitted successfully")</script>';
+        // exit();
+        echo '<script>location.href = "http://localhost/rhums/admin/?page=consultation"</script>';
      } else {
         echo "Error: " . $sql . ":-" . mysqli_error($conn);
      }
-     mysqli_close($conn);
+    //  mysqli_close($conn);
 }
 
 //get age from date of birth function
