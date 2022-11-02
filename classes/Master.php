@@ -122,17 +122,17 @@ Class Master extends DBConnection {
 				//formate date 
 				$new_sched = date('F d, Y H:i A', strtotime($date_sched));
 				//create message text
-				$message = "Miss/Ms/Mr/Mrs with RHU Nabua \n";
-				$message .= " On {$new_sched}";
+				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the Scheduled time.";
+				// $message .= " On {$new_sched}";
 
 				//send sms enable this later
-				// $res = $this->sms->sendSMS($contact, $message);
+				$res = $this->sms->sendSMS($contact, $message);
 
 				//return json encode to ajax
 				return json_encode([
 					'status' => 'success',
 					'msg' => 'Your appointment is set',
-					// 'sms_respond' => $res
+					'sms_respond' => $res
 				]);
 
 				// bakit to naka flashdata pero naka ajax kayo?
