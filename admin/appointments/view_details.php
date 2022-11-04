@@ -30,11 +30,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     <!-- <p><b>Email #:</b> <?php echo $patient['email'] ?></p> -->
     <p><b>Address:</b> <?php echo $patient['address'] ?></p>
     <p><b>Reason for Appointment:</b> <?php echo $reason ?></p>
-    <p hidden><b>Status:</b>
+    <p><b>Status:</b>
         <?php 
         switch($status){ 
             case(0): 
-                echo '<span class="badge badge-primary">Pending</span>';
+                echo '<span class="badge badge-primary">Done</span>';
             break; 
             case(1): 
             echo '<span class="badge badge-success">Confirmed</span>';
