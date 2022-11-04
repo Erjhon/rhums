@@ -19,7 +19,6 @@ class Login extends DBConnection {
 		extract($_POST);
 
 		$qry = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password') ");
-		$qry2 = $this->conn->query("SELECT * FROM patients WHERE username = '$username' && password = md5('$password') ");
 		if($qry->num_rows > 0){
 			foreach($qry->fetch_array() as $k => $v){
 				if(!is_numeric($k) && $k != 'password'){
@@ -28,9 +27,7 @@ class Login extends DBConnection {
 
 			}
 			$this->settings->set_userdata('login_type',1);
-			return json_encode(array('status'=>'success', 'is_admin' => 1));
-		}elseif($qry2->num_rows > 0){
-		    return json_encode(array('status'=>'success', 'is_admin' => 0));
+		return json_encode(array('status'=>'success'));
 		}else{
 		return json_encode(array('status'=>'incorrect','last_qry'=>"SELECT * from users where username = '$username' and password = md5('$password') "));
 		}
@@ -75,4 +72,6 @@ switch ($action) {
 		echo $auth->index();
 		break;
 }
+
+
 

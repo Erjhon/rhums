@@ -39,11 +39,7 @@ $(document).ready(function(){
 				if(resp){
 					resp = JSON.parse(resp)
 					if(resp.status == 'success'){
-						if(resp.is_admin == 1){
-							location.replace(_base_url_+'admin');
-						}else{
-							location.replace(_base_url_+'dashboard.php');
-						}
+						location.replace(_base_url_+'admin');
 					}else if(resp.status == 'incorrect'){
 						var _frm = $('#login-frm')
 						var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
