@@ -24,8 +24,8 @@
 					</div>
 					<div class="col-3">
 						<select id="w_selected" class="custom-select select" >
-							<option value="cancelled">Mark as Cancelled</option>
 							<option value="pending">Mark as Done</option>
+							<option value="cancelled">Mark as Cancelled</option>
 							<!-- <option value="confirmed">Mark as Confirmed</option> -->
 							<option value="delete">Delete</option>
 						</select>
