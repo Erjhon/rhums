@@ -17,7 +17,7 @@
 	<div class="card-header">
 		<h2 class="card-title text-center">List of Patient Users</h2>
 		<div class="card-tools">
-			<a href="?page=user/manage_user" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="?page=user/manage_patient" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 	</div>
 	<div class="card-body ">
@@ -51,7 +51,8 @@
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item" href="?page=user/manage_user&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
+				                    <a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a>
+				                    <!-- ?page=user/manage_user&id=<?php echo $row['id'] ?> -->
 				                    <div class="dropdown-divider"></div>
 				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
 				                  </div>
