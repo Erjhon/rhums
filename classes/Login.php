@@ -60,19 +60,15 @@ class Login extends DBConnection {
 		return json_encode($resp);
 	}
 
-	/**
-	 * !TITLE : LOGIN
-	 * *Description : Handle login for both admin and patients
-	 * 
-	 */
 	function login_for_all(){
 		extract($_POST);
 
 		//if user username is admin
-		if(strtolower($username) == 'admin'){
-			$admin = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password') ");
-			if($admin->num_rows > 0){
-				foreach(mysqli_fetch_assoc($admin) as $k => $v){
+		$verify_ = $this->check_admin($username, $password);
+		if($verify_){
+			$admin_q = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password')");
+			if($admin_q->num_rows > 0){
+				foreach(mysqli_fetch_assoc($admin_q) as $k => $v){
 					$this->settings->set_userdata($k,$v);
 				}
 				$this->settings->set_userdata('login_type',1);
@@ -109,6 +105,16 @@ class Login extends DBConnection {
 			'access' => false
 		]);
 
+	}
+
+	//if user username is admin
+	function check_admin($username, $password){
+		$admin = $this->conn->query("SELECT * from users where username = '$username'");
+		if($admin->num_rows > 0){
+			return true;
+		}
+
+		return false;
 	}
 }
 
