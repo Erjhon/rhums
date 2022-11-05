@@ -287,7 +287,7 @@ if(isset($_POST['submit'])){
 </div>
 <br>
 <div class="col-12 text-center">
-  Already have an account? <a href="../patient/login.php">Log in</a>
+  Already have an account? <a href="../admin/login.php">Log in</a>
 </div>
 
 </form>

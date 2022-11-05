@@ -39,8 +39,7 @@
       </div>
     </nav>
     <!-- Header -->
-    <div class="header py-8 py-lg-4" style="background: linear-gradient(
-    to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
+     <div class="header py-8 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
       
       <div class="container">
         <div class="text-center">
@@ -70,11 +69,12 @@
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-6">
           <div class="card bg-secondary shadow border-0">
-            <div class="bg-transparent pb-5">
+            <div class="bg-transparent pb-1">
             </div>
-            <div class="card-body px-lg-5 py-lg-1">
+            <div class="card-body px-lg-5 py-lg-4">
               <div class="text-center text-dark mb-4">
-                <h1 class="text-dark">Login</h1>
+                <h1 class="text-dark">Welcome Back!</h1>
+                <p class="sub-text">Login with your details to continue</p>
 
               <!--    <?php
       if(isset($error)){
@@ -118,6 +118,9 @@
           <!-- /.col -->
         </div>
        <div class="row mt-3">
+        <div class="col-12 text-center"><br>Don't have an account? <a href="../patient/register.php">
+            <small>Create an account</small></a>
+          </div>
            <!--  <div class="col-6">
               <a href="#" class="nav-link"><small>Forgot password?</small></a>
             </div>

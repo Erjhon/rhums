@@ -38,7 +38,7 @@
                     <font class="edoc-logo-sub">| Rural Health Unit II</font>
                 </td>
                 <td width="10%">
-                   <a href="patient/login.php"  class="non-style-link"><h2 class="nav-item"><b>LOGIN</h2></a>
+                   <a href="admin/login.php"  class="non-style-link"><h2 class="nav-item"><b>LOGIN</h2></a>
                 </td>
                 <td  width="10%">
                     <a href="patient/register.php" class="non-style-link"><h2 class="nav-item" style="padding-right: 10px;"><b>REGISTER</h2></a>
@@ -61,7 +61,7 @@
                 
                 <td colspan="3">
                     <center>
-                    <a href="./patient/login.php" >
+                    <a href="admin/login.php" >
                         <input type="button" value="Set an Appointment" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
                     </a>
                 </center>
