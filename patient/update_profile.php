@@ -108,26 +108,31 @@ if(isset($_POST['update_profile'])){
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-          <span class="avatar avatar-sm rounded-circle">
-           <?php
+           <span class="avatar avatar-sm rounded-circle">
+              <?php
          $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($select) > 0){
             $fetch = mysqli_fetch_assoc($select);
          }
          if($fetch['image'] == ''){
-            echo '<img src="images/default-avatar.png" class="custom-file-input rounded-circle">';
+            echo '<img src="../patient/images/default-avatar.png">';
          }else{
-            echo '<img src="uploaded_img/'.$fetch['image'].'">';
+            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
          }
       ?>
-        </span>
+
+      </span>
     </div>
 </a>
 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
     <div class=" dropdown-header noti-title">
-      <h6 class="text-overflow m-0">Welcome!</h6>
+      <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></h5>
   </div>
   <div class="dropdown-divider"></div>
+  <a href="../patient/update_profile.php" class="dropdown-item">
+    <i class="ni ni-single-02"></i>
+    <span>My profile</span>
+</a>
   <a href="pages/logout.php" class="dropdown-item">
       <i class="ni ni-user-run"></i>
       <span>Logout</span>
@@ -167,14 +172,6 @@ if(isset($_POST['update_profile'])){
   <li class="nav-item">
     <a class="nav-link " href="view.php">
       <i class="ni ni-ruler-pencil text-blue"></i> View Appointment
-  </a>
-</li>
-</ul>
-
-<ul class="navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link active bg-pink" href="update_profile.php">
-      <i class="ni  ni-single-02 text-red"></i> Update Profile
   </a>
 </li>
 </ul>

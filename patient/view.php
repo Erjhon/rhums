@@ -19,13 +19,9 @@ if(isset($_GET['logout'])){
 
  <!DOCTYPE html>
  <html lang="en">
-<?php require_once('../inc/header.php') ?>
+
  <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>
-    Medical Scheduling and Record Management for RHU II
-</title>
+ 
 <!-- Favicon -->
 <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
 <!-- Fonts -->
@@ -37,11 +33,6 @@ if(isset($_GET['logout'])){
 <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 </head>
 
-<style>
-#selectAll{
-	top:0
-}
-</style>
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
@@ -71,15 +62,30 @@ if(isset($_GET['logout'])){
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
           <span class="avatar avatar-sm rounded-circle">
-            <img alt="Image placeholder" src="./assets/assets/img/theme/profile.jpg">
-        </span>
+              <?php
+         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+         if(mysqli_num_rows($select) > 0){
+            $fetch = mysqli_fetch_assoc($select);
+         }
+         if($fetch['image'] == ''){
+            echo '<img src="../patient/images/default-avatar.png">';
+         }else{
+            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
+         }
+      ?>
+
+      </span>
     </div>
 </a>
 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
     <div class=" dropdown-header noti-title">
-      <h6 class="text-overflow m-0">Welcome!</h6>
+      <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?>!</h5>
   </div>
   <div class="dropdown-divider"></div>
+  <a href="patient/update_profile.php" class="dropdown-item">
+    <i class="ni ni-single-02"></i>
+    <span>My profile</span>
+</a>
   <a href="pages/logout.php" class="dropdown-item">
       <i class="ni ni-user-run"></i>
       <span>Logout</span>
@@ -94,7 +100,7 @@ if(isset($_GET['logout'])){
       <div class="row">
         <div class="col-6 collapse-brand">
           <a href="./index.php">
-            <img src="../assets/assets/img/brand/blue.png" height="100" width="100">
+              <img src="../assets/assets/img/brand/rhu.png"  height="60" width="40"/>
         </a>
     </div>
     <div class="col-6 collapse-close">
@@ -117,16 +123,8 @@ if(isset($_GET['logout'])){
 
 <ul class="navbar-nav">
   <li class="nav-item">
-    <a class="nav-link active bg-primary" href="view.php">
-      <i class="ni ni-ruler-pencil text-default"></i> View Appointment
-  </a>
-</li>
-</ul>
-
-<ul class="navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link" href="update_profile.php">
-      <i class="ni ni-single-02 text-pink"></i> Update Profile
+    <a class="nav-link bg-blue " href="view.php">
+      <i class="ni ni-ruler-pencil text-white"></i> View Appointment
   </a>
 </li>
 </ul>
@@ -139,10 +137,8 @@ if(isset($_GET['logout'])){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">List of Appointments</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Update Profile</a>
  
-
-
 <!-- User -->
 <ul class="navbar-nav align-items-center d-none d-md-flex">
   <li class="nav-item dropdown">
@@ -150,7 +146,7 @@ if(isset($_GET['logout'])){
       <div class="media align-items-center">
         <span class="avatar avatar-sm rounded-circle">
               <?php
-         $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
+         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($select) > 0){
             $fetch = mysqli_fetch_assoc($select);
          }
@@ -177,7 +173,7 @@ if(isset($_GET['logout'])){
 </a>
 
 <div class="dropdown-divider"></div>
-<a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
+ <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
     <i class="ni ni-user-run"></i>
     <span>Logout</span>
 </a>
@@ -186,8 +182,6 @@ if(isset($_GET['logout'])){
 </ul>
 </div>
 </nav>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -202,7 +196,7 @@ if(isset($_GET['logout'])){
       <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a type="button" class="btn btn-primary" href="logout.php?logout=<?php echo $user_id; ?>" >Logout</a>
+        <a type="button" class="btn btn-primary" href="logout.php?logout=<?php echo $user_id;?>" >Logout</a>
       </div>
     </div>
   </div>

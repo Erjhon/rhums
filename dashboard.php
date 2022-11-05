@@ -37,7 +37,9 @@ if(isset($_GET['logout'])){
 #selectAll{
    top:0
 }
+
 </style>
+
 <body class="">
  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
@@ -46,7 +48,7 @@ if(isset($_GET['logout'])){
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Brand -->
-    <a class="navbar-img text-center" href="../index.php">
+    <a class="navbar-img text-center" href="#">
           <img src="./assets/assets/img/brand/rhu.png" height="100" width="100"/>
         </a>
     <!-- User -->
@@ -66,8 +68,8 @@ if(isset($_GET['logout'])){
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-          <span class="avatar avatar-sm rounded-circle">
-           <?php
+           <span class="avatar avatar-sm rounded-circle">
+          <?php
          $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($select) > 0){
             $fetch = mysqli_fetch_assoc($select);
@@ -78,14 +80,20 @@ if(isset($_GET['logout'])){
             echo '<img src="patient/uploaded_img/'.$fetch['image'].'">';
          }
       ?>
-        </span>
+
+      </span>
+     
     </div>
 </a>
 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
     <div class=" dropdown-header noti-title">
-      <h6 class="text-overflow m-0">Welcome!</h6>
+      <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></h5>
   </div>
   <div class="dropdown-divider"></div>
+  <a href="patient/update_profile.php" class="dropdown-item">
+    <i class="ni ni-single-02"></i>
+    <span>My profile</span>
+</a>
   <a href="client/logout.php" class="dropdown-item">
       <i class="ni ni-user-run"></i>
       <span>Logout</span>
@@ -124,14 +132,6 @@ if(isset($_GET['logout'])){
   <li class="nav-item">
     <a class="nav-link" href="patient/view.php">
       <i class="ni ni-ruler-pencil text-blue"></i> View Appointment
-  </a>
-</li>
-</ul>
-
-<ul class="navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link" href="patient/update_profile.php">
-      <i class="ni ni-single-02 text-pink"></i> Update Profile
   </a>
 </li>
 </ul>
