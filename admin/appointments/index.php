@@ -19,22 +19,20 @@
         <div class="container-fluid">
 			<div class="row" style="display:none" id="selected_opt">
 				<div class="w-100 d-flex">
-					<!-- <div class="col-2">
-						<label for="" class="controllabel">Are you sure?</label>
-					</div> -->
-					<div class="col-1">
-						<button class="btn btn-danger" type="button" id="selected_go" value="delete">Delete</button>
+					<div class="col-2">
+						<label for="" class="controllabel"> With Selected:</label>
 					</div>
 					<div class="col-3">
-
-						<select hidden id="w_selected" class="custom-select select" >
+						<select id="w_selected" class="custom-select select" >
+							<option value="pending">Mark as Done</option>
+							<option value="cancelled">Mark as Cancelled</option>
+							<!-- <option value="confirmed">Mark as Confirmed</option> -->
 							<option value="delete">Delete</option>
-							<!-- <option  value="pending">Mark as Pending</option>
-							<option  value="confirmed">Mark as Confirmed</option>
-							<option  value="cancelled">Mark as Cancelled</option> -->
 						</select>
 					</div>
-					
+					<div class="col">
+						<button class="btn btn-primary" type="button" id="selected_go">Go</button>
+					</div>
 				</div>
 			</div>
 			<div class="table-responsive">
@@ -56,8 +54,8 @@
 						<th>Patient No.</th>
 						<th>Patient Name</th>
 						<th>Schedule</th>
-						<th hidden>Status</th>
-						<th >Appointment Creation Date</th>
+						<th>Appointment Creation Date</th>
+						<th>Status</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -77,12 +75,13 @@
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td><b>PA-<?php echo $row['id'] ?></td>
 							<td><?php echo $row['name'] ?></td>
-							<td><?php echo date("M d,Y h:i A",strtotime($row['date_sched'])) ?></td>
-							<td hidden class="text-center">
+							<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
+							<td><?php echo $row['date_created'] ?></td>
+							<td class="text-center">
 								<?php 
 								switch($row['status']){ 
 									case(0): 
-										echo '<span class="badge badge-primary">Pending</span>';
+										echo '<span class="badge badge-primary">Done</span>';
 									break; 
 									case(1): 
 									echo '<span class="badge badge-success">Confirmed</span>';
@@ -95,7 +94,6 @@
                                 } 
 								?>
 							</td>
-							<td><?php echo $row['date_created'] ?></td>
 							<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
@@ -106,7 +104,7 @@
 									<div class="divider"></div>
 									<a class="dropdown-item edit_data" href="javascript:void(0)" data-id="<?php echo $row['aid'] ?>"> <span class="fa fa-edit text-danger"></span>Edit</a>
 									
-									<a class="dropdown-item edit_data" href="<?php echo base_url ?>admin/?page=add-record"> <span class="fa fa-file text-primary"></span> Add Record</a>
+									<a class="dropdown-item edit_data" href="<?php echo base_url ?>admin/?page=add-record&id=<?php echo $row['id'] ?>"> <span class="fa fa-file text-primary"></span> Add Record</a>
 				                  </div>
 							</td>
 						</tr>

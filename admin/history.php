@@ -1,6 +1,31 @@
 
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
+
+<?php
+if(isset($_POST['submit']))
+  {
+    $vid=$_GET['viewid'];
+    $bp=$_POST['bp'];
+    $bs=$_POST['bs'];
+    $weight=$_POST['weight'];
+    $temp=$_POST['temp'];
+    $pres=$_POST['pres'];
+   
+ 
+      $query=mysqli_query($conn, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
+      if ($query) {
+      echo '<script>alert("Medical history has been added.")</script>';
+      echo "<script>window.location.href ='history.php&viewid=['id']'</script>";
+      
+    }
+  else
+    {
+      echo '<script>alert("Something Went Wrong. Please try again")</script>';
+    } 
+}
+
+?>
 <body>
 
 <?php if($_settings->chk_flashdata('success')): ?>
@@ -13,104 +38,140 @@
 <?php endif;?>
 
 <?php
-$result = mysqli_query($conn,"SELECT * FROM patient_history WHERE id = 'id'");
+  $result = mysqli_query($conn,"SELECT * FROM patient_history WHERE id = 'id'");
 ?>
 
 <div class="card card-outline card-primary">
     <div class="card-header">
         <h2 class="card-title text-center">Patient Records</h2>
-        <div class="card-tools col-sm-2 col-10 text-right m-b-5">
-            <a href="<?php echo base_url ?>admin/?page=add-consultation" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
-        </div>
-
     </div>
-    <div class="card-body">
-        <div class="container-fluid">
+<?php
+   $vid=$_GET['viewid'];
+   $ret=mysqli_query($conn,"select * from patient_history where id='$vid'");
+  $cnt=1;
+  while ($row=mysqli_fetch_array($ret)) {
+?>
+<div class="col-md-12">
+  <div class="table-responsive">
+    <table border="0" class="table table-bordered">
+       <tr align="center">
+          <tr>
+          <th scope>Patient Name</th>
+          <td><?php  echo $row['fullname'];?></td>
+          <th scope>Patient Mobile Number</th>
+          <td><?php  echo $row['contactNo'];?></td>
+        </tr>
+        <tr>
+          <th>Patient Gender</th>
+          <td><?php  echo $row['gender'];?></td>
+          <th>Patient Address</th>
+          <td><?php  echo $row['address'];?></td>
+        </tr>
+          <tr>
+          <th>Patient Date of Birth</th>
+          <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
+          <th>Patient Age</th>
+          <td><?php  echo $row['age'];?></td>
+        </tr>
+        <tr>
+          <th>Patient Medical History(if any)</th>
+          <td><?php  echo $row['medHistory'];?></td>
+           <th>Patient Reg Date</th>
+          <td><?php  echo $row['CreationDate'];?></td>
+        </tr>
+    </tr>
+</table>
+<?php }?>
+<?php  
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-border table-hover custom-table datatable mb-0">
-                            <?php
-                            if (mysqli_num_rows($result) > 0) {
-                                ?>
-                                <thead>
-                                    <tr>
-                                        <th>Patient No.</th>
-                                        <th>Patient Name</th>
-                                        <th>Patient Contact No.</th>
-                                        <th>Patient Gender</th>
-                                        <th>Patient Medical History</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $i=0;
-                                    while($row = mysqli_fetch_array($result)) {
-                                        ?>
+$ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'");
 
 
-                                        <tr>
-                                            <td><b>PA-<?php echo $row["id"]; ?></td>
-                                            <td><?php echo $row["fullname"]; ?></td>
-                                            <td><?php echo $row["contactNo"]; ?></td>
-                                            <td><?php echo $row["gender"]; ?></td>
-                                            <td><?php echo $row["medHistory"]; ?></td>
+ ?>
+ <div class="table-responsive">
+    <table border="0" class="table table-bordered">
+      <tr align="center">
+        <th colspan="8" style="font-size:16px;color:blue" >Medical History</th> 
+      </tr>
+      <tr>
+        <th>#</th>
+        <th>Blood Pressure</th>
+        <th>Weight</th>
+        <th>Blood Sugar</th>
+        <th>Body Temprature</th>
+        <th>Medical Prescription</th>
+        <th>Visit Date</th>
+      </tr>
+    <?php  
+    while ($row=mysqli_fetch_array($ret)) { 
+      ?>
+      <tr>
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['BloodPressure'];?></td>
+        <td><?php  echo $row['Weight'];?></td>
+        <td><?php  echo $row['BloodSugar'];?></td> 
+        <td><?php  echo $row['Temperature'];?></td>
+        <td><?php  echo $row['MedicalPres'];?></td>
+        <td><?php  echo $row['CreationDate'];?></td> 
+      </tr>
+<?php $cnt=$cnt+1;} ?>
+</table>
 
-                                            <td align="center">
-                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                        Action
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                  </button>
-                                  <div class="dropdown-menu" role="menu">
-                                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=history><span class="fa fa-search text-success"></span> View</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
-                                  </div>
-                            </td>
+    <p align="center"> <br>                          
+     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
 
-                                            <!--    
-                                                <a href="<?php echo base_url ?>admin/?page=history" class="btn btn-sm btn-primary">View</a>                 
-                                                <a target="_blank" href="generate_pdf.php?id=<?=$row['id']?>" class="btn btn-sm btn-primary">Generate PDF<i class="fa fa-file-pdf-o"></a> -->
-                                            </tr>
-                                            <?php
-                                            $i++;
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                                <?php
-                            }
-                            else{
-                                echo "No result found";
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="delete" class="modal fade delete-modal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body text-center">
-                        <img src="../assets/img/sent.png" alt="" width="50" height="46">
-                        <h3>Are you sure want to delete this record?</h3>
-                        <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+ </div>
+<?php  ?>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+      <table class="table table-bordered table-hover data-tables">
 
-        </div>
+        <form method="post" name="submit">
+
+        <tr>
+          <th>Blood Pressure :</th>
+          <td><input name="bp" placeholder="Blood Pressure" class="form-control wd-450" required="true"></td>
+        </tr>                          
+        <tr>
+          <th>Blood Sugar :</th>
+          <td><input name="bs" placeholder="Blood Sugar" class="form-control wd-450" required="true"></td>
+        </tr> 
+        <tr>
+          <th>Weight :</th>
+          <td><input name="weight" placeholder="Weight" class="form-control wd-450" required="true"></td>
+        </tr>
+        <tr>
+          <th>Body Temprature :</th>
+          <td><input name="temp" placeholder="Blood Sugar" class="form-control wd-450" required="true"></td>
+        </tr>
+        <tr>
+          <th>Prescription :</th>
+          <td><textarea name="pres" placeholder="Medical Prescription" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+        </tr>  
+  </table>
+
+    <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </div>
-
-
-    <div class="sidebar-overlay" data-reff=""></div>
-
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
+
+
 
 <script type="text/javascript">
     
@@ -120,4 +181,4 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history WHERE id = 'id'");
 </script>
 
 <!-- patients23:19-->
-</html>
+<!-- </html> -->

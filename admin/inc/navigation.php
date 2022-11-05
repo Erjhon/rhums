@@ -119,6 +119,14 @@
               
               </a>
             </li>
+             <li class="dropdown">
+              <a href="<?php echo base_url ?>admin/?page=user/patient" class="nav-link nav-user_patient">
+                <i class="nav-icon fas fa-user text-purple"></i>
+              
+                  <span class="text-dark">Patient List</span>
+              
+              </a>
+            </li>
           <!--   <li class="nav-item dropdown">
               <a href="<?php echo base_url ?>admin/?page=system_info" class="nav-link nav-system_info">
                 <i class="nav-icon fas fa-cogs"></i>

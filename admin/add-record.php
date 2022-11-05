@@ -1,13 +1,10 @@
-
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
 <body>
-
 <?php if($_settings->chk_flashdata('success')): ?>
 <script>
     alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
-
 <style>
 #uni_modal .modal-content>.modal-footer{
     display:none;
@@ -18,17 +15,22 @@
 </style>
 <?php endif;?>
 <!-- 
-
-
 <?php 
     $sql = "select * from appointments";
     $rs = mysqli_query($conn, $sql);
+
+    
+          
+            
+
+  
     //get row
     $fetchRow = mysqli_fetch_assoc($rs);
 ?> 
  -->
 <?php
 
+$id = $_GET['id'];
 if(isset($_POST['submit']))
 {    
      $id = $_POST['id'];
@@ -47,7 +49,10 @@ if(isset($_POST['submit']))
         // exit();
         echo '<script>location.href = "http://localhost/rhums/admin/?page=consultation"</script>';
      } else {
-        echo "Error: " . $sql . ":-" . mysqli_error($conn);
+        // echo "Error: " . $sql . ":-" . mysqli_error($conn);
+       echo "<script>alert('Record Already Exists');
+             window.location.href='?page=appointments';
+             </script>";
      }
     //  mysqli_close($conn);
 }
@@ -72,11 +77,11 @@ function compute_age($dob){
  */
 function get_record_details($patient_id, $conn){
 
-    $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = 18 AND `meta_field` = 'name' ");
-    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = 18 AND `meta_field` = 'contact' ");
-    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = 18 AND `meta_field` = 'dob' ");
-    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = 18 AND `meta_field` = 'gender' ");
-    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = 18 AND `meta_field` = 'address' ");
+    $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'name' ");
+    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'contact' ");
+    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'dob' ");
+    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'gender' ");
+    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'address' ");
 
     $name = mysqli_fetch_assoc($query1);
     $contact = mysqli_fetch_assoc($query2);
@@ -176,15 +181,24 @@ $data_p = get_record_details($fetchRow['patient_id'], $conn);
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
 
-            
+>>>>>>> a20fea7a4e88e42dc72dd0b7c2a5b526e1ec446d
+
         </div>
+
+    
+          
+            
+    
+
+          
+    
+    
+  
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-
-
 </body>
-
-
 <!-- add-patient24:07-->
 </html>

@@ -227,7 +227,11 @@ if(isset($_GET['logout'])){
           <div class="col-md-12">
             <div class="table-responsive">
               <table class="table table-border table-hover custom-table datatable mb-0 text-center">
-
+<tr>
+                    <th>Patient ID</th>
+                    <th>Reason of appointment</th>
+                    <th>Schedule</th>
+                  </tr>
         <?php
 $result = mysqli_query($conn,"SELECT * FROM appointments WHERE `user_id` = {$user_id}");
 ?>
@@ -235,13 +239,7 @@ $result = mysqli_query($conn,"SELECT * FROM appointments WHERE `user_id` = {$use
                         <?php
 if (mysqli_num_rows($result) > 0) {
 ?>
-                <thead>
-                  <tr>
-                    <th>Patient ID</th>
-                    <th>Reason of appointment</th>
-                    <th>Schedule</th>
-                  </tr>
-                </thead>
+                
                 <tbody>
                   <?php
 $i=0;

@@ -77,7 +77,7 @@ if(isset($_POST['submit']))
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Patient Contact No.</label>
-                                        <input class="form-control" name="contactNo" placeholder="Enter Patient Contact No." required>
+                                        <input class="form-control" name="contactNo" placeholder="Enter Patient Contact No." required maxlength = "11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id']?>" -->
                                 </div>
@@ -129,9 +129,9 @@ if(isset($_POST['submit']))
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-
-
 </body>
+
+
 
 
 <!-- add-patient24:07-->
