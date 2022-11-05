@@ -126,7 +126,7 @@ Class Master extends DBConnection {
 				// $message .= " On {$new_sched}";
 
 				//send sms enable this later
-				$res = $this->sms->sendSMS($contact, $message);
+				// $res = $this->sms->sendSMS($contact, $message);
 
 				//return json encode to ajax
 				return json_encode([

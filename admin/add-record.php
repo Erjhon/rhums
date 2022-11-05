@@ -41,19 +41,20 @@ if(isset($_POST['submit']))
      $age = $_POST['age'];
      $address = $_POST['address'];
      $medHistory = $_POST['medHistory'];
-     $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory)
+     $sql = "INSERT INTO patient_history (patient_id,fullname,contactNo,gender,dob,age,address,medHistory)
      VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory')";
      if (mysqli_query($conn, $sql)) {
-         echo "<script>alert('Form submitted Successfully');
-             window.location.href='?page=appointments';
-             </script>";
+
+        echo '<script>alert("Form submitted successfully")</script>';
+        // exit();
+        echo '<script>location.href = "http://localhost/rhums/admin/?page=consultation"</script>';
      } else {
         // echo "Error: " . $sql . ":-" . mysqli_error($conn);
        echo "<script>alert('Record Already Exists');
              window.location.href='?page=appointments';
              </script>";
      }
-     mysqli_close($conn);
+    //  mysqli_close($conn);
 }
 
 //get age from date of birth function
@@ -119,28 +120,28 @@ $data_p = get_record_details($fetchRow['patient_id'], $conn);
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Patient No.</label>
-                                    <input class="form-control" name="id" placeholder="Patient No." type="text" value="<?php echo $_GET['id']?>" readonly="readonly">
+                                    <input class="form-control" name="id" placeholder="Patient No." type="text" value="<?php echo $fetchRow['patient_id']?>">
                                 </div>
-
+                                
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Patient Fullname</label>
-                                    <input class="form-control" name="fullname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name']?>" required readonly="readonly">
+                                    <input class="form-control" name="fullname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name']?>" required>
                                 </div>
                                 <!-- type="text" value="<?php echo $fetchRow['id']?>" -->
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Patient Contact No.</label>
-                                    <input class="form-control" name="contactNo" placeholder="Enter Patient Contact No." value="<?php echo $data_p['contact_n']?>" required readonly="readonly">
+                                    <input class="form-control" name="contactNo" placeholder="Enter Patient Contact No." value="<?php echo $data_p['contact_n']?>" required>
                                 </div>
                                 <!-- type="text" value="<?php echo $fetchRow['id']?>" -->
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="gender" class="control-label" >Gender</label>
-                                    <select type="text" class="custom-select" name="gender" value="<?php echo $data_p['gender']?>" required >
+                                    <label for="gender" class="control-label">Gender</label>
+                                    <select type="text" class="custom-select" name="gender" value="<?php echo $data_p['gender']?>" required>
                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected": "" ?>>Male</option>
                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected": ""?>>Female</option>
                                     </select>
@@ -148,15 +149,15 @@ $data_p = get_record_details($fetchRow['patient_id'], $conn);
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="dob" class="control-label" readonly="readonly">Date of Birth</label>
-                                    <input type="date" class="form-control" name="dob" value="<?php echo $data_p['dob']?>"  required readonly="readonly">
+                                    <label for="dob" class="control-label">Date of Birth</label>
+                                    <input type="date" class="form-control" name="dob" value="<?php echo $data_p['dob']?>"  required>
                                 </div>
                             </div>
-
+                        
                             <div class="col-4">
                                 <div class="form-group">
                                     <label>Patient Age</label>
-                                    <input class="form-control" name="age" type="text" placeholder="Enter Patient Age" value="<?php echo $data_p['age']?>" required readonly="readonly">
+                                    <input class="form-control" name="age" type="text" placeholder="Enter Patient Age" value="<?php echo $data_p['age']?>" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -180,7 +181,10 @@ $data_p = get_record_details($fetchRow['patient_id'], $conn);
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
 
+>>>>>>> a20fea7a4e88e42dc72dd0b7c2a5b526e1ec446d
 
         </div>
 
