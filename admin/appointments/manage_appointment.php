@@ -106,7 +106,7 @@ if(!empty($_SESSION['user_id'])){
                 </div>
                 <?php endif; ?>
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Appointment Date and Time</label>
+                    <label for="date_sched" class="control-label">Preferred Appointment Date and Time*</label>
                     <input type="datetime-local" class="form-control" name="date_sched" value="<?php echo isset($date_sched)? date("Y-m-d\TH:i",strtotime($date_sched)) : "" ?>" required>
                 </div>
                 <?php if($_settings->userdata('id') > 0): ?>
