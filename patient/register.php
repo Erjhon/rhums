@@ -82,12 +82,10 @@ if(isset($_POST['submit'])){
           <img src="../assets/assets/img/brand/doh.png"  height="100" width="100"/>
         </a>
       </div>
-        <!--  <div class="text-white text-center mt-2 mb--3"><small class="display-4">Medical Appointment and Record Management for RHU II
-        </small></div> -->
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-1">
-              <h1 class="text-white">RURAL HEALTH UNIT II</h1>
+            <div class="col-lg-8 col-md-1"><br><br>
+              <!-- <h1 class="text-white">RURAL HEALTH UNIT II</h1> -->
             </div>
           </div>
         </div>
@@ -99,48 +97,34 @@ if(isset($_POST['submit'])){
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--6 pb-5">
+    <div class="container mt--7 pb-5">
       <!-- Table -->
       <div class="row justify-content-center">
         <div class="col-lg-9 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="bg-transparent pb-1">
 
-            <!--       <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-                  <div class="text-center">
-                    <a href="#" class="btn btn-neutral btn-icon mr-4">
-                      <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                      <span class="btn-inner--text">Github</span>
-                    </a>
-                    <a href="#" class="btn btn-neutral btn-icon">
-                      <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                      <span class="btn-inner--text">Google</span>
-                    </a>
-                  </div> -->
-
                 </div>
-                <div class="card-body px-lg-6 py-lg-4">
+                <div class="card-body px-lg-6 py-lg-3">
                   <div class="text-center text-muted mb-3">
                     <h1 class="text-dark">Create Account</h1>
                   </div>
-                  
                   
                   <?php
                   if(isset($message)){
                    foreach($message as $message){
                     echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$message.'</div>';
-                  }
-                }
-                ?>
+                      }
+                    }
+                  ?>
 
-
-                <?php
-                if(isset($error)){
-                 foreach($error as $error){
-                  echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$error.'</div>';
-                };
-              };
-              ?>
+                  <?php
+                  if(isset($error)){
+                   foreach($error as $error){
+                    echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$error.'</div>';
+                      };
+                    };
+                  ?>
 
 <!-- <div class="form-container">
 
@@ -163,105 +147,101 @@ if(isset($_POST['submit'])){
    </form>
 
  </div> -->
+ 
  <form role="form" action="" method="post" enctype="multipart/form-data">
 
-  <form action="" id="appointment_form" class="py-6">
-        <div class="row" id="appointment">
+    <form action="" id="appointment_form" class="py-6">
+          <div class="row" id="appointment">
             <div class="col-6" id="frm-field">
-                     <div class="form-group">
-   <h5 class="text-dark">First Name</h5>
-   <div class="input-group input-group-alternative mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
-    </div>
-    <input class="form-control" placeholder="First Name" name="firstname" type="firstname" required>
-  </div>
-</div>
-                  
-                   <div class="form-group">
- <h5 class="text-dark">Username</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Username" name="username" type="username" required>
-</div>
-</div>
-                    <div class="form-group">
-                        <h5 for="gender" class="text-dark">Gender</h5>
-                        <select type="text" class="custom-select" name="gender" required>
-                        <option >Male</option>
-                        <option >Female</option>
-                        </select>
-                    </div>
-<!--  <h5 class="text-dark">Gender</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Gender" name="gender" type="gender" required>
-</div>
-</div> -->
-
-                   <div class="form-group">
- <h5 class="text-dark">Address</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Address" name="address" type="address" required>
-</div>
-</div>
-                       <div class="form-group">
- <h5 class="text-dark">Confirm Password</h5>
- <div class="input-group input-group-alternative">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-  </div>
-  <input class="form-control" placeholder="Confirm Password" name ="cpassword" type="password" required>
-</div>
-</div>
+              <div class="form-group">
+                 <h5 class="text-dark">First Name</h5>
+                 <div class="input-group input-group-alternative mb--2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="First Name" name="firstname" type="firstname" required>
+                </div>
+              </div>
             </div>
-            <div class="col-6">
-               <div class="form-group">
- <h5 class="text-dark">Last Name</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
-</div>
-</div>
-               <div class="form-group">
- <h5 class="text-dark">Contact No.</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Contact No." name="contact" type="contact" required>
-</div>
-</div>
 
-<div class="form-group">
-  <div class="form-group">
-                        <h5 for="dob" class="control-label">Date of Birth</h5>
-                        <input type="date" class="form-control" name="dob"  required>
-                    </div>
-</div>
+            <div class="form-group col-6">
+             <h5 class="text-dark">Last Name</h5>
+             <div class="input-group input-group-alternative mb--2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
+              </div>
+            </div>
+                              
+            <div class="form-group col-5">
+             <h5 class="text-dark">Username</h5>
+             <div class="input-group input-group-alternative mb--2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Username" name="username" type="username" required>
+              </div>
+            </div>
 
-                   <div class="form-group">
- <h5 class="text-dark">Password</h5>
- <div class="input-group input-group-alternative">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-  </div>
-  <input class="form-control" placeholder="Password" name ="password" type="password" required>
-</div>
-</div>
-                    <h5 class="text-dark">Add Profile Image</h5>
-<input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
-               </div>
-             </div>
+            <div class="form-group col-4">
+             <h5 class="text-dark">Contact Number</h5>
+             <div class="input-group input-group-alternative mb--2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Contact Number" name="contact" type="contact" required>
+              </div>
+            </div>
+
+            <div class="form-group col-3 mb--2">
+              <h5 for="gender" class="text-dark">Gender</h5>
+              <select type="text" class="custom-select" name="gender" required>
+                <option >Male</option>
+                <option >Female</option>
+              </select>
+            </div>
+
+            <div class="form-group col-6 mb--2">
+              <h5 for="dob" class="control-label">Date of Birth</h5>
+              <input type="date" class="form-control" name="dob"  required>
+            </div>
+
+            <div class="form-group col-6">
+             <h5 class="text-dark">Address</h5>
+             <div class="input-group input-group-alternative mb--2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Address" name="address" type="address" required>
+              </div>
+            </div>
+
+            <div class="form-group col-6">
+             <h5 class="text-dark">Password</h5>
+             <div class="input-group input-group-alternative mb--2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" placeholder="Password" name ="password" type="password" required>
+              </div>
+            </div>
+           
+            <div class="form-group col-6">
+             <h5 class="text-dark">Confirm Password</h5>
+             <div class="input-group input-group-alternative mb--2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" placeholder="Confirm Password" name ="cpassword" type="password" required>
+              </div>
+            </div>
+
+            <div class="col-12 mb-3">
+              <h5 class="text-dark">Add Profile Image</h5>
+              <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+            </div>
+          </div>
    
 
 
@@ -318,28 +298,27 @@ if(isset($_POST['submit'])){
 <!-- Password Strength
    <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
 
-<div class="row my-2">
-  <div class="col-12">
-    <div class="custom-control custom-control-alternative custom-checkbox text-center">
-      <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-      <label class="custom-control-label" for="customCheckRegister">
-        <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
-      </label>
+          <div class="row my-2">
+            <div class="col-12">
+              <div class="custom-control custom-control-alternative custom-checkbox text-center">
+                <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+                <label class="custom-control-label" for="customCheckRegister">
+                  <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" id="submit" name="submit" class="btn btn-primary mt-4">Create account</button>
+          </div><br>
+          <div class="col-12 text-center">
+            Already have an account? <a href="../admin/login.php">Log in</a>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
-</div>
-<div class="text-center">
-  <button type="submit" id="submit" name="submit" class="btn btn-primary mt-4">Create account</button>
-</div>
-<br>
-<div class="col-12 text-center">
-  Already have an account? <a href="../admin/login.php">Log in</a>
-</div>
-
-</form>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
