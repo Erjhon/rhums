@@ -22,11 +22,11 @@
 	</div>
 	<div class="card-body ">
         <div class="container-fluid">
-			<table class="table py-1 py-lg-1 table-hover table-striped">
+			<table class="table py-1 py-lg-1 table-hover table-striped text-center">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Avatar</th>
+						<!-- <th>Avatar</th> -->
 						<th>Name</th>
 						<th>Username</th>
 						<!-- <th>User Type</th> -->
@@ -41,7 +41,20 @@
 					?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
-							<td class="text-center"><img src="<?php echo validate_image($row['image']) ?>" class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar"></td>
+				<!-- 			<td class="avatar avatar-sm rounded-circle">
+              <?php
+         $select = mysqli_query($conn, "SELECT * FROM patient") or die('query failed');
+         if(mysqli_num_rows($select) > 0){
+            $fetch = mysqli_fetch_assoc($select);
+         }
+         if($fetch['image'] == ''){
+            echo '<img src="../patient/images/default-avatar.png">';
+         }else{
+            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
+         }
+      ?>
+
+      </td> -->
 							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
