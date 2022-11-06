@@ -122,7 +122,7 @@ Class Master extends DBConnection {
 				//formate date 
 				$new_sched = date('F d, Y H:i A', strtotime($date_sched));
 				//create message text
-				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the Scheduled time.";
+				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
 				// $message .= " On {$new_sched}";
 
 				//send sms enable this later
