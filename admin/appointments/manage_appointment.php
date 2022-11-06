@@ -42,8 +42,16 @@ if(!empty($_SESSION['user_id'])){
 
     $user_id = $row['id'];
     $full_name = "{$row['firstname']} {$row['lastname']}";
+    $contact = "{$row['contact']}";
+    $gender = "{$row['gender']}";
+    $dob = "{$row['dob']}";
+    $address = "{$row['address']}";
 }else{
      $full_name = "";
+     $contact = "";
+     $gender = "";
+     $dob = "";
+     $address = "";
 }
 
 ?>
@@ -71,25 +79,25 @@ if(!empty($_SESSION['user_id'])){
                     </div>
                     <div class="form-group">
                         <label for="contact" class="control-label">Contact No.</label>
-                        <input type="text" class="form-control" id="scontact" name="contact" value="<?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required maxlength = "11">
+                        <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>"  required maxlength = "11">
                     </div>
                     <div class="form-group">
                         <label for="gender" class="control-label">Gender</label>
                         <select type="text" class="custom-select" name="gender" required>
-                        <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected": "" ?>>Male</option>
-                        <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected": "" ?>>Female</option>
+                        <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected": "" ?>>Male</option>
+                        <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected": "" ?>>Female</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="dob" class="control-label">Date of Birth</label>
-                        <input type="date" class="form-control" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>"  required>
+                        <input type="date" class="form-control" name="dob" value="<?=$dob?><?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                     </div>
             </div>
             <div class="col-6">
                     
                     <div class="form-group">
                         <label for="address" class="control-label">Address</label>
-                        <textarea class="form-control" name="address" rows="1" required><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea>
+                        <textarea class="form-control" name="address" rows="1" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea>
                     </div>
                 <?php if($_settings->userdata('id') > 0): ?>
 

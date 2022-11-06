@@ -7,6 +7,10 @@ if(isset($_POST['submit'])){
   $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
   $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
   $username = mysqli_real_escape_string($conn, $_POST['username']);
+  $contact = mysqli_real_escape_string($conn, $_POST['contact']);
+  $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+  $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+  $address = mysqli_real_escape_string($conn, $_POST['address']);
   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
   $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
   $image = $_FILES['image']['name'];
@@ -24,7 +28,7 @@ if(isset($_POST['submit'])){
    }elseif($image_size > 2000000){
      $message[] = 'Image size is too large!';
    }else{
-     $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,lastname, username, password, image) VALUES('$firstname','$lastname', '$username', '$pass', '$image')") or die('query failed');
+     $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,lastname, username,contact,gender,dob,address, password, image) VALUES('$firstname','$lastname', '$username','$contact','$gender','$dob','$address', '$pass', '$image')") or die('query failed');
 
      if($insert){
       move_uploaded_file($image_tmp_name, $image_folder);
@@ -183,6 +187,31 @@ if(isset($_POST['submit'])){
   <input class="form-control" placeholder="Username" name="username" type="username" required>
 </div>
 </div>
+                    <div class="form-group">
+                        <h5 for="gender" class="text-dark">Gender</h5>
+                        <select type="text" class="custom-select" name="gender" required>
+                        <option >Male</option>
+                        <option >Female</option>
+                        </select>
+                    </div>
+<!--  <h5 class="text-dark">Gender</h5>
+ <div class="input-group input-group-alternative mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+  </div>
+  <input class="form-control" placeholder="Gender" name="gender" type="gender" required>
+</div>
+</div> -->
+
+                   <div class="form-group">
+ <h5 class="text-dark">Address</h5>
+ <div class="input-group input-group-alternative mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+  </div>
+  <input class="form-control" placeholder="Address" name="address" type="address" required>
+</div>
+</div>
                        <div class="form-group">
  <h5 class="text-dark">Confirm Password</h5>
  <div class="input-group input-group-alternative">
@@ -203,6 +232,23 @@ if(isset($_POST['submit'])){
   <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
 </div>
 </div>
+               <div class="form-group">
+ <h5 class="text-dark">Contact No.</h5>
+ <div class="input-group input-group-alternative mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+  </div>
+  <input class="form-control" placeholder="Contact No." name="contact" type="contact" required>
+</div>
+</div>
+
+<div class="form-group">
+  <div class="form-group">
+                        <h5 for="dob" class="control-label">Date of Birth</h5>
+                        <input type="date" class="form-control" name="dob"  required>
+                    </div>
+</div>
+
                    <div class="form-group">
  <h5 class="text-dark">Password</h5>
  <div class="input-group input-group-alternative">
