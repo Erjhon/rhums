@@ -27,7 +27,7 @@
 							<option value="pending">Mark as Done</option>
 							<option value="cancelled">Mark as Cancelled</option>
 							<!-- <option value="confirmed">Mark as Confirmed</option> -->
-							<option value="delete">Delete</option>
+							<!-- <option value="delete">Delete</option> -->
 						</select>
 					</div>
 					<div class="col">
