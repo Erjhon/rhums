@@ -225,6 +225,7 @@ if(isset($_GET['logout'])){
                     <th>Patient ID</th>
                     <th>Reason of appointment</th>
                     <th>Schedule</th>
+                    <th>Status</th>
                   </tr>
         <?php
 $result = mysqli_query($conn,"SELECT * FROM appointments WHERE `user_id` = {$user_id}");
@@ -244,7 +245,24 @@ while($row = mysqli_fetch_array($result)) {
                   <tr>
                     <td><b>PA-<?php echo $row["patient_id"]; ?></td>
                     <td><?php echo $row["reason"]; ?></td>
-                    <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>                    
+                    <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>  
+                    <td class="text-center">
+                <?php 
+                switch($row['status']){ 
+                  case(0): 
+                    echo '<span class="badge badge-primary">Done</span>';
+                  break; 
+                  case(1): 
+                  echo '<span class="badge badge-success">Confirmed</span>';
+                  break; 
+                  case(2): 
+                    echo '<span class="badge badge-danger">Cancelled</span>';
+                  break; 
+                  default: 
+                    echo '<span class="badge badge-secondary">NA</span>';
+                                } 
+                ?>
+              </td>                  
                   </tr>
                   <?php
 $i++;
