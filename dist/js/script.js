@@ -21,37 +21,60 @@ window.alert_toast= function($msg = 'TEST',$bg = 'success' ,$pos=''){
 	  }
 
 $(document).ready(function(){
-	// Login
+
+
+	// Login for all
 	$('#login-frm').submit(function(e){
 		e.preventDefault()
 		start_loader()
 		if($('.err_msg').length > 0)
 			$('.err_msg').remove()
 		$.ajax({
-			url:_base_url_+'classes/Login.php?f=login',
+			url:_base_url_+'classes/Login.php?f=for_all',
 			method:'POST',
 			data:$(this).serialize(),
+			dataType: 'json',
+			
 			error:err=>{
 				console.log(err)
-
 			},
 			success:function(resp){
-				if(resp){
-					resp = JSON.parse(resp)
-					if(resp.status == 'success'){
-						location.replace(_base_url_+'admin');
-					}else if(resp.status == 'incorrect'){
-						var _frm = $('#login-frm')
-						var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
-						_frm.prepend(_msg)
-						_frm.find('input').addClass('is-invalid')
-						$('[name="username"]').focus()
+				if(resp.user == 'admin'){
+					if(resp.access){
+						location.replace(_base_url_+'admin')
+						return
 					}
-						end_loader()
+
+					var _frm = $('#login-frm')
+					var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
+					_frm.prepend(_msg)
+					_frm.find('input').addClass('is-invalid')
+					$('[name="username"]').focus()
+
+					return //nothing
 				}
+
+				if(resp.user == 'patient'){
+					if(resp.access){
+						location.replace(_base_url_+'dashboard.php')
+						return
+					}
+
+					var _frm = $('#login-frm')
+					var _msg = "<div class='alert alert-danger text-white err_msg'><i class='fa fa-exclamation-triangle'></i> Incorrect username or password</div>"
+					_frm.prepend(_msg)
+					_frm.find('input').addClass('is-invalid')
+					$('[name="username"]').focus()
+
+					return
+				}
+
+				end_loader()
 			}
 		})
 	})
+
+
 	//Establishment Login
 	$('#flogin-frm').submit(function(e){
 		e.preventDefault()
