@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/css/animations.css">  
     <link rel="stylesheet" href="assets/css/main.css">  
     <link rel="stylesheet" href="assets/css/index.css">
-    <title>Rural Health Unit II Online Medical Appointment</title>
+    <title>Rural Health Unit II</title>
     <style>
         table{
             animation: transitionIn-Y-bottom 0.5s;

@@ -21,6 +21,9 @@ if(isset($_GET['logout'])){
  <html lang="en">
 
  <head>
+  <title>
+    RURAL HEALTH UNIT II
+</title>
  
 <!-- Favicon -->
 <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
