@@ -190,7 +190,7 @@ if(isset($_POST['submit'])){
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Contact Number" name="contact" type="contact" required>
+                <input class="form-control" placeholder="Contact Number" name="contact" type="contact" required maxlength = "11">
               </div>
             </div>
 
