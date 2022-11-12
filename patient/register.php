@@ -2,7 +2,7 @@
 
 include 'config.php';
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
   $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
   $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
@@ -16,31 +16,30 @@ if(isset($_POST['submit'])){
   $image = $_FILES['image']['name'];
   $image_size = $_FILES['image']['size'];
   $image_tmp_name = $_FILES['image']['tmp_name'];
-  $image_folder = 'uploaded_img/'.$image;
+  $image_folder = 'uploaded_img/' . $image;
 
   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$pass'") or die('query failed');
 
-  if(mysqli_num_rows($select) > 0){
-    $message[] = 'User already exist'; 
-  }else{
-    if($pass != $cpass){
-     $message[] = 'Confirm password not matched!';
-   }elseif($image_size > 2000000){
-     $message[] = 'Image size is too large!';
-   }else{
-     $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,lastname, username,contact,gender,dob,address, password, image) VALUES('$firstname','$lastname', '$username','$contact','$gender','$dob','$address', '$pass', '$image')") or die('query failed');
+  if (mysqli_num_rows($select) > 0) {
+    $message[] = 'User already exist';
+  } else {
+    if ($pass != $cpass) {
+      $message[] = 'Confirm password not matched!';
+    } elseif ($image_size > 2000000) {
+      $message[] = 'Image size is too large!';
+    } else {
+      $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,lastname, username,contact,gender,dob,address, password, image) VALUES('$firstname','$lastname', '$username','$contact','$gender','$dob','$address', '$pass', '$image')") or die('query failed');
 
-     if($insert){
-      move_uploaded_file($image_tmp_name, $image_folder);
-   echo "<script>alert('User Registered Successfully');
+      if ($insert) {
+        move_uploaded_file($image_tmp_name, $image_folder);
+        echo "<script>alert('User Registered Successfully');
              window.location.href='login.php';
-             </script>"; 
-    }else{
-      $message[] = 'Registration failed!';
+             </script>";
+      } else {
+        $message[] = 'Registration failed!';
+      }
     }
   }
-}
-
 }
 
 ?>
@@ -66,22 +65,22 @@ if(isset($_POST['submit'])){
   <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 
   <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+  <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
 </head>
 
 <body class="bg-neutral">
   <div class="main-content">
     <div class="header py-8 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
-    
-    <div class="container">
-      <div class="text-center">
-        <a class="" href="#">
-          <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
-        </a> 
-        <a class="" href="../admin/login.php">
-          <img src="../assets/assets/img/brand/doh.png"  height="100" width="100"/>
-        </a>
-      </div>
+
+      <div class="container">
+        <div class="text-center">
+          <a class="" href="#">
+            <img src="../assets/assets/img/brand/rhu.png" height="100" width="100" />
+          </a>
+          <a class="" href="../admin/login.php">
+            <img src="../assets/assets/img/brand/doh.png" height="100" width="100" />
+          </a>
+        </div>
         <!--  <div class="text-white text-center mt-2 mb--3"><small class="display-4">Medical Appointment and Record Management for RHU II
         </small></div> -->
         <div class="header-body text-center mb-5">
@@ -106,7 +105,7 @@ if(isset($_POST['submit'])){
           <div class="card bg-secondary shadow border-0">
             <div class="bg-transparent pb-1">
 
-            <!--       <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
+              <!--       <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
                   <div class="text-center">
                     <a href="#" class="btn btn-neutral btn-icon mr-4">
                       <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
@@ -118,39 +117,39 @@ if(isset($_POST['submit'])){
                     </a>
                   </div> -->
 
-                </div>
-                <div class="card-body px-lg-6 py-lg-4">
-                  <div class="text-center text-muted mb-3">
-                    <h1 class="text-dark">Create Account</h1>
-                  </div>
-                  
-                  
-                  <?php
-                  if(isset($message)){
-                   foreach($message as $message){
-                    echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$message.'</div>';
-                  }
+            </div>
+            <div class="card-body px-lg-6 py-lg-4">
+              <div class="text-center text-muted mb-3">
+                <h1 class="text-dark">Create Account</h1>
+              </div>
+
+
+              <?php
+              if (isset($message)) {
+                foreach ($message as $message) {
+                  echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>' . $message . '</div>';
                 }
-                ?>
+              }
+              ?>
 
 
-                <?php
-                if(isset($error)){
-                 foreach($error as $error){
-                  echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$error.'</div>';
+              <?php
+              if (isset($error)) {
+                foreach ($error as $error) {
+                  echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>' . $error . '</div>';
                 };
               };
               ?>
 
-<!-- <div class="form-container">
+              <!-- <div class="form-container">
 
    <form action="" method="post" enctype="multipart/form-data">
       <h3>register now</h3>
       <?php
-      if(isset($message)){
-         foreach($message as $message){
-            echo '<div class="message">'.$message.'</div>';
-         }
+      if (isset($message)) {
+        foreach ($message as $message) {
+          echo '<div class="message">' . $message . '</div>';
+        }
       }
       ?>
       <input type="text" name="name" placeholder="enter username" class="box" required>
@@ -163,38 +162,38 @@ if(isset($_POST['submit'])){
    </form>
 
  </div> -->
- <form role="form" action="" method="post" enctype="multipart/form-data">
+              <form role="form" action="" method="post" enctype="multipart/form-data">
 
-  <form action="" id="appointment_form" class="py-6">
-        <div class="row" id="appointment">
-            <div class="col-6" id="frm-field">
-                     <div class="form-group">
-   <h5 class="text-dark">First Name</h5>
-   <div class="input-group input-group-alternative mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
-    </div>
-    <input class="form-control" placeholder="First Name" name="firstname" type="firstname" required>
-  </div>
-</div>
-                  
-                   <div class="form-group">
- <h5 class="text-dark">Username</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Username" name="username" type="username" required>
-</div>
-</div>
-                    <div class="form-group">
+                <form action="" id="appointment_form" class="py-6">
+                  <div class="row" id="appointment">
+                    <div class="col-6" id="frm-field">
+                      <div class="form-group">
+                        <h5 class="text-dark">First Name</h5>
+                        <div class="input-group input-group-alternative mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="First Name" name="firstname" type="firstname" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <h5 class="text-dark">Username</h5>
+                        <div class="input-group input-group-alternative mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Username" name="username" type="username" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <h5 for="gender" class="text-dark">Gender</h5>
                         <select type="text" class="custom-select" name="gender" required>
-                        <option >Male</option>
-                        <option >Female</option>
+                          <option>Male</option>
+                          <option>Female</option>
                         </select>
-                    </div>
-<!--  <h5 class="text-dark">Gender</h5>
+                      </div>
+                      <!--  <h5 class="text-dark">Gender</h5>
  <div class="input-group input-group-alternative mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text"><i class="ni ni-username-83"></i></span>
@@ -203,69 +202,69 @@ if(isset($_POST['submit'])){
 </div>
 </div> -->
 
-                   <div class="form-group">
- <h5 class="text-dark">Address</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Address" name="address" type="address" required>
-</div>
-</div>
-                       <div class="form-group">
- <h5 class="text-dark">Confirm Password</h5>
- <div class="input-group input-group-alternative">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-  </div>
-  <input class="form-control" placeholder="Confirm Password" name ="cpassword" type="password" required>
-</div>
-</div>
-            </div>
-            <div class="col-6">
-               <div class="form-group">
- <h5 class="text-dark">Last Name</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
-</div>
-</div>
-               <div class="form-group">
- <h5 class="text-dark">Contact No.</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Contact No." name="contact" type="contact" required>
-</div>
-</div>
-
-<div class="form-group">
-  <div class="form-group">
-                        <h5 for="dob" class="control-label">Date of Birth</h5>
-                        <input type="date" class="form-control" name="dob"  required>
+                      <div class="form-group">
+                        <h5 class="text-dark">Address</h5>
+                        <div class="input-group input-group-alternative mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Address" name="address" type="address" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <h5 class="text-dark">Confirm Password</h5>
+                        <div class="input-group input-group-alternative">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Confirm Password" name="cpassword" type="password" required>
+                        </div>
+                      </div>
                     </div>
-</div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <h5 class="text-dark">Last Name</h5>
+                        <div class="input-group input-group-alternative mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <h5 class="text-dark">Contact No.</h5>
+                        <div class="input-group input-group-alternative mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Contact No." name="contact" type="contact" required>
+                        </div>
+                      </div>
 
-                   <div class="form-group">
- <h5 class="text-dark">Password</h5>
- <div class="input-group input-group-alternative">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-  </div>
-  <input class="form-control" placeholder="Password" name ="password" type="password" required>
-</div>
-</div>
-                    <h5 class="text-dark">Add Profile Image</h5>
-<input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
-               </div>
-             </div>
-   
+                      <div class="form-group">
+                        <div class="form-group">
+                          <h5 for="dob" class="control-label">Date of Birth</h5>
+                          <input type="date" class="form-control" name="dob" required>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <h5 class="text-dark">Password</h5>
+                        <div class="input-group input-group-alternative">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Password" name="password" type="password" required>
+                        </div>
+                      </div>
+                      <h5 class="text-dark">Add Profile Image</h5>
+                      <input type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+                    </div>
+                  </div>
 
 
-<!-- 
+
+                  <!-- 
   <div class="form-group">
    <h4 class="text-dark">First Name</h4>
    <div class="input-group input-group-alternative mb-3">
@@ -315,89 +314,89 @@ if(isset($_POST['submit'])){
 <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
  -->
 
-<!-- Password Strength
+                  <!-- Password Strength
    <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
 
-<div class="row my-2">
-  <div class="col-12">
-    <div class="custom-control custom-control-alternative custom-checkbox text-center">
-      <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-      <label class="custom-control-label" for="customCheckRegister">
-        <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
-      </label>
+                  <div class="row my-2">
+                    <div class="col-12">
+                      <div class="custom-control custom-control-alternative custom-checkbox text-center">
+                        <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+                        <label class="custom-control-label" for="customCheckRegister">
+                          <span class="text-dark">I agree with the <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" id="submit" name="submit" class="btn btn-primary mt-4">Create account</button>
+                  </div>
+                  <br>
+                  <div class="col-12 text-center">
+                    Already have an account? <a href="../admin/login.php">Log in</a>
+                  </div>
+
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="text-center">
-  <button type="submit" id="submit" name="submit" class="btn btn-primary mt-4">Create account</button>
-</div>
-<br>
-<div class="col-12 text-center">
-  Already have an account? <a href="../admin/login.php">Log in</a>
-</div>
-
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Privacy Policy</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h1>Privacy Policy for Rural Health Unit II</h1>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Privacy Policy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h1>Privacy Policy for Rural Health Unit II</h1>
 
-        <p>At Medical Appointment and Record Management System RURAL HEALTH UNIT II, accessible from rhums, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Medical Appointment and Record Management System RURAL HEALTH UNIT II and how we use it.</p>
+          <p>At Medical Appointment and Record Management System RURAL HEALTH UNIT II, accessible from rhums, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Medical Appointment and Record Management System RURAL HEALTH UNIT II and how we use it.</p>
 
-        <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
+          <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 
-        <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Medical Appointment and Record Management System RURAL HEALTH UNIT II. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info/">Free Privacy Policy Generator</a>.</p>
+          <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Medical Appointment and Record Management System RURAL HEALTH UNIT II. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info/">Free Privacy Policy Generator</a>.</p>
 
-        <h2>Consent</h2>
+          <h2>Consent</h2>
 
-        <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+          <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
 
-        <h2>Information we collect</h2>
+          <h2>Information we collect</h2>
 
-        <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
-        <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
-        <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
+          <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
+          <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
+          <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
 
-        <h2>How we use your information</h2>
+          <h2>How we use your information</h2>
 
-        <p>We use the information we collect in various ways, including to:</p>
+          <p>We use the information we collect in various ways, including to:</p>
 
-        <ul>
-          <li>Provide, operate, and maintain our website</li>
-          <li>Improve, personalize, and expand our website</li>
-          <li>Understand and analyze how you use our website</li>
-          <li>Develop new products, services, features, and functionality</li>
-          <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
-          <li>Send you emails</li>
-          <li>Find and prevent fraud</li>
-        </ul>
+          <ul>
+            <li>Provide, operate, and maintain our website</li>
+            <li>Improve, personalize, and expand our website</li>
+            <li>Understand and analyze how you use our website</li>
+            <li>Develop new products, services, features, and functionality</li>
+            <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
+            <li>Send you emails</li>
+            <li>Find and prevent fraud</li>
+          </ul>
 
-        <h2>Log Files</h2>
+          <h2>Log Files</h2>
 
-        <p>Medical Appointment and Record Management System RURAL HEALTH UNIT II follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
+          <p>Medical Appointment and Record Management System RURAL HEALTH UNIT II follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
 
 
 
 
-        <h2>Advertising Partners Privacy Policies</h2>
+          <h2>Advertising Partners Privacy Policies</h2>
 
-        <P>You may consult this list to find the Privacy Policy for each of the advertising partners of Medical Appointment and Record Management System RURAL HEALTH UNIT II.</p>
+          <P>You may consult this list to find the Privacy Policy for each of the advertising partners of Medical Appointment and Record Management System RURAL HEALTH UNIT II.</p>
 
           <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on Medical Appointment and Record Management System RURAL HEALTH UNIT II, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
 
@@ -441,22 +440,22 @@ if(isset($_POST['submit'])){
       </div>
     </div>
   </div>
-</div>
+  </div>
 
-<!--   Core   -->
-<script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-<script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!--   Optional JS   -->
-<!--   Argon JS   -->
-<script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
-<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-<script>
-  window.TrackJS &&
-  TrackJS.install({
-    token: "ee6fab19c5a04ac1a32a645abde4613a",
-    application: "argon-dashboard-free"
-  });
-</script>
+  <!--   Core   -->
+  <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!--   Optional JS   -->
+  <!--   Argon JS   -->
+  <script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "argon-dashboard-free"
+      });
+  </script>
 </body>
 
 </html>
