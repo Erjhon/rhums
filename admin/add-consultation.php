@@ -28,6 +28,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
 ?> 
  -->
     <?php
+
     if (isset($_POST['submit'])) {
         $id = $_POST['id'];
         $fullname = $_POST['fullname'];
@@ -37,16 +38,24 @@ $fetchRow = mysqli_fetch_assoc($rs);
         $age = $_POST['age'];
         $address = $_POST['address'];
         $medHistory = $_POST['medHistory'];
-        $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory)
-     VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory')";
+        $user_id = $_SESSION['userdata']['id'];
+        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$id', '$fullname', '$user_id')") or die('query failed');
+
+        $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory,user_id)
+     VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory', '$user_id')";
         if (mysqli_query($conn, $sql)) {
 
-            echo '<script>alert("Form submitted successfully")</script>';;
+            echo '<script>alert("Form submitted successfully")</script>';
             echo "<script>window.location.href ='?page=consultation'</script>";
         }
         // mysqli_close($conn);
     }
+    $getLastRow = mysqli_query($conn, "SELECT `id` FROM `patient_list` ORDER BY id DESC LIMIT 1");
+    $lastRow = mysqli_fetch_assoc($getLastRow);
+    $lastRowId = intval($lastRow['id']) + 1;
     ?>
+
+
 
     <div class="card card-outline card-primary">
         <div class="card-header">
@@ -62,7 +71,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Patient No.</label>
-                                        <input class="form-control" name="id" placeholder="Patient No.">
+                                        <input class="form-control" name="id" placeholder="Patient No." value="<?= $lastRowId ?>" readonly>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
