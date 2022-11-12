@@ -93,14 +93,14 @@ if(isset($_POST['submit']))
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="dob" class="control-label">Date of Birth</label>
-                                        <input type="date" class="form-control" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>"  required>
+                                        <input type="date" class="form-control" id="dob" name="dob" onchange="submitBday()" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>"  required>
                                     </div>
                                 </div>
                             
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Patient Age</label>
-                                        <input class="form-control" name="age" type="text" placeholder="Enter Patient Age" required>
+                                        <input class="form-control" id="resultBday" name="age" type="text" placeholder="Age" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -129,10 +129,19 @@ if(isset($_POST['submit']))
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
+
+
+    <!-- //check birthdays start -->
+    <script type='text/javascript'>
+        function submitBday() {<!--from   w w w . ja v a  2  s.  c  o m-->
+            var Q4A = "";
+            var Bdate = document.getElementById('dob').value;
+            var Bday = +new Date(Bdate);
+            Q4A += ~~ ((Date.now() - Bday) / (31557600000));
+            var theBday = document.getElementById('resultBday');
+            theBday.value = Q4A;
+        }
+    </script>
+
 </body>
-
-
-
-
-<!-- add-patient24:07-->
 </html>
