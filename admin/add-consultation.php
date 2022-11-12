@@ -46,15 +46,16 @@ $fetchRow = mysqli_fetch_assoc($rs);
         if (mysqli_query($conn, $sql)) {
 
             echo '<script>alert("Form submitted successfully")</script>';;
-        } else {
-            echo "Error: " . $sql . ":-" . mysqli_error($conn);
+            echo "<script>window.location.href ='?page=consultation'</script>";
         }
+        // mysqli_close($conn);
     }
-
     $getLastRow = mysqli_query($conn, "SELECT `id` FROM `patient_list` ORDER BY id DESC LIMIT 1");
     $lastRow = mysqli_fetch_assoc($getLastRow);
     $lastRowId = intval($lastRow['id']) + 1;
     ?>
+
+
 
     <div class="card card-outline card-primary">
         <div class="card-header">
@@ -100,14 +101,14 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="dob" class="control-label">Date of Birth</label>
-                                        <input type="date" class="form-control" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                        <input type="date" class="form-control" id="dob" name="dob" onchange="submitBday()" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Patient Age</label>
-                                        <input class="form-control" name="age" type="text" placeholder="Enter Patient Age" required>
+                                        <input class="form-control" id="resultBday" name="age" type="text" placeholder="Age" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -136,11 +137,21 @@ $fetchRow = mysqli_fetch_assoc($rs);
     </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
+
+
+    <!-- //check birthdays start -->
+    <script type='text/javascript'>
+        function submitBday() {
+
+            var Q4A = "";
+            var Bdate = document.getElementById('dob').value;
+            var Bday = +new Date(Bdate);
+            Q4A += ~~((Date.now() - Bday) / (31557600000));
+            var theBday = document.getElementById('resultBday');
+            theBday.value = Q4A;
+        }
+    </script>
+
 </body>
-
-
-
-<?php mysqli_close($conn); ?>
-<!-- add-patient24:07-->
 
 </html>

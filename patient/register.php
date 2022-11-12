@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$pass'") or die('query failed');
 
   if (mysqli_num_rows($select) > 0) {
-    $message[] = 'User already exist';
+    // $message[] = 'User already exist'; 
   } else {
     if ($pass != $cpass) {
       $message[] = 'Confirm password not matched!';
@@ -42,6 +42,37 @@ if (isset($_POST['submit'])) {
   }
 }
 
+$errors = array();
+
+if (empty($firstname)) {
+  $errors['fn'] = "The First Name field is required.";
+}
+if (empty($firstname)) {
+  $errors['ln'] = "The Last Name field is required.";
+}
+if (empty($username)) {
+  $errors['un'] = "The Username field is required.";
+}
+if (empty($contact)) {
+  $errors['cn'] = "The Contact Number field is required.";
+}
+if (empty($gender)) {
+  $errors['g'] = "The Gender field is required.";
+}
+if (empty($dob)) {
+  $errors['db'] = "The Date of Birth field is required.";
+}
+if (empty($address)) {
+  $errors['ad'] = "The Address field is required.";
+}
+if (empty($password)) {
+  $errors['pw'] = "The Password field is required.";
+}
+if (empty($cpassword)) {
+  $errors['cpw'] = "The Confirm Password field is required.";
+}
+
+
 ?>
 
 
@@ -52,7 +83,7 @@ if (isset($_POST['submit'])) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>
-    Medical Scheduling and Record Management for RHU II
+    RURAL HEALTH UNIT II
   </title>
   <!-- Favicon -->
   <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
@@ -66,6 +97,13 @@ if (isset($_POST['submit'])) {
 
   <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+  <style>
+    .required::after {
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body class="bg-neutral">
@@ -81,12 +119,10 @@ if (isset($_POST['submit'])) {
             <img src="../assets/assets/img/brand/doh.png" height="100" width="100" />
           </a>
         </div>
-        <!--  <div class="text-white text-center mt-2 mb--3"><small class="display-4">Medical Appointment and Record Management for RHU II
-        </small></div> -->
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-1">
-              <h1 class="text-white">RURAL HEALTH UNIT II</h1>
+            <div class="col-lg-8 col-md-1"><br><br>
+              <!-- <h1 class="text-white">RURAL HEALTH UNIT II</h1> -->
             </div>
           </div>
         </div>
@@ -98,31 +134,18 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--6 pb-5">
+    <div class="container mt--7 pb-5">
       <!-- Table -->
       <div class="row justify-content-center">
         <div class="col-lg-9 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="bg-transparent pb-1">
 
-              <!--       <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-                  <div class="text-center">
-                    <a href="#" class="btn btn-neutral btn-icon mr-4">
-                      <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                      <span class="btn-inner--text">Github</span>
-                    </a>
-                    <a href="#" class="btn btn-neutral btn-icon">
-                      <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                      <span class="btn-inner--text">Google</span>
-                    </a>
-                  </div> -->
-
             </div>
-            <div class="card-body px-lg-6 py-lg-4">
+            <div class="card-body px-lg-5 py-lg-4">
               <div class="text-center text-muted mb-3">
                 <h1 class="text-dark">Create Account</h1>
               </div>
-
 
               <?php
               if (isset($message)) {
@@ -131,7 +154,6 @@ if (isset($_POST['submit'])) {
                 }
               }
               ?>
-
 
               <?php
               if (isset($error)) {
@@ -162,105 +184,142 @@ if (isset($_POST['submit'])) {
    </form>
 
  </div> -->
+
               <form role="form" action="" method="post" enctype="multipart/form-data">
 
                 <form action="" id="appointment_form" class="py-6">
                   <div class="row" id="appointment">
                     <div class="col-6" id="frm-field">
-                      <div class="form-group">
-                        <h5 class="text-dark">First Name</h5>
-                        <div class="input-group input-group-alternative mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
-                          </div>
-                          <input class="form-control" placeholder="First Name" name="firstname" type="firstname" required>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <h5 class="text-dark">Username</h5>
-                        <div class="input-group input-group-alternative mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-                          </div>
-                          <input class="form-control" placeholder="Username" name="username" type="username" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <h5 for="gender" class="text-dark">Gender</h5>
-                        <select type="text" class="custom-select" name="gender" required>
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select>
-                      </div>
-                      <!--  <h5 class="text-dark">Gender</h5>
- <div class="input-group input-group-alternative mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-  </div>
-  <input class="form-control" placeholder="Gender" name="gender" type="gender" required>
-</div>
-</div> -->
-
-                      <div class="form-group">
-                        <h5 class="text-dark">Address</h5>
-                        <div class="input-group input-group-alternative mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-username-83"></i></span>
-                          </div>
-                          <input class="form-control" placeholder="Address" name="address" type="address" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <h5 class="text-dark">Confirm Password</h5>
-                        <div class="input-group input-group-alternative">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                          </div>
-                          <input class="form-control" placeholder="Confirm Password" name="cpassword" type="password" required>
-                        </div>
+                      <div class="form-group mb--1">
+                        <h5 class="text-dark required">First Name</h5>
+                        <!-- div class="input-group input-group-alternative mb--4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
+                  </div> -->
+                        <input class="form-control" placeholder="First Name" name="firstname" type="firstname">
+                        <!-- </div> -->
+                        <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['fn'])) echo $errors['fn']; ?></p>
                       </div>
                     </div>
-                    <div class="col-6">
-                      <div class="form-group">
-                        <h5 class="text-dark">Last Name</h5>
-                        <div class="input-group input-group-alternative mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-                          </div>
-                          <input class="form-control" placeholder="Last Name" name="lastname" type="lastname" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <h5 class="text-dark">Contact No.</h5>
-                        <div class="input-group input-group-alternative mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-                          </div>
-                          <input class="form-control" placeholder="Contact No." name="contact" type="contact" required>
-                        </div>
-                      </div>
 
-                      <div class="form-group">
-                        <div class="form-group">
-                          <h5 for="dob" class="control-label">Date of Birth</h5>
-                          <input type="date" class="form-control" name="dob" required>
-                        </div>
-                      </div>
+                    <div class="form-group col-6 mb--1">
+                      <h5 class="text-dark required">Last Name</h5>
+                      <!-- <div class="input-group input-group-alternative mb--4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+                </div> -->
+                      <input class="form-control" placeholder="Last Name" name="lastname" type="lastname">
+                      <!-- </div> -->
+                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ln'])) echo $errors['ln']; ?></p>
+                    </div>
 
-                      <div class="form-group">
-                        <h5 class="text-dark">Password</h5>
-                        <div class="input-group input-group-alternative">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                          </div>
-                          <input class="form-control" placeholder="Password" name="password" type="password" required>
+                    <!--  <div class="form-group col-5">
+             <h5 class="text-dark required">Username</h5>
+             <div class="input-group input-group-alternative mb--4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Username" name="username" type="username">
+              </div>
+              <p class="text-danger" style="font-size: 13px; margin-top: 25px; margin-bottom: -15px"><?php if (isset($errors['un'])) echo $errors['un']; ?></p> -->
+                    <!-- <div class="text-danger" style="font-size: 9px; margin-top: 7px">
+                      <span id="username_result"><p>Usernames must be a combination of numbers and letters or letters only. Special characters allowed(_)</p>
+              </span>     //shows message whether the username already existed or not -->
+
+
+                    <!-- </div> -->
+
+                    <div class="form-group col-5 mb--1">
+                      <h5 class="text-dark required">Username</h5>
+                      <!-- <div class="input-group input-group-alternative mb--4">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+                </div>
+            </div> -->
+                      <!-- <span class="input-icon"> -->
+                      <input type="username" class="form-control" name="username" id="username" onBlur="userAvailability()" placeholder="Username">
+                      <!--  <i class="fa fa-user"></i> </span> -->
+                      <span id="user-availability-status1" style="font-size:12px;"></span>
+                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['un'])) echo $errors['un']; ?></p>
+                      <!-- </span> -->
+                    </div>
+
+                    <div class="form-group col-4 mb--1">
+                      <h5 class="text-dark required">Contact Number</h5>
+                      <!-- <div class="input-group input-group-alternative mb--4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-muted px-3">09<i class="ni ni-lastname-83"></i></span>
+                </div> -->
+                      <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11">
+                      <!-- </div> -->
+                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
+                    </div>
+
+                    <div class="form-group col-3 mb--1">
+                      <h5 for="gender" class="text-dark required">Gender</h5>
+                      <select type="text" class="custom-select" name="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['g'])) echo $errors['g']; ?></p>
+                    </div>
+
+                    <div class="form-group col-6 mb--1">
+                      <h5 for="dob" class="control-label required">Date of Birth</h5>
+                      <!-- <div class="input-group input-group-alternative mb--4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+                </div> -->
+                      <input type="date" class="form-control" id="dob" name="dob">
+                      <!-- </div> -->
+                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['db'])) echo $errors['db']; ?></p>
+                    </div>
+
+                    <div class="form-group col-6 mb--1">
+                      <h5 class="text-dark required">Address</h5>
+                      <!-- <div class="input-group input-group-alternative mb--4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-username-83"></i></span>
+                </div> -->
+                      <input class="form-control" placeholder="Address" name="address" type="address">
+                      <!-- </div> -->
+                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ad'])) echo $errors['ad']; ?></p>
+                    </div>
+
+                    <div class="form-group col-6 ">
+                      <h5 class="text-dark required">Password</h5>
+                      <div class="input-group input-group-alternative mb--1">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                         </div>
+                        <input class="form-control" placeholder="Password" id="password" name="password" type="password">
+                        <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                        </span>
                       </div>
+                      <p class="text-danger" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"><?php if (isset($errors['pw'])) echo $errors['pw']; ?></p>
+                    </div>
+
+                    <div class="form-group col-6 ">
+                      <h5 class="text-dark required">Confirm Password</h5>
+                      <div class="input-group input-group-alternative mb--1">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Confirm Password" id="cpassword" name="cpassword" type="password">
+                        <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+                        </span>
+                      </div>
+                      <p class="text-danger" style="font-size: 13px; margin-top: 7px; margin-bottom: -15px"><?php if (isset($errors['cpw'])) echo $errors['cpw']; ?></p>
+                    </div>
+
+                    <div class="col-12 mb-2">
                       <h5 class="text-dark">Add Profile Image</h5>
                       <input type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
                     </div>
                   </div>
+
 
 
 
@@ -328,10 +387,9 @@ if (isset($_POST['submit'])) {
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" id="submit" name="submit" class="btn btn-primary mt-4">Create account</button>
-                  </div>
-                  <br>
-                  <div class="col-12 text-center">
+                    <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
+                  </div><br>
+                  <div class="col-12 text-center mt--3">
                     Already have an account? <a href="../admin/login.php">Log in</a>
                   </div>
 
@@ -456,6 +514,89 @@ if (isset($_POST['submit'])) {
         application: "argon-dashboard-free"
       });
   </script>
+
+  <!-- show password -->
+  <script>
+    var state = false;
+
+    function toggle1() {
+      if (state) {
+        document.getElementById("password").setAttribute("type", "password");
+        state = false;
+      } else {
+        document.getElementById("password").setAttribute("type", "text");
+        state = true;
+      }
+    }
+  </script>
+  <script>
+    var state = false;
+
+    function toggle2() {
+      if (state) {
+        document.getElementById("cpassword").setAttribute("type", "password");
+        state = false;
+      } else {
+        document.getElementById("cpassword").setAttribute("type", "text");
+        state = true;
+      }
+    }
+  </script>
+
+  <script>
+    function userAvailability() {
+      $("#loaderIcon").show();
+      jQuery.ajax({
+        url: "check_availability.php",
+        data: 'username=' + $("#username").val(),
+        type: "POST",
+        success: function(data) {
+          $("#user-availability-status1").html(data);
+          $("#loaderIcon").hide();
+        },
+        error: function() {}
+      });
+    }
+  </script>
+
+  <!-- //check birthdays start -->
+  <script>
+    const picker = document.getElementById('dob');
+    let date = new Date();
+
+    picker.addEventListener('input', function(e) {
+      let day = new Date(this.value).getUTCDate();
+      let mm = new Date(this.value).getUTCMonth() + 1;
+      let yy = new Date(this.value).getUTCFullYear();
+      let yyyy = date.getFullYear();
+      let mmmm = date.getMonth() + 1;
+      let dddd = date.getDate();
+
+      let age = yyyy - yy;
+      let m = mmmm - mm;
+
+
+      //check if year is >= current year
+      if (yy >= yyyy) {
+        e.preventDefault();
+        this.value = '';
+        alert("Invalid Birthday")
+      }
+      //Check valid age
+      else if (m < 0 || (m === 0 && dddd < day)) {
+        age--;
+      } else if (age < 5) {
+        e.preventDefault();
+        this.value = '';
+        alert("Children under the age of five are not permitted to create an account.");
+      } else {
+        //   alert("Valid");
+      }
+    })
+  </script>
+
+
+
 </body>
 
 </html>

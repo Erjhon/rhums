@@ -84,50 +84,53 @@
       };
       ?> -->
 
-              </div>
-                    <form id="login-frm" action="" method="post">
+      </div>
+      
+      <form id="login-frm" action="" method="post">
         <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <span class="fas fa-user p-1"></span>
+            </div>
+          </div>
           <input type="text" class="form-control" autofocus name="username" placeholder="Username" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
         </div>
+
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <span class="fas fa-lock p-1"></span>
+            </div>
+          </div>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span>
+                <i class="fa fa-eye rounded " aria-hidden="true" id="eye" onclick="toggle()"></i>
+              </span>
             </div>
           </div>
         </div>
+
         <div class="row">
-         <!--  <div class="col-8">
-            <a href="<?php echo base_url ?>">Go to Website</a>
-          </div> -->
-          <!-- /.col -->
-
-
           <div class="col-4 ">
-            <!-- <button type="submit" class="btn btn-primary btn-block">Sign In</button> -->
           </div> 
           <div class="text-center col-4">
-            <button type="submit" name="submit" class="btn btn-primary mt-2">Log in</button>
+            <button type="submit" name="submit" class="btn btn-primary mt-3">Log in</button>
           </div><br>
           <!-- /.col -->
         </div>
-       <div class="row mt-3">
-        <div class="col-12 text-center"><br>Don't have an account? <a href="../patient/register.php">
-            <small>Create an account</small></a>
-          </div>
+       <div class="row mb-2">
+        <div class="col-12 text-center"><br>Don't have an account? 
+          <a href="../patient/register.php">Create an account</a>
+        </div>
            <!--  <div class="col-6">
               <a href="#" class="nav-link"><small>Forgot password?</small></a>
             </div>
             <div class="col-6 text-right">
               <a href="../client/register.php" class="nav-link"><small>Create new account</small></a>
             </div> -->
-          </div>
+        </div>
       </form>
             </div>
           </div>
@@ -147,6 +150,23 @@
     end_loader();
   })
 </script> 
-</body>
 
+  <script>
+      var state = false;
+      function toggle(){
+        if (state){
+          document.getElementById("password").setAttribute("type", "password");
+          state = false;
+        } else{
+          document.getElementById("password").setAttribute("type", "text");
+          state = true;
+        }
+      }
+  </script>
+
+  <!-- <script type="text/javascript">
+    toastr.error("Account Does not exist");
+  </script> -->
+
+  </body>
 </html>
