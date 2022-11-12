@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
      if($insert){
       move_uploaded_file($image_tmp_name, $image_folder);
    echo "<script>alert('User Registered Successfully');
-             window.location.href='login.php';
+             window.location.href='../admin/login.php';
              </script>"; 
     }else{
       $message[] = 'Registration failed!';
