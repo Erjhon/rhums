@@ -42,10 +42,9 @@ if(isset($_POST['submit']))
      if (mysqli_query($conn, $sql)) {
 
         echo '<script>alert("Form submitted successfully")</script>';;
-     } else {
-        echo "Error: " . $sql . ":-" . mysqli_error($conn);
+        echo "<script>window.location.href ='?page=consultation'</script>";
      }
-     mysqli_close($conn);
+     // mysqli_close($conn);
 }
 ?>
 
