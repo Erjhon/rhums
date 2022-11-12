@@ -90,7 +90,7 @@
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span class="fas fa-user p-1"></span>
             </div>
           </div>
           <input type="text" class="form-control" autofocus name="username" placeholder="Username" required>
@@ -99,7 +99,7 @@
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span class="fas fa-lock p-1"></span>
             </div>
           </div>
           <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
