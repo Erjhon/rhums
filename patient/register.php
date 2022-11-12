@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
       if ($insert) {
         move_uploaded_file($image_tmp_name, $image_folder);
         echo "<script>alert('User Registered Successfully');
-             window.location.href='login.php';
+             window.location.href='../admin/login.php';
              </script>";
       } else {
         $message[] = 'Registration failed!';
@@ -250,80 +250,86 @@ if (empty($cpassword)) {
                 <div class="input-group-prepend">
                   <span class="input-group-text text-muted px-3">09<i class="ni ni-lastname-83"></i></span>
                 </div> -->
-                      <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11">
-                      <!-- </div> -->
-                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
+                      <<<<<<< HEAD <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11">
+                        <!-- </div> -->
+                        <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
                     </div>
+                    =======
+                    <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                    <!-- </div> -->
+                    <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
+                  </div>
+                  >>>>>>> 6631a1bc11127c719f7ccd7ae331563d0c1cb864
 
-                    <div class="form-group col-3 mb--1">
-                      <h5 for="gender" class="text-dark required">Gender</h5>
-                      <select type="text" class="custom-select" name="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['g'])) echo $errors['g']; ?></p>
-                    </div>
+                  <div class="form-group col-3 mb--1">
+                    <h5 for="gender" class="text-dark required">Gender</h5>
+                    <select type="text" class="custom-select" name="gender">
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                    <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['g'])) echo $errors['g']; ?></p>
+                  </div>
 
-                    <div class="form-group col-6 mb--1">
-                      <h5 for="dob" class="control-label required">Date of Birth</h5>
-                      <!-- <div class="input-group input-group-alternative mb--4">
+                  <div class="form-group col-6 mb--1">
+                    <h5 for="dob" class="control-label required">Date of Birth</h5>
+                    <!-- <div class="input-group input-group-alternative mb--4">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
                 </div> -->
-                      <input type="date" class="form-control" id="dob" name="dob">
-                      <!-- </div> -->
-                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['db'])) echo $errors['db']; ?></p>
-                    </div>
+                    <input type="date" class="form-control" id="dob" name="dob">
+                    <!-- </div> -->
+                    <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['db'])) echo $errors['db']; ?></p>
+                  </div>
 
-                    <div class="form-group col-6 mb--1">
-                      <h5 class="text-dark required">Address</h5>
-                      <!-- <div class="input-group input-group-alternative mb--4">
+                  <div class="form-group col-6 mb--1">
+                    <h5 class="text-dark required">Address</h5>
+                    <!-- <div class="input-group input-group-alternative mb--4">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-username-83"></i></span>
                 </div> -->
-                      <input class="form-control" placeholder="Address" name="address" type="address">
-                      <!-- </div> -->
-                      <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ad'])) echo $errors['ad']; ?></p>
-                    </div>
-
-                    <div class="form-group col-6 ">
-                      <h5 class="text-dark required">Password</h5>
-                      <div class="input-group input-group-alternative mb--1">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Password" id="password" name="password" type="password">
-                        <span class="input-group-text">
-                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
-                        </span>
-                      </div>
-                      <p class="text-danger" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"><?php if (isset($errors['pw'])) echo $errors['pw']; ?></p>
-                    </div>
-
-                    <div class="form-group col-6 ">
-                      <h5 class="text-dark required">Confirm Password</h5>
-                      <div class="input-group input-group-alternative mb--1">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Confirm Password" id="cpassword" name="cpassword" type="password">
-                        <span class="input-group-text">
-                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
-                        </span>
-                      </div>
-                      <p class="text-danger" style="font-size: 13px; margin-top: 7px; margin-bottom: -15px"><?php if (isset($errors['cpw'])) echo $errors['cpw']; ?></p>
-                    </div>
-
-                    <div class="col-12 mb-2">
-                      <h5 class="text-dark">Add Profile Image</h5>
-                      <input type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
-                    </div>
+                    <input class="form-control" placeholder="Address" name="address" type="address">
+                    <!-- </div> -->
+                    <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ad'])) echo $errors['ad']; ?></p>
                   </div>
 
+                  <div class="form-group col-6 ">
+                    <h5 class="text-dark required">Password</h5>
+                    <div class="input-group input-group-alternative mb--1">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Password" id="password" name="password" type="password">
+                      <span class="input-group-text">
+                        <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                      </span>
+                    </div>
+                    <p class="text-danger" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"><?php if (isset($errors['pw'])) echo $errors['pw']; ?></p>
+                  </div>
+
+                  <div class="form-group col-6 ">
+                    <h5 class="text-dark required">Confirm Password</h5>
+                    <div class="input-group input-group-alternative mb--1">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Confirm Password" id="cpassword" name="cpassword" type="password">
+                      <span class="input-group-text">
+                        <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+                      </span>
+                    </div>
+                    <p class="text-danger" style="font-size: 13px; margin-top: 7px; margin-bottom: -15px"><?php if (isset($errors['cpw'])) echo $errors['cpw']; ?></p>
+                  </div>
+
+                  <div class="col-12 mb-2">
+                    <h5 class="text-dark">Add Profile Image</h5>
+                    <input type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+                  </div>
+            </div>
 
 
 
-                  <!-- 
+
+            <!-- 
   <div class="form-group">
    <h4 class="text-dark">First Name</h4>
    <div class="input-group input-group-alternative mb-3">
@@ -373,32 +379,32 @@ if (empty($cpassword)) {
 <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
  -->
 
-                  <!-- Password Strength
+            <!-- Password Strength
    <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
 
-                  <div class="row my-2">
-                    <div class="col-12">
-                      <div class="custom-control custom-control-alternative custom-checkbox text-center">
-                        <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-                        <label class="custom-control-label" for="customCheckRegister">
-                          <span class="text-dark">I agree with the <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
-                  </div><br>
-                  <div class="col-12 text-center mt--3">
-                    Already have an account? <a href="../admin/login.php">Log in</a>
-                  </div>
-
-                </form>
+            <div class="row my-2">
+              <div class="col-12">
+                <div class="custom-control custom-control-alternative custom-checkbox text-center">
+                  <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+                  <label class="custom-control-label" for="customCheckRegister">
+                    <span class="text-dark">I agree with the <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
+                  </label>
+                </div>
+              </div>
             </div>
+            <div class="text-center">
+              <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
+            </div><br>
+            <div class="col-12 text-center mt--3">
+              Already have an account? <a href="../admin/login.php">Log in</a>
+            </div>
+
+            </form>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
 
