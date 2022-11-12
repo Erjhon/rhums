@@ -38,11 +38,11 @@ $fetchRow = mysqli_fetch_assoc($rs);
         $age = $_POST['age'];
         $address = $_POST['address'];
         $medHistory = $_POST['medHistory'];
+        $user_id = $_SESSION['userdata']['id'];
+        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$id', '$fullname', '$user_id')") or die('query failed');
 
-        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name) VALUES('$id', '$fullname')") or die('query failed');
-
-        $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory)
-     VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory')";
+        $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory,user_id)
+     VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory', '$user_id')";
         if (mysqli_query($conn, $sql)) {
 
             echo '<script>alert("Form submitted successfully")</script>';;
