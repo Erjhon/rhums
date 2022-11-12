@@ -249,7 +249,7 @@ if(isset($_POST['submit'])){
                 <div class="input-group-prepend">
                   <span class="input-group-text text-muted px-3">09<i class="ni ni-lastname-83"></i></span>
                 </div> -->
-                <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11">
+                <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
               <!-- </div> -->
               <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
             </div>
