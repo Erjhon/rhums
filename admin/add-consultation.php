@@ -17,15 +17,7 @@
 }
 </style>
 <?php endif;?>
-<!-- 
 
-<?php 
-    $sql = "select * from appointments";
-    $rs = mysqli_query($conn, $sql);
-    //get row
-    $fetchRow = mysqli_fetch_assoc($rs);
-?> 
- -->
 <?php
 if(isset($_POST['submit']))
 {    
