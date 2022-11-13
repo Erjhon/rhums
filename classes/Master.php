@@ -94,7 +94,7 @@ class Master extends DBConnection
 
 		if ($save_inv) {
 			$patient_id = (empty($patient_id)) ? $this->conn->insert_id : $patient_id;
-			if (date("Y-m-d H:i", strtotime($date_sched)) <= getDate()) {
+			if (date("Y-m-d H:i", strtotime($date_sched)) <= date("Y-m-d H:i")) {
 				$resp['status'] = 'failed';
 				$resp['msg'] = "Invalid date";
 				return json_encode($resp);
