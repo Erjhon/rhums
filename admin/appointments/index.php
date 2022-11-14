@@ -54,7 +54,7 @@
 						<th>Patient No.</th>
 						<th>Patient Name</th>
 						<th>Schedule</th>
-						<th>Appointment Creation Date</th>
+						<th>Creation Date</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
