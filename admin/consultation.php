@@ -19,7 +19,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h2 class="card-title text-center">Patient Records</h2>
-		<div class="card-tools col-sm-2 col-10 text-right m-b-5">
+		<div class="card-tools">
 			<a href="<?php echo base_url ?>admin/?page=add-consultation" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
 		</div>
 
