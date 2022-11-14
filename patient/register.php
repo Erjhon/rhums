@@ -250,16 +250,11 @@ if (empty($cpassword)) {
                 <div class="input-group-prepend">
                   <span class="input-group-text text-muted px-3">09<i class="ni ni-lastname-83"></i></span>
                 </div> -->
-                      <<<<<<< HEAD <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11">
-                        <!-- </div> -->
-                        <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
-                    </div>
-                    =======
+                      
                     <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                     <!-- </div> -->
                     <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
                   </div>
-                  >>>>>>> 6631a1bc11127c719f7ccd7ae331563d0c1cb864
 
                   <div class="form-group col-3 mb--1">
                     <h5 for="gender" class="text-dark required">Gender</h5>
