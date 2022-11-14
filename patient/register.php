@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
     if (empty($firstname)){
       $errors['fn'] = "The First Name field is required.";
     }
-    if (empty($firstname)){
+    if (empty($lastname)){
       $errors['ln'] = "The Last Name field is required.";
     }
     if (empty($username)){
@@ -77,7 +77,7 @@ if(isset($_POST['submit'])){
 
 <!DOCTYPE html>
 <html lang="en">
-
+<script defer src="./index.js"></script>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -95,6 +95,7 @@ if(isset($_POST['submit'])){
     <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 
     <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+      <script defer src="./index.js"></script>
   <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
   <style>
     .required::after{
@@ -193,7 +194,7 @@ if(isset($_POST['submit'])){
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
                   </div> -->
-                  <input class="form-control" placeholder="First Name" name="firstname" type="firstname">
+                  <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname">
                 <!-- </div> -->
                   <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['fn'])) echo $errors['fn']; ?></p>
               </div>
@@ -205,7 +206,7 @@ if(isset($_POST['submit'])){
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
                 </div> -->
-                <input class="form-control" placeholder="Last Name" name="lastname" type="lastname">
+                <input class="form-control" placeholder="Last Name" id="lastname" name="lastname" type="lastname">
               <!-- </div> -->
                 <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ln'])) echo $errors['ln']; ?></p>
             </div>
@@ -254,7 +255,7 @@ if(isset($_POST['submit'])){
 
             <div class="form-group col-3 mb--1">
               <h5 for="gender" class="text-dark required">Gender</h5>
-              <select type="text" class="custom-select" name="gender">
+              <select type="text" class="custom-select" id="gender" name="gender">
                 <option >Male</option>
                 <option >Female</option>
               </select>
@@ -278,7 +279,7 @@ if(isset($_POST['submit'])){
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-username-83"></i></span>
                 </div> -->
-                <input class="form-control" placeholder="Address" name="address" type="address">
+                <input class="form-control" placeholder="Address" id="address" name="address" type="address">
               <!-- </div> -->
               <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ad'])) echo $errors['ad']; ?></p>
             </div>
