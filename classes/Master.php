@@ -44,7 +44,7 @@ class Master extends DBConnection
 	{
 
 		//GET current user id from session
-		$user_id = $_SESSION['userdata']['id'];
+		$user_id = isset($_SESSION['userdata']['id']) ? $_SESSION['userdata']['id'] : "";
 		if (isset($_SESSION['user_id'])) {
 			$current_user_id = $_SESSION['user_id'];
 		} else {
@@ -110,10 +110,13 @@ class Master extends DBConnection
 				else
 					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 			} else {
-				if (empty($id))
-					$sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
-
-				else
+				if (empty($id)) {
+					if ($user_id) {
+						// $sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
+					} else {
+						$sql = "INSERT INTO `appointments`(`patient_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$date_sched','$reason','$status')";
+					}
+				} else
 					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 			}
 			// $sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
