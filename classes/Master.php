@@ -112,7 +112,7 @@ class Master extends DBConnection
 			} else {
 				if (empty($id)) {
 					if ($user_id) {
-						// $sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
+						$sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
 					} else {
 						$sql = "INSERT INTO `appointments`(`patient_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$date_sched','$reason','$status')";
 					}
