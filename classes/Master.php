@@ -45,6 +45,7 @@ class Master extends DBConnection
 
 		//GET current user id from session
 		$user_id = isset($_SESSION['userdata']['id']) ? $_SESSION['userdata']['id'] : "";
+		// $p_id = isset($_SESSION['userdata']['id']) ? $_SESSION['userdata']['id'] : "";
 		if (isset($_SESSION['user_id'])) {
 			$current_user_id = $_SESSION['user_id'];
 		} else {
@@ -106,7 +107,7 @@ class Master extends DBConnection
 			// $sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
 			if (!empty($current_user_id)) {
 				if (empty($id))
-					$sql = "INSERT INTO `appointments` SET `date_sched` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
+					$sql = "INSERT INTO `appointments` SET `date_sched` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `p_id`='{$current_user_id}'";
 				else
 					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 			} else {
@@ -114,10 +115,11 @@ class Master extends DBConnection
 					if ($user_id) {
 						$sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
 					} else {
-						$sql = "INSERT INTO `appointments`(`patient_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$date_sched','$reason','$status')";
+						$sql = "INSERT INTO `appointments`(`patient_id`, `date_sched`, `reason`, `status`, `p_id`) VALUES ('$patient_id','$date_sched','$reason','$status', '$current_user_id')";
 					}
-				} else
-					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
+				}
+				// else
+				// 	$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 			}
 			// $sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
 
