@@ -17,9 +17,9 @@ $meta = array_column($qry->fetch_all(MYSQLI_ASSOC),'meta_value','meta_field');
 			<form action="" id="schedule_settings">
 				<div id="msg" class="form-group"></div>
                 <div class="row">
-                <div class="col-lg-3">
-                <div class="form-group">
-                    <label for="" class="control-label">Weekly Schedule</label><br>
+                <div class="col-lg-4">
+                <div class="form-group  ml-4">
+                    <label for="" class="control-label ">Weekly Schedule</label><br>
                     <div class="icheck-primary">
                         <input type="checkbox" id="checkboxPrimary1" name="day_schedule[]" value='Sunday' <?php echo isset($meta['day_schedule']) && in_array("Sunday",explode(",",$meta['day_schedule'])) ? "checked" : ''  ?>>
                         <label for="checkboxPrimary1">
