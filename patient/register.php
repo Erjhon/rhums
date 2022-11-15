@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
     // $message[] = 'User already exist'; 
   }else{
     if($pass != $cpass){
-     $message[] = '';
+     $message[] = ' Confirm Password does not matched.';
      // $message[] = 'Confirm password not matched!';
    }elseif($image_size > 2000000){
      $message[] = 'Image size is too large!';
@@ -533,6 +533,10 @@ if(isset($_POST['submit'])){
 
     if(address == ""){
       document.getElementById('ad').innerHTML ="<b> ** Please fill the address field.";
+      return false;
+    }
+    if(!isNaN(address)){
+      document.getElementById('ad').innerHTML ="<b> ** Only characters are allowed.";
       return false;
     }
     if(password == ""){
