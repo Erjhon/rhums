@@ -76,7 +76,7 @@ class Master extends DBConnection
 			return json_encode($resp);
 			exit;
 		}
-		$check = $this->conn->query("SELECT * FROM `appointments` where ('" . strtotime($date_sched) . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 20 MINUTE)) OR '" . strtotime($date_sched . ' +20 mins') . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 20 MINUTE))) " . ($id > 0 ? " and id != '{$id}' " : ""))->num_rows;
+		$check = $this->conn->query("SELECT * FROM `appointments` where ('" . strtotime($date_sched) . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 15 MINUTE)) OR '" . strtotime($date_sched . ' +15 mins') . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 15 MINUTE))) " . ($id > 0 ? " and id != '{$id}' " : ""))->num_rows;
 		$this->capture_err();
 		if ($check > 0) {
 			$resp['status'] = 'failed';
