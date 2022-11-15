@@ -486,71 +486,71 @@ if(isset($_POST['submit'])){
 
 
     if(firstname == ""){
-      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field";
+      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field.";
       return false;
     }
 
     if(lastname == ""){
-      document.getElementById('ln').innerHTML ="<b> ** Please fill the username field";
+      document.getElementById('ln').innerHTML ="<b> ** Please fill the lastname field.";
       return false;
     }
 
     if(username == ""){
-      document.getElementById('un').innerHTML ="<b> ** Please fill the username field";
+      document.getElementById('un').innerHTML ="<b> ** Please fill the username field.";
       return false;
     }
     if((username.length <= 4) || (username.length > 20)) {
-      document.getElementById('un').innerHTML ="<b> ** Username lenght must be between 5 and 20";
+      document.getElementById('un').innerHTML ="<b> ** Username length must be between 5 and 20.";
       return false; 
     }
     if(!isNaN(username)){
-      document.getElementById('un').innerHTML ="<b> ** only characters are allowed";
+      document.getElementById('un').innerHTML ="<b> ** Only characters are allowed.";
       return false;
     }
 
     if(contact == ""){
-      document.getElementById('cn').innerHTML ="<b> ** Please fill the mobile NUmber field";
+      document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
       return false;
     }
     if(isNaN(contact)){
-      document.getElementById('cn').innerHTML ="<b> ** user must write digits only not characters";
+      document.getElementById('cn').innerHTML ="<b> ** User must write digits only not characters.";
       return false;
     }
     if(contact.length!=11){
-      document.getElementById('cn').innerHTML ="<b> ** Contact Number must be 11 digits only";
+      document.getElementById('cn').innerHTML ="<b> ** Contact Number must be 11 digits only.";
       return false;
     }
 
     if(gender == ""){
-      document.getElementById('g').innerHTML ="<b> ** Please fill the gender field";
+      document.getElementById('g').innerHTML ="<b> ** Please fill the gender field.";
       return false;
     }
 
     if(dob == ""){
-      document.getElementById('db').innerHTML ="<b> ** Please fill the date of birth field";
+      document.getElementById('db').innerHTML ="<b> ** Please fill the date of birth field.";
       return false;
     }
 
     if(address == ""){
-      document.getElementById('ad').innerHTML ="<b> ** Please fill the address field";
+      document.getElementById('ad').innerHTML ="<b> ** Please fill the address field.";
       return false;
     }
     if(password == ""){
-      document.getElementById('pw').innerHTML ="<b> ** Please fill the password field";
+      document.getElementById('pw').innerHTML ="<b> ** Please fill the password field.";
       return false;
     }
     if((password.length <= 5) || (password.length > 20)) {
-      document.getElementById('pw').innerHTML ="<b> ** Passwords lenght must be between  5 and 20";
+      document.getElementById('pw').innerHTML ="<b> ** Password length must be between 5 and 20.";
       return false; 
     }
 
     if(password!=cpassword){
-      document.getElementById('cpw').innerHTML ="<b> ** Password does not match the confirm password";
+      document.getElementById('cpw').innerHTML ="<b> ** Password does not match the confirm password.";
       return false;
     }
 
     if(cpassword == ""){
-      document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirmpassword field";
+      document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirm password field.";
       return false;
     }
   }
