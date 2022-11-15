@@ -24,7 +24,8 @@ if(isset($_POST['submit'])){
     // $message[] = 'User already exist'; 
   }else{
     if($pass != $cpass){
-     $message[] = 'Confirm password not matched!';
+     $message[] = '';
+     // $message[] = 'Confirm password not matched!';
    }elseif($image_size > 2000000){
      $message[] = 'Image size is too large!';
    }else{
@@ -32,44 +33,15 @@ if(isset($_POST['submit'])){
 
      if($insert){
       move_uploaded_file($image_tmp_name, $image_folder);
-   echo "<script>alert('User Registered Successfully');
-             window.location.href='../admin/login.php';
-             </script>"; 
+      echo "<script>alert('User Registered Successfully');
+      window.location.href='../admin/login.php';
+      </script>"; 
     }else{
       $message[] = 'Registration failed!';
     }
   }
 }
 
-    $errors = array();
-
-    if (empty($firstname)){
-      $errors['fn'] = "The First Name field is required.";
-    }
-    if (empty($lastname)){
-      $errors['ln'] = "The Last Name field is required.";
-    }
-    if (empty($username)){
-      $errors['un'] = "The Username field is required.";
-    }
-    if (empty($contact)){
-      $errors['cn'] = "The Contact Number field is required.";
-    }
-    if (empty($gender)){
-      $errors['g'] = "The Gender field is required.";
-    }
-    if (empty($dob)){
-      $errors['db'] = "The Date of Birth field is required.";
-    }
-    if (empty($address)){
-      $errors['ad'] = "The Address field is required.";
-    }
-    if (empty($password)){
-      $errors['pw'] = "The Password field is required.";
-    }
-    if (empty($cpassword)){
-      $errors['cpw'] = "The Confirm Password field is required.";
-    }
 }
 
 ?>
@@ -77,25 +49,24 @@ if(isset($_POST['submit'])){
 
 <!DOCTYPE html>
 <html lang="en">
-<script defer src="./index.js"></script>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>
-      RURAL HEALTH UNIT II
-    </title>
-    <!-- Favicon -->
-    <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <!-- Icons -->
-    <link href="../assets/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
-    <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 
-    <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
-      <script defer src="./index.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    RURAL HEALTH UNIT II
+  </title>
+  <!-- Favicon -->
+  <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="../assets/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
+
+  <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
   <style>
     .required::after{
@@ -109,16 +80,16 @@ if(isset($_POST['submit'])){
 <body class="bg-neutral">
   <div class="main-content">
     <div class="header py-8 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
-    
-    <div class="container">
-      <div class="text-center">
-        <a class="" href="#">
-          <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
-        </a> 
-        <a class="" href="../admin/login.php">
-          <img src="../assets/assets/img/brand/doh.png"  height="100" width="100"/>
-        </a>
-      </div>
+
+      <div class="container">
+        <div class="text-center">
+          <a class="" href="#">
+            <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
+          </a> 
+          <a class="" href="../admin/login.php">
+            <img src="../assets/assets/img/brand/doh.png"  height="100" width="100"/>
+          </a>
+        </div>
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
             <div class="col-lg-8 col-md-1"><br><br>
@@ -141,27 +112,27 @@ if(isset($_POST['submit'])){
           <div class="card bg-secondary shadow border-0">
             <div class="bg-transparent pb-1">
 
-                </div>
-                <div class="card-body px-lg-5 py-lg-4">
-                  <div class="text-center text-muted mb-3">
-                    <h1 class="text-dark">Create Account</h1>
-                  </div>
-                  
-                  <?php
-                  if(isset($message)){
-                   foreach($message as $message){
-                    echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$message.'</div>';
-                      }
-                    }
-                  ?>
+            </div>
+            <div class="card-body px-lg-5 py-lg-4">
+              <div class="text-center text-muted mb-3">
+                <h1 class="text-dark">Create Account</h1>
+              </div>
 
-                  <?php
-                  if(isset($error)){
-                   foreach($error as $error){
-                    echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$error.'</div>';
-                      };
-                    };
-                  ?>
+              <?php
+              if(isset($message)){
+               foreach($message as $message){
+                echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$message.'</div>';
+              }
+            }
+            ?>
+
+            <?php
+            if(isset($error)){
+             foreach($error as $error){
+              echo '<div class=" text-center alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"> </i>'.$error.'</div>';
+            };
+          };
+          ?>
 
 <!-- <div class="form-container">
    <form action="" method="post" enctype="multipart/form-data">
@@ -183,34 +154,34 @@ if(isset($_POST['submit'])){
    </form>
  </div> -->
  
- <form role="form" action="" method="post" enctype="multipart/form-data">
+ <form role="form" action="" method="post" enctype="multipart/form-data"  onsubmit="return validation()">
 
-    <form action="" id="appointment_form" class="py-6">
-          <div class="row" id="appointment">
-            <div class="col-6" id="frm-field">
-              <div class="form-group mb--1">
-                 <h5 class="text-dark required">First Name</h5>
+  <form action="" id="appointment_form" class="py-6">
+    <div class="row" id="appointment">
+      <div class="col-6" id="frm-field">
+        <div class="form-group mb--1">
+         <h5 class="text-dark required">First Name</h5>
                  <!-- div class="input-group input-group-alternative mb--4">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
                   </div> -->
                   <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname">
-                <!-- </div> -->
-                  <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['fn'])) echo $errors['fn']; ?></p>
+                  <!-- </div> -->
+                  <p class="text-danger" id="fn" style="font-size: 13px; margin-top: 4px"></p>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group col-6 mb--1">
-             <h5 class="text-dark required">Last Name</h5>
+              <div class="form-group col-6 mb--1">
+               <h5 class="text-dark required">Last Name</h5>
              <!-- <div class="input-group input-group-alternative mb--4">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
                 </div> -->
-                <input class="form-control" placeholder="Last Name" id="lastname" name="lastname" type="lastname">
-              <!-- </div> -->
-                <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ln'])) echo $errors['ln']; ?></p>
-            </div>
-                              
+                <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname">
+                <!-- </div> -->
+                <p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
+              </div>
+
            <!--  <div class="form-group col-5">
              <h5 class="text-dark required">Username</h5>
              <div class="input-group input-group-alternative mb--4">
@@ -222,102 +193,102 @@ if(isset($_POST['submit'])){
               <p class="text-danger" style="font-size: 13px; margin-top: 25px; margin-bottom: -15px"><?php if (isset($errors['un'])) echo $errors['un']; ?></p> -->
               <!-- <div class="text-danger" style="font-size: 9px; margin-top: 7px">
                       <span id="username_result"><p>Usernames must be a combination of numbers and letters or letters only. Special characters allowed(_)</p>
-              </span>     //shows message whether the username already existed or not -->
+                      </span>     //shows message whether the username already existed or not -->
 
-              
-            <!-- </div> -->
 
-            <div class="form-group col-5 mb--1">
-              <h5 class="text-dark required">Username</h5>
+                      <!-- </div> -->
+
+                      <div class="form-group col-5 mb--1">
+                        <h5 class="text-dark required">Username</h5>
               <!-- <div class="input-group input-group-alternative mb--4">
                 <div class="input-group-append">
                   <span class="input-group-text"><i class="ni ni-username-83"></i></span>
                 </div>
-            </div> -->
-                <!-- <span class="input-icon"> -->
-                  <input type="username" class="form-control" name="username" id="username" onBlur="userAvailability()"  placeholder="Username">
-                 <!--  <i class="fa fa-user"></i> </span> -->
-                   <span id="user-availability-status1" style="font-size:12px;"></span>
-                   <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['un'])) echo $errors['un']; ?></p>
-              <!-- </span> -->
+              </div> -->
+              <!-- <span class="input-icon"> -->
+                <input type="username" class="form-control" name="username" id="username" onBlur="userAvailability()"  placeholder="Username">
+                <!--  <i class="fa fa-user"></i> </span> -->
+                <span id="user-availability-status1" style="font-size:12px;"></span>
+                <p class="text-danger" id="un" style="font-size: 13px; margin-top: 4px"></p>
+                <!-- </span> -->
               </div>
 
-            <div class="form-group col-4 mb--1">
-             <h5 class="text-dark required">Contact Number</h5>
+              <div class="form-group col-4 mb--1">
+               <h5 class="text-dark required">Contact Number</h5>
              <!-- <div class="input-group input-group-alternative mb--4">
                 <div class="input-group-prepend">
                   <span class="input-group-text text-muted px-3">09<i class="ni ni-lastname-83"></i></span>
                 </div> -->
                 <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-              <!-- </div> -->
-              <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['cn'])) echo $errors['cn']; ?></p>
-            </div>
+                <!-- </div> -->
+                <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
+              </div>
 
-            <div class="form-group col-3 mb--1">
-              <h5 for="gender" class="text-dark required">Gender</h5>
-              <select type="text" class="custom-select" id="gender" name="gender">
-                <option >Male</option>
-                <option >Female</option>
-              </select>
-              <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['g'])) echo $errors['g']; ?></p>
-            </div>
+              <div class="form-group col-3 mb--1">
+                <h5 for="gender" class="text-dark required">Gender</h5>
+                <select type="text" class="custom-select" name="gender" id="gender">
+                  <option >Male</option>
+                  <option >Female</option>
+                </select>
+                <p class="text-danger" id="g" style="font-size: 13px; margin-top: 4px"></p>
+              </div>
 
-            <div class="form-group col-6 mb--1">
-              <h5 for="dob" class="control-label required">Date of Birth</h5>
+              <div class="form-group col-6 mb--1">
+                <h5 for="dob" class="control-label required">Date of Birth</h5>
               <!-- <div class="input-group input-group-alternative mb--4">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
                 </div> -->
                 <input type="date" class="form-control" id="dob" name="dob">
-              <!-- </div> -->
-              <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['db'])) echo $errors['db']; ?></p>
-            </div>
+                <!-- </div> -->
+                <p class="text-danger" id="db" style="font-size: 13px; margin-top: 4px"></p>
+              </div>
 
-            <div class="form-group col-6 mb--1">
-             <h5 class="text-dark required">Address</h5>
+              <div class="form-group col-6 mb--1">
+               <h5 class="text-dark required">Address</h5>
              <!-- <div class="input-group input-group-alternative mb--4">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-username-83"></i></span>
                 </div> -->
                 <input class="form-control" placeholder="Address" id="address" name="address" type="address">
-              <!-- </div> -->
-              <p class="text-danger" style="font-size: 13px; margin-top: 4px"><?php if (isset($errors['ad'])) echo $errors['ad']; ?></p>
-            </div>
+                <!-- </div> -->
+                <p class="text-danger" id="ad" style="font-size: 13px; margin-top: 4px"></p>
+              </div>
 
-            <div class="form-group col-6 ">
-             <h5 class="text-dark required">Password</h5>
-             <div class="input-group input-group-alternative mb--1">
+              <div class="form-group col-6 ">
+               <h5 class="text-dark required">Password</h5>
+               <div class="input-group input-group-alternative mb--1">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
                 <input class="form-control" placeholder="Password" id ="password" name ="password" type="password">
                 <span class="input-group-text">
-                    <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                  <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
                 </span>
               </div>
-              <p class="text-danger" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"><?php if (isset($errors['pw'])) echo $errors['pw']; ?></p>
+              <p class="text-danger" id="pw" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"></p>
             </div>
-           
+
             <div class="form-group col-6 ">
              <h5 class="text-dark required">Confirm Password</h5>
              <div class="input-group input-group-alternative mb--1">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password">
-                <span class="input-group-text">
-                    <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
-                </span>
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
               </div>
-              <p class="text-danger" style="font-size: 13px; margin-top: 7px; margin-bottom: -15px"><?php if (isset($errors['cpw'])) echo $errors['cpw']; ?></p>
+              <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password">
+              <span class="input-group-text">
+                <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+              </span>
             </div>
-
-            <div class="col-12 mb-2">
-              <h5 class="text-dark">Add Profile Image</h5>
-              <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
-            </div>
+            <p class="text-danger" id="cpw" style="font-size: 13px; margin-top: 7px; margin-bottom: -15px"></p>
           </div>
-   
+
+          <div class="col-12 mb-2">
+            <h5 class="text-dark">Add Profile Image</h5>
+            <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+          </div>
+        </div>
+
 
 
 <!-- 
@@ -368,32 +339,32 @@ if(isset($_POST['submit'])){
 </div>
 <h4 class="text-dark">Add Profile Image</h4>
 <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
- -->
+-->
 
 <!-- Password Strength
-   <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
+ <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
 
-          <div class="row my-2">
-            <div class="col-12">
-              <div class="custom-control custom-control-alternative custom-checkbox text-center">
-                <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-                <label class="custom-control-label" for="customCheckRegister">
-                  <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="text-center">
-            <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
-          </div><br>
-          <div class="col-12 text-center mt--3">
-            Already have an account? <a href="../admin/login.php">Log in</a>
-          </div>
-
-        </form>
-      </div>
+ <div class="row my-2">
+  <div class="col-12">
+    <div class="custom-control custom-control-alternative custom-checkbox text-center">
+      <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+      <label class="custom-control-label" for="customCheckRegister">
+        <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
+      </label>
     </div>
   </div>
+</div>
+<div class="text-center">
+  <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
+</div><br>
+<div class="col-12 text-center mt--3">
+  Already have an account? <a href="../admin/login.php">Log in</a>
+</div>
+
+</form>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -497,12 +468,102 @@ if(isset($_POST['submit'])){
   </div>
 </div>
 
+
+<!-- Checks Form validation -->
+<script type="text/javascript">
+
+  function validation(){
+
+    var firstname = document.getElementById('firstname').value;
+    var lastname = document.getElementById('lastname').value;
+    var username = document.getElementById('username').value;
+    var contact = document.getElementById('contact').value;
+    var gender = document.getElementById('gender').value;
+    var dob = document.getElementById('dob').value;
+    var address = document.getElementById('address').value;
+    var password = document.getElementById('password').value;
+    var cpassword = document.getElementById('password').value;
+
+
+    if(firstname == ""){
+      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field";
+      return false;
+    }
+
+    if(lastname == ""){
+      document.getElementById('ln').innerHTML ="<b> ** Please fill the username field";
+      return false;
+    }
+
+    if(username == ""){
+      document.getElementById('un').innerHTML ="<b> ** Please fill the username field";
+      return false;
+    }
+    if((username.length <= 4) || (username.length > 20)) {
+      document.getElementById('un').innerHTML ="<b> ** Username lenght must be between 5 and 20";
+      return false; 
+    }
+    if(!isNaN(username)){
+      document.getElementById('un').innerHTML ="<b> ** only characters are allowed";
+      return false;
+    }
+
+    if(contact == ""){
+      document.getElementById('cn').innerHTML ="<b> ** Please fill the mobile NUmber field";
+      return false;
+    }
+    if(isNaN(contact)){
+      document.getElementById('cn').innerHTML ="<b> ** user must write digits only not characters";
+      return false;
+    }
+    if(contact.length!=11){
+      document.getElementById('cn').innerHTML ="<b> ** Contact Number must be 11 digits only";
+      return false;
+    }
+
+    if(gender == ""){
+      document.getElementById('g').innerHTML ="<b> ** Please fill the gender field";
+      return false;
+    }
+
+    if(dob == ""){
+      document.getElementById('db').innerHTML ="<b> ** Please fill the date of birth field";
+      return false;
+    }
+
+    if(address == ""){
+      document.getElementById('ad').innerHTML ="<b> ** Please fill the address field";
+      return false;
+    }
+    if(password == ""){
+      document.getElementById('pw').innerHTML ="<b> ** Please fill the password field";
+      return false;
+    }
+    if((password.length <= 5) || (password.length > 20)) {
+      document.getElementById('pw').innerHTML ="<b> ** Passwords lenght must be between  5 and 20";
+      return false; 
+    }
+
+    if(password!=cpassword){
+      document.getElementById('cpw').innerHTML ="<b> ** Password does not match the confirm password";
+      return false;
+    }
+
+    if(cpassword == ""){
+      document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirmpassword field";
+      return false;
+    }
+  }
+
+</script>
+
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <!--   Optional JS   -->
 <!--   Argon JS   -->
 <script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+<script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 <script>
   window.TrackJS &&
@@ -513,84 +574,98 @@ if(isset($_POST['submit'])){
 </script>
 
 <!-- show password -->
-  <script>
-      var state = false;
-      function toggle1(){
-        if (state){
-          document.getElementById("password").setAttribute("type", "password");
-          state = false;
-        } else{
-          document.getElementById("password").setAttribute("type", "text");
-          state = true;
-        }
-      }
-  </script>
-  <script>
-      var state = false;
-      function toggle2(){
-        if (state){
-          document.getElementById("cpassword").setAttribute("type", "password");
-          state = false;
-        } else{
-          document.getElementById("cpassword").setAttribute("type", "text");
-          state = true;
-        }
-      }
-  </script>
-
-  <script>
-    function userAvailability() {
-      $("#loaderIcon").show();
-      jQuery.ajax({
-        url: "check_availability.php",
-        data:'username='+$("#username").val(),
-        type: "POST",
-        success:function(data){
-          $("#user-availability-status1").html(data);
-          $("#loaderIcon").hide();
-        },
-        error:function (){}
-      });
+<script>
+  var state = false;
+  function toggle1(){
+    if (state){
+      document.getElementById("password").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("password").setAttribute("type", "text");
+      state = true;
     }
-  </script> 
+  }
+</script>
+<script>
+  var state = false;
+  function toggle2(){
+    if (state){
+      document.getElementById("cpassword").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("cpassword").setAttribute("type", "text");
+      state = true;
+    }
+  }
+</script>
 
-   <!-- //check birthdays start -->
-        <script>
-                   const picker = document.getElementById('dob');
-                   let date = new Date();
+<script>
+  function userAvailability() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'username='+$("#username").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
 
-                   picker.addEventListener('input', function(e){
-                           let day = new Date(this.value).getUTCDate();
-                           let mm = new Date(this.value).getUTCMonth()+1;
-                           let yy = new Date(this.value).getUTCFullYear();
-                           let yyyy = date.getFullYear();
-                           let mmmm = date.getMonth()+1;
-                           let dddd = date.getDate();
+<!-- //check birthdays start -->
+<script>
+ const picker = document.getElementById('dob');
+ let date = new Date();
 
-                           let age = yyyy - yy;
-                           let m = mmmm - mm;
+ picker.addEventListener('input', function(e){
+   let day = new Date(this.value).getUTCDate();
+   let mm = new Date(this.value).getUTCMonth()+1;
+   let yy = new Date(this.value).getUTCFullYear();
+   let yyyy = date.getFullYear();
+   let mmmm = date.getMonth()+1;
+   let dddd = date.getDate();
+
+   let age = yyyy - yy;
+   let m = mmmm - mm;
 
 
                            //check if year is >= current year
-                           if(yy >= yyyy){
-                               e.preventDefault();
-                               this.value = '';
-                               alert("Invalid Birthday")
-                           }
+   if(yy >= yyyy){
+     e.preventDefault();
+     this.value = '';
+     Swal.fire({
+      width: 500,
+      position: 'center',
+      icon: 'warning',
+      title: 'Invalid Birthdate',
+      showConfirmButton: false,
+      timer: 2500
+    })
+   }
                            //Check valid age
-                           else if (m < 0 || (m === 0 && dddd < day)) {
-                               age--;
-                           }
-                           else if (age < 5){
-                               e.preventDefault();
-                               this.value = '';
-                               alert("Children under the age of five are not permitted to create an account.");
-                           }
-                           else {
+   else if (m < 0 || (m === 0 && dddd < day)) {
+     age--;
+   }
+   else if (age < 5){
+     e.preventDefault();
+     this.value = '';
+     Swal.fire({
+      position: 'center',
+      icon: 'warning',
+      title: '"Children under the age of five are not permitted to create an account."',
+      showConfirmButton: false,
+      timer: 2500
+    })
+
+   }
+   else {
                             //   alert("Valid");
-                           }
-                   })
-           </script>
+   }
+ })
+</script>
 
 
 
