@@ -659,7 +659,7 @@ if(isset($_POST['submit'])){
      Swal.fire({
       position: 'center',
       icon: 'warning',
-      title: '"Children under the age of five are not permitted to create an account."',
+      title: 'Children under the age of five are not permitted to create an account.',
       showConfirmButton: false,
       timer: 2500
     })
