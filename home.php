@@ -34,11 +34,11 @@
             
             <tr>
                 <td width="80%">
-                    <font class="edoc-logo">Medical Clinic</font>
+                    <font class="edoc-logo" style="text-shadow: 2px 2px 5px black;">Medical Clinic</font>
                     <font class="edoc-logo-sub">| Rural Health Unit II</font>
                 </td>
                 <td width="10%">
-                   <a href="admin/login.php"  class="non-style-link"><h2 class="nav-item"><b>LOGIN</h2></a>
+                   <a href="admin/login.php"  class="non-style-link"><h2 class="nav-item" ><b>LOGIN</h2></a>
                 </td>
                 <td  width="10%">
                     <a href="patient/register.php" class="non-style-link"><h2 class="nav-item" style="padding-right: 10px;"><b>REGISTER</h2></a>
@@ -47,7 +47,7 @@
             
             <tr>
                 <td  colspan="3">
-                    <p class="heading-text">ONLINE MEDICAL APPOINTMENT</p>
+                    <p class="heading-text" style="text-shadow: 5px 5px 10px black;">ONLINE MEDICAL APPOINTMENT</p>
 
                 </td>
             </tr>

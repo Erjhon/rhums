@@ -22,7 +22,13 @@
             <a href="<?php echo base_url ?>" class="nav-link"><?php echo (!isMobileDevice()) ? $_settings->info('name'):$_settings->info('short_name'); ?></a>
           </li>
         </ul> -->
-          <h3 class="text-black col-10 text-right m-b-5">Welcome to <?php echo $_settings->info('name') ?></h3>
+        <style>
+h3 {
+  text-shadow: 2px 2px 5px black
+  ;
+}
+</style>
+          <h3 class="text-white col-10 text-right m-b-5">Welcome to <?php echo $_settings->info('name') ?></h3>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
 

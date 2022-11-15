@@ -40,10 +40,10 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					<small><i>Leave this blank if you dont want to change the password.</i></small>
                     <?php endif; ?>
 				</div>
-				<div class="form-group col-6">
-					<label for="user_type">User Type</label>
+				<div hidden class="form-group col-6">
+					<label  for="user_type">User Type</label>
                       <select  class="input-group input-group-alternative" name="role">
-                          <option class="text-muted" value="admin">Admin</option>
+                          <!-- <option class="text-muted" value="admin">Admin</option> -->
                           <option class="text-muted" value="staff">Staff</option>
                      </select>
                 </div>
