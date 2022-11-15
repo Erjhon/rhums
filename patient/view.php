@@ -14,6 +14,21 @@ if (isset($_GET['logout'])) {
   header('location:login.php');
 }
 
+
+if (isset($_GET['id'])) {  
+  $id = $_GET['id'];  
+  $query = "DELETE FROM `appointments` WHERE id = '$id'";  
+  $run = mysqli_query($conn,$query);  
+  if ($run) {  
+    header('location:view.php');  
+  }else{  
+    echo "Error: ".mysqli_error($conn);  
+  }  
+} 
+
+
+$query = "select * from appointments";  
+$run = mysqli_query($conn,$query); 
 ?>
 
 
@@ -34,6 +49,8 @@ if (isset($_GET['logout'])) {
   <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
+
+  <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
 </head>
 
 <body class="">
@@ -50,89 +67,89 @@ if (isset($_GET['logout'])) {
       <!-- User -->
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
-      <!--  <li class="nav-item dropdown">
-        <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="ni ni-bell-55"></i>
-      </a>
-      <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </li> -->
-    <li class="nav-item dropdown">
-      <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <div class="media align-items-center">
-          <span class="avatar avatar-sm rounded-circle">
-            <?php
-            $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-            if (mysqli_num_rows($select) > 0) {
-              $fetch = mysqli_fetch_assoc($select);
-            }
-            if ($fetch['image'] == '') {
-              echo '<img src="../patient/images/default-avatar.png">';
-            } else {
-              echo '<img src="../patient/uploaded_img/' . $fetch['image'] . '">';
-            }
-            ?>
+<!--  <li class="nav-item dropdown">
+<a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<i class="ni ni-bell-55"></i>
+</a>
+<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">Something else here</a>
+</div>
+</li> -->
+<li class="nav-item dropdown">
+  <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="media align-items-center">
+      <span class="avatar avatar-sm rounded-circle">
+        <?php
+        $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+        if (mysqli_num_rows($select) > 0) {
+          $fetch = mysqli_fetch_assoc($select);
+        }
+        if ($fetch['image'] == '') {
+          echo '<img src="../patient/images/default-avatar.png">';
+        } else {
+          echo '<img src="../patient/uploaded_img/' . $fetch['image'] . '">';
+        }
+        ?>
 
-          </span>
-        </div>
-      </a>
-      <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-        <div class=" dropdown-header noti-title">
-          <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?>!</h5>
-        </div>
-        <div class="dropdown-divider"></div>
-        <a href="patient/update_profile.php" class="dropdown-item">
-          <i class="ni ni-single-02"></i>
-          <span>My profile</span>
-        </a>
-        <a href="pages/logout.php" class="dropdown-item">
-          <i class="ni ni-user-run"></i>
-          <span>Logout</span>
+      </span>
+    </div>
+  </a>
+  <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+    <div class=" dropdown-header noti-title">
+      <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?>!</h5>
+    </div>
+    <div class="dropdown-divider"></div>
+    <a href="patient/update_profile.php" class="dropdown-item">
+      <i class="ni ni-single-02"></i>
+      <span>My profile</span>
+    </a>
+    <a href="pages/logout.php" class="dropdown-item">
+      <i class="ni ni-user-run"></i>
+      <span>Logout</span>
+    </a>
+  </div>
+</li>
+</ul>
+<!-- Collapse -->
+<div class="collapse navbar-collapse" id="sidenav-collapse-main">
+  <!-- Collapse header -->
+  <div class="navbar-collapse-header d-md-none">
+    <div class="row">
+      <div class="col-6 collapse-brand">
+        <a href="./index.php">
+          <img src="../assets/assets/img/brand/rhu.png" height="60" width="40" />
         </a>
       </div>
-    </li>
-  </ul>
-  <!-- Collapse -->
-  <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-    <!-- Collapse header -->
-    <div class="navbar-collapse-header d-md-none">
-      <div class="row">
-        <div class="col-6 collapse-brand">
-          <a href="./index.php">
-            <img src="../assets/assets/img/brand/rhu.png" height="60" width="40" />
-          </a>
-        </div>
-        <div class="col-6 collapse-close">
-          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-            <span></span>
-            <span></span>
-          </button>
-        </div>
+      <div class="col-6 collapse-close">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
-
-    <!-- Navigation -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link " href="../dashboard.php">
-          <i class="ni ni-single-02 text-green"></i> Schedule Appointment
-        </a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link bg-blue " href="view.php">
-          <i class="ni ni-ruler-pencil text-white"></i> View Appointment
-        </a>
-      </li>
-    </ul>
-
   </div>
+
+  <!-- Navigation -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link " href="../dashboard.php">
+        <i class="ni ni-single-02 text-green"></i> Schedule Appointment
+      </a>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link bg-blue " href="view.php">
+        <i class="ni ni-ruler-pencil text-white"></i> View Appointment
+      </a>
+    </li>
+  </ul>
+
+</div>
 </div>
 </nav>
 <div class="main-content">
@@ -229,6 +246,8 @@ if (isset($_GET['logout'])) {
                         <th>REASON FOR APPOINTMENT</th>
                         <th>SCHEDULE</th>
                         <th>STATUS</th>
+                        <th>ACTION</th>
+                        <!-- <th>ACTION</th> -->
                       </tr>
                       <?php
                       $result = mysqli_query($conn, "SELECT * FROM appointments WHERE `p_id` = {$user_id}");
@@ -266,32 +285,92 @@ if (isset($_GET['logout'])) {
                                     }
                                     ?>
                                   </td>
-                                </tr>
-                                <?php
-                                $i++;
-                              }
-                              ?>
+                                  <td align="center">
+                                    <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id= <?php echo $row['id'] ?>" id='btn'>Cancel</a>
+                                  </button>
+                                  </td>
+                                 <!--   <td align="center">
+                                    <button id="delete" class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="#cancel" data-toggle="modal" data-target="#cancel" id='btn_delete' >Cancel appointment</a>
+                                  </button>
+                                  </td> -->
+                              </tr>
                               <?php
-                            } else {
-                              echo "No result found";
+                              $i++;
                             }
                             ?>
+                            <?php
+                          } else {
+                            echo '<div class=" text-center alert-primary text-white"><i class="fa fa-exclamation-triangle"> </i> No Results Found</div>';
+                          }
+                          ?>
+
+<!--  <?php   
+$i=1;  
+if ($num = mysqli_num_rows($run)>0) {  
+while ($result = mysqli_fetch_assoc($run)) {  
+echo "  
+<tr class='data'>  
+<td hidden>".$i++."</td>  
+<td>".$result['patient_id']."</td>  
+<td>".$result['reason']."</td>   
+<td>".$result['date_sched']."</td>
+<td><a href='view.php?id=".$result['id']."' id='btn'>Delete</a></td>  
+</tr>  
+";  
+}  
+}  
+?> -->
 
 
-                          </tbody>
-                        </table>
-                      </div>
+</tbody>
+</table>
+</div>
 
-                    </script>
-                    <!--   Core   -->
-                    <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-                    <script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                    <!--   Optional JS   -->
-                    <script src="../assets/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-                    <!--   Argon JS   -->
-                    <script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
-                    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<!--   Core   -->
+<script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+<script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!--   Optional JS   -->
+<script src="../assets/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!--   Argon JS   -->
+<script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 
-                  </body>
+</body>
 
-                  </html>
+<script>
+    function deleteConfirmation(id) {
+        swal({
+            title: "Delete?",
+            text: "Please ensure and then confirm!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: !0
+        }).then(function (e) {
+
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{url('/delete')}}/" + id,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function (results) {
+
+                        if (results.success === true) {
+                            swal("Done!", results.message, "success");
+                        } else {
+                            swal("Error!", results.message, "error");
+                        }
+                    }
+                });
+
+            } else {
+                e.dismiss;
+            }
+</script>
+
+</html>
