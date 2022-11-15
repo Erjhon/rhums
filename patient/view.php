@@ -140,7 +140,7 @@ if (isset($_GET['logout'])) {
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Update Profile</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">APPOINTMENT</a>
 
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
@@ -206,12 +206,12 @@ if (isset($_GET['logout'])) {
     </div>
     <!-- End Navbar -->
     <!-- Header -->
-    <div class="header pb-10 pt-10 pt-lg-7 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <div class="header pb-10 pt-10 pt-lg-4 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
       <!-- Mask -->
       <span class="mask" style="background: linear-gradient(
     to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8))"></span>
       <!-- Header container -->
-      <div class="container px-10 px-lg-6 my-7">
+      <div class="container px-10 px-lg-5 my-7">
         <div class="card card-outline">
           <div class="card-header">
             <h2 class="card-title">View Appointments</h2>
@@ -225,10 +225,10 @@ if (isset($_GET['logout'])) {
                   <div class="table-responsive">
                     <table class="table table-border table-hover custom-table datatable mb-0 text-center">
                       <tr>
-                        <th>Patient ID</th>
-                        <th>Reason of appointment</th>
-                        <th>Schedule</th>
-                        <th>Status</th>
+                        <th>PATIENT ID</th>
+                        <th>REASON FOR APPOINTMENT</th>
+                        <th>SCHEDULE</th>
+                        <th>STATUS</th>
                       </tr>
                       <?php
                       $result = mysqli_query($conn, "SELECT * FROM appointments WHERE `p_id` = {$user_id}");
