@@ -286,7 +286,7 @@ $run = mysqli_query($conn,$query);
                                     ?>
                                   </td>
                                   <td align="center">
-                                    <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id= <?php echo $row['id'] ?>" id='btn'>Cancel</a>
+                                    <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id= <?php echo $row['id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
                                   </button>
                                   </td>
                                  <!--   <td align="center">
