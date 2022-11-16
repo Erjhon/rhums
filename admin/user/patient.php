@@ -94,29 +94,4 @@
       </div>
     </div>
   </div>
-<script>
-	$(document).ready(function(){
-		$('.delete_data').click(function(){
-			_conf("Are you sure you want to delete this user permanently?","delete_user",[$(this).attr('data-id')])
-		})
-		$('.table').dataTable();
-	})
-	function delete_user($id){
-		start_loader();
-		$.ajax({
-			url:_base_url_+"classes/Users.php?f=delete",
-			method:"POST",
-			data:{id: $id},
-			dataType:"json",
-			success:function(resp){
-				if(resp ==1){
-					location.href = './?page=user/patient';
-				 }else{
-					alert_toast("An error occured",'error');
-					end_loader();
-                    console.log(resp)
-				}
-			}
-		})
-	}
-</script>
+

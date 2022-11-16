@@ -240,8 +240,9 @@ $run = mysqli_query($conn,$query);
               <div class="row">
                 <div class="col-md-12">
                   <div class="table-responsive">
-                    <table class="table table-border table-hover custom-table datatable mb-0 text-center">
-                      <tr>
+                    <table class="table table-bordered table-hover table-stripped" id="indi-list">
+
+                      <tr class="text-center">
                         <th>PATIENT ID</th>
                         <th>REASON FOR APPOINTMENT</th>
                         <th>SCHEDULE</th>
@@ -249,22 +250,15 @@ $run = mysqli_query($conn,$query);
                         <th>ACTION</th>
                         <!-- <th>ACTION</th> -->
                       </tr>
+
                       <?php
                       $result = mysqli_query($conn, "SELECT * FROM appointments WHERE `p_id` = {$user_id}");
-                      ?>
-                      <tbody>
-                        <?php
-                        if (mysqli_num_rows($result) > 0) {
-                          ?>
+                      ?>        
+                        <?php if (mysqli_num_rows($result) > 0) { ?>
+                            <?php $i = 0; 
+                              while ($row = mysqli_fetch_array($result)) { ?>
 
-                          <tbody>
-                            <?php
-                            $i = 0;
-                            while ($row = mysqli_fetch_array($result)) {
-                              ?>
-
-
-                              <tr>
+                              <tr class="text-center">
                                 <td><b>PA-<?php echo $row["patient_id"]; ?></td>
                                   <td><?php echo $row["reason"]; ?></td>
                                   <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>
@@ -286,42 +280,26 @@ $run = mysqli_query($conn,$query);
                                     ?>
                                   </td>
                                   <td align="center">
-                                    <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id= <?php echo $row['id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
-                                  </button>
+                                    <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="javascript:void(0)" href="view.php?id= <?php echo $row['id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
+                                    </button>
                                   </td>
-                                 <!--   <td align="center">
-                                    <button id="delete" class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="#cancel" data-toggle="modal" data-target="#cancel" id='btn_delete' >Cancel appointment</a>
-                                  </button>
-                                  </td> -->
-                              </tr>
-                              <?php
-                              $i++;
-                            }
-                            ?>
-                            <?php
-                          } else {
-                            echo '<div class=" text-center alert-primary text-white"><i class="fa fa-exclamation-triangle"> </i> No Results Found</div>';
-                          }
-                          ?>
-
-<!--  <?php   
-$i=1;  
-if ($num = mysqli_num_rows($run)>0) {  
-while ($result = mysqli_fetch_assoc($run)) {  
-echo "  
-<tr class='data'>  
-<td hidden>".$i++."</td>  
-<td>".$result['patient_id']."</td>  
-<td>".$result['reason']."</td>   
-<td>".$result['date_sched']."</td>
-<td><a href='view.php?id=".$result['id']."' id='btn'>Delete</a></td>  
-</tr>  
-";  
-}  
-}  
-?> -->
+<!--   <td align="center">
+<button id="delete" class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="#cancel" data-toggle="modal" data-target="#cancel" id='btn_delete' >Cancel appointment</a>
+</button>
+</td> -->
+</tr>
+<?php
+$i++;
+}
+?>
+<?php
+} else {
+  echo '<div class=" text-center alert-primary text-white"><i class="fa fa-exclamation-triangle"> </i> No Results Found</div>';
+}
+?>
 
 
+<div class="sidebar-overlay" data-reff=""></div>
 </tbody>
 </table>
 </div>
@@ -337,40 +315,4 @@ echo "
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 
 </body>
-
-<script>
-    function deleteConfirmation(id) {
-        swal({
-            title: "Delete?",
-            text: "Please ensure and then confirm!",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: !0
-        }).then(function (e) {
-
-            if (e.value === true) {
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-                $.ajax({
-                    type: 'POST',
-                    url: "{{url('/delete')}}/" + id,
-                    data: {_token: CSRF_TOKEN},
-                    dataType: 'JSON',
-                    success: function (results) {
-
-                        if (results.success === true) {
-                            swal("Done!", results.message, "success");
-                        } else {
-                            swal("Error!", results.message, "error");
-                        }
-                    }
-                });
-
-            } else {
-                e.dismiss;
-            }
-</script>
-
 </html>
