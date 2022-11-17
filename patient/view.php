@@ -254,35 +254,35 @@ $run = mysqli_query($conn,$query);
                       <?php
                       $result = mysqli_query($conn, "SELECT * FROM appointments WHERE `p_id` = {$user_id}");
                       ?>        
-                        <?php if (mysqli_num_rows($result) > 0) { ?>
-                            <?php $i = 0; 
-                              while ($row = mysqli_fetch_array($result)) { ?>
+                      <?php if (mysqli_num_rows($result) > 0) { ?>
+                        <?php $i = 0; 
+                        while ($row = mysqli_fetch_array($result)) { ?>
 
-                              <tr class="text-center">
-                                <td><b>PA-<?php echo $row["patient_id"]; ?></td>
-                                  <td><?php echo $row["reason"]; ?></td>
-                                  <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>
-                                  <td class="text-center">
-                                    <?php
-                                    switch ($row['status']) {
-                                      case (0):
-                                      echo '<span class="badge badge-primary">Done</span>';
-                                      break;
-                                      case (1):
-                                      echo '<span class="badge badge-success">Confirmed</span>';
-                                      break;
-                                      case (2):
-                                      echo '<span class="badge badge-danger">Cancelled</span>';
-                                      break;
-                                      default:
-                                      echo '<span class="badge badge-secondary">NA</span>';
-                                    }
-                                    ?>
-                                  </td>
-                                  <td align="center">
-                                    <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id= <?php echo $row['id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
-                                    </button>
-                                  </td>
+                          <tr class="text-center">
+                            <td><b>PA-<?php echo $row["patient_id"]; ?></td>
+                              <td><?php echo $row["reason"]; ?></td>
+                              <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>
+                              <td class="text-center">
+                                <?php
+                                switch ($row['status']) {
+                                  case (0):
+                                  echo '<span class="badge badge-primary">Done</span>';
+                                  break;
+                                  case (1):
+                                  echo '<span class="badge badge-success">Confirmed</span>';
+                                  break;
+                                  case (2):
+                                  echo '<span class="badge badge-danger">Cancelled</span>';
+                                  break;
+                                  default:
+                                  echo '<span class="badge badge-secondary">NA</span>';
+                                }
+                                ?>
+                              </td>
+                              <td align="center">
+                                <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id= <?php echo $row['id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
+                                </button>
+                              </td>
 <!--   <td align="center">
 <button id="delete" class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="#cancel" data-toggle="modal" data-target="#cancel" id='btn_delete' >Cancel appointment</a>
 </button>

@@ -76,7 +76,7 @@
 							<td><b>PA-<?php echo $row['id'] ?></td>
 							<td><?php echo $row['name'] ?></td>
 							<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
-							<td><?php echo $row['date_created'] ?></td>
+							<td><?php echo date("M d, Y h:i A",strtotime($row['date_created'])) ?></td>
 							<td class="text-center">
 								<?php 
 								switch($row['status']){ 
