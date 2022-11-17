@@ -433,7 +433,7 @@ if(isset($_POST['submit'])){
       return false; 
     }
     if(!isNaN(username)){
-      document.getElementById('un').innerHTML ="<b> ** Only characters are allowed.";
+      document.getElementById('un').innerHTML ="<b> ** A combination of letters and numbers are only allowed.";
       return false;
     }
 

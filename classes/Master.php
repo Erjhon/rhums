@@ -97,7 +97,7 @@ class Master extends DBConnection
 			$patient_id = (empty($patient_id)) ? $this->conn->insert_id : $patient_id;
 			if (date("Y-m-d H:i", strtotime($date_sched)) <= date("Y-m-d H:i")) {
 				$resp['status'] = 'failed';
-				$resp['msg'] = "Invalid date";
+				$resp['msg'] = "The selected date has already passed.";
 				return json_encode($resp);
 				exit;
 			}
