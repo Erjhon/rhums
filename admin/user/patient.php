@@ -17,7 +17,7 @@
 	<div class="card-header">
 		<h2 class="card-title text-center">List of Patient Users</h2>
 		<div class="card-tools">
-			<a href="?page=user/manage_patient" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+			<!-- <a href="?page=user/manage_patient" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a> -->
 		</div>
 	</div>
 	<div class="card-body ">
@@ -26,7 +26,7 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<!-- <th>Avatar</th> -->
+						<th>Avatar</th>
 						<th>Name</th>
 						<th>Username</th>
 						<!-- <th>User Type</th> -->
@@ -41,51 +41,51 @@
 						?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
-<!-- 			<td class="avatar avatar-sm rounded-circle">
-<?php
-$select = mysqli_query($conn, "SELECT * FROM patient") or die('query failed');
-if(mysqli_num_rows($select) > 0){
-$fetch = mysqli_fetch_assoc($select);
-}
-if($fetch['image'] == ''){
-echo '<img src="../patient/images/default-avatar.png">';
-}else{
-echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-}
-?>
+							<td class="avatar avatar-sm rounded-circle">
+								<?php
+								$select = mysqli_query($conn, "SELECT * FROM patient") or die('query failed');
+								if(mysqli_num_rows($select) > 0){
+									$fetch = mysqli_fetch_assoc($select);
+								}
+								if($fetch['image'] == ''){
+									echo '<img src="../patient/images/default-avatar.png">';
+								}else{
+									echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
+								}
+								?>
+							</td>
 
-</td> -->
-<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
-<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
-<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
-<td align="center">
-	<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-		Action
-		<span class="sr-only">Toggle Dropdown</span>
-	</button>
-	<div class="dropdown-menu" role="menu">
-		<a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a>
-		<!-- ?page=user/manage_user&id=<?php echo $row['id'] ?> -->
-		<div class="dropdown-divider"></div>
-		<a class="dropdown-item delete_data" href="?page=user/patient&id=<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
+							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
+							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
+							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
+							<td align="center">
+								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+									Action
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<div class="dropdown-menu" role="menu">
+									<a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a>
+									<!-- ?page=user/manage_user&id=<?php echo $row['id'] ?> -->
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item delete_data" href="?page=user/patient&id=<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
+								</div>
+							</td>
+						</tr>
+						<?php if (isset($_GET['id'])) {  
+							$id = $_GET['id'];  
+							$query = "DELETE FROM `patient` WHERE id = '$id'";  
+							$run = mysqli_query($conn,$query);  
+							if ($run) {  
+
+							}else{  
+								echo "Error: ".mysqli_error($conn);  
+							}  
+						} ?>
+					<?php endwhile; ?>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</td>
-</tr>
-<?php if (isset($_GET['id'])) {  
-	$id = $_GET['id'];  
-	$query = "DELETE FROM `patient` WHERE id = '$id'";  
-	$run = mysqli_query($conn,$query);  
-	if ($run) {  
-
-	}else{  
-		echo "Error: ".mysqli_error($conn);  
-	}  
-} ?>
-<?php endwhile; ?>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 </div>
 <div class="modal fade" id="confirm_modal" role='dialog'>
@@ -107,6 +107,6 @@ echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
 <script type="text/javascript">
 	
 	$(document).ready( function () {
-    $('table').DataTable();
-} );
+		$('table').DataTable();
+	} );
 </script>
