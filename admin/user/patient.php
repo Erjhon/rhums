@@ -16,13 +16,13 @@
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h2 class="card-title text-center">List of Patient Users</h2>
-	<!-- 	<div class="card-tools">
+		<div class="card-tools">
 			<a href="?page=user/manage_patient" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
-		</div> -->
+		</div>
 	</div>
 	<div class="card-body ">
 		<div class="container-fluid">
-			<table class="table py-1 py-lg-1 table-hover table-striped text-center">
+			<table class="table py-1 py-lg-1 table-hover table-striped text-center datatable">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -52,9 +52,9 @@ echo '<img src="../patient/images/default-avatar.png">';
 }else{
 echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
 }
-?> -->
+?>
 
-</td>
+</td> -->
 <td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
 <td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 <!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
@@ -64,7 +64,7 @@ echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
 		<span class="sr-only">Toggle Dropdown</span>
 	</button>
 	<div class="dropdown-menu" role="menu">
-		<!-- <a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a> -->
+		<a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a>
 		<!-- ?page=user/manage_user&id=<?php echo $row['id'] ?> -->
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item delete_data" href="?page=user/patient&id=<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -104,4 +104,9 @@ echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+	
+	$(document).ready( function () {
+    $('table').DataTable();
+} );
+</script>
