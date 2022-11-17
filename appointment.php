@@ -13,7 +13,7 @@
          <div class="row gx-0">
              <div class="col-md-6 text-lg-start mb-2 mb-lg-0">
                  <div class="d-inline-flex align-items-center">
-                     <small class="py-1"><i class="far fa-clock text-primary me-3"></i>Clinic Hours: Mon - Fri : 8:00 AM - 5:00 PM </small>
+                     <small class="py-1"><i class="far fa-clock text-primary me-3"></i>Clinic Hours: Mon - Fri : 8:00 AM - 12:00 PM & 1:00 - 5:00 PM </small>
                  </div>
              </div>
          </div>

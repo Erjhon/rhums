@@ -20,7 +20,7 @@
         <div class="row gx-0">
             <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
-                  <marquee> <small class="py-2"><i class="far fa-clock text-primary me-4"></i>Clinic Hours: Mon - Fri : 8:00 AM - 5:00 PM </small></marquee>
+                  <marquee> <small class="py-2"><i class="far fa-clock text-primary me-4"></i>Clinic Hours: Mon - Fri : 8:00 AM - 12:00 PM & 1:00 PM - 5:00 PM </small></marquee>
                 </div>
             </div>
         </div>
