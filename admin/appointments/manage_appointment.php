@@ -47,12 +47,14 @@ if (!empty($_SESSION['user_id'])) {
     $gender = "{$row['gender']}";
     $dob = "{$row['dob']}";
     $address = "{$row['address']}";
+    $reason = "";
 } else {
     $full_name = "";
     $contact = "";
     $gender = "";
     $dob = "";
     $address = "";
+    $reason = "";
 }
 
 ?>
@@ -99,19 +101,31 @@ if (!empty($_SESSION['user_id'])) {
 
                 <div class="form-group">
                     <label for="address" class="control-label">Address</label>
-                    <textarea class="form-control" name="address" rows="1" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea>
+                    <textarea class="form-control" name="address" rows="2" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea>
                 </div>
                 <?php if ($_settings->userdata('id') > 0) : ?>
 
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
-                        <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea>
+                        <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
+                        <select name="reason" id="reason" class="custom custom-select">
+                            <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
+                            <option value="Immunization"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
+                            <option value="Pre-Natal" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Pre-Natal</option>
+                            <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                        </select>
                     </div>
 
                 <?php else : ?>
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
-                        <textarea class="form-control" name="reason" rows="1" required></textarea>
+                        <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
+                        <select name="reason" id="reason" class="custom custom-select">
+                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
+                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
+                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Pre-Natal</option>
+                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                        </select>
 
                     </div>
                 <?php endif; ?>
@@ -119,6 +133,14 @@ if (!empty($_SESSION['user_id'])) {
                     <label for="date_sched" class="control-label">Preferred Appointment Date and Time*</label>
                     <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
                 </div>
+
+                <div class="col-lg-12 col-sm-6 p-1">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="authorized" value="" id="authorized">
+                        <label class="form-check-label" for="authorized">Authorized Person?</label>
+                    </div>
+                </div>
+
                 <?php if ($_settings->userdata('id') > 0) : ?>
                     <div hidden class="form-group">
                         <label for="status" class="control-label">Status</label>
@@ -196,3 +218,14 @@ if (!empty($_SESSION['user_id'])) {
         })
     })
 </script>
+
+<!---javascript file-->
+     <script src="js/bootstrap.bundle.min.js"></script>
+     <script type="text/javascript">
+          $(document).ready(function(){
+              $('#authorized').click(function(){
+                var inputValue = $(this).attr("value");
+                $(".box" + inputValue).toggle();
+              });
+          });
+     </script>
