@@ -53,6 +53,7 @@
 						<th class="text-center">#</th>
 						<th>Patient No.</th>
 						<th>Patient Name</th>
+						<th>Reason</th>
 						<th>Schedule</th>
 						<th>Creation Date</th>
 						<th>Status</th>
@@ -62,7 +63,7 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT p.*,a.date_sched,a.status,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id  order by unix_timestamp(a.date_sched) desc ");
+						$qry = $conn->query("SELECT p.*,a.date_sched,a.reason,a.status,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id  order by unix_timestamp(a.date_sched) desc ");
 						while($row = $qry->fetch_assoc()):
 					?>
 					
@@ -75,6 +76,7 @@
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td><b>PA-<?php echo $row['id'] ?></td>
 							<td><?php echo $row['name'] ?></td>
+							<td><?php echo $row['reason'] ?></td>
 							<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
 							<td><?php echo date("M d, Y h:i A",strtotime($row['date_created'])) ?></td>
 							<td class="text-center">
