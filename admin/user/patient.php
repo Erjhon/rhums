@@ -30,7 +30,7 @@
 						<th>Name</th>
 						<th>Username</th>
 						<!-- <th>User Type</th> -->
-						<th>Action</th>
+						<!-- <th>Action</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -58,7 +58,7 @@
 							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
-							<td align="center">
+							<td hidden align="center">
 								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 									Action
 									<span class="sr-only">Toggle Dropdown</span>

@@ -61,7 +61,7 @@
                 
                 <td colspan="3">
                     <center>
-                    <a href="admin/login.php" >
+                    <a href="admin/login.php" onClick="return confirm('You need to log in first before setting an appointment')" title="Set an Appointment" tooltip-placement="top" tooltip="Login" >
                         <input type="button" value="Set an Appointment" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
                     </a>
                 </center>
