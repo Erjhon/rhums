@@ -212,8 +212,8 @@ if(isset($_POST['change_pw'])){
             }
          }
       ?> 
-      <div class="flex mt--4">
-         <div class="inputBox w-100" style="margin-bottom: 155px">
+      <div class="flex mt-6">
+         <div class="inputBox w-100" style="margin-bottom: 5px">
             <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
             <span>Current Password:</span>
             <input type="password" name="update_pass" placeholder="Enter current password" class="box">
@@ -221,10 +221,10 @@ if(isset($_POST['change_pw'])){
             <input type="password" name="new_pass" placeholder="Enter new password" class="box">
             <span>Confirm Password:</span>
             <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
-         </div>
-      </div>
       <div class="form-group text-center w-100 form-group">
         <input type="submit" class="btn btn-primary" value="Update" name="change_pw">
+      </div>
+         </div>
       </div>
       
    </form>
