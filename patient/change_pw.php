@@ -4,51 +4,23 @@ include '../config.php';
 // session_start();
 $user_id = $_SESSION['user_id'];
 
-if(isset($_POST['update_profile'])){
+if(isset($_POST['change_pw'])){
 
-   $update_fname = mysqli_real_escape_string($conn, $_POST['update_fname']);
-   $update_lname = mysqli_real_escape_string($conn, $_POST['update_lname']);
-   $update_address = mysqli_real_escape_string($conn, $_POST['update_address']);
-   $update_dob = mysqli_real_escape_string($conn, $_POST['update_dob']);
-   $update_gender = mysqli_real_escape_string($conn, $_POST['update_gender']);
-   $update_contact = mysqli_real_escape_string($conn, $_POST['update_contact']);
-   $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
+   $old_pass = $_POST['old_pass'];
+   $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
+   $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
+   $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
 
-   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
-
-   // $old_pass = $_POST['old_pass'];
-   // $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
-   // $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-   // $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
-
-   // if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
-   //    if($update_pass != $old_pass){
-   //       $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Old password not matched</div>';
-   //    }elseif($new_pass != $confirm_pass){
-   //       $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Confirmed password not matched</div>';
-   //    }else{
-   //       mysqli_query($conn, "UPDATE patient SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
-   //       $message[] = '<div class="alert alert-success text-white err_msg"> <i class="fa fa-check"></i> Password updated successfully </div>';
-   //    }
-   // }
-
-   $update_image = $_FILES['update_image']['name'];
-   $update_image_size = $_FILES['update_image']['size'];
-   $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-   $update_image_folder = 'uploaded_img/'.$update_image;
-
-   if(!empty($update_image)){
-      if($update_image_size > 2000000){
-         $message[] = 'image is too large';
+   if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
+      if($update_pass != $old_pass){
+         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Old password not matched</div>';
+      }elseif($new_pass != $confirm_pass){
+         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Confirmed password not matched</div>';
       }else{
-         $image_update_query = mysqli_query($conn, "UPDATE patient SET image = '$update_image' WHERE id = '$user_id'") or die('query failed');
-         if($image_update_query){
-            move_uploaded_file($update_image_tmp_name, $update_image_folder);
-         }
-         $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> Image successfully updated </div>';
+         mysqli_query($conn, "UPDATE patient SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
+         $message[] = '<div class="alert alert-success text-white err_msg"> <i class="fa fa-check"></i> Password updated successfully </div>';
       }
    }
-
 }
 
 ?>
@@ -83,7 +55,6 @@ if(isset($_POST['update_profile'])){
 #selectAll{
    top:0
 }
-
 </style>
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -96,65 +67,11 @@ if(isset($_POST['update_profile'])){
     <a class="navbar-img text-center">
           <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a>
-    <!-- User -->
-    <!-- User -->
-    <ul class="nav align-items-center d-md-none">
-       <!--  <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-bell-55"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-    </li> -->
-    <li class="nav-item dropdown">
-      <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <div class="media align-items-center">
-           <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
-         if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
-         }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-         }
-      ?>
-
-      </span>
-    </div>
-</a>
-<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-    <div class=" dropdown-header noti-title">
-      <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></h5>
-  </div>
-  <div class="dropdown-divider"></div>
-  <a href="../patient/update_profile.php" class="dropdown-item">
-    <i class="ni ni-single-02"></i>
-    <span>My profile</span>
-</a>
-  <a href="pages/logout.php" class="dropdown-item">
-      <i class="ni ni-user-run"></i>
-      <span>Logout</span>
-  </a>
-</div>
-</li>
-</ul>
 <!-- Collapse -->
 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
     <!-- Collapse header -->
     <div class="navbar-collapse-header d-md-none">
       <div class="row">
-        <div class="col-6 collapse-brand">
-          <a href="./index.php">
-              <img src="../assets/assets/img/brand/rhu.png"  height="60" width="40"/>
-        </a>
-    </div>
     <div class="col-6 collapse-close">
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
         <span></span>
@@ -189,7 +106,7 @@ if(isset($_POST['update_profile'])){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Profile</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Change Password</a>
  
 <!-- User -->
 <ul class="navbar-nav align-items-center d-none d-md-flex">
@@ -267,13 +184,13 @@ if(isset($_POST['update_profile'])){
     to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
 
   <!-- Header container -->
-      <div class="container px-10 px-lg-10 my-4">
-<div class="card card-outline">
-  <div class="card-header">
-    <h2 class="card-title">Edit Profile</h2>
-   </div>
+    <div class="container px-10 px-lg-10 my-4">
+        <div class="card card-outline">
+            <div class="card-header">
+                <h2 class="card-title">Change Password</h2>
+           </div>
 
-<div class="update-profile ">
+    <div class="update-profile ">
 
    <?php
       $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
@@ -282,59 +199,40 @@ if(isset($_POST['update_profile'])){
       }
    ?>
 
-   <form action="" method="post" enctype="multipart/form-data">
+   <form action="" method="post">
       <?php
-         if($fetch['image'] == ''){
-            echo '<div ><img src="images/default-avatar.png"></div>';
-         }else{
-            echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
-         }
+         // if($fetch['image'] == ''){
+         //    echo '<div ><img src="images/default-avatar.png"></div>';
+         // }else{
+         //    echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
+         // }
          if(isset($message)){
             foreach($message as $message){
                echo '<div class="">'.$message.'</div>';
             }
          }
-      ?>
-      <div class="flex">
-         <div class="inputBox">
-            <span>First Name:</span>
-            <input type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>" class="box">
-            <span>Address:</span>
-            <input type="text" name="update_address" value="<?php echo $fetch['address']; ?>" class="box">
-            <span>Gender:</span>
-            <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
-            <select type="text" class="custom-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
-                <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
-                <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
-            </select>
-            <span>Contact Number:</span>
-            <input type="text" name="update_contact" value="<?php echo $fetch['contact']; ?>" class="box">
-         </div>
-         <div class="inputBox">
-            <span>Last Name:</span>
-            <input type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>" class="box">
-            <span>Date of Birth:</span>
-            <input type="date" name="update_dob" value="<?php echo $fetch['dob']; ?>" class="box">
-            <span>Username:</span>
-            <input type="username" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
-            <span>Profile Picture:</span>
-            <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
-         </div>
-         <!-- <div class="inputBox">
+      ?> 
+      <div class="flex mt--4">
+         <div class="inputBox w-100" style="margin-bottom: 155px">
             <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-            <span>Old password :</span>
-            <input type="password" name="update_pass" placeholder="Enter previous password" class="box">
-            <span>New password :</span>
+            <span>Current Password:</span>
+            <input type="password" name="update_pass" placeholder="Enter current password" class="box">
+            <span>New Password:</span>
             <input type="password" name="new_pass" placeholder="Enter new password" class="box">
-            <span>Confirm password :</span>
+            <span>Confirm Password:</span>
             <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
-         </div> -->
+         </div>
       </div>
       <div class="form-group text-center w-100 form-group">
-        <input type="submit" class="btn btn-primary" value="Update" name="update_profile">
+        <input type="submit" class="btn btn-primary" value="Update" name="change_pw">
       </div>
       
    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
  <!--   <script type="text/javascript">
     window.history.forward();
     function noBack()

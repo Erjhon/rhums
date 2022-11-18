@@ -61,7 +61,7 @@ $run = mysqli_query($conn,$query);
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-img text-center" href="../index.php">
+      <a class="navbar-img text-center">
         <img src="../assets/assets/img/brand/rhu.png" height="100" width="100" />
       </a>
       <!-- User -->
@@ -190,6 +190,10 @@ $run = mysqli_query($conn,$query);
             <a href="../patient/update_profile.php" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
+            </a>
+            <a href="../patient/change_pw.php" class="dropdown-item">
+              <i class="ni ni-lock-circle-open"></i>
+              <span>Change Password</span>
             </a>
 
             <div class="dropdown-divider"></div>

@@ -48,7 +48,7 @@ if(isset($_GET['logout'])){
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Brand -->
-    <a class="navbar-img text-center" href="#">
+    <a class="navbar-img text-center">
           <img src="./assets/assets/img/brand/rhu.png" height="100" width="100"/>
         </a>
     <!-- User -->
@@ -196,28 +196,10 @@ if(isset($_GET['logout'])){
     <i class="ni ni-single-02"></i>
     <span>My profile</span>
 </a>
-<!-- <a href="../examples/profile.html" class="dropdown-item">
-    <i class="ni ni-settings-gear-65"></i>
-    <span>Settings</span>
+<a href="patient/change_pw.php" class="dropdown-item">
+    <i class="ni ni-lock-circle-open"></i>
+    <span>Change Password</span>
 </a>
-<a href="../examples/profile.html" class="dropdown-item">
-    <i class="ni ni-calendar-grid-58"></i>
-    <span>Activity</span>
-</a>
-<a href="../examples/profile.html" class="dropdown-item">
-    <i class="ni ni-support-16"></i>
-    <span>Support</span>
-</a> -->
-<!-- <div class="dropdown-divider"></div>
-<a href="client/login.php" class="dropdown-item">
-    <i class="ni ni-user-run"></i>
-    <span>Logout</span>
-</a>
-</div>
-</li>
-</ul>
-</div>
-</nav> -->
 
 <div class="dropdown-divider"></div>
               <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
