@@ -26,7 +26,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     <p><b>Patient Name:</b> <?php echo $patient['name'] ?></p>
     <p><b>Gender:</b> <?php echo ucwords($patient['gender']) ?></p>
     <p><b>Date of Birth:</b> <?php echo date("F d, Y",strtotime($patient['dob'])) ?></p>
-    <p><b>Contact #:</b> <?php echo $patient['contact'] ?></p>
+    <p><b>Contact Number:</b> <?php echo $patient['contact'] ?></p>
     <!-- <p><b>Email #:</b> <?php echo $patient['email'] ?></p> -->
     <p><b>Address:</b> <?php echo $patient['address'] ?></p>
     <p><b>Reason for Appointment:</b> <?php echo $reason ?></p>
