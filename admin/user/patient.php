@@ -58,18 +58,21 @@
 							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
+
 							<td hidden align="center">
+
+							<!-- <td align="center">
 								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 									Action
 									<span class="sr-only">Toggle Dropdown</span>
 								</button>
 								<div class="dropdown-menu" role="menu">
-									<a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a>
+									<a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a> -->
 									<!-- ?page=user/manage_user&id=<?php echo $row['id'] ?> -->
-									<div class="dropdown-divider"></div>
+								<!-- 	<div class="dropdown-divider"></div>
 									<a class="dropdown-item delete_data" href="?page=user/patient&id=<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
 								</div>
-							</td>
+							</td> -->
 						</tr>
 						<?php if (isset($_GET['id'])) {  
 							$id = $_GET['id'];  
