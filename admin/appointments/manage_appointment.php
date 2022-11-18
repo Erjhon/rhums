@@ -82,7 +82,7 @@ if (!empty($_SESSION['user_id'])) {
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
                 </div>
                 <div class="form-group">
-                    <label for="contact" class="control-label">Contact No.</label>
+                    <label for="contact" class="control-label">Contact Number</label>
                     <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11">
                 </div>
                 <div class="form-group">
