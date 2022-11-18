@@ -15,15 +15,14 @@ if(isset($_POST['update_profile'])){
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
    mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
+   $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> User successfully updated </div>';
 
    // $old_pass = $_POST['old_pass'];
    // $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
    // $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
    // $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
 
-   // if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
-   //    if($update_pass != $old_pass){
-   //       $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Old password not matched</div>';
+   
    //    }elseif($new_pass != $confirm_pass){
    //       $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Confirmed password not matched</div>';
    //    }else{
@@ -46,10 +45,13 @@ if(isset($_POST['update_profile'])){
             move_uploaded_file($update_image_tmp_name, $update_image_folder);
          }
          $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> Image successfully updated </div>';
-      }
+           
+      } 
+           
    }
 
 }
+
 
 ?>
  <!DOCTYPE html>
