@@ -210,7 +210,7 @@ if(isset($_POST['submit'])){
 
               <div class="form-group col-3 mb--1">
                 <h5 for="gender" class="text-dark required">Gender</h5>
-                <select type="text" class="custom-select" name="gender" id="gender">
+                <select type="text" class="form-control form-select-sm-6" name="gender" id="gender">
                   <option >Male</option>
                   <option >Female</option>
                 </select>
