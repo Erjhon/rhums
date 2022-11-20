@@ -272,11 +272,10 @@ if(isset($_POST['update_profile'])){
       <div class="container px-10 px-lg-10 my-4">
 <div class="card card-outline">
   <div class="card-header">
-    <h2 class="card-title">Edit Profile</h2>
+    <h2>Edit Profile</h2>
    </div>
 
 <div class="update-profile ">
-
    <?php
       $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
       if(mysqli_num_rows($select) > 0){
@@ -304,7 +303,6 @@ if(isset($_POST['update_profile'])){
             <span>Address:</span>
             <input type="text" name="update_address" value="<?php echo $fetch['address']; ?>" class="box">
             <span>Gender:</span>
-            <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
             <select type="text" class="custom-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
                 <option hidden><?php echo $fetch['gender']; ?></option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
@@ -323,6 +321,13 @@ if(isset($_POST['update_profile'])){
             <span>Profile Picture:</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
          </div>
+      </div>
+      <div class="form-group text-center w-100 form-group">
+        <input type="submit" class="btn btn-primary" value="Update" name="update_profile">
+      </div>
+   </form>
+
+            <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
          <!-- <div class="inputBox">
             <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
             <span>Old password :</span>
@@ -332,12 +337,6 @@ if(isset($_POST['update_profile'])){
             <span>Confirm password :</span>
             <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
          </div> -->
-      </div>
-      <div class="form-group text-center w-100 form-group">
-        <input type="submit" class="btn btn-primary" value="Update" name="update_profile">
-      </div>
-      
-   </form>
  <!--   <script type="text/javascript">
     window.history.forward();
     function noBack()

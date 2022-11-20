@@ -44,7 +44,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					<label  for="user_type">User Type</label>
                       <select  class="input-group input-group-alternative" name="role">
                           <!-- <option class="text-muted" value="admin">Admin</option> -->
-                          <option class="text-muted" value="staff">Staff</option>
+                          <option class="text-muted" value="Staff">Staff</option>
                      </select>
                 </div>
 

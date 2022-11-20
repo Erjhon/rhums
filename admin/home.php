@@ -20,7 +20,7 @@ $sched_arr = array();
                   <h5 class="card-title text-uppercase text-dark mb-0">Total Registered Patients</h5>
 
                   <?php
-                  if ($_SESSION['userdata']['role'] == 'staff') {
+                  if ($_SESSION['userdata']['role'] == 'Staff') {
                     if (!isset($_GET['r'])) {
 
                   ?>

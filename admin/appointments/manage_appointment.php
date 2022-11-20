@@ -70,6 +70,7 @@ if (!empty($_SESSION['user_id'])) {
 <div class="container-fluid">
     <form action="" id="appointment_form" class="py-2">
         <div class="row" id="appointment">
+        
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
@@ -87,7 +88,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
-                    <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                    <select type="text" class="form-control form-select-sm-6" name="gender"  required>
                         <option hidden><?= $gender ?></option>
                         <option  <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option  <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>

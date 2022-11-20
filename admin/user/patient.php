@@ -22,15 +22,14 @@
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
-			<table class="table py-1 py-lg-1 table-hover table-striped text-center datatable">
+			<table class=" table py-1 py-lg-1 table-hover table-striped text-center datatable ">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>Avatar</th>
 						<th>Name</th>
 						<th>Username</th>
-						<!-- <th>User Type</th>
-						<th>Action</th> -->
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -40,7 +39,7 @@
 					while($row = $qry->fetch_assoc()):
 						?>
 						<tr>
-							<td class="text-center"><?php echo $i++; ?></td>
+							<td class="text-center"><?php echo $i++; ?></td>					
 							<td class="avatar avatar-sm rounded-circle">
 								<?php
 								$select = mysqli_query($conn, "SELECT * FROM patient") or die('query failed');
@@ -54,26 +53,11 @@
 								}
 								?>
 							</td>
-
 							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
 
-							<td hidden align="center">
-
-							<!-- <td align="center">
-								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-									Action
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<div class="dropdown-menu" role="menu">
-									<a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a> -->
-									<!-- ?page=user/manage_user&id=<?php echo $row['id'] ?> -->
-								<!-- 	<div class="dropdown-divider"></div>
-									<a class="dropdown-item delete_data" href="?page=user/patient&id=<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
-								</div>
-							</td> -->
-						</tr>
+							
 						<?php if (isset($_GET['id'])) {  
 							$id = $_GET['id'];  
 							$query = "DELETE FROM `patient` WHERE id = '$id'";  
