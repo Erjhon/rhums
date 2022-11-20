@@ -25,7 +25,7 @@ $sched_arr = array();
 
                   ?>
                       <script>
-                        location.href = '<?= base_url . "/admin/Staff.php?r=true" ?>'
+                        location.href = '<?= base_url . "admin/staff.php?r=true" ?>'
                       </script>
                   <?php
                     }

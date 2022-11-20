@@ -3,7 +3,7 @@
 	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
 <?php endif;?>
-
+ 
 <style>
     .img-avatar{
         width:45px;
@@ -13,6 +13,7 @@
         border-radius:100%;
     }
 </style>
+
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h2 class="card-title text-center">List of System Users</h2>

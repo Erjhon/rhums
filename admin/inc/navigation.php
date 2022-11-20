@@ -111,14 +111,17 @@
             </a>
           </li>
 
+             <?php
+                  if ($_SESSION['userdata']['role'] == 'Admin') {
+                  ?>   
             <li class="dropdown">
-              <a href="<?php echo base_url ?>admin/?page=user/list" class="nav-link nav-user_list">
+              <a href="<?php echo base_url ?>admin/?page=user/list"  class="nav-link nav-user_list">
                 <i class="nav-icon fas fa-users text-yellow"></i>
-              
                   <span class="text-dark">User List</span>
-              
               </a>
             </li>
+              <?php }?>
+              
              <li class="dropdown">
               <a href="<?php echo base_url ?>admin/?page=user/patient" class="nav-link nav-user_patient">
                 <i class="nav-icon fas fa-user text-purple"></i>
