@@ -83,11 +83,11 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11">
+                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
-                    <select type="text" class="custom-select" name="gender" required>
+                    <select type="text" class="form-control form-select-sm-6" name="gender" required>
                         <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>
@@ -108,7 +108,7 @@ if (!empty($_SESSION['user_id'])) {
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
-                        <select name="reason" id="reason" class="custom custom-select">
+                        <select name="reason" id="reason" class="form-control form-select-sm-6">
                             <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                             <option value="Immunization"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
                             <option value="Pre-Natal" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
@@ -120,7 +120,7 @@ if (!empty($_SESSION['user_id'])) {
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
-                        <select name="reason" id="reason" class="custom custom-select">
+                        <select name="reason" id="reason" class="form-control form-select-sm-6">
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
