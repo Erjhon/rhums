@@ -36,29 +36,25 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
 //check if session is empty
 if (!empty($_SESSION['user_id'])) {
 
-    $current_user_id = $_SESSION['user_id'];
-    $get_user_info = $conn->query("SELECT * FROM `patient` WHERE `id` = {$current_user_id}");
-    $row = $get_user_info->fetch_assoc();
+    // $current_user_id = $_SESSION['user_id'];
+    // $get_user_info = $conn->query("SELECT * FROM `patient` WHERE `id` = {$current_user_id}");
+    // $row = $get_user_info->fetch_assoc();
 
 
-    $user_id = $row['id'];
-    $full_name = "{$row['firstname']} {$row['lastname']}";
-    $contact = "{$row['contact']}";
-    $gender = "{$row['gender']}";
-    $dob = "{$row['dob']}";
-    $address = "{$row['address']}";
-    $reason = "";
-
-
-    
-} else {
+    // $user_id = $row['id'];
+    // $full_name = "{$row['firstname']} {$row['lastname']}";
+    // $contact = "{$row['contact']}";
+    // $gender = "{$row['gender']}";
+    // $dob = "{$row['dob']}";
+    // $address = "{$row['address']}";
+    // $reason = "";
+// } else {
     $full_name = "";
     $contact = "";
     $gender = "";
     $dob = "";
     $address = "";
     $reason = "";
-    $created = "Patient";
 }
 
 ?>
@@ -78,10 +74,12 @@ if (!empty($_SESSION['user_id'])) {
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
+
                 <div class="form-group">
                     <label for="name" class="control-label">Fullname</label>
                     <input type="text" class="form-control" name="name" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
                 </div>
+                
                 <div hidden class="form-group">
                     <label for="email" class="control-label">Email</label>
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
@@ -90,63 +88,61 @@ if (!empty($_SESSION['user_id'])) {
                     <label for="contact" class="control-label">Contact Number</label>
                     <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                 </div>
+
+                
+
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
-                    <select type="text" class="form-control form-select-sm-6" name="gender"  required>
-                        <option hidden><?= $gender ?></option>
+                    <select type="text" class="form-control form-select" name="gender"  required>
+                        <option class="placeholder" style="display: none" >Select gender</option>
                         <option  <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option  <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="dob" class="control-label">Date of Birth</label>
-                    <input type="date" class="form-control" name="dob" value="<?= $dob ?><?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
-                </div>
-            </div>
-            <div class="col-6">
 
                 <div class="form-group">
                     <label for="address" class="control-label">Address</label>
                     <textarea class="form-control" name="address" rows="2" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea>
                 </div>
-                <?php if ($_settings->userdata('id') > 0) : ?>
+                
+            </div>
+            <div class="col-6">
 
-                    <div class="form-group">
-                        <label for="reason" class="control-label">Reason for Appointment</label>
-                        <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
-                        <select name="reason" id="reason" class="form-control form-select-sm-6">
-                            <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option value="Immunization"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
-                            <option value="Pre-Natal" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
-                            <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
-                        </select>
-                    </div>
-
-                <?php else : ?>
-                    <div class="form-group">
-                        <label for="reason" class="control-label">Reason for Appointment</label>
-                        <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
-                        <select name="reason" id="reason" class="form-control form-select">
-                            <option class="placeholder" style="display: none" >Select reason</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
-                        </select>
-
-                    </div>
-                <?php endif; ?>
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Preferred Appointment Date and Time</label>
+                    <label for="gender" class="control-label">Relationship</label>
+                    <select type="text" class="form-control form-select" name="gender"  required>
+                        <option class="placeholder" style="display: none" >Select relationship</option>
+                        <option hidden><?= $gender ?></option>
+                        <option>Daughter</option>
+                        <option>Son</option>
+                        <option>Mother</option>
+                        <option>Father</option>
+                        <option>Relatives</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob" class="control-label">Date of Birth</label>
+                    <input type="date" class="form-control" name="dob" value="<?= $dob ?><?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason" class="control-label">Reason for Appointment</label>
+                    <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
+                    <select name="reason" id="reason" class="form-control form-select">
+                        <option class="placeholder" style="display: none" >Select reason</option>
+                        <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
+                        <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
+                        <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
+                        <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                    </select>
+
+                    </div>
+                <div class="form-group">
+                    <label for="date_sched" class="control-label">Preferred Appointment Date and Time*</label>
                     <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
                 </div>
 
-                <div class="col-lg-12 col-sm-6 p-1">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="create_new" name="authorized" value="">
-                        <label class="form-check-label" for="authorized">Appointment for others?</label>
-                    </div>
-                </div>
 
                 <?php if ($_settings->userdata('id') > 0) : ?>
                     <div hidden class="form-group">
@@ -157,7 +153,6 @@ if (!empty($_SESSION['user_id'])) {
                             <option value="2" <?php echo isset($status) && $status == "2" ? "selected" : "" ?>>Cancelled</option>
                         </select>
                     </div>
-                    <input hidden type="text" class="form-control" id="created" name="created" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>">
                 <?php else : ?>
                     <input type="hidden" name="status" value="1">
                 <?php endif; ?>
@@ -226,34 +221,14 @@ if (!empty($_SESSION['user_id'])) {
         })
     })
 
-    var indiList;
+    
     $(document).ready(function(){
         $('#create_new').click(function(){
-            uni_modal("<h2>Medical Appointment Form</h2>Please fill out the form below. An SMS notification will be sent to you.", "admin/appointments/add_appointment_others.php",'mid-large')
-
+            uni_modal("Appointment Form","appointments/manage_appointment.php",'mid-large')
         })
-        $('#selectAll').change(function(){
-            // if($(this).is(":checked") == true){
-            //  $('.invCheck').prop("checked",true)
-            // }else{
-            //  $('.invCheck').prop("checked",false)
-            // }
-            var _this = $(this)
-            count = indiList.api().rows().data().length
-            for($i = 0 ; $i < count; $i++){
-                var node = indiList.api().row($i).node()
-                console.log($(node).find('.invCheck'))
-                if(_this.is(":checked") == true){
-                    $(node).find('.invCheck').prop("checked",true)
-                    $('#selected_opt').show('slow')
-                }else{
-                    $(node).find('.invCheck').prop("checked",false)
-                    $('#selected_opt').hide('slow')
-                }
-            }
-        })
-        
     })
+
+
 
 </script>
 
