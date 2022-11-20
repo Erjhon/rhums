@@ -143,7 +143,7 @@ $run = mysqli_query($conn,$query);
 
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link bg-blue " href="view.php">
+      <a class="nav-link bg-blue text-white " href="view.php">
         <i class="ni ni-ruler-pencil text-white"></i> View Appointment
       </a>
     </li>
