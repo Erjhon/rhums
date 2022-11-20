@@ -70,7 +70,7 @@ ORDER BY date_sched ASC";
                 </div>
                 <div class=" ">
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                    <i class="fas fa-envelope"></i>
+                    <i class="ni ni-calendar-grid-58"></i>
                   </div>
                 </div>
               </div>
