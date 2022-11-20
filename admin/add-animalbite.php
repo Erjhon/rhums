@@ -66,7 +66,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action method="POST">
+                        <form action="" method="POST">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -201,10 +201,8 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
                                 <div class="col-sm-5">
                                     <div class="form-group">
-                                        <label for="gender" class="control-label">Medicine Given</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>></option>
-                                        </select>
+                                        <label>Address/Location of biting incident</label>
+                                        <textarea class="form-control" name="address" placeholder="Enter Address/Location of biting incident" required></textarea>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>

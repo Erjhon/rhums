@@ -8,6 +8,7 @@
 	top:0
 }
 </style>
+
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h2 class="card-title text-center">List of Appointments</h2>
@@ -44,6 +45,7 @@
 					<col width="25%">
 					<col width="20%">
 					<col width="20%">
+					<col width="100%">
 				</colgroup>
 				<thead>
 					<tr>
@@ -65,7 +67,7 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT p.*,a.date_sched,a.reason,a.status,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id  order by unix_timestamp(a.date_sched) desc ");
+						$qry = $conn->query("SELECT p.*,a.date_sched,a.reason,a.status,a.created,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id  order by unix_timestamp(a.date_sched) desc ");
 						while($row = $qry->fetch_assoc()):
 					?>
 					
@@ -80,8 +82,8 @@
 							<td><?php echo $row['name'] ?></td>
 							<td><?php echo $row['reason'] ?></td>
 							<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
-							<td><?php echo $row['reason'] ?></td>
 							<td><?php echo $row['name'] ?></td>
+							<td><?php echo $row['created']?></td>
 							<!-- <td><?php echo date("M d, Y h:i A",strtotime($row['date_created'])) ?></td> -->
 							<td class="text-center">
 								<?php 

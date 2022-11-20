@@ -48,6 +48,9 @@ if (!empty($_SESSION['user_id'])) {
     $dob = "{$row['dob']}";
     $address = "{$row['address']}";
     $reason = "";
+
+
+    
 } else {
     $full_name = "";
     $contact = "";
@@ -55,6 +58,7 @@ if (!empty($_SESSION['user_id'])) {
     $dob = "";
     $address = "";
     $reason = "";
+    $created = "Patient";
 }
 
 ?>
@@ -152,6 +156,7 @@ if (!empty($_SESSION['user_id'])) {
                             <option value="2" <?php echo isset($status) && $status == "2" ? "selected" : "" ?>>Cancelled</option>
                         </select>
                     </div>
+                    <input hidden type="text" class="form-control" id="created" name="created" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>">
                 <?php else : ?>
                     <input type="hidden" name="status" value="1">
                 <?php endif; ?>

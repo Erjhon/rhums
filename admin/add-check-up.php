@@ -37,12 +37,12 @@ $fetchRow = mysqli_fetch_assoc($rs);
         $dob = $_POST['dob'];
         $age = $_POST['age'];
         $address = $_POST['address'];
-        $medHistory = $_POST['medHistory'];
+        // $medHistory = $_POST['medHistory'];
         $user_id = $_SESSION['userdata']['id'];
         $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$id', '$fullname', '$user_id')") or die('query failed');
 
-        $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,medHistory,user_id)
-     VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$medHistory', '$user_id')";
+        $sql = "INSERT INTO patient_history (id,fullname,contactNo,gender,dob,age,address,user_id)
+     VALUES ('$id','$fullname','$contactNo','$gender', '$dob', '$age', '$address', '$user_id')";
         if (mysqli_query($conn, $sql)) {
 
             echo '<script>alert("Form submitted successfully")</script>';
@@ -66,7 +66,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action method="POST">
+                        <form action="" method="POST">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -124,7 +124,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div> -->
                             </div>
-                        </form>
+                      
                     </div>
                 </div>
             </div>
@@ -142,15 +142,15 @@ $fetchRow = mysqli_fetch_assoc($rs);
                             <div class="row">
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label for="dob" class="control-label">Date of Visit</label>
-                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                        <label for="" class="control-label">Date of Visit</label>
+                                        <input type="date" class="form-control" id="" name="visit" value="" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Blood Pressure 1</label>
-                                        <input class="form-control" name="fullname" placeholder="Sample: 120/80" required>
+                                        <input class="form-control" name="bp" placeholder="Sample: 120/80" >
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -158,46 +158,43 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Blood Sugar</label>
-                                        <input class="form-control" name="contactNo" placeholder="Sample: 70" required maxlength="11">
+                                        <input class="form-control" name="bs" placeholder="Sample: 70"  maxlength="11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Weight</label>
-                                        <input class="form-control" name="contactNo" placeholder="Sample: 45 kg" required maxlength="11">
+                                        <input class="form-control" name="weight" placeholder="Sample: 45 kg"  maxlength="11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <label for="gender" class="control-label">Treatment Given</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
-                                        </select>
+                                        <label>Treatment Given</label>
+                                            <textarea class="form-control" name="treatment" placeholder="Enter Treatment Given" ></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label>Quantity</label>
-                                        <input type="number" class="form-control" name="contactNo" required>
+                                        <input type="number" class="form-control" name="quant" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label>Remarks</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter remarks" required></textarea>
+                                        <textarea class="form-control" name="rem" placeholder="Enter remarks" ></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label>Assigned Staff</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter Staff Name" required></textarea>
+                                        <textarea class="form-control" name="" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
                                     </div>
                                 </div>
 
@@ -208,6 +205,9 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div> -->
                             </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -216,9 +216,6 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
 
 
-                            <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
-                            </div>
 
 
         </div>
