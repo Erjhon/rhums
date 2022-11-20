@@ -303,7 +303,7 @@ if(isset($_POST['update_profile'])){
             <span>Address:</span>
             <input type="text" name="update_address" value="<?php echo $fetch['address']; ?>" class="box">
             <span>Gender:</span>
-            <select type="text" class="custom-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
+            <select type="text" class="form-control form-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
                 <option hidden><?php echo $fetch['gender']; ?></option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
