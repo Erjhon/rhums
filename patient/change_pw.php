@@ -184,7 +184,7 @@ if(isset($_POST['change_pw'])){
     to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
 
   <!-- Header container -->
-    <div class="container px-10 px-lg-10 my-4">
+    <div class="container px-10 px-lg-6 my-2">
         <div class="card card-outline">
             <div class="card-header">
                 <h2 class="card-title">Change Password</h2>

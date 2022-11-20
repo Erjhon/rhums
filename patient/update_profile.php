@@ -14,7 +14,7 @@ if(isset($_POST['update_profile'])){
    $update_contact = mysqli_real_escape_string($conn, $_POST['update_contact']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
+   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email', gender = '$update_gender'  WHERE id = '$user_id'") or die('query failed');
    $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> User successfully updated </div>';
 
    // $old_pass = $_POST['old_pass'];
@@ -306,6 +306,7 @@ if(isset($_POST['update_profile'])){
             <span>Gender:</span>
             <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
             <select type="text" class="custom-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
+                <option hidden><?php echo $fetch['gender']; ?></option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
             </select>

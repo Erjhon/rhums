@@ -13,14 +13,14 @@
 		border-radius:100%;
 	}
 </style>
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary" >
 	<div class="card-header">
-		<h2 class="card-title text-center">List of Patient Users</h2>
+		<h2 class="card-title text-center ">List of Patient Users</h2>
 		<div class="card-tools">
 			<!-- <a href="?page=user/manage_patient" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a> -->
 		</div>
 	</div>
-	<div class="card-body ">
+	<div class="card-body">
 		<div class="container-fluid">
 			<table class="table py-1 py-lg-1 table-hover table-striped text-center datatable">
 				<thead>
@@ -29,8 +29,8 @@
 						<th>Avatar</th>
 						<th>Name</th>
 						<th>Username</th>
-						<!-- <th>User Type</th> -->
-						<!-- <th>Action</th> -->
+						<!-- <th>User Type</th>
+						<th>Action</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -85,8 +85,11 @@
 							}  
 						} ?>
 					<?php endwhile; ?>
+
 				</tbody>
+
 			</table>
+
 		</div>
 	</div>
 </div>
@@ -107,9 +110,12 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
+
+
+		<script type="text/javascript">
 	
 	$(document).ready( function () {
 		$('table').DataTable();
 	} );
 </script>
+
