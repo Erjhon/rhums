@@ -92,7 +92,8 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Gender</label>
-                                        <select type="text" class="custom-select" name="gender" required>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Gender</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                                         </select>
@@ -117,12 +118,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                         <textarea class="form-control" name="address" placeholder="Enter Patient Address" required></textarea>
                                     </div>
                                 </div>
-                               <!--  <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Medical History</label>
-                                        <textarea class="form-control" name="medHistory" placeholder="Enter Patient Medical History(if any)"></textarea>
-                                    </div>
-                                </div> -->
+                               
                             </div>
                         </form>
                     </div>
