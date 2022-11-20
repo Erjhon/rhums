@@ -141,14 +141,9 @@ if (!empty($_SESSION['user_id'])) {
                     <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
                 </div>
 
-                <div class="col-lg-12 col-sm-6 p-1">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="create_new" name="authorized" value="">
-                        <label class="form-check-label" for="authorized">Appointment for others?</label>
-                    </div>
-                </div>
-
+                
                 <?php if ($_settings->userdata('id') > 0) : ?>
+
                     <div hidden class="form-group">
                         <label for="status" class="control-label">Status</label>
                         <select name="status" id="status" class="custom custom-select">
@@ -158,7 +153,15 @@ if (!empty($_SESSION['user_id'])) {
                         </select>
                     </div>
                     <input hidden type="text" class="form-control" id="created" name="created" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>">
+
                 <?php else : ?>
+                    <div class="col-lg-12 col-sm-6 p-1">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="create_new" name="authorized" value="">
+                        <label class="form-check-label" for="authorized">Appointment for others?</label>
+                    </div>
+                </div>
+
                     <input type="hidden" name="status" value="1">
                 <?php endif; ?>
             </div>
