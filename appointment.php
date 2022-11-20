@@ -34,7 +34,7 @@
  <script>
      $(function() {
          $('#create_appointment').click(function() {
-             uni_modal("<h2>Medical Appointment Form</h2>Please fill out the form below. An SMS notification will be sent to you.", "admin/appointments/manage_appointment.php", 'mid-large')
+             uni_modal("<h2>Medical Appointment Form</h2>Please fill out the reason and preferred date and time. An SMS notification will be sent to you.", "admin/appointments/manage_appointment.php", 'mid-large')
          })
      })
  </script>
