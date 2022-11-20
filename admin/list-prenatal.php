@@ -62,6 +62,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 											<td><?php echo $row["gender"]; ?></td>
 											<td><?php echo $row["gender"]; ?></td>
 											<td><?php echo $row["gender"]; ?></td>
+											<td><?php echo $row["gender"]; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action

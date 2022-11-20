@@ -203,6 +203,13 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>Assigned Staff</label>
+                                        <textarea class="form-control" name="" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
+                                    </div>
+                                </div>
+
                                 <!-- <div class="col-sm-7">
                                     <div class="form-group">
                                         <label>Remarks</label>

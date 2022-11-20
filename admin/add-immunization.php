@@ -225,8 +225,9 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Assigned Staff</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter Staff Name" required></textarea>
+                                        <textarea class="form-control" name="" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
                                     </div>
+
                                 </div>
 
                                 <div class="col-sm-12">
