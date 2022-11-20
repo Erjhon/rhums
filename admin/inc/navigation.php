@@ -77,7 +77,7 @@
 
 <!-- Navigation with color -->
  <ul class="navbar-nav">
-          <nav class="mt-4">
+          <nav class="mt-1">
            <ul class="nav nav-pills flex-column nav-flat">
               <a href="./" class="nav-link nav-home">
                 <i class="nav-icon fas fa-tachometer-alt text-success"></i>
@@ -105,10 +105,17 @@
            
 
              <li class="dropdown">
-            <a  href="<?php echo base_url ?>admin/?page=consultation" class="nav-link nav-consultation">
+            <!-- <a  href="<?php echo base_url ?>admin/?page=consultation" class="nav-link nav-consultation"> -->
+              <a  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link nav-consultation">
               <i class="ni ni-collection text-teal"></i>
-              <span class="text-dark"> Records</span>
-            </a>
+              <span class="text-dark"> Records</span></a>
+              <ul class="collapse list-unstyled " id="pageSubmenu">
+                 <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="nav-link nav-user">Check-up</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-immunization" class="nav-link nav-user">Immunization</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-prenatal" class="nav-link nav-user"> Prenatal</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="nav-link nav-user"> Animal Bite</a></li>
+              </ul>
+            
           </li>
 
              <?php

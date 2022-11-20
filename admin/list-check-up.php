@@ -20,7 +20,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 	<div class="card-header">
 		<h2 class="card-title text-center">Patient Records (CHECK-UP)</h2>
 		<div class="card-tools">
-			<a href="<?php echo base_url ?>admin/?page=reasons" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
+			<a href="<?php echo base_url ?>admin/?page=add-check-up" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
 		</div>
 
 	</div>
@@ -38,8 +38,8 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 									<tr>
 										<th>Patient No.</th>
 										<th>Patient Name</th>
-										<th>Patient Contact No.</th>
-										<th>Patient Gender</th>
+										<th>Blood Pressure</th>
+										<th>Blood Sugar</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -62,6 +62,8 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
 				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=history&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> View</a>
+
+				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=history&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> Update</a>
 				                
 									<div class="divider"></div>
 									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>

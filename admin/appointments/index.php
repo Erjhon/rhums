@@ -55,7 +55,9 @@
 						<th>Patient Name</th>
 						<th>Reason</th>
 						<th>Schedule</th>
-						<th>Creation Date</th>
+						<th>Type</th>
+						<th>Created By</th>
+						<!-- <th>Creation Date</th> -->
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -78,7 +80,9 @@
 							<td><?php echo $row['name'] ?></td>
 							<td><?php echo $row['reason'] ?></td>
 							<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
-							<td><?php echo date("M d, Y h:i A",strtotime($row['date_created'])) ?></td>
+							<td><?php echo $row['reason'] ?></td>
+							<td><?php echo $row['name'] ?></td>
+							<!-- <td><?php echo date("M d, Y h:i A",strtotime($row['date_created'])) ?></td> -->
 							<td class="text-center">
 								<?php 
 								switch($row['status']){ 
