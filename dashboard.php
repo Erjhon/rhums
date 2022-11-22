@@ -18,13 +18,14 @@ if(isset($_GET['logout'])){
 ?>
 
 
-  <?php require_once('inc/header.php') ?>
   
  <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <?php require_once('inc/header.php') ?>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 <!-- Favicon -->
 <link href="./assets/assets/img/brand/doh.png" rel="icon" type="image/png">
 <!-- Fonts -->
+<link href="https://fonts.cdnfonts.com/css/black-jack" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 <!-- Icons -->
 <link href="./assets/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
@@ -239,21 +240,6 @@ if(isset($_GET['logout'])){
     to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
   <!-- Header container -->
   
-<!--   Core   -->
-<script src="assets/js/plugins/jquery/dist/jquery.min.js"></script>
-<script src="assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!--   Optional JS   -->
-<script src="assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!--   Argon JS   -->
-<script src="assets/js/argon-dashboard.min.js?v=1.1.2"></script>
-<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-<script>
-    window.TrackJS &&
-    TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-    });
-</script>
 
 
   <div class="modal fade" id="uni_modal" role='dialog'>
@@ -272,6 +258,21 @@ if(isset($_GET['logout'])){
     </div>
   </div>
 
+<!--   Core   -->
+<script src="./assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+<script src="./assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!--   Optional JS   -->
+<script src="./assets/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!--   Argon JS   -->
+<script src="./assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+    window.TrackJS &&
+    TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "argon-dashboard-free"
+    });
+</script>
 
 <?php if($_settings->chk_flashdata('success')): ?>
 <script>
