@@ -227,7 +227,7 @@ $run = mysqli_query($conn,$query);
   </div>
   <!-- End Navbar -->
   <!-- Header -->
-  <div class="header pb-10 pt-10 pt-lg-4 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <div class="header pb-10 pt-10 pt-lg-12 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
     <!-- Mask -->
     <span class="mask" style="background: linear-gradient(
       to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8))"></span>

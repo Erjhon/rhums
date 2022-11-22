@@ -1,5 +1,5 @@
  <!-- Header-->
- <header class="bg-dark py-2 center " id="main-header">
+ <header class="bg-dark py-2 center" id="main-header">
      <div class="container px-10 px-lg-6 my-7">
          <div class="text-center text-dark">
              <h3 class="display-1 col-lg-12 text-dark" style="font-family: BlackJack">&nbsp&nbsp&nbsp&nbsp&nbspOnline &nbspMedical &nbspAppointment &nbsp&nbsp&nbsp&nbsp&nbsp</h3>
