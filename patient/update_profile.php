@@ -382,7 +382,7 @@ if(isset($_POST['update_profile'])){
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="update_dob" value="<?php echo $fetch['dob']; ?>">
+                                <input class="form-control" id="inputBirthday" type="date" name="update_dob" value="<?php echo $fetch['dob']; ?>">
                             </div>
                         </div>
                         <!-- Save changes button-->
