@@ -48,9 +48,6 @@ if (!empty($_SESSION['user_id'])) {
     $dob = "{$row['dob']}";
     $address = "{$row['address']}";
     $reason = "";
-
-
-    
 } else {
     $full_name = "";
     $contact = "";
@@ -58,7 +55,6 @@ if (!empty($_SESSION['user_id'])) {
     $dob = "";
     $address = "";
     $reason = "";
-    $created = "Patient";
 }
 
 ?>
@@ -74,7 +70,6 @@ if (!empty($_SESSION['user_id'])) {
 <div class="container-fluid">
     <form action="" id="appointment_form" class="py-2">
         <div class="row" id="appointment">
-        
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
@@ -92,10 +87,9 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
-                    <select type="text" class="form-control form-select-sm-6" name="gender"  required>
-                        <option hidden><?= $gender ?></option>
-                        <option  <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
-                        <option  <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
+                    <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                        <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
+                        <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -126,8 +120,7 @@ if (!empty($_SESSION['user_id'])) {
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
-                        <select name="reason" id="reason" class="form-control form-select">
-                            <option class="placeholder" style="display: none" >Select reason</option>
+                        <select name="reason" id="reason" class="form-control form-select-sm-6">
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
@@ -137,13 +130,18 @@ if (!empty($_SESSION['user_id'])) {
                     </div>
                 <?php endif; ?>
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Preferred Appointment Date and Time</label>
+                    <label for="date_sched" class="control-label">Preferred Appointment Date and Time*</label>
                     <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
                 </div>
 
-                
-                <?php if ($_settings->userdata('id') > 0) : ?>
+                <div hidden class="col-lg-12 col-sm-6 p-1">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="authorized" value="" id="authorized">
+                        <label class="form-check-label" for="authorized">Authorized Person?</label>
+                    </div>
+                </div>
 
+                <?php if ($_settings->userdata('id') > 0) : ?>
                     <div hidden class="form-group">
                         <label for="status" class="control-label">Status</label>
                         <select name="status" id="status" class="custom custom-select">
@@ -152,16 +150,8 @@ if (!empty($_SESSION['user_id'])) {
                             <option value="2" <?php echo isset($status) && $status == "2" ? "selected" : "" ?>>Cancelled</option>
                         </select>
                     </div>
-                    <input hidden type="text" class="form-control" id="created" name="created" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>">
-
+                     <input hidden type="text" class="form-control" id="created" name="created" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>">
                 <?php else : ?>
-                    <div class="col-lg-12 col-sm-6 p-1">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="create_new" name="authorized" value="">
-                        <label class="form-check-label" for="authorized">Appointment for others?</label>
-                    </div>
-                </div>
-
                     <input type="hidden" name="status" value="1">
                 <?php endif; ?>
             </div>
@@ -188,9 +178,9 @@ if (!empty($_SESSION['user_id'])) {
                 type: 'POST',
                 dataType: 'json',
                 // error:err=>{
-                // 	console.log(err)
-                // 	alert_toast("An error occured",'error');
-                // 	end_loader();
+                //  console.log(err)
+                //  alert_toast("An error occured",'error');
+                //  end_loader();
                 // },
                 success: function(resp) {
                     if (resp.status == 'success') {
@@ -228,36 +218,6 @@ if (!empty($_SESSION['user_id'])) {
                 location.reload()
         })
     })
-
-    var indiList;
-    $(document).ready(function(){
-        $('#create_new').click(function(){
-            uni_modal("<h2>Medical Appointment Form</h2>Please fill out the form below. An SMS notification will be sent to you.", "admin/appointments/add_appointment_others.php",'mid-large')
-
-        })
-        $('#selectAll').change(function(){
-            // if($(this).is(":checked") == true){
-            //  $('.invCheck').prop("checked",true)
-            // }else{
-            //  $('.invCheck').prop("checked",false)
-            // }
-            var _this = $(this)
-            count = indiList.api().rows().data().length
-            for($i = 0 ; $i < count; $i++){
-                var node = indiList.api().row($i).node()
-                console.log($(node).find('.invCheck'))
-                if(_this.is(":checked") == true){
-                    $(node).find('.invCheck').prop("checked",true)
-                    $('#selected_opt').show('slow')
-                }else{
-                    $(node).find('.invCheck').prop("checked",false)
-                    $('#selected_opt').hide('slow')
-                }
-            }
-        })
-        
-    })
-
 </script>
 
 <!---javascript file-->

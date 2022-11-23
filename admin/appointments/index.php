@@ -8,7 +8,6 @@
 	top:0
 }
 </style>
-
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h2 class="card-title text-center">List of Appointments</h2>
@@ -37,7 +36,7 @@
 				</div>
 			</div>
 			<div class="table-responsive">
-			<table class="table table-bordered table-stripped" id="indi-list">
+				<table class="table table-bordered table-stripped" id="indi-list">
 				<colgroup>
 					<col width="5%">
 					<col width="5%">

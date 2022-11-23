@@ -1,5 +1,7 @@
-<?php
-
+<html>
+    <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
+    </head><?php
 include '../config.php';
 // session_start();
 $user_id = $_SESSION['user_id'];
@@ -15,7 +17,17 @@ if(isset($_POST['update_profile'])){
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
    mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email', gender = '$update_gender'  WHERE id = '$user_id'") or die('query failed');
-   $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> User successfully updated </div>';
+   $message[] = " <script>
+            Swal.fire({
+                 icon: 'success',
+                title: 'User successfully updated',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
+
 
    // $old_pass = $_POST['old_pass'];
    // $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
@@ -44,7 +56,16 @@ if(isset($_POST['update_profile'])){
          if($image_update_query){
             move_uploaded_file($update_image_tmp_name, $update_image_folder);
          }
-         $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> Image successfully updated </div>';
+         $message[] = " <script>
+            Swal.fire({
+                 icon: 'success',
+                title: 'Image successfully updated',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
            
       } 
            
@@ -213,7 +234,7 @@ if(isset($_POST['update_profile'])){
 
       </span>
       <div class="media-body ml-2 d-none d-lg-block">
-          <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
+          <span class="mb-0 text-sm text-white  font-weight-bold"><?php echo $fetch['username']; ?></span>
       </div>
   </div>
 </a>
@@ -268,27 +289,29 @@ if(isset($_POST['update_profile'])){
   <span class="mask"style="background: linear-gradient(
     to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
 
-  <!-- Header container -->
-      <div class="container px-10 px-lg-10 my-4">
-<div class="card card-outline">
-  <div class="card-header">
-    <h2>Edit Profile</h2>
-   </div>
+ 
 
-<div class="update-profile ">
-   <?php
+    <div class="container-l px-5 mt-1">
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                     <?php
       $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
       if(mysqli_num_rows($select) > 0){
          $fetch = mysqli_fetch_assoc($select);
       }
    ?>
-
-   <form action="" method="post" enctype="multipart/form-data">
       <?php
          if($fetch['image'] == ''){
-            echo '<div ><img src="images/default-avatar.png"></div>';
+            echo '<div class="avatar"><img src="images/default-avatar.png"></div>';
          }else{
-            echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
+            echo '<div class="avatar"><img src="uploaded_img/'.$fetch['image'].'"></div>';
          }
          if(isset($message)){
             foreach($message as $message){
@@ -296,36 +319,82 @@ if(isset($_POST['update_profile'])){
             }
          }
       ?>
-      <div class="flex">
-         <div class="inputBox">
-            <span>First Name:</span>
-            <input type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>" class="box">
-            <span>Address:</span>
-            <input type="text" name="update_address" value="<?php echo $fetch['address']; ?>" class="box">
-            <span>Gender:</span>
-            <select type="text" class="form-control form-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
+                    <!-- Profile picture help block-->
+
+   <form action="" method="post" enctype="multipart/form-data">
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+                    <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8">
+
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Username</label>
+                            <input class="form-control" id="inputUsername" type="text"name="update_email" value="<?php echo $fetch['username']; ?>">
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName">First name</label>
+                                <input class="form-control" id="inputFirstName" type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>">
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">Last name</label>
+                                <input class="form-control" id="inputLastName" type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>">
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputOrgName">Gender</label>
+                                <select type="text" class="form-control form-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
                 <option hidden><?php echo $fetch['gender']; ?></option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
             </select>
-            <span>Contact Number:</span>
-            <input type="text" name="update_contact" value="<?php echo $fetch['contact']; ?>" class="box">
-         </div>
-         <div class="inputBox">
-            <span>Last Name:</span>
-            <input type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>" class="box">
-            <span>Date of Birth:</span>
-            <input type="date" name="update_dob" value="<?php echo $fetch['dob']; ?>" class="box">
-            <span>Username:</span>
-            <input type="username" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
-            <span>Profile Picture:</span>
-            <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
-         </div>
-      </div>
-      <div class="form-group text-center w-100 form-group">
-        <input type="submit" class="btn btn-primary" value="Update" name="update_profile">
-      </div>
-   </form>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLocation">Address</label>
+                                <input class="form-control" id="inputLocation" type="text" name="update_address" value="<?php echo $fetch['address']; ?>">
+                            </div>
+                        </div>
+                      
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <input class="form-control" id="inputPhone" type="tel" name="update_contact" value="<?php echo $fetch['contact']; ?>">
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Birthday</label>
+                                <input class="form-control" id="inputBirthday" type="text" name="update_dob" value="<?php echo $fetch['dob']; ?>">
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                         <input type="submit" class="btn btn-primary" value="Update" name="update_profile">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
 
             <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
          <!-- <div class="inputBox">

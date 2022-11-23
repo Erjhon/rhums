@@ -39,7 +39,7 @@ $run = mysqli_query($conn,$query);
   <title>
     RURAL HEALTH UNIT II
   </title>
-
+ <?php require_once('../inc/header.php') ?>
   <!-- Favicon -->
   <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -227,10 +227,10 @@ $run = mysqli_query($conn,$query);
   </div>
   <!-- End Navbar -->
   <!-- Header -->
-  <div class="header pb-10 pt-10 pt-lg-12 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-    <!-- Mask -->
     <span class="mask" style="background: linear-gradient(
       to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8))"></span>
+  <div class="header pb-10 pt-10 pt-lg-12 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
       <!-- Header container -->
       <div class="container px-10 px-lg-5 my-7">
         <div class="card card-outline">

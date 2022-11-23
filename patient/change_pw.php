@@ -1,5 +1,8 @@
+<html>
+    <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
+    </head>
 <?php
-
 include '../config.php';
 // session_start();
 $user_id = $_SESSION['user_id'];
@@ -13,12 +16,39 @@ if(isset($_POST['change_pw'])){
 
    if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
       if($update_pass != $old_pass){
-         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Old password not matched</div>';
+          $message[] = " <script>
+            Swal.fire({
+                 icon: 'error',
+                title: 'Old password not matched',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
       }elseif($new_pass != $confirm_pass){
-         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Confirmed password not matched</div>';
+         $message[] = " <script>
+            Swal.fire({
+                 icon: 'error',
+                title: 'Confirmed password not matched',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
       }else{
          mysqli_query($conn, "UPDATE patient SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
-         $message[] = '<div class="alert alert-success text-white err_msg"> <i class="fa fa-check"></i> Password updated successfully </div>';
+          $message[] = " <script>
+            Swal.fire({
+                 icon: 'success',
+                title: 'Password updated successfully',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
       }
    }
 }
