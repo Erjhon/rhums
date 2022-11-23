@@ -19,8 +19,70 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 	<div class="card-body">
 		<div class="container-fluid">
 			<div id="msg"></div>
-			<form action="" id="manage-user">	
-				<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
+			<form action="" id="manage-user">
+			<div class="form-group col-12 d-flex justify-content-center">
+					<img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail">
+				</div>	
+					<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
+				  <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName">First name</label>
+                                <input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">Last name</label>
+                                <input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputOrgName">Username</label>
+                                <input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLocation">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": 'required' ?>>
+                    <?php if(isset($_GET['id'])): ?>
+					<small><i>Leave this blank if you dont want to change the password.</i></small>
+                    <?php endif; ?>
+                            </div>
+                        </div>
+                          <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputOrgName">Usertype</label>
+                                <select  class="form-control input-group input-group-alternative" name="role">
+                          <option class="text-muted" value="Admin">Admin</option>
+                          <option class="text-muted" value="Staff">Staff</option>
+                     </select>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="form-group col-6">
+					<label for="" class="control-label">Avatar</label>
+					<div class="custom-file">
+		              <input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
+		              <label class="custom-file-label" for="customFile">Choose file</label>
+		            </div>
+				</div>
+				
+                        </div>
+	<!-- <div class="card-footer"> -->
+			<div class="form-group col-12 d-flex justify-content-center">
+				<div class="row">
+					<button class="btn btn-md btn-primary mr-2" form="manage-user">Save</button>
+					<a class="btn btn-md btn-secondary" href="./?page=user/list">Cancel</a>
+				</div>
+			</div>
+		</div>
+
+			<!-- 	<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
 				<div class="form-group col-6">
 					<label for="name">First Name</label>
 					<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
@@ -40,10 +102,10 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					<small><i>Leave this blank if you dont want to change the password.</i></small>
                     <?php endif; ?>
 				</div>
-				<div hidden class="form-group col-6">
-					<label  for="user_type">User Type</label>
-                      <select  class="input-group input-group-alternative" name="role">
-                          <!-- <option class="text-muted" value="admin">Admin</option> -->
+				<div  class="form-group col-6">
+					<label for="user_type">User Type</label>
+                      <select  class="form-control input-group input-group-alternative" name="role">
+                          <option class="text-muted" value="Admin">Admin</option>
                           <option class="text-muted" value="Staff">Staff</option>
                      </select>
                 </div>
@@ -60,15 +122,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				</div>
 			</form>
 		</div>
-	</div>
-	<div class="card-footer">
-			<div class="col-md-12">
-				<div class="row">
-					<button class="btn btn-md btn-primary mr-2" form="manage-user">Save</button>
-					<a class="btn btn-md btn-secondary" href="./?page=user/list">Cancel</a>
-				</div>
-			</div>
-		</div>
+	</div> -->
 </div>
 <style>
 	img#cimg{

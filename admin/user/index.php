@@ -13,7 +13,7 @@ foreach($user->fetch_array() as $k =>$v){
 	<div class="card-header">
         <h2 class="card-title">Edit Details</h2>
     </div>
-	<div class="card-body">
+	<div class="card-body ">
 		<div class="container-fluid">
 			<div id="msg"></div>
 			<form action="" id="manage-user">	

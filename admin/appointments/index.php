@@ -38,7 +38,7 @@
 			<div class="table-responsive">
 				<table class="table table-bordered table-stripped" id="indi-list">
 				<colgroup>
-					<col width="5%">
+					<col width="1%">
 					<col width="5%">
 					<col width="10%">
 					<col width="25%">

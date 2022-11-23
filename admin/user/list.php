@@ -14,7 +14,7 @@
     }
 </style>
 
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary ">
 	<div class="card-header">
 		<h2 class="card-title text-center">List of System Users</h2>
 		<div class="card-tools">
@@ -22,8 +22,8 @@
 		</div>
 	</div>
 	<div class="card-body ">
-        <div class="container-fluid">
-			<table class="table py-1 py-lg-1 table-hover table-striped">
+        <div class="container-fluid table-responsive">
+			<table class="table py-1 py-lg-1 table-hover table-striped ">
 				<thead>
 					<tr>
 						<th>#</th>
