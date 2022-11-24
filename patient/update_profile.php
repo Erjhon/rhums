@@ -292,7 +292,7 @@ if(isset($_POST['update_profile'])){
 
  
 
-    <div class="container-l px-7 mt-1">
+    <div class="container-l px-5 mt-1">
     <hr class="mt-0 mb-4">
     <div class="row">
         <div class="col-xl-4">
