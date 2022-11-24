@@ -1,6 +1,44 @@
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
 
+<head>
+    <style>
+        .multiselect {
+          width: 400px;
+        }
+
+        .selectBox {
+          position: relative;
+        }
+
+        .selectBox select {
+          width: 100%;
+        }
+
+        .overSelect {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
+
+        #checkboxes {
+          display: none;
+          border: 1px #dadada solid;
+        }
+
+        #checkboxes label {
+          display: block;
+        }
+
+        #checkboxes label:hover {
+          background-color: #1e90ff;
+        }
+
+
+    </style>
+</head>
 <body>
 
     <?php if ($_settings->chk_flashdata('success')) : ?>
@@ -59,7 +97,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
     <div class="card card-outline card-primary">
         <div class="card-header">
-            <h2 class="card-title">Patient Information</h2>
+            <h2 class="card-title">Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>
         </div>
 
         <div class="card-body">
@@ -75,30 +113,11 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Name of Child</label>
-                                        <input class="form-control" name="fullname" placeholder="First Name, Middle Initial, Last Name" required>
-                                    </div>
-                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Family Serial Number</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter Family Serial Number" required>
-                                    </div>
-                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                                </div>
 
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label for="gender" class="control-label">Sex</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option class="placeholder" style="display: none" >Select Sex</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
-                                        </select>
+                                        <label for="dob" class="control-label">Date of Registration</label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                                     </div>
                                 </div>
 
@@ -109,7 +128,34 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Family Serial Number</label>
+                                        <input class="form-control" name="fullname" placeholder="Enter Family Serial Number" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                 <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Name of Child</label>
+                                        <input class="form-control" name="fullname" placeholder="First Name, Middle Initial, Last Name" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Sex</label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Sex</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
                                     <div class="form-group">
                                         <label>Complete Name of Mother</label>
                                         <input class="form-control" name="fullname" placeholder="Last Name, First Name, Middle Initial" required>
@@ -117,27 +163,110 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-7">
                                     <div class="form-group">
                                         <label>Complete Address</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter Complete Address" required></textarea>
+                                        <input class="form-control" name="address" placeholder="Enter Complete Address" required>
                                     </div>
                                 </div>
-                               <!--  <div class="col-sm-12">
+
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label>Medical History</label>
-                                        <textarea class="form-control" name="medHistory" placeholder="Enter Patient Medical History(if any)"></textarea>
+                                        <label for="gender" class="control-label">Child Protected at Birth (CPAB)</label>
+                                            <!-- <div class="multiselect"> -->
+                                            <div class="selectBox" onclick="showCheckboxes()">
+                                              <select class="form-control form-select-sm-6">
+                                                <option class="placeholder" style="display: none">Select an option</option>
+                                              </select>
+                                              <div class="overSelect"></div>
+                                            </div>
+                                            <div id="checkboxes">
+                                              <label for="one">
+                                                <input type="checkbox" name="check" id="one" onclick="onlyOne(this)"/> TT2/Td2</label>
+                                              <label for="two">
+                                                <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)</label>
+                                            </div>
+                                          <!-- </div> -->
                                     </div>
-                                </div> -->
+                                </div>
+
+
+
+                                 <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Age</label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none"> Select Age</option>
+                                            <option id="newborn"> Newborn (0-28 days old)</option>
+                                            <option> 1-3 Months old</option>
+                                            <option> 6-11 Months old</option>
+                                            <option> 12 Months old</option>   
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Length at Birth <small>(cm)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Weight at Birth <small>(kg)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Status <small>(Birth Weight)</small></label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>L - low < 2500gms</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>N - normal > 2500gms</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>U - unknown</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="dob" class="control-label">Initiated breast feeding immediately after birth lasting for 90 minutes </label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Immunization</label>
+                                    
+
+                                <div class="col-sm-5">
+                                    <div class="form-group">        
+                                        <label for="gender" class="control-label">BCG</label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Hepa B-BD</label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="card-header">
-            <h2 class="card-title">Immunization</h2>
         </div>
 
         <div class="card-body">
@@ -147,37 +276,13 @@ $fetchRow = mysqli_fetch_assoc($rs);
                         <form action method="POST">
                             <div class="row">
 
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="dob" class="control-label">Date of Registration</label>
-                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
-                                    </div>
-                                </div>
+                                
 
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="dob" class="control-label">Child Protected at Birth (CPAB)</label><br>
-                                        <input type="checkbox" id="vehicle1" name="CPAB" value="CPAB">
-                                        <label for="CPAB"> TT2/Td2</label><br>
-                                        <input type="checkbox" id="vehicle1" name="CPAB" value="CPAB">
-                                        <label for="CPAB"> TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)</label><br>
-                                    </div>
-                                </div>
+                                
 
                                
 
-                                <div class="col-7">
-                                    <div class="form-group">
-                                        <label for="gender" class="control-label">Age</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Age 0-11 Months & Children 12 Months old(1/4)</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Age 0-11 Months & Children 12 Months old(2/4)</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Age 0-11 Months & Children 12 Months old(3/4)</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Age 0-11 Months & Children 12 Months old(4/4)</option>
-                                            
-                                        </select>
-                                    </div>
-                                </div>
+                               
 
                                 <div class="col-5">
                                     <div class="form-group">
@@ -212,32 +317,9 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div>
                                 
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <label>Length at Birth</label>
-                                        <input type="number" class="form-control" name="contactNo" required>
-                                    </div>
-                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                                </div>
+                                
 
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <label>Weight at Birth</label>
-                                        <input type="number" class="form-control" name="contactNo" required>
-                                    </div>
-                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label for="gender" class="control-label">Birth Status</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>L - low < 2500 gms</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>N - normal > 2500 gms</option>
-                                        </select>
-                                    </div>
-                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                                </div>
+                                
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
@@ -295,6 +377,40 @@ $fetchRow = mysqli_fetch_assoc($rs);
             theBday.value = Q4A;
         }
     </script>
+
+    <script>
+        var expanded = false;
+
+        function showCheckboxes() {
+          var checkboxes = document.getElementById("checkboxes");
+          if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+          } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+          }
+        }
+    </script>
+
+    <script>
+        function onlyOne(checkbox) {
+        var checkboxes = document.getElementsByName('check')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+    </script>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+     <script type="text/javascript">
+          $(document).ready(function(){
+              $('#newborn').click(function(){
+                var inputValue = $(this).attr("value");
+                $(".box" + inputValue).toggle();
+              });
+          });
+     </script>
 
 </body>
 
