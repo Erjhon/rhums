@@ -190,14 +190,29 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div>
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".data").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".data").hide();
+            }
+        });
+    }).change();
+});
+</script>   
 
                                  <div class="col-6">
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Age</label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
                                             <option class="placeholder" style="display: none"> Select Age</option>
-                                            <option id="newborn"> Newborn (0-28 days old)</option>
+                                            <option value="newborn" id="newborn"> Newborn (0-28 days old)</option>
                                             <option> 1-3 Months old</option>
                                             <option> 6-11 Months old</option>
                                             <option> 12 Months old</option>   
@@ -205,6 +220,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div>
 
+<div class="newborn data">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Length at Birth <small>(cm)</small></label>
@@ -257,6 +273,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 </div>
                             </div>
                         </div>
+</div>
 
 
 
@@ -280,7 +297,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
                                 
 
-                               
+           <span hidden>             
 
                                
 
@@ -340,7 +357,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
 
                                 </div>
-
+</span>  
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Remarks</label>
