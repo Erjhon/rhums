@@ -42,7 +42,7 @@ if (!empty($_SESSION['user_id'])) {
 
 
     $user_id = $row['id'];
-    $full_name = "{$row['firstname']} {$row['lastname']}";
+    $full_name = "{$row['firstname']} {$row['middleInitial']} {$row['lastname']}";
     $contact = "{$row['contact']}";
     $gender = "{$row['gender']}";
     $dob = "{$row['dob']}";
@@ -116,7 +116,8 @@ if (!empty($_SESSION['user_id'])) {
                         <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
                         <select name="reason" id="reason" class="form-control form-select-sm-6">
                             <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option value="Immunization"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
+                            <option value="ImmunizationC"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationC" ? "selected": "" ?>>Immunization for Child</option>
+                            <option value="ImmunizationSC"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationSC" ? "selected": "" ?>>Immunization for sSenior Citizens</option>
                             <option value="Pre-Natal" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
                             <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
                         </select>
@@ -129,7 +130,8 @@ if (!empty($_SESSION['user_id'])) {
                         <select name="reason" id="reason" class="form-control form-select">
                             <option class="placeholder" style="display: none" >Select reason</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization</option>
+                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationC" ? "selected": "" ?>>Immunization for Child</option>
+                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationSC" ? "selected": "" ?>>Immunization for Senior Citizens</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
                         </select>
