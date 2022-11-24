@@ -9,6 +9,7 @@ $user_id = $_SESSION['user_id'];
 if(isset($_POST['update_profile'])){
 
    $update_fname = mysqli_real_escape_string($conn, $_POST['update_fname']);
+   $update_middle = mysqli_real_escape_string($conn, $_POST['update_middle']);
    $update_lname = mysqli_real_escape_string($conn, $_POST['update_lname']);
    $update_address = mysqli_real_escape_string($conn, $_POST['update_address']);
    $update_dob = mysqli_real_escape_string($conn, $_POST['update_dob']);
@@ -16,7 +17,7 @@ if(isset($_POST['update_profile'])){
    $update_contact = mysqli_real_escape_string($conn, $_POST['update_contact']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email', gender = '$update_gender'  WHERE id = '$user_id'") or die('query failed');
+   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', username = '$update_email', gender = '$update_gender'  WHERE id = '$user_id'") or die('query failed');
    $message[] = " <script>
             Swal.fire({
                  icon: 'success',
@@ -233,8 +234,8 @@ if(isset($_POST['update_profile'])){
       ?>
 
       </span>
-      <div class="media-body ml-2 d-none d-lg-block">
-          <span class="mb-0 text-sm text-white  font-weight-bold"><?php echo $fetch['username']; ?></span>
+       <div class="media-body ml-2 d-none d-lg-block">
+          <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
   </div>
 </a>
@@ -344,12 +345,17 @@ if(isset($_POST['update_profile'])){
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="inputFirstName">First name</label>
                                 <input class="form-control" id="inputFirstName" type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>">
                             </div>
+                            <!-- Form Group (middle initial)-->
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputMiddleInitial">Middle Initial</label>
+                                <input class="form-control" id="inputMiddleInitial" type="text" name="update_middle" value="<?php echo $fetch['middleInitial']; ?>">
+                            </div>
                             <!-- Form Group (last name)-->
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="inputLastName">Last name</label>
                                 <input class="form-control" id="inputLastName" type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>">
                             </div>
@@ -357,7 +363,7 @@ if(isset($_POST['update_profile'])){
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (organization name)-->
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="inputOrgName">Gender</label>
                                 <select type="text" class="form-control form-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
                 <option hidden><?php echo $fetch['gender']; ?></option>
@@ -366,7 +372,7 @@ if(isset($_POST['update_profile'])){
             </select>
                             </div>
                             <!-- Form Group (location)-->
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <label class="small mb-1" for="inputLocation">Address</label>
                                 <input class="form-control" id="inputLocation" type="text" name="update_address" value="<?php echo $fetch['address']; ?>">
                             </div>
