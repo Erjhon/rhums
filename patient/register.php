@@ -8,6 +8,7 @@ include 'config.php';
 if(isset($_POST['submit'])){
 
   $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+  $middleInitial = mysqli_real_escape_string($conn, $_POST['middleInitial']);
   $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
   $username = mysqli_real_escape_string($conn, $_POST['username']);
   $contact = mysqli_real_escape_string($conn, $_POST['contact']);
@@ -32,7 +33,7 @@ if(isset($_POST['submit'])){
     }elseif($image_size > 2000000){
       $error[] = 'Image size is too large!';
     }else{
-      $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,lastname, username,contact,gender,dob,address, password, image) VALUES('$firstname','$lastname', '$username','$contact','$gender','$dob','$address', '$pass', '$image')") or die('query failed');
+      $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,middleInitial,lastname, username,contact,gender,dob,address, password, image) VALUES('$firstname', '$middleInitial', '$lastname', '$username','$contact','$gender','$dob','$address', '$pass', '$image')") or die('query failed');
 
       if($insert){
         move_uploaded_file($image_tmp_name, $image_folder);
@@ -189,7 +190,7 @@ echo '<div class="message">'.$message.'</div>';
 
   <form action="" id="appointment_form" class="py-6">
     <div class="row" id="appointment">
-      <div class="col-6" id="frm-field">
+      <div class="col-4" id="frm-field">
         <div class="form-group mb--1">
           <h5 class="text-dark required">First Name</h5>
 <!-- div class="input-group input-group-alternative mb--4">
@@ -202,7 +203,18 @@ echo '<div class="message">'.$message.'</div>';
 </div>
 </div>
 
-<div class="form-group col-6 mb--1">
+<div class="form-group col-4 mb--1">
+  <h5 class="text-dark required">Middle Initial</h5>
+<!-- <div class="input-group input-group-alternative mb--4">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
+</div> -->
+<input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial">
+<!-- </div> -->
+<p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
+</div>
+
+<div class="form-group col-4 mb--1">
   <h5 class="text-dark required">Last Name</h5>
 <!-- <div class="input-group input-group-alternative mb--4">
 <div class="input-group-prepend">
