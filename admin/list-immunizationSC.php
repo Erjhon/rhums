@@ -18,9 +18,9 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<h2 class="card-title text-center">List for Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>
+		<h2 class="card-title text-center">List for Visual Acuity Screening and PPV Immunization for Senior Citizens</h2>
 		<div class="card-tools">
-			<a href="<?php echo base_url ?>admin/?page=add-immunization" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
+			<a href="<?php echo base_url ?>admin/?page=add-immunizationSC" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
 		</div>
 
 	</div>

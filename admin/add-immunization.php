@@ -68,39 +68,40 @@ $fetchRow = mysqli_fetch_assoc($rs);
                     <div class="col-lg-12">
                         <form action method="POST">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label>Patient No.</label>
                                         <input class="form-control" name="id" placeholder="Patient No." value="<?= $lastRowId ?>" readonly>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Name of Child</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter Name of Child" required>
+                                        <input class="form-control" name="fullname" placeholder="First Name, Middle Initial, Last Name" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
-                                
-                                <div class="col-sm-6">
+
+                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Mother's Name</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter Mother's Name" required>
+                                        <label>Family Serial Number</label>
+                                        <input class="form-control" name="fullname" placeholder="Enter Family Serial Number" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label for="gender" class="control-label">Gender</label>
+                                        <label for="gender" class="control-label">Sex</label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option class="placeholder" style="display: none" >Select Gender</option>
+                                            <option class="placeholder" style="display: none" >Select Sex</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="dob" class="control-label">Date of Birth</label>
@@ -108,10 +109,18 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div>
 
-                                <div class="col-sm-7">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Place of Birth</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter Place of Birth" required></textarea>
+                                        <label>Complete Name of Mother</label>
+                                        <input class="form-control" name="fullname" placeholder="Last Name, First Name, Middle Initial" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Complete Address</label>
+                                        <textarea class="form-control" name="address" placeholder="Enter Complete Address" required></textarea>
                                     </div>
                                 </div>
                                <!--  <div class="col-sm-12">
@@ -137,6 +146,26 @@ $fetchRow = mysqli_fetch_assoc($rs);
                     <div class="col-lg-12">
                         <form action method="POST">
                             <div class="row">
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="dob" class="control-label">Date of Registration</label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="dob" class="control-label">Child Protected at Birth (CPAB)</label><br>
+                                        <input type="checkbox" id="vehicle1" name="CPAB" value="CPAB">
+                                        <label for="CPAB"> TT2/Td2</label><br>
+                                        <input type="checkbox" id="vehicle1" name="CPAB" value="CPAB">
+                                        <label for="CPAB"> TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)</label><br>
+                                    </div>
+                                </div>
+
+                               
+
                                 <div class="col-7">
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Age</label>
