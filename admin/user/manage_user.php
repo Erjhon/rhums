@@ -42,7 +42,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputOrgName">Username</label>
-                                <input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+                                <input type="text" name="username" id="username" onBlur="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+								  <span id="user-availability-status1" style="font-size:12px;"></span>
                             </div>
                             <!-- Form Group (location)-->
                             <div class="col-md-6">
@@ -168,3 +169,19 @@ var _this = $(this)
 	})
 
 </script>
+
+<script>
+  function userAvailability() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "user/check_availability_users.php",
+      data:'username='+$("#username").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
