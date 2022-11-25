@@ -155,7 +155,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div>
 
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Complete Name of Mother</label>
                                         <input class="form-control" name="fullname" placeholder="Last Name, First Name, Middle Initial" required>
@@ -163,7 +163,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-7">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Complete Address</label>
                                         <input class="form-control" name="address" placeholder="Enter Complete Address" required>
@@ -173,7 +173,6 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Child Protected at Birth (CPAB)</label>
-                                            <!-- <div class="multiselect"> -->
                                             <div class="selectBox" onclick="showCheckboxes()">
                                               <select class="form-control form-select-sm-6">
                                                 <option class="placeholder" style="display: none">Select an option</option>
@@ -186,7 +185,6 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                               <label for="two">
                                                 <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)</label>
                                             </div>
-                                          <!-- </div> -->
                                     </div>
                                 </div>
 
@@ -212,15 +210,16 @@ $(document).ready(function(){
                                         <label for="gender" class="control-label">Age</label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
                                             <option class="placeholder" style="display: none"> Select Age</option>
-                                            <option value="newborn" id="newborn"> Newborn (0-28 days old)</option>
-                                            <option> 1-3 Months old</option>
-                                            <option> 6-11 Months old</option>
-                                            <option> 12 Months old</option>   
+                                            <option value="newborn"> Newborn (0-28 days old)</option>
+                                            <option value="1-3M"> 1-3 Months old</option>
+                                            <option value="6-11M"> 6-11 Months old</option>
+                                            <option value="12M"> 12 Months old</option>   
                                         </select>
                                     </div>
                                 </div>
 
-<div class="newborn data">
+<span class="newborn data">
+                            <div class="row pl-3 pr-3">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Length at Birth <small>(cm)</small></label>
@@ -240,6 +239,7 @@ $(document).ready(function(){
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Status <small>(Birth Weight)</small></label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Status</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>L - low < 2500gms</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>N - normal > 2500gms</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>U - unknown</option>
@@ -253,19 +253,18 @@ $(document).ready(function(){
                                         <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                                     </div>
                                 </div>
-
+                            
                                 <div class="col-sm-7">
-                                    <div class="form-group">
-                                        <label for="gender" class="control-label">Immunization</label>
+                                        <label for="gender"><b>Immunization</b></label>
                                     
-
-                                <div class="col-sm-5">
+                                <div class="row mt--2">
+                                <div class="col-sm-6">
                                     <div class="form-group">        
                                         <label for="gender" class="control-label">BCG</label>
                                         <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Hepa B-BD</label>
                                         <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
@@ -273,20 +272,292 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-</div>
+                    </div>
+</span>
+
+<span class="1-3M data">
+                            <div class="col-sm-12">
+                                <label for="gender"><b>Nutritional Status Assessment</b></label>
+                            
+                            <div class="row mt--2">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Age <small>(in months)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Length <small>(cm)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">        
+                                        <label for="gender" class="control-label">Date Taken <small>(Length)</small></label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Weight <small>(kg)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">        
+                                        <label for="gender" class="control-label">Date Taken <small>(Weight)</small></label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Status </label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Status</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>S: Stunted</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-MAM: Wasted MAM</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-SAM: Wasted SAM</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>O: Obese/Overweight</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>N: Normal</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="gender">Low birth weight given </label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select month/s</option>
+                                            <option value="1month">1 month</option>
+                                            <option value="2months">2 months</option>
+                                            <option value="3months">3 months</option>
+                                        </select>
+                                    </div>
+                                </div>  
 
 
+    <span class="1month data">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="gender" class="control-label">Date</label>
+                <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+            </div>
+        </div>
+    </span>
 
+    <span class="2months data">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="gender" class="control-label">Date</label>
+                <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+            </div>
+        </div>
+    </span>
 
+    <span class="3months data">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="gender" class="control-label">Date</label>
+                <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+            </div>
+        </div>
+    </span>
 
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="gender">Immunization </label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Immunization</option>
+                                            <option value="1month">DPT-HIB-HepB</option>
+                                            <option value="2months">OPV</option>
+                                            <option value="3months">PCV</option>
+                                            <option value="3months">IPV</option>
+                                        </select>
+                                    </div>
+                                </div>   
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="gender">Dose </label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Dose</option>
+                                            <option>1st Dose</option>
+                                            <option>2nd Dose</option>
+                                            <option>3rd Dose</option>
+                                        </select>
+                                    </div>
+                                </div> 
+
+                                 <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Date of Immunization</label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div> 
+
+                                <div hidden class="col-6">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Exclusive Breastfeeding</label>
+                                            <div class="selectBox" onclick="showCheckboxes()">
+                                                <select class="form-control form-select-sm-6">
+                                                    <option class="placeholder" style="display: none">Select an option</option>
+                                                </select>
+                                                <div class="overSelect"></div>
+                                            </div>
+                                            <div id="checkboxes">
+                                                <label for="one">
+                                                    <input type="checkbox" name="check" id="one" onclick="onlyOne(this)"/> 1 1/2 months</label>
+                                                <label for="two">
+                                                    <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> 2 1/2 months</label>
+                                                <label for="two">
+                                                    <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> 3 1/2 months</label>
+                                                <label for="two">
+                                                    <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> 4-5 months</label>
+                                            </div>
+                                    </div>
+                                </div>    
                             </div>
+                        </div>
+
+</span>
+
+<span class="6-11M data">
+                            <div class="col-sm-12">
+                                <label for="gender"><b>Nutritional Status Assessment</b></label>
+                            
+                            <div class="row mt--2">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Age <small>(in months)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Length <small>(cm)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">        
+                                        <label for="gender" class="control-label">Date Taken <small>(Length)</small></label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Weight <small>(kg)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">        
+                                        <label for="gender" class="control-label">Date Taken <small>(Weight)</small></label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Status </label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Status</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>S: Stunted</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-MAM: Wasted MAM</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-SAM: Wasted SAM</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>O: Obese/Overweight</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>N: Normal</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+</span>
+
+<span class="12M data">
+                            <div class="col-sm-12">
+                                <label for="gender"><b>Nutritional Status Assessment</b></label>
+                            
+                            <div class="row mt--2">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Age <small>(in months)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Length <small>(cm)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">        
+                                        <label for="gender" class="control-label">Date Taken <small>(Length)</small></label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Weight <small>(kg)</small></label>
+                                        <input type="number" class="form-control" name="contactNo" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">        
+                                        <label for="gender" class="control-label">Date Taken <small>(Weight)</small></label>
+                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="gender" class="control-label">Status </label>
+                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Status</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>S: Stunted</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-MAM: Wasted MAM</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-SAM: Wasted SAM</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>O: Obese/Overweight</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>N: Normal</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+</span>
+
+
+
+                        
+                            <!-- </div> -->
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card-body">
+
+
+        <!-- <div class="card-body">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -295,90 +566,28 @@ $(document).ready(function(){
 
                                 
 
+                            
                                 
-
-           <span hidden>             
-
-                               
-
-                                <div class="col-5">
-                                    <div class="form-group">
-                                        <label for="gender" class="control-label">Immunization</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>DPT-HIB-HepB</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>OPV</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>PCV</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>IPV</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-5">
-                                    <div class="form-group">
-                                        <label for="gender" class="control-label">Vaccine</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>></option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="gender" class="control-label">Months</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>1 1/2 Months</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>2 1/2 Months</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>3 1/2 Months</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>4-5 Months</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                
-
-                                
-
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label for="gender" class="control-label">Dose</label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>1st Dose</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>2nd Dose</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>3rd Dose</option>
-                                        </select>
-                                    </div>
-                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Assigned Staff</label>
-                                        <textarea class="form-control" name="" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
-                                    </div>
-
-                                </div>
-</span>  
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Remarks</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter remarks" required></textarea>
-                                    </div>
-                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
+        </div> -->
+
+
         </div>
-
-
-
-                            <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
+                        <div class="col-sm-12">
+                            <div class="form-group ml--3 mr--3">
+                                <label>Remarks</label>
+                                <textarea class="form-control" name="address" placeholder="Enter remarks" required></textarea>
                             </div>
+                        </div>
 
-
-        </div>
+                        <div class="mt-2 text-center">
+                            <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
+                        </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
 
@@ -419,15 +628,6 @@ $(document).ready(function(){
     }
     </script>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-     <script type="text/javascript">
-          $(document).ready(function(){
-              $('#newborn').click(function(){
-                var inputValue = $(this).attr("value");
-                $(".box" + inputValue).toggle();
-              });
-          });
-     </script>
 
 </body>
 
