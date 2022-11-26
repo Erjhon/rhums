@@ -197,7 +197,7 @@ if(isset($_POST['change_pw'])){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Profile</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">CHANGE PASSWORD</a>
  
 <!-- User -->
 <ul class="navbar-nav align-items-center d-none d-md-flex">
@@ -268,14 +268,14 @@ if(isset($_POST['change_pw'])){
 
           <!-- End Navbar -->
           <!-- Header -->
-          <div class="header pb-12 pt-12 pt-lg-5 d-flex align-items-center" style="min-height: 630px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+          <div class="header pb-12 pt-12 pt-lg-5 d-flex align-items-center" style="min-height: 610px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
 
             <!-- Mask -->
             <span class="mask"style="background: linear-gradient(
             to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
 
 
-            <div class="col-xl-12">
+            <div class="col-xl-11 ml-5">
               <!-- Change password card-->
               <div class="card mb-4">
                 <div class="card-header">Change Password</div>
@@ -356,4 +356,28 @@ window.history.forward();
     application: "argon-dashboard-free"
   });
 </script>
+
+<script type="text/javascript">
+    var IdealTimeOut = 180; //3 minutes
+    var idleSecondsTimer = null;
+    var idleSecondsCounter = 0;
+    document.onclick = function () { idleSecondsCounter = 0; };
+    document.onmousemove = function () { idleSecondsCounter = 0; };
+    document.onkeypress = function () { idleSecondsCounter = 0; };
+    idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+
+    function CheckIdleTime() {
+        idleSecondsCounter++;
+        var oPanel = document.getElementById("timeOut");
+        if (oPanel) {
+            oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
+        }
+        if (idleSecondsCounter >= IdealTimeOut) {
+            window.clearInterval(idleSecondsTimer);
+            alert("Your session has expired. Please login again.");
+            window.location = "../admin/login.php";
+        }
+    }
+</script>
+
 </html>
