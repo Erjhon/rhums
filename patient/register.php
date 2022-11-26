@@ -211,7 +211,7 @@ echo '<div class="message">'.$message.'</div>';
 </div> -->
 <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial">
 <!-- </div> -->
-<p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
+<p class="text-danger" id="mI" style="font-size: 13px; margin-top: 4px"></p>
 </div>
 
 <div class="form-group col-4 mb--1">
@@ -447,6 +447,7 @@ echo '<div class="message">'.$message.'</div>';
   function validation(){
 
     var firstname = document.getElementById('firstname').value;
+    var middleInitial = document.getElementById('middleInitial').value;
     var lastname = document.getElementById('lastname').value;
     var username = document.getElementById('username').value;
     var contact = document.getElementById('contact').value;
@@ -459,6 +460,11 @@ echo '<div class="message">'.$message.'</div>';
 
     if(firstname == ""){
       document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field.";
+      return false;
+    }
+
+    if(middleInitial == ""){
+      document.getElementById('mI').innerHTML ="<b> ** Please fill the middle initial field.";
       return false;
     }
 
