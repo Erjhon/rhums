@@ -358,22 +358,22 @@ window.history.forward();
 </script>
 
 <script type="text/javascript">
-    var IdealTimeOut = 180; //3 minutes
-    var idleSecondsTimer = null;
-    var idleSecondsCounter = 0;
-    document.onclick = function () { idleSecondsCounter = 0; };
-    document.onmousemove = function () { idleSecondsCounter = 0; };
-    document.onkeypress = function () { idleSecondsCounter = 0; };
-    idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+    var SessionTimeOut = 180; //3 minutes
+    var sessionSecondsTimer = null;
+    var sessionSecondsCounter = 0;
+    document.onclick = function () { sessionSecondsCounter = 0; };
+    document.onmousemove = function () { sessionSecondsCounter = 0; };
+    document.onkeypress = function () { sessionSecondsCounter = 0; };
+    sessionSecondsTimer = window.setInterval(CheckSessionTime, 1000);
 
-    function CheckIdleTime() {
-        idleSecondsCounter++;
+    function CheckSessionTime() {
+        sessionSecondsCounter++;
         var oPanel = document.getElementById("timeOut");
         if (oPanel) {
-            oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
+            oPanel.innerHTML = (SessionTimeOut - sessionSecondsCounter);
         }
-        if (idleSecondsCounter >= IdealTimeOut) {
-            window.clearInterval(idleSecondsTimer);
+        if (sessionSecondsCounter >= SessionTimeOut) {
+            window.clearInterval(sessionSecondsTimer);
             alert("Your session has expired. Please login again.");
             window.location = "../admin/login.php";
         }
