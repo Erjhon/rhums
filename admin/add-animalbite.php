@@ -126,7 +126,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
             </div>
         </div>
 
-        <div class="card-header">
+        <div class="card-header mt--4">
             <h2 class="card-title">Animal Bite</h2>
         </div>
 
@@ -149,7 +149,6 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Dog</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Cat</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Rat</option>
                                         </select>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -167,10 +166,10 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Category</label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Category</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>I</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>II</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>III</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>IV</option>
                                         </select>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -181,21 +180,29 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                         <label for="gender" class="control-label">Type</label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Bite</option>
-                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Claw</option>
+                                            <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Scratch</option>
                                         </select>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>Name <small>(Pet Owner)</small></label>
+                                        <input class="form-control" name="contactNo" placeholder="Enter Pet Owner Name" required maxlength="11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Pet Owner</label>
-                                        <input class="form-control" name="contactNo" placeholder="Enter Pet Owner Name" required maxlength="11">
+                                        <label>Contact Number <small>(Pet Owner)</small></label>
+                                        <input class="form-control" name="contactNo" placeholder="Enter Patient Contact Number" required maxlength="11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-5">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Address/Location of biting incident</label>
                                         <textarea class="form-control" name="address" placeholder="Enter Address/Location of biting incident" required></textarea>
@@ -203,7 +210,15 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-5">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label>Remarks</label>
+                                        <textarea class="form-control" name="rem" placeholder="Enter Remarks" ></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Assigned Staff</label>
                                         <textarea class="form-control" name="" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
@@ -217,6 +232,9 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     </div>
                                 </div> -->
                             </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -225,9 +243,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
 
 
-                            <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
-                            </div>
+                            
 
 
         </div>
