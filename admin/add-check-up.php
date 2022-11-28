@@ -116,14 +116,21 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Place of Birth <small>(for child)</small></label>
-                                        <textarea class="form-control" name="address" placeholder="Enter Place of Birth" required></textarea>
+                                        <input class="form-control" name="address" placeholder="Enter Place of Birth" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label>Guardian/Mother <small>(for child)</small></label>
+                                        <input class="form-control" name="address" placeholder="Enter Guardian/Mother" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
                                         <label>Patient Address</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter Patient Address" required></textarea>
+                                        <input class="form-control" name="address" placeholder="Enter Patient Address" required>
                                     </div>
                                 </div>
                                
@@ -162,27 +169,44 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Blood Sugar</label>
-                                        <input class="form-control" name="bs" placeholder="Sample: 70"  maxlength="11">
+                                        <input class="form-control" name="bs" placeholder="Sample: 70">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
+
                                 <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Temperature</label>
+                                        <input class="form-control" name="bs" placeholder="Sample: 36.5">
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Weight</label>
-                                        <input class="form-control" name="weight" placeholder="Sample: 45kg"  maxlength="11">
+                                        <input class="form-control" id="weight" onchange="getBMIvalue()" name="weight" placeholder="Enter weight in kilograms">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Height</label>
-                                        <input class="form-control" name="weight" placeholder="Sample: 160cm"  maxlength="11">
+                                        <input class="form-control" id="height" onchange="getBMIvalue()" name="weight" placeholder="Enter height in meters">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-9">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>BMI</label>
+                                        <input class="form-control" name="weight" id="BMIvalue" placeholder="BMI"  readonly>
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Patient Complaints</label>
                                             <textarea class="form-control" name="treatment" placeholder="Enter Patient Complaints" ></textarea>
@@ -238,6 +262,22 @@ $fetchRow = mysqli_fetch_assoc($rs);
         Q4A += ~~((Date.now() - Bday) / (31557600000));
         var theBday = document.getElementById('resultBday');
         theBday.value = Q4A;
+    }
+</script>
+
+<script>
+    function getBMIvalue(){
+        var weight = document.getElementById('weight').value;
+        var height = document.getElementById('height').value;
+
+        height = height * 12;
+        height = height * 0.025; //height in meter
+
+        var newbmivalue = weight / (Math.pow(height,2));
+
+        newbmivalue = Math.round(newbmivalue);
+
+        document.getElementById('BMIvalue').value = newbmivalue;
     }
 </script>
 
