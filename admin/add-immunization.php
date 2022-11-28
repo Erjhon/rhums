@@ -283,7 +283,8 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label>Age <small>(in months)</small></label>
-                                                        <input type="number" class="form-control" name="contactNo" required>
+                                                        <input class="form-control" id="resultBday" name="age" type="text" placeholder="Age" readonly>
+                                                        <!-- <input type="number" class="form-control" name="contactNo" required> -->
                                                     </div>
                                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                                 </div>
@@ -333,7 +334,7 @@ $lastRowId = intval($lastRow['id']) + 1;
 
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
-                                                        <label for="gender">Low birth weight given </label>
+                                                        <label for="gender">Low birth weight given iron</label>
                                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
                                                             <option class="placeholder" style="display: none" >Select month/s</option>
                                                             <option value="1month">1 month</option>
@@ -600,6 +601,19 @@ $lastRowId = intval($lastRow['id']) + 1;
         var Bdate = document.getElementById('dob').value;
         var Bday = +new Date(Bdate);
         Q4A += ~~((Date.now() - Bday) / (31557600000));
+        
+        var dobMonth = dob.getMonth();
+        //get the current date from the system
+        var now = new Date();
+        var currentMonth = now.getMonth();
+        //get months
+        if (currentMonth >= dobMonth)
+          //get months when current month is greater
+          var monthAge = currentMonth - dobMonth;
+        else {
+          yearAge--;
+          var monthAge = 12 + currentMonth - dobMonth;
+        }
         var theBday = document.getElementById('resultBday');
         theBday.value = Q4A;
     }
