@@ -176,7 +176,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label>Temperature</label>
+                                        <label>Body Temperature</label>
                                         <input class="form-control" name="bs" placeholder="Sample: 36.5">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->

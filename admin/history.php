@@ -56,27 +56,33 @@ if(isset($_POST['submit']))
     <table border="0" class="table table-bordered">
        <tr align="center">
           <tr>
-          <th scope>Patient Name</th>
-          <td><?php  echo $row['fullname'];?></td>
-          <th scope>Patient Mobile Number</th>
+          <th scope>Patient No.</th>
+          <td><?php  echo $row['id'];?></td>
+          <th scope>Contact Number</th>
           <td><?php  echo $row['contactNo'];?></td>
         </tr>
         <tr>
-          <th>Patient Gender</th>
+          <th scope>Name</th>
+          <td><?php  echo $row['fullname'];?></td>
+          <th>Gender</th>
           <td><?php  echo $row['gender'];?></td>
-          <th>Patient Address</th>
-          <td><?php  echo $row['address'];?></td>
         </tr>
-          <tr>
-          <th>Patient Date of Birth</th>
+        <tr>
+          <th>Date of Birth</th>
           <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
-          <th>Patient Age</th>
+          <th>Age</th>
           <td><?php  echo $row['age'];?></td>
         </tr>
         <tr>
-          <th>Patient Medical History(if any)</th>
-          <td><?php  echo $row['medHistory'];?></td>
-           <th>Patient Reg Date</th>
+          <th>Place of Birth <small>(for child)</small></th>
+          <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
+          <th>Guardian/Mother <small>(for child)</small></th>
+          <td><?php  echo $row['age'];?></td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td><?php  echo $row['address'];?></td>
+           <th>Date of Registration</th>
           <td><?php  echo $row['CreationDate'];?></td>
         </tr>
     </tr>
@@ -96,11 +102,15 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
       <tr>
         <th>#</th>
         <th>Blood Pressure</th>
-        <th>Weight</th>
         <th>Blood Sugar</th>
         <th>Body Temprature</th>
-        <th>Medical Prescription</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>BMI</th>
+        <th>Patient Complaints</th>
+        <th>Remarks</th>
         <th>Visit Date</th>
+        <th>Assigned Staff</th>
       </tr>
     <?php  
     while ($row=mysqli_fetch_array($ret)) { 
@@ -108,11 +118,15 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
       <tr>
         <td><?php echo $cnt;?>.</td>
         <td><?php  echo $row['BloodPressure'];?></td>
-        <td><?php  echo $row['Weight'];?></td>
         <td><?php  echo $row['BloodSugar'];?></td> 
+        <td><?php  echo $row['Temperature'];?></td>
+        <td><?php  echo $row['Weight'];?></td>
+        <td><?php  echo $row['Temperature'];?></td>
+        <td><?php  echo $row['Temperature'];?></td>
         <td><?php  echo $row['Temperature'];?></td>
         <td><?php  echo $row['MedicalPres'];?></td>
         <td><?php  echo $row['CreationDate'];?></td> 
+        <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
 </table>
@@ -138,23 +152,31 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
 
         <tr>
           <th>Blood Pressure :</th>
-          <td><input name="bp" placeholder="Blood Pressure" class="form-control wd-450" required="true"></td>
+          <td><input name="bp" placeholder="Sample: 120/80"" class="form-control wd-450" required="true"></td>
         </tr>                          
         <tr>
           <th>Blood Sugar :</th>
-          <td><input name="bs" placeholder="Blood Sugar" class="form-control wd-450" required="true"></td>
+          <td><input name="bs" placeholder="Sample: 70" class="form-control wd-450" required="true"></td>
+        </tr> 
+        <tr>
+          <th>Body Temperature :</th>
+          <td><input name="bs" placeholder="Sample: 36.5" class="form-control wd-450" required="true"></td>
         </tr> 
         <tr>
           <th>Weight :</th>
-          <td><input name="weight" placeholder="Weight" class="form-control wd-450" required="true"></td>
+          <td><input name="weight" placeholder="Enter weight in kilograms" class="form-control wd-450" required="true"></td>
         </tr>
         <tr>
-          <th>Body Temprature :</th>
-          <td><input name="temp" placeholder="Blood Sugar" class="form-control wd-450" required="true"></td>
+          <th>Height :</th>
+          <td><input name="temp" placeholder="Enter height in meters" class="form-control wd-450" required="true"></td>
         </tr>
         <tr>
-          <th>Prescription :</th>
-          <td><textarea name="pres" placeholder="Medical Prescription" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+          <th>Patient Complaints :</th>
+          <td><textarea name="pres" placeholder="Enter Patient Complaints" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+        </tr> 
+        <tr>
+          <th>Remarks :</th>
+          <td><textarea name="pres" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
         </tr>  
   </table>
 

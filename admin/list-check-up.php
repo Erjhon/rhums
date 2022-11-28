@@ -38,8 +38,9 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 									<tr>
 										<th>Patient No.</th>
 										<th>Patient Name</th>
+										<th>Age</th>
 										<th>Blood Pressure</th>
-										<th>Blood Sugar</th>
+										<th>Address</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -53,8 +54,9 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 										<tr>
 											<td><b>PA-<?php echo $row["id"]; ?></td>
 											<td><?php echo $row["fullname"]; ?></td>
-											<td><?php echo $row["contactNo"]; ?></td>
+											<td><?php echo $row["age"]; ?></td>
 											<td><?php echo $row["gender"]; ?></td>
+											<td><?php echo $row["address"]; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
