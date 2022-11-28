@@ -112,18 +112,21 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                         <input class="form-control" id="resultBday" name="age" type="text" placeholder="Age" readonly>
                                     </div>
                                 </div>
-                                <div class="col-sm-7">
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Place of Birth <small>(for child)</small></label>
+                                        <textarea class="form-control" name="address" placeholder="Enter Place of Birth" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Patient Address</label>
                                         <textarea class="form-control" name="address" placeholder="Enter Patient Address" required></textarea>
                                     </div>
                                 </div>
-                               <!--  <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Medical History</label>
-                                        <textarea class="form-control" name="medHistory" placeholder="Enter Patient Medical History(if any)"></textarea>
-                                    </div>
-                                </div> -->
+                               
                             </div>
                       
                     </div>
@@ -131,7 +134,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
             </div>
         </div>
 
-        <div class="card-header">
+        <div class="card-header mt--4">
             <h2 class="card-title">Check-up</h2>
         </div>
 
@@ -150,7 +153,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label>Blood Pressure 1</label>
+                                        <label>Blood Pressure</label>
                                         <input class="form-control" name="bp" placeholder="Sample: 120/80" >
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -166,45 +169,47 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Weight</label>
-                                        <input class="form-control" name="weight" placeholder="Sample: 45 kg"  maxlength="11">
+                                        <input class="form-control" name="weight" placeholder="Sample: 45kg"  maxlength="11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-7">
+                                <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label>Treatment Given</label>
-                                            <textarea class="form-control" name="treatment" placeholder="Enter Treatment Given" ></textarea>
+                                        <label>Height</label>
+                                        <input class="form-control" name="weight" placeholder="Sample: 160cm"  maxlength="11">
+                                    </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label>Patient Complaints</label>
+                                            <textarea class="form-control" name="treatment" placeholder="Enter Patient Complaints" ></textarea>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-5">
+                                <!-- <div class="col-sm-5">
                                     <div class="form-group">
                                         <label>Quantity</label>
                                         <input type="number" class="form-control" name="quant" >
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-7">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <label>Remarks</label>
-                                        <textarea class="form-control" name="rem" placeholder="Enter remarks" ></textarea>
+                                        <textarea class="form-control" name="rem" placeholder="Enter Remarks" ></textarea>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-5">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Assigned Staff</label>
                                         <textarea class="form-control" name="" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
                                     </div>
                                 </div>
 
-                               <!--  <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Medical History</label>
-                                        <textarea class="form-control" name="medHistory" placeholder="Enter Patient Medical History(if any)"></textarea>
-                                    </div>
-                                </div> -->
                             </div>
                             <div class="m-t-20 text-center">
                                 <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
@@ -225,16 +230,16 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
 
     <!-- //check birthdays start -->
-    <script type='text/javascript'>
-        function submitBday() {
-            var Q4A = "";
-            var Bdate = document.getElementById('dob').value;
-            var Bday = +new Date(Bdate);
-            Q4A += ~~((Date.now() - Bday) / (31557600000));
-            var theBday = document.getElementById('resultBday');
-            theBday.value = Q4A;
-        }
-    </script>
+<script type='text/javascript'>
+    function submitBday() {
+        var Q4A = "";
+        var Bdate = document.getElementById('dob').value;
+        var Bday = +new Date(Bdate);
+        Q4A += ~~((Date.now() - Bday) / (31557600000));
+        var theBday = document.getElementById('resultBday');
+        theBday.value = Q4A;
+    }
+</script>
 
 </body>
 
