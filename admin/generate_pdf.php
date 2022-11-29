@@ -17,7 +17,7 @@ $row = mysqli_fetch_assoc($sql);
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 ob_start();
-require('pdf_details.php');
+require('pdf_details_CU.php');
 $html =ob_get_contents();
 ob_get_clean();
 

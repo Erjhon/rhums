@@ -25,7 +25,7 @@
 
 
 <h2>Medical Appointment and Record Management System <br>RURAL HEALTH UNIT II</h2>
-<br><h2>Patient Records</h2>
+<br><h2>Patient Records for Check-Up</h2>
 		<table style="width:100%">
 
 			<tr>
@@ -33,38 +33,50 @@
 				<td>PA-<?=$row["id"] ?></td>
 				<th>Name</th>
 				<td><?=$row["fullname"] ?></td>
-
 			</tr>
 
 			<tr>
-				
 				<th>Gender</th>
 				<td><?=$row["gender"] ?></td>
-				<th>Contact No.</th>
+				<th>Contact Number</th>
 				<td><?=$row["contactNo"] ?></td>
-				
-				
+			</tr>
 
-				
-							</tr>
-
-							<tr>
-								<th>Date of Birth</th>
+			<tr>
+				<th>Date of Birth</th>
 				<td><?=$row["dob"] ?></td>
-				<th>Medical History</th>
-				<td><?=$row["medHistory"] ?></td>
-							</tr>
+				<th>Age</th>
+				<td><?=$row["age"] ?></td>
+			</tr>
+
+			<tr>
+				<th>Place of Birth <small>(for child)</small></th>
+				<td><?=$row["dob"] ?></td>
+				<th>Guardian/Mother <small>(for child)</small></th>
+				<td><?=$row["age"] ?></td>
+			</tr>
+
+			<tr>
+				<th>Address</th>
+				<td><?=$row["address"] ?></td>
+				<th>Date of Registration</th>
+				<td><?=$row["CreationDate"] ?></td>
+			</tr>
 
 
 		</table>
 
 <br><h2>Medical History</h2>
-			<table style="width:100%">
+	<table style="width:100%">
+        <th>#</th>
         <th>Blood Pressure</th>
-        <th>Weight</th>
         <th>Blood Sugar</th>
         <th>Body Temprature</th>
-        <th>Medical Prescription</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>BMI</th>
+        <th>Patient Complaints</th>
+        <th>Remarks</th>
         <th>Visit Date</th>
 
          <tr>
