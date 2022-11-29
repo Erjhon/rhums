@@ -193,149 +193,111 @@ echo '<div class="message">'.$message.'</div>';
       <div class="col-4" id="frm-field">
         <div class="form-group mb--1">
           <h5 class="text-dark required">First Name</h5>
-<!-- div class="input-group input-group-alternative mb--4">
-<div class="input-group-prepend">
-<span class="input-group-text"><i class="ni ni-firstname-83"></i></span>
-</div> -->
-<input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname">
-<!-- </div> -->
-<p class="text-danger" id="fn" style="font-size: 13px; margin-top: 4px"></p>
-</div>
-</div>
+          <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname">
+          <p class="text-danger" id="fn" style="font-size: 13px; margin-top: 4px"></p>
+        </div>
+      </div>
 
-<div class="form-group col-4 mb--1">
-  <h5 class="text-dark required">Middle Initial</h5>
-<!-- <div class="input-group input-group-alternative mb--4">
-<div class="input-group-prepend">
-<span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-</div> -->
-<input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial">
-<!-- </div> -->
-<p class="text-danger" id="mI" style="font-size: 13px; margin-top: 4px"></p>
-</div>
+      <div class="form-group col-4 mb--1">
+        <h5 class="text-dark required">Middle Initial</h5>
+        <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial">
+        <p class="text-danger" id="mI" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
 
-<div class="form-group col-4 mb--1">
-  <h5 class="text-dark required">Last Name</h5>
-<!-- <div class="input-group input-group-alternative mb--4">
-<div class="input-group-prepend">
-<span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-</div> -->
-<input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname">
-<!-- </div> -->
-<p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
-</div>
+      <div class="form-group col-4 mb--1">
+        <h5 class="text-dark required">Last Name</h5>
+        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname">
+        <p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
 
-<div class="form-group col-5 mb--1">
-  <h5 class="text-dark required">Username</h5>
-<!-- <div class="input-group input-group-alternative mb--4">
-<div class="input-group-append">
-<span class="input-group-text"><i class="ni ni-username-83"></i></span>
-</div>
-</div> -->
-<!-- <span class="input-icon"> -->
-  <input type="username" class="form-control" name="username" id="username" onBlur="userAvailability()"  placeholder="Username">
-  <!--  <i class="fa fa-user"></i> </span> -->
-  <span id="user-availability-status1" style="font-size:12px;"></span>
-  <p class="text-danger" id="un" style="font-size: 13px; margin-top: 4px"></p>
-  <!-- </span> -->
-</div>
+      <div class="form-group col-5 mb--1">
+        <h5 class="text-dark required">Username</h5>
+        <input type="username" class="form-control" name="username" id="username" onBlur="userAvailability()"  placeholder="Username">
+        <span id="user-availability-status1" style="font-size:12px;"></span>
+        <p class="text-danger" id="un" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
 
-<div class="form-group col-4 mb--1">
-  <h5 class="text-dark required">Contact Number</h5>
-<!-- <div class="input-group input-group-alternative mb--4">
-<div class="input-group-prepend">
-<span class="input-group-text text-muted px-3">09<i class="ni ni-lastname-83"></i></span>
-</div> -->
-<input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-<!-- </div> -->
-<p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
-</div>
+      <div class="form-group col-4 mb--1">
+        <h5 class="text-dark required">Contact Number</h5>
+        <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
 
-<div class="form-group col-3 mb--1">
-  <h5 for="gender" class="text-dark required">Gender</h5>
-  <select type="text" class="form-control form-select-sm-6" name="gender" id="gender">
-    <option >Male</option>
-    <option >Female</option>
-  </select>
-  <p class="text-danger" id="g" style="font-size: 13px; margin-top: 4px"></p>
-</div>
+      <div class="form-group col-3 mb--1">
+        <h5 for="gender" class="text-dark required">Gender</h5>
+        <select type="text" class="form-control form-select-sm-6" name="gender" id="gender">
+          <option >Male</option>
+          <option >Female</option>
+        </select>
+        <p class="text-danger" id="g" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
 
-<div class="form-group col-6 mb--1">
-  <h5 for="dob" class="control-label required">Date of Birth</h5>
-<!-- <div class="input-group input-group-alternative mb--4">
-<div class="input-group-prepend">
-<span class="input-group-text"><i class="ni ni-lastname-83"></i></span>
-</div> -->
-<input type="date" class="form-control" id="dob" name="dob">
-<!-- </div> -->
-<p class="text-danger" id="db" style="font-size: 13px; margin-top: 4px"></p>
-</div>
+      <div class="form-group col-6 mb--1">
+        <h5 for="dob" class="control-label required">Date of Birth</h5>
+        <input type="date" class="form-control" id="dob" name="dob">
+        <p class="text-danger" id="db" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
 
-<div class="form-group col-6 mb--1">
-  <h5 class="text-dark required">Address</h5>
-<!-- <div class="input-group input-group-alternative mb--4">
-<div class="input-group-prepend">
-<span class="input-group-text"><i class="ni ni-username-83"></i></span>
-</div> -->
-<input class="form-control" placeholder="Address" id="address" name="address" type="address">
-<!-- </div> -->
-<p class="text-danger" id="ad" style="font-size: 13px; margin-top: 4px"></p>
-</div>
+      <div class="form-group col-6 mb--1">
+        <h5 class="text-dark required">Address</h5>
+        <input class="form-control" placeholder="Address" id="address" name="address" type="address">
+        <p class="text-danger" id="ad" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
 
-<div class="form-group col-6 ">
-  <h5 class="text-dark required">Password</h5>
-  <div class="input-group input-group-alternative mb--1">
-    <div class="input-group-prepend">
-      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-    </div>
-    <input class="form-control" placeholder="Password" id ="password" name ="password" type="password">
-    <span class="input-group-text">
-      <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
-    </span>
-  </div>
-  <p class="text-danger" id="pw" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"></p>
-</div>
+      <div class="form-group col-6 ">
+        <h5 class="text-dark required">Password</h5>
+        <div class="input-group input-group-alternative mb--1">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+          </div>
+          <input class="form-control" placeholder="Password" id ="password" name ="password" type="password">
+          <span class="input-group-text">
+            <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+          </span>
+        </div>
+        <p class="text-danger" id="pw" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"></p>
+      </div>
 
-<div class="form-group col-6 ">
-  <h5 class="text-dark required">Confirm Password</h5>
-  <div class="input-group input-group-alternative mb--1">
-    <div class="input-group-prepend">
-      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-    </div>
-    <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password">
-    <span class="input-group-text">
-      <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
-    </span>
-  </div>
-  <p class="text-danger" id="cpw" style="font-size: 13px; margin-top: 7px; margin-bottom: -15px"></p>
-</div>
+      <div class="form-group col-6 ">
+        <h5 class="text-dark required">Confirm Password</h5>
+        <div class="input-group input-group-alternative mb--1">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+          </div>
+          <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password">
+          <span class="input-group-text">
+            <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+          </span>
+        </div>
+        <p class="text-danger" id="cpw" style="font-size: 13px; margin-top: 7px; margin-bottom: -15px"></p>
+      </div>
 
-<div class="col-12 mb-2">
-  <h5 class="text-dark">Add Profile Image</h5>
-  <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
-</div>
-</div>
+      <div class="col-12 mb-2">
+        <h5 class="text-dark">Add Profile Image</h5>
+        <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+      </div>
+      </div>
 
-<div class="row my-2">
-  <div class="col-12">
-    <div class="custom-control custom-control-alternative custom-checkbox text-center">
-      <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-      <label class="custom-control-label" for="customCheckRegister">
-        <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
-      </label>
+      <div class="row my-2">
+        <div class="col-12">
+          <div class="custom-control custom-control-alternative custom-checkbox text-center">
+            <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+            <label class="custom-control-label" for="customCheckRegister">
+              <span class="text-dark">I agree with the <a href="#exampleModal"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
+      </div><br>
+      <div class="col-12 text-center mt--3">
+        Already have an account? <a href="../admin/login.php">Log in</a>
+      </div>
+
+      </form>
     </div>
   </div>
-</div>
-<div class="text-center">
-  <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
-</div><br>
-<div class="col-12 text-center mt--3">
-  Already have an account? <a href="../admin/login.php">Log in</a>
-</div>
-
-</form>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -433,7 +395,6 @@ echo '<div class="message">'.$message.'</div>';
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary"  >Save changes</button> -->
         </div>
       </div>
     </div>
@@ -648,9 +609,6 @@ echo '<div class="message">'.$message.'</div>';
     }
   })
 </script>
-
-
-
 </body>
 
 </html>
