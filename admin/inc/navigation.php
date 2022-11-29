@@ -111,10 +111,10 @@
               <span class="text-dark"> Records</span></a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                  <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="nav-link nav-check-up">Check-up</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="nav-link nav-animalbite"> Animal Bite</a></li>
                  <li><a href="<?php echo base_url ?>admin/?page=list-immunization" class="nav-link nav-immunization">Immunization for Child</a></li>
                  <li><a href="<?php echo base_url ?>admin/?page=list-immunizationSC" class="nav-link nav-immunization">Immunization for Senior Citizens</a></li>
                  <!-- <li><a href="<?php echo base_url ?>admin/?page=list-prenatal" class="nav-link nav-prenatal"> Prenatal</a></li> -->
-                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="nav-link nav-animalbite"> Animal Bite</a></li>
               </ul>
           </li>
 
