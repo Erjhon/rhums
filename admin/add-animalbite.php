@@ -138,6 +138,13 @@ $fetchRow = mysqli_fetch_assoc($rs);
                             <div class="row">
                                 <div class="col-3">
                                     <div class="form-group">
+                                        <label for="" class="control-label">Date of Visit</label>
+                                        <input type="date" class="form-control" id="" name="visit" value="" >
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="form-group">
                                         <label for="dob" class="control-label">Date of Incident</label>
                                         <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                                     </div>
@@ -147,6 +154,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Source</label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Source</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Dog</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Cat</option>
                                         </select>
@@ -179,6 +187,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <div class="form-group">
                                         <label for="gender" class="control-label">Type</label>
                                         <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                                            <option class="placeholder" style="display: none" >Select Type</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Bite</option>
                                             <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Scratch</option>
                                         </select>
@@ -186,10 +195,10 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Name <small>(Pet Owner)</small></label>
-                                        <input class="form-control" name="contactNo" placeholder="Enter Pet Owner Name" required maxlength="11">
+                                        <input class="form-control" name="contactNo" placeholder="Enter Name" required maxlength="11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -197,15 +206,15 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Contact Number <small>(Pet Owner)</small></label>
-                                        <input class="form-control" name="contactNo" placeholder="Enter Patient Contact Number" required maxlength="11">
+                                        <input class="form-control" name="contactNo" placeholder="Enter Contact Number" required maxlength="11">
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-8">
                                     <div class="form-group">
-                                        <label>Address/Location of biting incident</label>
-                                        <textarea class="form-control" name="address" placeholder="Enter Address/Location of biting incident" required></textarea>
+                                        <label>Location of biting incident</label>
+                                        <textarea class="form-control" name="address" placeholder="Enter Location of biting incident" required></textarea>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>

@@ -65,7 +65,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 				                  <div class="dropdown-menu" role="menu">
 				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=history&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> View</a>
 
-				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=history&viewid=<?php echo $row['id'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
+				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=edit-check-up&viewid=<?php echo $row['id'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
 				                
 									<div class="divider"></div>
 									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
