@@ -43,7 +43,7 @@ if(isset($_POST['submit']))
 
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h2 class="card-title text-center">Patient Records</h2>
+        <h2 class="card-title text-center">Patient Records for Animal Bite</h2>
     </div>
 <?php
    $vid=$_GET['viewid'];

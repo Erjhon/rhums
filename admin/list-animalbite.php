@@ -40,8 +40,7 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 										<th>Patient Name</th>
 										<th>Date of Incident</th>
 										<th>Source</th>
-										<th>Category</th>
-										<th>Type</th>
+										<th>Address</th>
 										<th>Creation Date</th>
 										<th>Action</th>
 									</tr>
@@ -58,9 +57,8 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 											<td><?php echo $row["fullname"]; ?></td>
 											<td><?php echo $row["contactNo"]; ?></td>
 											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
+											<td><?php echo $row["address"]; ?></td>
+											<td><?php echo $row["CreationDate"]; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
