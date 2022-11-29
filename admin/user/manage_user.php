@@ -49,30 +49,30 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLocation">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": 'required' ?>>
-                    <?php if(isset($_GET['id'])): ?>
-					<small><i>Leave this blank if you dont want to change the password.</i></small>
-                    <?php endif; ?>
+		                    <?php if(isset($_GET['id'])): ?>
+							<small><i>Leave this blank if you dont want to change the password.</i></small>
+		                    <?php endif; ?>
                             </div>
                         </div>
                           <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Usertype</label>
+                                <label class="small mb-1" for="inputOrgName">User Type</label>
                                 <select  class="form-control input-group input-group-alternative" name="role">
-                          <option class="text-muted" value="Admin">Admin</option>
-                          <option class="text-muted" value="Staff">Staff</option>
-                     </select>
+                                	<option class="placeholder" style="display: none" >Select user type</option>
+			                        <option class="text-muted" value="Admin">Super Admin</option>
+			                        <option class="text-muted" value="Staff">Staff</option>
+			                     </select>
                             </div>
                             <!-- Form Group (location)-->
                             <div class="form-group col-6">
-					<label for="" class="control-label">Avatar</label>
-					<div class="custom-file">
-		              <input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
-		              <label class="custom-file-label" for="customFile">Choose file</label>
-		            </div>
-				</div>
-				
+								<label for="" class="control-label">Avatar</label>
+								<div class="custom-file">
+					              	<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
+						            <label class="custom-file-label" for="customFile">Choose file</label>
+					            </div>
+							</div>
                         </div>
 	<!-- <div class="card-footer"> -->
 			<div class="form-group col-12 d-flex justify-content-center">
