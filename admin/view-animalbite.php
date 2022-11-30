@@ -47,7 +47,7 @@ if(isset($_POST['submit']))
     </div>
 <?php
    $vid=$_GET['viewid'];
-   $ret=mysqli_query($conn,"select * from patient_history where id='$vid'");
+   $ret=mysqli_query($conn,"select * from animalbite where pid='$vid'");
   $cnt=1;
   while ($row=mysqli_fetch_array($ret)) {
 ?>
@@ -57,13 +57,13 @@ if(isset($_POST['submit']))
        <tr align="center">
           <tr>
           <th scope>Patient No.</th>
-          <td><?php  echo $row['id'];?></td>
+          <td><?php  echo $row['pid'];?></td>
           <th scope>Contact Number</th>
-          <td><?php  echo $row['contactNo'];?></td>
+          <td><?php  echo $row['pcontact'];?></td>
         </tr>
         <tr>
           <th scope>Name</th>
-          <td><?php  echo $row['fullname'];?></td>
+          <td><?php  echo $row['pfname'];?></td>
           <th>Gender</th>
           <td><?php  echo $row['gender'];?></td>
         </tr>
@@ -75,7 +75,7 @@ if(isset($_POST['submit']))
         </tr>
         <tr>
           <th>Address</th>
-          <td><?php  echo $row['address'];?></td>
+          <td><?php  echo $row['paddress'];?></td>
            <th>Date of Registration</th>
           <td><?php  echo $row['CreationDate'];?></td>
         </tr>
@@ -84,7 +84,7 @@ if(isset($_POST['submit']))
 <?php }?>
 <?php  
 
-$ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'");
+$ret=mysqli_query($conn,"select * from animalbite  where pid='$vid'");
 
 
  ?>
@@ -112,17 +112,18 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
       ?>
       <tr>
         <td><?php echo $cnt;?>.</td>
-        <td><?php  echo $row['BloodPressure'];?></td>
-        <td><?php  echo $row['BloodSugar'];?></td> 
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Weight'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['MedicalPres'];?></td>
-        <td><?php  echo $row['CreationDate'];?></td> 
-        <td><?php  echo $row['CreationDate'];?></td> 
-        <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
+        <td><?php  echo $row['incident'];?></td>
+        <td><?php  echo $row['source'];?></td> 
+        <td><?php  echo $row['part'];?></td>
+        <td><?php  echo $row['category'];?></td>
+        <td><?php  echo $row['type'];?></td>
+        <td><?php  echo $row['owner'];?></td>
+        <td><?php  echo $row['ownercon'];?></td>
+        <td><?php  echo $row['location'];?></td>
+        <td><?php  echo $row['remark'];?></td>
+        <td><?php  echo $row['visit'];?></td> 
+        <td><?php  echo $row['assigned'];?></td> 
+        <!-- <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td>  -->
       </tr>
 <?php $cnt=$cnt+1;} ?>
 </table>

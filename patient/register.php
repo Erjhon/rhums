@@ -240,7 +240,52 @@ echo '<div class="message">'.$message.'</div>';
 
       <div class="form-group col-6 mb--1">
         <h5 class="text-dark required">Address</h5>
-        <input class="form-control" placeholder="Address" id="address" name="address" type="address">
+        <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
+         <select class="form-control"  name="address" rows="2" required>
+                                                    <option class="placeholder" style="display: none" >Select Address</option>
+                                                    <option>Angustia, Nabua</option>
+                                                    <option>Antipolo Old, Nabua</option>
+                                                    <option>Antipolo Young, Nabua</option>
+                                                    <option>Aro-aldao, Nabua</option>
+                                                    <option>Bustrac, Nabua</option>
+                                                    <option>Dolorosa, Nabua</option>
+                                                    <option>Duran, Nabua</option>
+                                                    <option>Inapatan, Nabua</option>
+                                                    <option>La Opinion, Nabua</option>
+                                                    <option>La Purisima, Nabua</option>
+                                                    <option>Lourdes Old, Nabua</option>
+                                                    <option>Lourdes Young, Nabua</option>
+                                                    <option>Malawag, Nabua</option>
+                                                    <option>Paloyon Oriental, Nabua</option>
+                                                    <option>Paloyon Proper, Nabua</option>
+                                                    <option>Salvacion Que Gatos, Nabua</option>
+                                                    <option>San Antonio, Nabua</option>
+                                                    <option>San Antonio Ogbon, Nabua</option>
+                                                    <option>San Esteban, Nabua</option>
+                                                    <option>San Francisco, Nabua</option>
+                                                    <option>San Isidro, Nabua</option>
+                                                    <option>San Isidro Inapatan, Nabua</option>
+                                                    <option>San Jose, Nabua</option>
+                                                    <option>San Juan, Nabua</option>
+                                                    <option>San Luis, Nabua</option>
+                                                    <option>San Miguel, Nabua</option>
+                                                    <option>San Nicolas, Nabua</option>
+                                                    <option>San Roque, Nabua</option>
+                                                    <option>San Roque Madawon, Nabua</option>
+                                                    <option>San Roque Sagumay, Nabua</option>
+                                                    <option>San Vicente Gorong-Gorong, Nabua</option>
+                                                    <option>San Vicente Ogbon, Nabua</option>
+                                                    <option>Santa Barbara, Nabua</option>
+                                                    <option>Santa Cruz, Nabua</option>
+                                                    <option>Santa Elena Baras, Nabua</option>
+                                                    <option>Santa Lucia Baras, Nabua</option>
+                                                    <option>Santiago Old, Nabua</option>
+                                                    <option>Santiago Young, </option>
+                                                    <option>Santo Domingo, Nabua</option>
+                                                    <option>Tandaay, Nabua</option>
+                                                    <option>Topas Proper, Nabua</option>
+                                                    <option>Topas Sogod, Nabua</option>
+                                                    </select>
         <p class="text-danger" id="ad" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 

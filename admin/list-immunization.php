@@ -13,7 +13,7 @@
 <?php endif;?>
 
 <?php
-$result = mysqli_query($conn,"SELECT * FROM patient_history");
+$result = mysqli_query($conn,"SELECT * FROM immunization_child");
 ?>
 
 <div class="card card-outline card-primary">
@@ -38,11 +38,9 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 									<tr>
 										<th>Patient No.</th>
 										<th>Patient Name</th>
-										<th>Age</th>
-										<th>Vaccine</th>
-										<th>Creation Date</th>
-										<th>Months</th>
-										<th>Dose</th>
+										<th>Address</th>
+										<th>Sex</th>
+										<th>Remarks</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -55,12 +53,10 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 
 										<tr>
 											<td><b>PA-<?php echo $row["id"]; ?></td>
-											<td><?php echo $row["fullname"]; ?></td>
-											<td><?php echo $row["contactNo"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
+											<td><?php echo $row["child"]; ?></td>
+											<td><?php echo $row["address"]; ?></td>
+											<td><?php echo $row["sex"]; ?></td>
+											<td><?php echo $row["remarks"]; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action

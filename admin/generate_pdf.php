@@ -7,10 +7,8 @@ require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 $id = $_GET['id'];
-$sql = mysqli_query($conn,"SELECT * FROM patient_history  WHERE id='$id'");
+$sql = mysqli_query($conn,"SELECT * FROM immunization_child ");
 $row = mysqli_fetch_assoc($sql);
-
-
 
 
 

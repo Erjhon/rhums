@@ -13,7 +13,7 @@
 <?php endif;?>
 
 <?php
-$result = mysqli_query($conn,"SELECT * FROM patient_history");
+$result = mysqli_query($conn,"SELECT * FROM animalbite");
 ?>
 
 <div class="card card-outline card-primary">
@@ -41,7 +41,6 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 										<th>Date of Incident</th>
 										<th>Source</th>
 										<th>Address</th>
-										<th>Creation Date</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -53,24 +52,23 @@ $result = mysqli_query($conn,"SELECT * FROM patient_history");
 
 
 										<tr>
-											<td><b>PA-<?php echo $row["id"]; ?></td>
-											<td><?php echo $row["fullname"]; ?></td>
-											<td><?php echo $row["contactNo"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["address"]; ?></td>
-											<td><?php echo $row["CreationDate"]; ?></td>
+											<td><b>PA-<?php echo $row["pid"]; ?></td>
+											<td><?php echo $row["pfname"]; ?></td>
+											<td><?php echo $row["incident"]; ?></td>
+											<td><?php echo $row["source"]; ?></td>
+											<td><?php echo $row["paddress"]; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=view-animalbite&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> View</a>
+				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=view-animalbite&viewid=<?php echo $row['pid'] ?>><span class="fa fa-search text-success"></span> View</a>
 
-				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=edit-animalbite&viewid=<?php echo $row['id'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
+				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=edit-animalbite&viewid=<?php echo $row['pid'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
 				                
 									<div class="divider"></div>
-									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
+									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['pid']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
 				                  </div>
 							</td>
 

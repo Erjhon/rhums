@@ -308,6 +308,7 @@ if(isset($_GET['logout'])){
 
 </body>
 
+<!-- Session timeout -->
 <script type="text/javascript">
     var SessionTimeOut = 180; //3 minutes
     var sessionSecondsTimer = null;
