@@ -12,6 +12,7 @@ $sched_arr = array();
     <div class="header-body">
       <!-- Card stats -->
       <div class="row">
+        <a href=""></a>
         <div class="col-xl-4 col-lg-6">
           <div class="card card-stats mb-3 mb-xl-0">
             <div class="card-body">
@@ -83,10 +84,10 @@ ORDER BY date_sched ASC";
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Patient Record History</h5>
+                  <h5 class="card-title text-uppercase text-dark mb-0">Check-Up Records</h5>
                   <?php
 
-                  $patient_history = "SELECT * FROM patient_history";
+                  $patient_history = "SELECT * FROM checkup";
                   $patient_history_run = mysqli_query($conn, $patient_history);
 
                   if ($total = mysqli_num_rows($patient_history_run)) {
@@ -97,7 +98,7 @@ ORDER BY date_sched ASC";
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                    <i class="fas fa-users"></i>
+                  <i class="fas fa-file-medical-alt"></i>
                   </div>
                 </div>
               </div>
@@ -105,6 +106,93 @@ ORDER BY date_sched ASC";
             </div>
           </div>
         </div>
+
+          <div class="col-xl-4 col-lg-6 mt-3">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-dark mb-0">Animal Bite Records</h5>
+                  <?php
+
+                  $patient_history = "SELECT * FROM animalbite";
+                  $patient_history_run = mysqli_query($conn, $patient_history);
+
+                  if ($total = mysqli_num_rows($patient_history_run)) {
+                  }
+
+                  ?>
+                  <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-blue text-white rounded-circle shadow">
+                    <i class="fas fa-syringe"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+         <div class="col-xl-4 col-lg-6 mt-3">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-dark mb-0">Immunization For Child Records</h5>
+                  <?php
+
+                  $patient_history = "SELECT * FROM checkup";
+                  $patient_history_run = mysqli_query($conn, $patient_history);
+
+                  if ($total = mysqli_num_rows($patient_history_run)) {
+                  }
+
+                  ?>
+                  <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-green text-white rounded-circle shadow">
+                    <i class="fas fa-stethoscope"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+         <div class="col-xl-4 col-lg-6 mt-3">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-dark mb-0"> Immunization For Senior Citizens Records</h5>
+                  <?php
+
+                  $patient_history = "SELECT * FROM checkup";
+                  $patient_history_run = mysqli_query($conn, $patient_history);
+
+                  if ($total = mysqli_num_rows($patient_history_run)) {
+                  }
+
+                  ?>
+                  <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-purple text-white rounded-circle shadow">
+                    <i class="fas fa-crutch"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
 
       </div>
     </div>
