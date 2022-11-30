@@ -42,11 +42,11 @@ if (!empty($_SESSION['user_id'])) {
 
 
     $user_id = $row['id'];
-    $full_name = "{$row['firstname']} {$row['middleInitial']} {$row['lastname']}";
-    $contact = "{$row['contact']}";
-    $gender = "{$row['gender']}";
-    $dob = "{$row['dob']}";
-    $address = "{$row['address']}";
+    $full_name = "";
+    $contact = "";
+    $gender = "";
+    $dob = "";
+    $address = "";
     $reason = "";
 } else {
     $full_name = "";
