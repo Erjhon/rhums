@@ -514,13 +514,22 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             </span>
                                                         </div>
 
+                                                        <div class="row">
+                                                            <div class="col-sm-9">
+                                                                <div class="form-group">
+                                                                    <label>Remarks</label>
+                                                                    <textarea class="form-control" name="remarks" placeholder="Enter remarks" ></textarea>
+                                                                </div>
+                                                            </div>
 
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group ml--3 mr--3">
-                                                                <label>Remarks</label>
-                                                                <textarea class="form-control" name="remarks" placeholder="Enter remarks" ></textarea>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group ">
+                                                                    <label>Assigned Staff</label>
+                                                                    <textarea class="form-control" name="assigned" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="mt-2 text-center">
                                                             <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
                                                         </div>  
