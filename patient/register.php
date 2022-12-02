@@ -241,7 +241,7 @@ echo '<div class="message">'.$message.'</div>';
       <div class="form-group col-6 mb--1">
         <h5 class="text-dark required">Address</h5>
         <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
-         <select class="form-control"  name="address" rows="2" required>
+         <select class="form-control" id="address" name="address" rows="2" required>
                                                     <option class="placeholder" style="display: none" >Select Address</option>
                                                     <option>Angustia, Nabua</option>
                                                     <option>Antipolo Old, Nabua</option>
