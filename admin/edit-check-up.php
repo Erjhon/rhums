@@ -6,17 +6,19 @@
 if(isset($_POST['submit']))
   {
     $vid=$_GET['viewid'];
-    $bp=$_POST['bp'];
-    $bs=$_POST['bs'];
+    $bloodpress=$_POST['bloodpress'];
+    $bloodsugar=$_POST['bloodsugar'];
+    $bodytemp=$_POST['bodytemp'];
     $weight=$_POST['weight'];
-    $temp=$_POST['temp'];
-    $pres=$_POST['pres'];
+    $height=$_POST['height'];
+    $complaints=$_POST['complaints'];
+    $remark=$_POST['remark'];
    
  
-      $query=mysqli_query($conn, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
+      $query=mysqli_query($conn, "insert  checkup(pid,bloodpress,bloodsugar,bodytemp,weight,height,complaints,remark)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$complaints','$remark')");
       if ($query) {
       echo '<script>alert("Medical history has been added.")</script>';
-      echo "<script>window.location.href ='history.php&viewid=['id']'</script>";
+      echo "<script>window.location.href ='history.php&viewid=['pid']'</script>";
       
     }
   else
@@ -38,7 +40,7 @@ if(isset($_POST['submit']))
 <?php endif;?>
 
 <?php
-  $result = mysqli_query($conn,"SELECT * FROM patient_history WHERE id = 'id'");
+  $result = mysqli_query($conn,"SELECT * FROM checkup WHERE id = 'pid'");
 ?>
 
 <div class="card card-outline card-primary">
@@ -47,7 +49,7 @@ if(isset($_POST['submit']))
     </div>
 <?php
    $vid=$_GET['viewid'];
-   $ret=mysqli_query($conn,"select * from patient_history where id='$vid'");
+   $ret=mysqli_query($conn,"select * from checkup where pid='$vid'");
   $cnt=1;
   while ($row=mysqli_fetch_array($ret)) {
 ?>
@@ -57,13 +59,13 @@ if(isset($_POST['submit']))
        <tr align="center">
           <tr>
           <th scope>Patient No.</th>
-          <td><?php  echo $row['id'];?></td>
+          <td><?php  echo $row['pid'];?></td>
           <th scope>Contact Number</th>
-          <td><?php  echo $row['contactNo'];?></td>
+          <td><?php  echo $row['pcontact'];?></td>
         </tr>
         <tr>
           <th scope>Name</th>
-          <td><?php  echo $row['fullname'];?></td>
+          <td><?php  echo $row['pfname'];?></td>
           <th>Gender</th>
           <td><?php  echo $row['gender'];?></td>
         </tr>
@@ -81,7 +83,7 @@ if(isset($_POST['submit']))
         </tr>
         <tr>
           <th>Address</th>
-          <td><?php  echo $row['address'];?></td>
+          <td><?php  echo $row['paddress'];?></td>
            <th>Date of Registration</th>
           <td><?php  echo $row['CreationDate'];?></td>
         </tr>
@@ -90,7 +92,7 @@ if(isset($_POST['submit']))
 <?php }?>
 <?php  
 
-$ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'");
+$ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
 
 
  ?>
@@ -117,15 +119,15 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
       ?>
       <tr>
         <td><?php echo $cnt;?>.</td>
-        <td><?php  echo $row['BloodPressure'];?></td>
-        <td><?php  echo $row['BloodSugar'];?></td> 
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Weight'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['MedicalPres'];?></td>
-        <td><?php  echo $row['CreationDate'];?></td> 
+        <td><?php  echo $row['bloodpress'];?></td>
+        <td><?php  echo $row['bloodsugar'];?></td> 
+        <td><?php  echo $row['bodytemp'];?></td>
+        <td><?php  echo $row['weight'];?></td>
+        <td><?php  echo $row['height'];?></td>
+        <td><?php  echo $row['bmi'];?></td>
+        <td><?php  echo $row['complaints'];?></td>
+        <td><?php  echo $row['remark'];?></td>
+        <td><?php  echo $row['visit'];?></td> 
         <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
@@ -152,15 +154,15 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
 
         <tr>
           <th>Blood Pressure :</th>
-          <td><input name="bp" placeholder="Sample: 120/80"" class="form-control wd-450" required="true"></td>
+          <td><input name="bloodpress" placeholder="Sample: 120/80" class="form-control wd-450" required="true"></td>
         </tr>                          
         <tr>
           <th>Blood Sugar :</th>
-          <td><input name="bs" placeholder="Sample: 70" class="form-control wd-450" required="true"></td>
+          <td><input name="bloodsugar" placeholder="Sample: 70" class="form-control wd-450" required="true"></td>
         </tr> 
         <tr>
           <th>Body Temperature :</th>
-          <td><input name="bs" placeholder="Sample: 36.5" class="form-control wd-450" required="true"></td>
+          <td><input name="bodytemp" placeholder="Sample: 36.5" class="form-control wd-450" required="true"></td>
         </tr> 
         <tr>
           <th>Weight :</th>
@@ -168,15 +170,15 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
         </tr>
         <tr>
           <th>Height :</th>
-          <td><input name="temp" placeholder="Enter height in meters" class="form-control wd-450" required="true"></td>
+          <td><input name="height" placeholder="Enter height in meters" class="form-control wd-450" required="true"></td>
         </tr>
         <tr>
           <th>Patient Complaints :</th>
-          <td><textarea name="pres" placeholder="Enter Patient Complaints" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+          <td><textarea name="complaints" placeholder="Enter Patient Complaints" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
         </tr> 
         <tr>
           <th>Remarks :</th>
-          <td><textarea name="pres" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+          <td><textarea name="remark" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
         </tr>  
   </table>
 

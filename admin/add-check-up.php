@@ -48,9 +48,9 @@ if (isset($_POST['submit'])) {
     VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress','$visit','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$bmi','$complaints','$remark','$assigned')";
     if (mysqli_query($conn, $sql)) {
 
-        $message[] = "success"; 
+        $message[] = ""; 
     }else{
-        $error[] = "failed"; 
+        $error[] = ""; 
     }
 // mysqli_close($conn);
 }
@@ -150,7 +150,7 @@ if(isset($message)){
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Place of Birth <small>(for child)</small></label>
-                                        <input class="form-control" name="placebirth" placeholder="Enter Place of Birth" required>
+                                        <input class="form-control" name="placebirth" placeholder="Enter Place of Birth">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">

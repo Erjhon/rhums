@@ -21,6 +21,7 @@ $result = mysqli_query($conn,"SELECT * FROM animalbite");
 		<h2 class="card-title text-center">List for Animal Bite</h2>
 		<div class="card-tools">
 			<a href="<?php echo base_url ?>admin/?page=add-animalbite" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
+			<a class="edit_data btn btn-secondary" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
 		</div>
 
 	</div>

@@ -21,6 +21,7 @@ $result = mysqli_query($conn,"SELECT * FROM checkup");
 		<h2 class="card-title text-center">List for Check-Up</h2>
 		<div class="card-tools">
 			<a href="<?php echo base_url ?>admin/?page=add-check-up" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
+			<a class="edit_data btn btn-secondary" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
 		</div>
 
 	</div>
@@ -30,6 +31,7 @@ $result = mysqli_query($conn,"SELECT * FROM checkup");
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-responsive">
+
 						<table class="table table-border table-hover custom-table datatable mb-0">
 							<?php
 							if (mysqli_num_rows($result) > 0) {
@@ -67,8 +69,8 @@ $result = mysqli_query($conn,"SELECT * FROM checkup");
 
 				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=edit-check-up&viewid=<?php echo $row['pid'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
 				                
-									<div class="divider"></div>
-									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
+									<!-- <div class="divider"></div>
+									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a> -->
 				                  </div>
 							</td>
 

@@ -179,7 +179,7 @@ $sched_arr = array();
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-blue text-white rounded-circle shadow">
-                    <i class="fas fa-syringe"></i>
+                    <i class="fas fa-stethoscope"></i>
                   </div>
                 </div>
               </div>
@@ -210,7 +210,7 @@ $sched_arr = array();
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-green text-white rounded-circle shadow">
-                    <i class="fas fa-stethoscope"></i>
+                    <i class="fas fa-syringe"></i>
                   </div>
                 </div>
               </div>
