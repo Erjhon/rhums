@@ -124,7 +124,9 @@ if(isset($message)){
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Patient Contact Number</label>
-                                        <input class="form-control" name="pcontact" placeholder="Enter Patient Contact Number" required maxlength="11">
+                                        <!-- <input class="form-control" name="pcontact" placeholder="Enter Patient Contact Number" required maxlength="11"> -->
+                                     <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -287,7 +289,8 @@ if(isset($message)){
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Contact Number <small>(Pet Owner)</small></label>
-                                        <input class="form-control" name="ownercon" placeholder="Enter Contact Number" required maxlength="11">
+                                     <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
