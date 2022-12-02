@@ -137,7 +137,7 @@ $lastRowId = intval($lastRow['id']) + 1;
 
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h2 class="card-title">Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>
+        <h2 class="card-title">Patient Information</h2>
     </div>
 
     <div class="card-body">
@@ -153,11 +153,20 @@ $lastRowId = intval($lastRow['id']) + 1;
                                 </div>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="dob" class="control-label">Date of Registration</label>
-                                    <input type="date" class="form-control" id="dor" name="dor" value="<?php echo isset($patient['dor']) ? $patient['dor'] : '' ?>" required>
+                                    <label>Family Serial Number</label>
+                                    <input class="form-control" name="fsn" placeholder="Enter Family Serial Number" required>
                                 </div>
+                                <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Name of Child</label>
+                                    <input class="form-control" name="child" placeholder="First Name, Middle Initial, Last Name" required>
+                                </div>
+                                <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                             </div>
 
                             <div class="col-3">
@@ -167,23 +176,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                 </div>
                             </div>
 
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Family Serial Number</label>
-                                    <input class="form-control" name="fsn" placeholder="Enter Family Serial Number" required>
-                                </div>
-                                <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                            </div>
-
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <label>Name of Child</label>
-                                    <input class="form-control" name="child" placeholder="First Name, Middle Initial, Last Name" required>
-                                </div>
-                                <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
-                            </div>
-
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="sex" class="control-label">Sex</label>
                                     <select type="text" class="form-control form-select-sm-6" name="sex" required>
@@ -202,12 +195,36 @@ $lastRowId = intval($lastRow['id']) + 1;
                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Complete Address</label>
                                     <input class="form-control" name="address" placeholder="Enter Complete Address" required>
                                 </div>
                             </div>
+                        </div>
+
+                            <!-- <div class="col-3">
+                                <div class="form-group">
+                                    <label for="dob" class="control-label">Date of Registration</label>
+                                    <input type="date" class="form-control" id="dor" name="dor" value="<?php echo isset($patient['dor']) ? $patient['dor'] : '' ?>" required>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+
+
+                        <div class="card-header mt--4">
+                            <h2 class="card-title">Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row">
 
                             <div class="col-6">
                                 <div class="form-group">
@@ -529,6 +546,10 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                                         <div class="mt-2 text-center">
                                                             <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
