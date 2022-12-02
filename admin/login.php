@@ -12,7 +12,7 @@
   <div class="main-content">
 
     <!-- Header -->
-    <div class="header py-8 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
+    <div class="header py-5 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
       <div class="container">
         <div class="text-center">
           <a class="" href="<?php echo base_url ?>">
