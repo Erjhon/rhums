@@ -102,14 +102,14 @@ $run = mysqli_query($conn,$query);
       <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?>!</h5>
     </div>
     <div class="dropdown-divider"></div>
-    <a href="patient/update_profile.php" class="dropdown-item">
-      <i class="ni ni-single-02"></i>
-      <span>My profile</span>
-    </a>
-    <a href="pages/logout.php" class="dropdown-item">
-      <i class="ni ni-user-run"></i>
-      <span>Logout</span>
-    </a>
+     <a href="../patient/update_profile.php" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+            <a href="../patient/change_pw.php" class="dropdown-item">
+              <i class="ni ni-lock-circle-open"></i>
+              <span>Change Password</span>
+            </a>
   </div>
 </li>
 </ul>
