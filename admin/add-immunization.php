@@ -252,7 +252,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                 <option value="Newborn"> Newborn (0-28 days old)</option>
                                                 <option value="1-3M"> 1-3 Months old</option>
                                                 <option value="6-11M"> 6-11 Months old</option>
-                                                <option value="6-11M"> 12 Months old</option>   
+                                                <option value="twelve"> 12 Months old</option>   
                                             </select>
                                         </div>
                                     </div>
@@ -443,7 +443,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                 </div>
                                                             </div> 
 
-                                                            <div hidden class="col-6">
+                                                            <div class="col-6">
                                                                 <div class="form-group">
                                                                     <label for="gender" class="control-label">Exclusive Breastfeeding</label>
                                                                     <div class="selectBox" onclick="showCheckboxes()">
@@ -523,7 +523,144 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="gender">Exclusively Breastfed up to 6 months</label>
+                                                                                    <select type="text" class="form-control form-select-sm-6" name="gender" >
+                                                                                        <!-- <option class="placeholder" style="display: none" >Select Dose</option> -->
+                                                                                        <option>Yes</option>
+                                                                                        <option>No</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">        
+                                                                                    <label for="gender" class="control-label">Date when the infant was assessed</label>
+                                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="gender">Introduction of Complementary Feeding at 6 months old</label>
+                                                                                    <select type="text" class="form-control form-select-sm-6" name="gender" >
+                                                                                        <!-- <option class="placeholder" style="display: none" >Select Dose</option> -->
+                                                                                        <option>Yes</option>
+                                                                                        <option>No</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="gender">1 <small>- With continuous breastfeeding</small><br>
+                                                                                    2 <small>- No longer breastfeeding or never breastfed</small></label>
+                                                                                    <select type="text" class="form-control form-select-sm-6" name="gender" >
+                                                                                        <!-- <option class="placeholder" style="display: none" >Select Dose</option> -->
+                                                                                        <option>1</option>
+                                                                                        <option>2</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="col-sm-3">
+                                                                                <div class="form-group">        
+                                                                                    <label for="gender" class="control-label">Vitamin A <small>(date given)</small></label>
+                                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label>MNP <small>(date when 90 sachets given)</small></label>
+                                                                                    <input type="date" class="form-control" name="contactNo" >
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-5">
+                                                                                <div class="form-group">
+                                                                                    <label>MCV 1 Dose at 9th month <small>(date given)</small></label>
+                                                                                    <input type="date" class="form-control" name="contactNo" >
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label>MCV 2 Dose 2</label>
+                                                                                    <input type="date" class="form-control" name="contactNo" >
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label>FIC</label>
+                                                                                    <input type="date" class="form-control" name="contactNo" >
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-4">
+                                                                                <div class="form-group">
+                                                                                    <label>CIC</label>
+                                                                                    <input type="date" class="form-control" name="contactNo" >
+                                                                                </div>
+                                                                            </div>
                                                                         </span>
+
+                                                                        <span class="Data" id="showtwelve">
+                                                                        <div class="col-sm-12">
+                                                                            <label for="gender"><b>Nutritional Status Assessment</b></label>
+
+                                                                            <div class="row mt--2">
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label>Age <small>(in months)</small></label>
+                                                                                        <input type="number" class="form-control" name="contactNo" >
+                                                                                    </div>
+                                                                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label>Length <small>(cm)</small></label>
+                                                                                        <input type="number" class="form-control" name="contactNo" >
+                                                                                    </div>
+                                                                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">        
+                                                                                        <label for="gender" class="control-label">Date Taken <small>(Length)</small></label>
+                                                                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label>Weight <small>(kg)</small></label>
+                                                                                        <input type="number" class="form-control" name="contactNo" >
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">        
+                                                                                        <label for="gender" class="control-label">Date Taken <small>(Weight)</small></label>
+                                                                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="status" class="control-label">Status </label>
+                                                                                        <select type="text" class="form-control form-select-sm-6" name="status" >
+                                                                                            <option class="placeholder" style="display: none" >Select Status</option>
+                                                                                            <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>S: Stunted</option>
+                                                                                            <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>W-MAM: Wasted MAM</option>
+                                                                                            <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>W-SAM: Wasted SAM</option>
+                                                                                            <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>O: Obese/Overweight</option>
+                                                                                            <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>N: Normal</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </span>
 
 
                                                                     </div>
