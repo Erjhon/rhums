@@ -125,7 +125,7 @@ $ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
         <td><?php  echo $row['bmi'];?></td>
         <td><?php  echo $row['complaints'];?></td>
         <td><?php  echo $row['remark'];?></td>
-        <td><?php  echo $row['CreationDate'];?></td> 
+        <td><?php  echo $row['visit'];?></td> 
         <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
