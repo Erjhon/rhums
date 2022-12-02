@@ -38,7 +38,7 @@ if(isset($_POST['submit']))
 <?php endif;?>
 
 <?php
-  $result = mysqli_query($conn,"SELECT * FROM patient_history WHERE id = 'id'");
+  $result = mysqli_query($conn,"SELECT * FROM checkup WHERE id = 'id'");
 ?>
 
 <div class="card card-outline card-primary">
@@ -47,7 +47,7 @@ if(isset($_POST['submit']))
     </div>
 <?php
    $vid=$_GET['viewid'];
-   $ret=mysqli_query($conn,"select * from patient_history where id='$vid'");
+   $ret=mysqli_query($conn,"select * from checkup where pid='$vid'");
   $cnt=1;
   while ($row=mysqli_fetch_array($ret)) {
 ?>
@@ -57,13 +57,13 @@ if(isset($_POST['submit']))
        <tr align="center">
           <tr>
           <th scope>Patient No.</th>
-          <td><?php  echo $row['id'];?></td>
+          <td><?php  echo $row['pid'];?></td>
           <th scope>Contact Number</th>
-          <td><?php  echo $row['contactNo'];?></td>
+          <td><?php  echo $row['pcontact'];?></td>
         </tr>
         <tr>
           <th scope>Name</th>
-          <td><?php  echo $row['fullname'];?></td>
+          <td><?php  echo $row['pfname'];?></td>
           <th>Gender</th>
           <td><?php  echo $row['gender'];?></td>
         </tr>
@@ -75,13 +75,13 @@ if(isset($_POST['submit']))
         </tr>
         <tr>
           <th>Place of Birth <small>(for child)</small></th>
-          <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
+          <td><?php  echo $row['placebirth'];?></td>
           <th>Guardian/Mother <small>(for child)</small></th>
-          <td><?php  echo $row['age'];?></td>
+          <td><?php  echo $row['guardian'];?></td>
         </tr>
         <tr>
           <th>Address</th>
-          <td><?php  echo $row['address'];?></td>
+          <td><?php  echo $row['paddress'];?></td>
            <th>Date of Registration</th>
           <td><?php  echo $row['CreationDate'];?></td>
         </tr>
@@ -90,7 +90,7 @@ if(isset($_POST['submit']))
 <?php }?>
 <?php  
 
-$ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'");
+$ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
 
 
  ?>
@@ -117,14 +117,14 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
       ?>
       <tr>
         <td><?php echo $cnt;?>.</td>
-        <td><?php  echo $row['BloodPressure'];?></td>
-        <td><?php  echo $row['BloodSugar'];?></td> 
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Weight'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['Temperature'];?></td>
-        <td><?php  echo $row['MedicalPres'];?></td>
+        <td><?php  echo $row['bloodpress'];?></td>
+        <td><?php  echo $row['bloodsugar'];?></td> 
+        <td><?php  echo $row['bodytemp'];?></td>
+        <td><?php  echo $row['weight'];?></td>
+        <td><?php  echo $row['height'];?></td>
+        <td><?php  echo $row['bmi'];?></td>
+        <td><?php  echo $row['complaints'];?></td>
+        <td><?php  echo $row['remark'];?></td>
         <td><?php  echo $row['CreationDate'];?></td> 
         <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
       </tr>
