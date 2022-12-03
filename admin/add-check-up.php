@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
     $user_id = $_SESSION['userdata']['id'];
     $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$pid', '$pfname', '$user_id')") or die('query failed');
 
-    $sql = "INSERT INTO checkup (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
+    $sql = "INSERT INTO `checkup` (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
     VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress','$visit','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$bmi','$complaints','$remark','$assigned')";
     if (mysqli_query($conn, $sql)) {
 
@@ -126,9 +126,9 @@ if(isset($message)){
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Patient Contact Number</label>
-                                 <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-        <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
+                                        <label for="pcontact">Patient Contact Number</label>
+                                 <input type="tel" class="form-control" id="pcontact" placeholder="Contact Number" name="pcontact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -232,40 +232,40 @@ if(isset($message)){
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="" class="control-label">Date of Visit</label>
-                                        <input type="date" class="form-control" name="visit">
+                                        <input type="date" class="form-control" name="visit" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Blood Pressure</label>
-                                        <input class="form-control" name="bloodpress" placeholder="Sample: 120/80" >
+                                        <input class="form-control" name="bloodpress" placeholder="Sample: 120/80" required>
                                     </div>                                 
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Blood Sugar</label>
-                                        <input class="form-control" name="bloodsugar" placeholder="Sample: 70">
+                                        <input class="form-control" name="bloodsugar" placeholder="Sample: 70" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Body Temperature</label>
-                                        <input class="form-control" name="bodytemp" placeholder="Sample: 36.5">
+                                        <input class="form-control" name="bodytemp" placeholder="Sample: 36.5" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Weight</label>
-                                        <input class="form-control" id="weight" onchange="getBMIvalue()" name="weight" placeholder="Enter weight in kilograms">
+                                        <input class="form-control" id="weight" onchange="getBMIvalue()" name="weight" placeholder="Enter weight in kilograms" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Height</label>
-                                        <input class="form-control" id="height" onchange="getBMIvalue()" name="height" placeholder="Enter height in meters">
+                                        <input class="form-control" id="height" onchange="getBMIvalue()" name="height" placeholder="Enter height in meters" required>
                                     </div>
                                 </div>
 
@@ -279,14 +279,14 @@ if(isset($message)){
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Patient Complaints</label>
-                                            <textarea class="form-control" name="complaints" placeholder="Enter Patient Complaints" ></textarea>
+                                            <textarea class="form-control" name="complaints" placeholder="Enter Patient Complaints" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-9">
                                     <div class="form-group">
                                         <label>Remarks</label>
-                                        <textarea class="form-control" name="remark" placeholder="Enter Remarks" ></textarea>
+                                        <textarea class="form-control" name="remark" placeholder="Enter Remarks" required></textarea>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
