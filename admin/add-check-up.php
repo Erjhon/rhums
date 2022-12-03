@@ -57,7 +57,11 @@ if (isset($_POST['submit'])) {
 $getLastRow = mysqli_query($conn, "SELECT `id` FROM `patient_list` ORDER BY id DESC LIMIT 1");
 $lastRow = mysqli_fetch_assoc($getLastRow);
 $lastRowId = intval($lastRow['id']) + 1;
+
+
 ?>
+
+
 
 <!-- display success -->
 <?php
@@ -95,7 +99,8 @@ if(isset($message)){
                 </script>.$error.";
             };
         };
-        ?>
+  
+?>
 
     <div class="card card-outline card-primary">
         <div class="card-header">

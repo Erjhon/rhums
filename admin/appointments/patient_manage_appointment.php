@@ -200,7 +200,7 @@ if (!empty($_SESSION['user_id'])) {
                             <option value="2" <?php echo isset($status) && $status == "2" ? "selected" : "" ?>>Cancelled</option>
                         </select>
                     </div>
-                    <input hidden type="text" class="form-control" id="created" name="created" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>">
+                    <input hidden type="text" class="form-control" id="created" name="created" value="Patient">
 
                 <?php else : ?>
                     <div class="col-lg-12 col-sm-6 p-1">

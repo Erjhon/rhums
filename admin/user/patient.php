@@ -33,6 +33,14 @@
 					</tr>
 				</thead>
 				<tbody>
+<?php
+
+$conn = mysqli_connect("localhost","root","","scheduler_db");
+$query ="SELECT * FROM patient";
+$query_run = mysqli_query($conn,$query);
+
+?>
+
 					<?php 
 					$i = 1;
 					$qry = $conn->query("SELECT * FROM `patient`");
@@ -40,19 +48,8 @@
 						?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>					
-							<td class="avatar avatar-sm rounded-circle">
-								<?php
-								$select = mysqli_query($conn, "SELECT * FROM patient") or die('query failed');
-								if(mysqli_num_rows($select) > 0){
-									$fetch = mysqli_fetch_assoc($select);
-								}
-								if($fetch['image'] == ''){
-									echo '<img src="../patient/images/default-avatar.png">';
-								}else{
-									echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-								}
-								?>
-							</td>
+							<td class="img-avatar img-thumbnail p-0 avatar">
+								<img src="<?php echo "../patient/uploaded_img/".$row['image'];?>"></td>
 							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->

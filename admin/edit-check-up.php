@@ -15,7 +15,7 @@ if(isset($_POST['submit']))
     $remark=$_POST['remark'];
    
  
-      $query=mysqli_query($conn, "insert  checkup(pid,bloodpress,bloodsugar,bodytemp,weight,height,complaints,remark)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$complaints','$remark')");
+      $query=mysqli_query($conn, "insert  patient_history(patientId,bloodpress,bloodsugar,bodytemp,weight,height,complaints,remark)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$complaints','$remark')");
       if ($query) {
       echo '<script>alert("Medical history has been added.")</script>';
       echo "<script>window.location.href ='history.php&viewid=['pid']'</script>";
@@ -131,15 +131,39 @@ $ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
         <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
+
+<?php  
+
+$ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
+
+
+ ?>
+    <?php  
+    while ($row=mysqli_fetch_array($ret)) { 
+      ?>
+      <tr>
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['bloodpress'];?></td>
+        <td><?php  echo $row['bloodsugar'];?></td> 
+        <td><?php  echo $row['bodytemp'];?></td>
+        <td><?php  echo $row['weight'];?></td>
+        <td><?php  echo $row['height'];?></td>
+        <td><?php  echo $row['bmi'];?></td>
+        <td><?php  echo $row['complaints'];?></td>
+        <td><?php  echo $row['remark'];?></td>
+        <td><?php  echo $row['visit'];?></td> 
+        <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
+      </tr>
+<?php $cnt=$cnt+1;} ?>
 </table>
 
-    <p align="center"> <br>                          
-     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
 
  </div>
+    <p align="center"> <br>                          
+     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
 <?php  ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog modal-lg" role="document">
      <div class="modal-content">
       <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
