@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     $bodytemp = $_POST['bodytemp'];
     $weight = $_POST['weight'];
     $height = $_POST['height'];
-    // $bmi = $_POST['bmi'];
+    $bmi = $_POST['bmi'];
     $complaints = $_POST['complaints'];
     $remark = $_POST['remark'];
     $assigned = $_POST['assigned'];
@@ -274,8 +274,8 @@ if(isset($message)){
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>BMI</label>
-                                         <span class="form-control" id="result"></span>
+                                        <label for="bmi" >BMI</label>
+                                         <span class="form-control" id="result" name="bmi" ></span>
                                         <!-- <span id="category">Normal weight</span> -->
                                     </div>
                                 </div>
