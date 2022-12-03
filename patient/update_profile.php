@@ -17,7 +17,7 @@ if(isset($_POST['update_profile'])){
    $update_contact = mysqli_real_escape_string($conn, $_POST['update_contact']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', username = '$update_email', gender = '$update_gender'  WHERE id = '$user_id'") or die('query failed');
+   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', username = '$update_email', gender = '$update_gender', contact = '$update_contact', dob = '$update_dob' WHERE id = '$user_id'") or die('query failed');
    $message[] = " <script>
             Swal.fire({
                  icon: 'success',
