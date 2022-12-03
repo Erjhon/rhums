@@ -1,6 +1,9 @@
-<?php require_once('../config.php'); ?>
-<?php require_once('inc/header.php') ?>
-
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <?php require_once('../config.php'); ?>
+    <?php require_once('inc/header.php') ?>
+</head>
 <body>
 
     <?php if ($_settings->chk_flashdata('success')) : ?>
@@ -37,7 +40,7 @@ if (isset($_POST['submit'])) {
     $bodytemp = $_POST['bodytemp'];
     $weight = $_POST['weight'];
     $height = $_POST['height'];
-    $bmi = $_POST['bmi'];
+    // $bmi = $_POST['bmi'];
     $complaints = $_POST['complaints'];
     $remark = $_POST['remark'];
     $assigned = $_POST['assigned'];
@@ -258,21 +261,22 @@ if(isset($message)){
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Weight</label>
-                                        <input class="form-control" id="weight" onchange="getBMIvalue()" name="weight" placeholder="Enter weight in kilograms" required>
+                                        <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter weight in kilograms" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Height</label>
-                                        <input class="form-control" id="height" onchange="getBMIvalue()" name="height" placeholder="Enter height in meters" required>
+                                        <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>BMI</label>
-                                        <input class="form-control" name="bmi" id="BMIvalue" placeholder="BMI"  readonly>
+                                         <span class="form-control" id="result"></span>
+                                        <!-- <span id="category">Normal weight</span> -->
                                     </div>
                                 </div>
 
@@ -316,20 +320,49 @@ if(isset($message)){
     }
 </script>
 
+<!-- COMPUTE BMI -->
 <script>
-    function getBMIvalue(){
-        var weight = document.getElementById('weight').value;
-        var height = document.getElementById('height').value;
+$(document).ready(function(){
+    let keyupTimer;
+    $('#height').keyup(function(){
+        var weight = $("#weight").val();
+        var height = $(this).val();
+        clearTimeout(keyupTimer);
+        keyupTimer = setTimeout(function () {
+           var result = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#result").text(result);
+        }, 400);
+    });
 
-        height = height * 12;
-        height = height * 0.025; //height in meter
+    let keyupTimer2;
+    $('#weight').keyup(function(){
+        var weight = $(this).val();
+        var height = $("#height").val();
+        clearTimeout(keyupTimer2);
+        keyupTimer2 = setTimeout(function () {
+           var result = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#result").text(result);
+        }, 400);
+    });
 
-        var newbmivalue = weight / (Math.pow(height,2));
-
-        newbmivalue = Math.round(newbmivalue);
-
-        document.getElementById('BMIvalue').value = newbmivalue;
-    }
+    // if(result < 18.5){
+    //     category = "Underweight";
+    //     result.style.color = "#ffc44d";
+    // }
+    // else if( result >= 18.5 && result <= 24.9 ){
+    //     category = "Normal Weight";
+    //     result.style.color = "#0be881";
+    // }
+    // else if( result >= 25 && result <= 29.9 ){
+    //     category = "Overweight";
+    //     result.style.color = "#ff884d";
+    // }
+    // else{
+    //     category = "Obese";
+    //     result.style.color = "#ff5e57";
+    // }
+    // document.getElementById("category").textContent = category;
+});
 </script>
 
 </body>
