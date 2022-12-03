@@ -20,8 +20,8 @@
         to left,rgba(23, 173, 106, 0.9),rgba(23, 173, 160, 0.9)),url(./assets/assets/img/brand/bg.webp);">
         <nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark">
             <div class="container">
-                <h1 class="edoc-logo" style="text-shadow: 2px 2px 5px black;">Medical Clinic</h1>
-                <small class="edoc-logo-sub"> | Rural Health Unit II</small>
+                <h1 class="edoc-logo" style="text-shadow: 2px 2px 5px black;">Rural Health Unit II </h1>
+                <small class="edoc-logo-sub">   | Medical Clinic</small>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,8 +29,8 @@
                     <div class="navbar-collapse-header">
                         <div class="row">
                             <div class="col-6 collapse-brand">
-                                <font class="edoc-logo" style="text-shadow: 2px 2px 5px black;">Medical Clinic </font>
-                                <font class=" text-dark"> | Rural Health Unit II</font>
+                                <font class="edoc-logo" style="text-shadow: 2px 2px 5px black;">Rural Health Unit II </font>
+                                <font class=" text-dark">   | Medical Clinic</font>
                             </div>
 <!--   <div class="col-6 collapse-close">
 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
