@@ -304,17 +304,32 @@ if(isset($_POST['change_pw'])){
                     <div class="mb-3">
                       <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
                       <label class="small mb-1" for="inputUsername">Current Password</label>
-                      <input class="form-control" type="password" name="update_pass" placeholder="Enter current password">
+                      <!-- <div class="input-group input-group-alternative mb--1"> -->
+                        <input class="form-control" type="oldpassword" name="update_pass" placeholder="Enter current password" required>
+                        <!-- <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye0" onclick="toggle0()"></i>
+                        </span>
+                      </div> -->
                     </div>
 
                     <div class="mb-3">
                       <label class="small mb-1" for="inputUsername">New Password</label>
-                      <input class="form-control" type="password" name="new_pass" placeholder="Enter new password">
+                      <div class="input-group input-group-alternative mb--1">
+                        <input class="form-control" id="password" type="password" name="new_pass" placeholder="Enter new password" required>
+                        <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                        </span>
+                      </div>
                     </div>
 
                     <div class="mb-3">
                       <label class="small mb-1" for="inputUsername">Confirm Password</label>
-                      <input class="form-control" id="inputUsername" type="password" name="confirm_pass" placeholder="Confirm new password" >
+                      <div class="input-group input-group-alternative mb--1">
+                        <input class="form-control" id="cpassword" type="password" name="confirm_pass" placeholder="Confirm new password" required>
+                        <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+                        </span>
+                      </div>
                     </div>
                     <!-- Save changes button-->
                     <input type="submit" class="btn btn-primary" value="Update" name="change_pw">
@@ -355,6 +370,45 @@ window.history.forward();
     token: "ee6fab19c5a04ac1a32a645abde4613a",
     application: "argon-dashboard-free"
   });
+</script>
+
+<!-- show password -->
+<script>
+  var state = false;
+  function toggle1(){
+    if (state){
+      document.getElementById("oldpassword").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("oldpassword").setAttribute("type", "text");
+      state = true;
+    }
+  }
+</script>
+
+<script>
+  var state = false;
+  function toggle1(){
+    if (state){
+      document.getElementById("password").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("password").setAttribute("type", "text");
+      state = true;
+    }
+  }
+</script>
+<script>
+  var state = false;
+  function toggle2(){
+    if (state){
+      document.getElementById("cpassword").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("cpassword").setAttribute("type", "text");
+      state = true;
+    }
+  }
 </script>
 
 <script type="text/javascript">
