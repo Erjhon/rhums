@@ -125,7 +125,7 @@ if(isset($message)){
                                     <div class="form-group">
                                         <label>Patient Contact Number</label>
                                         <!-- <input class="form-control" name="pcontact" placeholder="Enter Patient Contact Number" required maxlength="11"> -->
-                                     <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                     <input type="tel" class="form-control" id="pcontact" placeholder="Contact Number" name="pcontact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
         <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -289,7 +289,7 @@ if(isset($message)){
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Contact Number <small>(Pet Owner)</small></label>
-                                     <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                     <input type="tel" class="form-control" id="ownercon" placeholder="Contact Number" name="ownercon" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
