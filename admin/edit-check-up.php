@@ -77,9 +77,9 @@ if(isset($_POST['submit']))
         </tr>
         <tr>
           <th>Place of Birth <small>(for child)</small></th>
-          <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
+          <td><?php  echo $row['placebirth'];?></td>
           <th>Guardian/Mother <small>(for child)</small></th>
-          <td><?php  echo $row['age'];?></td>
+          <td><?php  echo $row['guardian'];?></td>
         </tr>
         <tr>
           <th>Address</th>
