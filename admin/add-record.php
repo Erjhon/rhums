@@ -44,7 +44,7 @@ ini_set('display_errors', 0);
     $assigned = $_POST['assigned'];
     $user_id = $_SESSION['userdata']['id'];
 
-    $sql = "INSERT INTO 'checkup' (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
+    $sql = "INSERT INTO checkup (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
     VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress','$visit','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$bmi','$complaints','$remark','$assigned')";
     if (mysqli_query($conn, $sql)) {
 
