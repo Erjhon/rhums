@@ -11,11 +11,12 @@ if(isset($_POST['submit']))
     $bodytemp=$_POST['bodytemp'];
     $weight=$_POST['weight'];
     $height=$_POST['height'];
+    $bmi=$_POST['bmi'];
     $complaints=$_POST['complaints'];
     $remark=$_POST['remark'];
    
  
-      $query=mysqli_query($conn, "insert  patient_history(patientId,bloodpress,bloodsugar,bodytemp,weight,height,complaints,remark)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$complaints','$remark')");
+      $query=mysqli_query($conn, "insert  patient_history(patientId,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height', '$bmi', '$complaints','$remark')");
       if ($query) {
       echo '<script>alert("Medical history has been added.")</script>';
       echo "<script>window.location.href ='history.php&viewid=['pid']'</script>";
@@ -106,8 +107,8 @@ $ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
         <th>Blood Pressure</th>
         <th>Blood Sugar</th>
         <th>Body Temprature</th>
-        <th>Weight</th>
         <th>Height</th>
+        <th>Weight</th>
         <th>BMI</th>
         <th>Patient Complaints</th>
         <th>Remarks</th>
@@ -122,8 +123,8 @@ $ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
         <td><?php  echo $row['bloodpress'];?></td>
         <td><?php  echo $row['bloodsugar'];?></td> 
         <td><?php  echo $row['bodytemp'];?></td>
-        <td><?php  echo $row['weight'];?></td>
         <td><?php  echo $row['height'];?></td>
+        <td><?php  echo $row['weight'];?></td>
         <td><?php  echo $row['bmi'];?></td>
         <td><?php  echo $row['complaints'];?></td>
         <td><?php  echo $row['remark'];?></td>
@@ -146,8 +147,8 @@ $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
         <td><?php  echo $row['bloodpress'];?></td>
         <td><?php  echo $row['bloodsugar'];?></td> 
         <td><?php  echo $row['bodytemp'];?></td>
-        <td><?php  echo $row['weight'];?></td>
         <td><?php  echo $row['height'];?></td>
+        <td><?php  echo $row['weight'];?></td>
         <td><?php  echo $row['bmi'];?></td>
         <td><?php  echo $row['complaints'];?></td>
         <td><?php  echo $row['remark'];?></td>
@@ -189,12 +190,16 @@ $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
           <td><input name="bodytemp" placeholder="Sample: 36.5" class="form-control wd-450" required="true"></td>
         </tr> 
         <tr>
-          <th>Weight :</th>
-          <td><input name="weight" placeholder="Enter weight in kilograms" class="form-control wd-450" required="true"></td>
+          <th>Height :</th>
+          <td><input type="number" id="height" name="height" placeholder="Enter height in centimeters" class="form-control wd-450" required="true"></td>
         </tr>
         <tr>
-          <th>Height :</th>
-          <td><input name="height" placeholder="Enter height in meters" class="form-control wd-450" required="true"></td>
+          <th>Weight :</th>
+          <td><input type="number" id="weight" name="weight" placeholder="Enter weight in kilograms" class="form-control wd-450" required="true"></td>
+        </tr>
+        <tr>
+          <th>BMI :</th>
+          <td><textarea class="form-control" id="bmi" name="bmi" readonly></textarea></td>
         </tr>
         <tr>
           <th>Patient Complaints :</th>
@@ -226,6 +231,51 @@ $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
     $(document).ready( function () {
     $('table').DataTable();
 } );
+</script>
+
+<!-- COMPUTE BMI -->
+<script>
+$(document).ready(function(){
+    let keyupTimer;
+    $('#height').keyup(function(){
+        var weight = $("#weight").val();
+        var height = $(this).val();
+        clearTimeout(keyupTimer);
+        keyupTimer = setTimeout(function () {
+           var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#bmi").text(bmi);
+        }, 400);
+    });
+
+    let keyupTimer2;
+    $('#weight').keyup(function(){
+        var weight = $(this).val();
+        var height = $("#height").val();
+        clearTimeout(keyupTimer2);
+        keyupTimer2 = setTimeout(function () {
+           var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#bmi").text(bmi);
+        }, 400);
+    });
+
+    // if(result < 18.5){
+    //     category = "Underweight";
+    //     result.style.color = "#ffc44d";
+    // }
+    // else if( result >= 18.5 && result <= 24.9 ){
+    //     category = "Normal Weight";
+    //     result.style.color = "#0be881";
+    // }
+    // else if( result >= 25 && result <= 29.9 ){
+    //     category = "Overweight";
+    //     result.style.color = "#ff884d";
+    // }
+    // else{
+    //     category = "Obese";
+    //     result.style.color = "#ff5e57";
+    // }
+    // document.getElementById("category").textContent = category;
+});
 </script>
 
 <!-- patients23:19-->
