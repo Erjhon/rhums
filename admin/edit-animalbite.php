@@ -197,7 +197,7 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
         </tr> 
         <tr>
           <th>Contact Number <small>(Pet Owner)</small> :</th>
-          <td><textarea name="ownercon" placeholder="Enter Contact Number" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+          <td><input type="tel" class="form-control" name="ownercon" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required="true"></td>
         </tr>
         <tr>
           <th>Location of Biting Incident :</th>
