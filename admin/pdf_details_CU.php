@@ -102,11 +102,13 @@ table th {
 		</style>
 
 	<body>
-<br><h2>Patient Records for Check-Up</h2>
+		<h1>RURAL HEALTH UNIT II</h1>
+		<h2>Patient Records for Check-Up</h2>
 		<table style="width:100%">
 
 			<tr>
 				<th>Patient No.</th>
+				<th>Date of Registration</th>
 				<th>Name</th>
 				<th>Gender</th>
 				<th>Contact Number</th>
@@ -115,79 +117,43 @@ table th {
 				<th>Place of Birth <small>(for child)</small></th>
 				<th>Guardian/Mother <small>(for child)</small></th>
 				<th>Address</th>
-				<th>Patient No.</th>
-				<th>Name</th>
-				<th>Gender</th>
-				<th>Contact Number</th>
-				<th>Date of Birth</th>
-				<th>Age</th>
-				<th>Place of Birth <small>(for child)</small></th>
-				<th>Guardian/Mother <small>(for child)</small></th>
-				<th>Address</th>
-				<th>Patient No.</th>
-				<th>Name</th>
-				<th>Gender</th>
-				<th>Contact Number</th>
-				<th>Date of Birth</th>
-				<th>Age</th>
-				<th>Place of Birth <small>(for child)</small></th>
-				<th>Guardian/Mother <small>(for child)</small></th>
-				<th>Address</th>
-				<th>Patient No.</th>
-				<th>Name</th>
-				<th>Gender</th>
-				<th>Contact Number</th>
-				<th>Date of Birth</th>
-				<th>Age</th>
-				<th>Place of Birth <small>(for child)</small></th>
-				<th>Guardian/Mother <small>(for child)</small></th>
-				<th>Address</th>
+				<th>Blood Presure</th>
+				<th>Blood Sugar</th>
+				<th>Body Temperature</th>
+				<th>Height</th>
+				<th>Weight</th>
+				<th>BMI</th>
+				<th>Patient Complaints</th>
+				<th>Visit Date</th>
+				<th>Remarks</th>
 				<!-- <th>Date of Registration</th> -->
 			</tr>
 
 			<tr>
-				<td><?=$row["pfname"] ?></td>
 				<td>PA-<?=$row["pid"] ?></td>
-				<td><?=$row["gender"] ?></td>
-				<td><?=$row["pcontact"] ?></td>
-			
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["age"] ?></td>
-			
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["age"] ?></td>
-				<td><?=$row["paddress"] ?></td>
-					<td>PA-<?=$row["pid"] ?></td>
-				<td><?=$row["gender"] ?></td>
-				<td><?=$row["pcontact"] ?></td>
-			
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["age"] ?></td>
-			
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["age"] ?></td>
-				<td><?=$row["paddress"] ?></td>
+				<td><?=$row["CreationDate"] ?></td>
 				<td><?=$row["pfname"] ?></td>
-				<td>PA-<?=$row["pid"] ?></td>
 				<td><?=$row["gender"] ?></td>
 				<td><?=$row["pcontact"] ?></td>
 			
 				<td><?=$row["dob"] ?></td>
 				<td><?=$row["age"] ?></td>
 			
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["age"] ?></td>
+				<td><?=$row["placebirth"] ?></td>
+				<td><?=$row["guardian"] ?></td>
 				<td><?=$row["paddress"] ?></td>
-					<td>PA-<?=$row["pid"] ?></td>
-				<td><?=$row["gender"] ?></td>
-				<td><?=$row["pcontact"] ?></td>
+				<td><?=$row["bloodpress"] ?></td>
+				<td><?=$row["bloodsugar"] ?></td>
 			
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["age"] ?></td>
+				<td><?=$row["bodytemp"] ?></td>
+				<td><?=$row["height"] ?></td>
 			
-				<td><?=$row["dob"] ?></td>
-				<td><?=$row["age"] ?></td>
-				<td><?=$row["paddress"] ?></td>
+				<td><?=$row["weight"] ?></td>
+				<td><?=$row["bmi"] ?></td>
+				<td><?=$row["complaints"] ?></td>
+				<td><?=$row["visit"] ?></td>
+				<td><?=$row["remark"] ?></td>
+				
 				<!-- <td><?=$row["CreationDate"] ?></td> -->
 			</tr>
 

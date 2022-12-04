@@ -44,7 +44,7 @@ ini_set('display_errors', 0);
     $assigned = $_POST['assigned'];
     $user_id = $_SESSION['userdata']['id'];
 
-    $sql = "INSERT INTO checkup (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
+    $sql = "INSERT INTO 'checkup' (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
     VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress','$visit','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$bmi','$complaints','$remark','$assigned')";
     if (mysqli_query($conn, $sql)) {
 
@@ -154,60 +154,60 @@ if(isset($message)){
                         <form action="" method="POST">
                             <div class="row" >
                                 <div class="col-sm-4">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Patient No.</label>
                                         <input class="form-control" name="pid" placeholder="Patient No." value="<?php echo $_GET['id'] ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Patient Fullname</label>
-                                        <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name'] ?>" readonly required>
+                                        <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name'] ?>" required>
                                     </div>                           
                                 </div>
                                 <div class="col-sm-4">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Patient Contact Number</label>
-                                 <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="pcontact" maxlength="11" value="<?php echo $data_p['contact_n'] ?>" readonly  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                 <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="pcontact" maxlength="11" value="<?php echo $data_p['contact_n'] ?>"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
         <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label for="gender" class="control-label">Gender</label>
-                                       <input class="form-control" name="gender" value="<?php echo $data_p['gender'] ?>" readonly required>
+                                       <input class="form-control" name="gender" value="<?php echo $data_p['gender'] ?>" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label for="dob" class="control-label">Date of Birth</label>
-                                        <input type="date" class="form-control" id="dob" name="dob" onchange="compute_age()" value="<?php echo $data_p['dob'] ?>" readonly  required>
+                                        <input type="date" class="form-control" id="dob" name="dob" onchange="submitBday()" value="<?php echo $data_p['dob'] ?>"  required>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Patient Age</label>
                                         <input class="form-control" id="resultBday" name="age" type="text" placeholder="Age" value="<?php echo $data_p['age'] ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Place of Birth <small>(for child)</small></label>
-                                        <input class="form-control" required name="placebirth" placeholder="Enter Place of Birth">
+                                        <input class="form-control" name="placebirth" placeholder="Enter Place of Birth">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Guardian/Mother <small>(for child)</small></label>
-                                        <input class="form-control" name="guardian" required placeholder="Enter Guardian/Mother">
+                                        <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Patient Address</label>
-                                        <input class="form-control" name="paddress" placeholder="Enter Patient Address" value="<?php echo $data_p['address'] ?>" readonly required>
-                                                   <!--  <select class="form-control" name="paddress" value="<?php echo $data_p['address'] ?>" readonly required>
-                                                    <option class="placeholder" style="display: none" >Select Patient Address</option>
+                                        <!-- <input class="form-control" name="paddress" placeholder="Enter Patient Address" value="<?php echo $data_p['address'] ?>" required> -->
+                                                    <select class="form-control" name="paddress"  required>
+                                                    <option class="placeholder" style="display: none" ><?php echo $data_p['address'] ?></option>
                                                     <option>Angustia, Nabua</option>
                                                     <option>Antipolo Old, Nabua</option>
                                                     <option>Antipolo Young, Nabua</option>
@@ -250,7 +250,7 @@ if(isset($message)){
                                                     <option>Tandaay, Nabua</option>
                                                     <option>Topas Proper, Nabua</option>
                                                     <option>Topas Sogod, Nabua</option>
-                                                    </select> -->
+                                                    </select>
                                     </div>
                                 </div>                           
                             </div>                     
@@ -267,67 +267,67 @@ if(isset($message)){
                     <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label for="" class="control-label">Date of Visit</label>
                                         <input type="date" class="form-control" name="visit" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Blood Pressure</label>
                                         <input class="form-control" name="bloodpress" placeholder="Sample: 120/80" required>
                                     </div>                                 
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Blood Sugar</label>
-                                        <input class="form-control" name="bloodsugar" placeholder="Sample: 70"required>
+                                        <input class="form-control" name="bloodsugar" placeholder="Sample: 70">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Body Temperature</label>
                                         <input class="form-control" name="bodytemp" placeholder="Sample: 36.5"required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div class="form-group input-group-sm">
-                                        <label>Weight</label>
-                                        <input class="form-control" id="weight" onchange="getBMIvalue()" name="weight" placeholder="Enter weight in kilograms"required>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Height</label>
-                                        <input class="form-control" id="height" onchange="getBMIvalue()" name="height" placeholder="Enter height in meters"required>
+                                        <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
+                                        <label>Weight</label>
+                                        <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter weight in kilograms" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
                                         <label>BMI</label>
-                                        <input class="form-control" name="bmi" id="BMIvalue" placeholder="BMI"  readonly required>
+                                        <textarea class="form-control" rows="1" id="bmi" name="bmi" readonly></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-12">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Patient Complaints</label>
-                                            <textarea class="form-control" name="complaints" placeholder="Enter Patient Complaints" ></textarea>
+                                            <textarea class="form-control" name="complaints" placeholder="Enter Patient Complaints" required ></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-9">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Remarks</label>
                                         <textarea class="form-control" name="remark" placeholder="Enter Remarks"required ></textarea>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="form-group input-group-sm">
+                                    <div class="form-group">
                                         <label>Assigned Staff</label>
                                         <textarea class="form-control" name="assigned" value="" required readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
                                     </div>
@@ -353,20 +353,49 @@ if(isset($message)){
     }
 </script>
 
+<!-- COMPUTE BMI -->
 <script>
-    function getBMIvalue(){
-        var weight = document.getElementById('weight').value;
-        var height = document.getElementById('height').value;
+$(document).ready(function(){
+    let keyupTimer;
+    $('#height').keyup(function(){
+        var weight = $("#weight").val();
+        var height = $(this).val();
+        clearTimeout(keyupTimer);
+        keyupTimer = setTimeout(function () {
+           var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#bmi").text(bmi);
+        }, 400);
+    });
 
-        height = height * 12;
-        height = height * 0.025; //height in meter
+    let keyupTimer2;
+    $('#weight').keyup(function(){
+        var weight = $(this).val();
+        var height = $("#height").val();
+        clearTimeout(keyupTimer2);
+        keyupTimer2 = setTimeout(function () {
+           var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#bmi").text(bmi);
+        }, 400);
+    });
 
-        var newbmivalue = weight / (Math.pow(height,2));
-
-        newbmivalue = Math.round(newbmivalue);
-
-        document.getElementById('BMIvalue').value = newbmivalue;
-    }
+    // if(result < 18.5){
+    //     category = "Underweight";
+    //     result.style.color = "#ffc44d";
+    // }
+    // else if( result >= 18.5 && result <= 24.9 ){
+    //     category = "Normal Weight";
+    //     result.style.color = "#0be881";
+    // }
+    // else if( result >= 25 && result <= 29.9 ){
+    //     category = "Overweight";
+    //     result.style.color = "#ff884d";
+    // }
+    // else{
+    //     category = "Obese";
+    //     result.style.color = "#ff5e57";
+    // }
+    // document.getElementById("category").textContent = category;
+});
 </script>
 
 </body>

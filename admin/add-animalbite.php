@@ -225,7 +225,6 @@ if(isset($message)){
                                         <input type="date" class="form-control" name="visit" >
                                     </div>
                                 </div>
-
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="incident" class="control-label">Date of Incident</label>
@@ -248,7 +247,7 @@ if(isset($message)){
                                  <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Part of Body Bitten</label>
-                                        <input class="form-control" name="part" placeholder="Sample: Left Leg" required maxlength="11">
+                                        <input class="form-control" name="part" placeholder="Sample: Left Leg" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -281,7 +280,7 @@ if(isset($message)){
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Name <small>(Pet Owner)</small></label>
-                                        <input class="form-control" name="owner" placeholder="Enter Name" required maxlength="11">
+                                        <input class="form-control" name="owner" placeholder="Enter Name" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -298,7 +297,7 @@ if(isset($message)){
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label>Location of biting incident</label>
-                                        <textarea class="form-control" name="location" placeholder="Enter Location of biting incident" required></textarea>
+                                        <input class="form-control" name="location" placeholder="Enter Location of biting incident" required/>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
