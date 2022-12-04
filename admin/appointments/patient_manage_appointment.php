@@ -90,27 +90,25 @@ if (!empty($_SESSION['user_id'])) {
                     <label for="contact" class="control-label">Contact Number</label>
                     <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" readonly>
                 </div>
-                <div class="form-group">
+                <div hidden class="form-group">
                     <label for="gender" class="control-label">Gender</label>
                     <input type="text" class="form-control" name="gender" value="<?= $gender ?><?php echo isset($patient['gender']) ? $patient['gender'] : '' ?>" required readonly>
                 </div>
-                <div class="form-group">
+                <div hidden class="form-group">
                     <label for="dob" class="control-label">Date of Birth</label>
                     <input type="date" class="form-control" name="dob" value="<?= $dob ?><?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required readonly>
                 </div>
             </div>
             <div class="col-6">
 
-                <div class="form-group">
+                <div hidden class="form-group">
                     <label for="address" class="control-label">Address</label>
-                    <!-- <textarea class="form-control" name="address" rows="2" required readonly><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea> -->
                     <input type="text" class="form-control" name="address" value="<?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?>" required readonly>
                 </div>
                 <?php if ($_settings->userdata('id') > 0) : ?>
 
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
-                        <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
                         <select name="reason" id="reason" class="form-control form-select-sm-6">
                             <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                             <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
@@ -123,7 +121,6 @@ if (!empty($_SESSION['user_id'])) {
                 <?php else : ?>
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
-                        <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
                         <select name="reason" id="reason" class="form-control form-select">
                             <option class="placeholder" style="display: none" >Select reason</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
@@ -136,10 +133,11 @@ if (!empty($_SESSION['user_id'])) {
                     </div>
                 <?php endif; ?>
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Preferred Appointment Date and Time</label>
+                    <label for="date_sched" class="control-label">Preferred Date and Time</label>
                     <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
                 </div>
 
+            </div>
                 
                 <?php if ($_settings->userdata('id') > 0) : ?>
 
@@ -154,7 +152,7 @@ if (!empty($_SESSION['user_id'])) {
                     <input hidden type="text" class="form-control" id="created" name="created" value="Patient">
 
                 <?php else : ?>
-                    <div class="col-lg-12 col-sm-6 p-1">
+                    <div class="col-lg-12 col-sm-6 p-1 text-center">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="create_new" name="authorized" value="">
                         <label class="form-check-label" for="authorized">Appointment for others?</label>
@@ -163,8 +161,7 @@ if (!empty($_SESSION['user_id'])) {
 
                     <input type="hidden" name="status" value="1">
                 <?php endif; ?>
-            </div>
-            <div class="form-group text-center w-100 form-group">
+            <div class="form-group text-center w-100 form-group mt-3">
                 <button class="btn-primary btn">Submit Appointment</button>
                 <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
             </div>

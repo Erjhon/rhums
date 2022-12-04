@@ -77,7 +77,7 @@ if (!empty($_SESSION['user_id'])) {
 
                 <div class="form-group">
                     <label for="name" class="control-label">Fullname</label>
-                    <input type="text" class="form-control" name="name" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                    <input type="text" class="form-control" name="name" placeholder="FN, MI, LN" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
                 </div>
                 
                 <div hidden class="form-group">
@@ -86,7 +86,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                    <input type="text" class="form-control" id="scontact" name="contact" value="09 <?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                 </div>
 
                 
@@ -102,61 +102,59 @@ if (!empty($_SESSION['user_id'])) {
 
                 <div class="form-group">
                     <label for="address" class="control-label">Address</label>
-                    <!-- <textarea class="form-control" name="address" rows="2" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea> -->
-                     <select class="form-control"  name="address" rows="2" required>
-                                                    <option class="placeholder" style="display: none" ><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></option>
-                                                    <option class="placeholder" style="display: none" >Select Patient Address</option>
-                                                    <option>Angustia, Nabua</option>
-                                                    <option>Antipolo Old, Nabua</option>
-                                                    <option>Antipolo Young, Nabua</option>
-                                                    <option>Aro-aldao, Nabua</option>
-                                                    <option>Bustrac, Nabua</option>
-                                                    <option>Dolorosa, Nabua</option>
-                                                    <option>Duran, Nabua</option>
-                                                    <option>Inapatan, Nabua</option>
-                                                    <option>La Opinion, Nabua</option>
-                                                    <option>La Purisima, Nabua</option>
-                                                    <option>Lourdes Old, Nabua</option>
-                                                    <option>Lourdes Young, Nabua</option>
-                                                    <option>Malawag, Nabua</option>
-                                                    <option>Paloyon Oriental, Nabua</option>
-                                                    <option>Paloyon Proper, Nabua</option>
-                                                    <option>Salvacion Que Gatos, Nabua</option>
-                                                    <option>San Antonio, Nabua</option>
-                                                    <option>San Antonio Ogbon, Nabua</option>
-                                                    <option>San Esteban, Nabua</option>
-                                                    <option>San Francisco, Nabua</option>
-                                                    <option>San Isidro, Nabua</option>
-                                                    <option>San Isidro Inapatan, Nabua</option>
-                                                    <option>San Jose, Nabua</option>
-                                                    <option>San Juan, Nabua</option>
-                                                    <option>San Luis, Nabua</option>
-                                                    <option>San Miguel, Nabua</option>
-                                                    <option>San Nicolas, Nabua</option>
-                                                    <option>San Roque, Nabua</option>
-                                                    <option>San Roque Madawon, Nabua</option>
-                                                    <option>San Roque Sagumay, Nabua</option>
-                                                    <option>San Vicente Gorong-Gorong, Nabua</option>
-                                                    <option>San Vicente Ogbon, Nabua</option>
-                                                    <option>Santa Barbara, Nabua</option>
-                                                    <option>Santa Cruz, Nabua</option>
-                                                    <option>Santa Elena Baras, Nabua</option>
-                                                    <option>Santa Lucia Baras, Nabua</option>
-                                                    <option>Santiago Old, Nabua</option>
-                                                    <option>Santiago Young, </option>
-                                                    <option>Santo Domingo, Nabua</option>
-                                                    <option>Tandaay, Nabua</option>
-                                                    <option>Topas Proper, Nabua</option>
-                                                    <option>Topas Sogod, Nabua</option>
-                                                    </select>
+                    <select class="form-control"  name="address" rows="2" required>
+                        <option class="placeholder" style="display: none" >Select address</option>
+                        <option>Angustia, Nabua</option>
+                        <option>Antipolo Old, Nabua</option>
+                        <option>Antipolo Young, Nabua</option>
+                        <option>Aro-aldao, Nabua</option>
+                        <option>Bustrac, Nabua</option>
+                        <option>Dolorosa, Nabua</option>
+                        <option>Duran, Nabua</option>
+                        <option>Inapatan, Nabua</option>
+                        <option>La Opinion, Nabua</option>
+                        <option>La Purisima, Nabua</option>
+                        <option>Lourdes Old, Nabua</option>
+                        <option>Lourdes Young, Nabua</option>
+                        <option>Malawag, Nabua</option>
+                        <option>Paloyon Oriental, Nabua</option>
+                        <option>Paloyon Proper, Nabua</option>
+                        <option>Salvacion Que Gatos, Nabua</option>
+                        <option>San Antonio, Nabua</option>
+                        <option>San Antonio Ogbon, Nabua</option>
+                        <option>San Esteban, Nabua</option>
+                        <option>San Francisco, Nabua</option>
+                        <option>San Isidro, Nabua</option>
+                        <option>San Isidro Inapatan, Nabua</option>
+                        <option>San Jose, Nabua</option>
+                        <option>San Juan, Nabua</option>
+                        <option>San Luis, Nabua</option>
+                        <option>San Miguel, Nabua</option>
+                        <option>San Nicolas, Nabua</option>
+                        <option>San Roque, Nabua</option>
+                        <option>San Roque Madawon, Nabua</option>
+                        <option>San Roque Sagumay, Nabua</option>
+                        <option>San Vicente Gorong-Gorong, Nabua</option>
+                        <option>San Vicente Ogbon, Nabua</option>
+                        <option>Santa Barbara, Nabua</option>
+                        <option>Santa Cruz, Nabua</option>
+                        <option>Santa Elena Baras, Nabua</option>
+                        <option>Santa Lucia Baras, Nabua</option>
+                        <option>Santiago Old, Nabua</option>
+                        <option>Santiago Young, </option>
+                        <option>Santo Domingo, Nabua</option>
+                        <option>Tandaay, Nabua</option>
+                        <option>Topas Proper, Nabua</option>
+                        <option>Topas Sogod, Nabua</option>
+                    </select>
                 </div>
                 
             </div>
             <div class="col-6">
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="gender" class="control-label">Relationship</label>
-                    <select type="text" class="form-control form-select" name="gender"  required>
+                    <select type="text" class="form-control form-select" name="relationship"  required>
                         <option class="placeholder" style="display: none" >Select relationship</option>
                         <option hidden><?= $gender ?></option>
                         <option>Daughter</option>
@@ -165,7 +163,7 @@ if (!empty($_SESSION['user_id'])) {
                         <option>Father</option>
                         <option>Relatives</option>
                     </select>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label for="dob" class="control-label">Date of Birth</label>
@@ -186,7 +184,7 @@ if (!empty($_SESSION['user_id'])) {
 
                     </div>
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Preferred Appointment Date and Time*</label>
+                    <label for="date_sched" class="control-label">Preferred Date and Time</label>
                     <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
                 </div>
 
