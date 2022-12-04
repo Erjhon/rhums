@@ -122,7 +122,7 @@
 												echo base_url ?>admin/?page=add-record&id=<?php echo $row['id'];
 												break;
 												case ($row['reason'] == 'Animal Bite'):
-												echo base_url ?>admin/?page=add-animalbite&id=<?php echo $row['id'];
+												echo base_url ?>admin/?page=add-recordAB&id=<?php echo $row['id'];
 												break;
 												case ($row['reason'] == 'Immunization for Child'):
 												echo base_url ?>admin/?page=add-immunization&id=<?php echo $row['id'];
