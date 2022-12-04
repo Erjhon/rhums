@@ -260,6 +260,13 @@ if(isset($message)){
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
+                                        <label>Height</label>
+                                        <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                    <div class="form-group">
                                         <label>Weight</label>
                                         <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter weight in kilograms" required>
                                     </div>
@@ -267,15 +274,9 @@ if(isset($message)){
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Height</label>
-                                        <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
                                         <label for="bmi" >BMI</label>
-                                         <span class="form-control" id="result" name="bmi" ></span>
+                                        <textarea class="form-control" id="bmi" name="bmi" readonly></textarea>
+                                         <!-- <span class="form-control" id="bmi" name="bmi" ></span> -->
                                         <!-- <span id="category">Normal weight</span> -->
                                     </div>
                                 </div>
@@ -329,8 +330,8 @@ $(document).ready(function(){
         var height = $(this).val();
         clearTimeout(keyupTimer);
         keyupTimer = setTimeout(function () {
-           var result = (weight / Math.pow( (height/100), 2 )).toFixed(1);
-           $("#result").text(result);
+           var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#bmi").text(bmi);
         }, 400);
     });
 
@@ -340,8 +341,8 @@ $(document).ready(function(){
         var height = $("#height").val();
         clearTimeout(keyupTimer2);
         keyupTimer2 = setTimeout(function () {
-           var result = (weight / Math.pow( (height/100), 2 )).toFixed(1);
-           $("#result").text(result);
+           var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+           $("#bmi").text(bmi);
         }, 400);
     });
 
