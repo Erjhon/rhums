@@ -17,7 +17,7 @@ if(isset($_POST['update_profile'])){
    $update_contact = mysqli_real_escape_string($conn, $_POST['update_contact']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', username = '$update_email', gender = '$update_gender', contact = '$update_contact', dob = '$update_dob' WHERE id = '$user_id'") or die('query failed');
+   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', address = '$update_address', username = '$update_email', gender = '$update_gender', contact = '$update_contact', dob = '$update_dob' WHERE id = '$user_id'") or die('query failed');
    $message[] = " <script>
             Swal.fire({
                  icon: 'success',
@@ -380,7 +380,52 @@ if(isset($_POST['update_profile'])){
                             <!-- Form Group (location)-->
                             <div class="col-md-8">
                                 <label class="small mb-1" for="inputLocation">Address</label>
-                                <input class="form-control" id="inputLocation" type="text" name="update_address" value="<?php echo $fetch['address']; ?>">
+                                <!-- <input class="form-control" id="inputLocation" type="text" name="update_address" value="<?php echo $fetch['address']; ?>"> -->
+                                <select class="form-control" name="update_address"  required>
+                                    <option class="placeholder" style="display: none" ><?php echo $fetch['address'] ?></option>
+                                    <option>Angustia, Nabua</option>
+                                    <option>Antipolo Old, Nabua</option>
+                                    <option>Antipolo Young, Nabua</option>
+                                    <option>Aro-aldao, Nabua</option>
+                                    <option>Bustrac, Nabua</option>
+                                    <option>Dolorosa, Nabua</option>
+                                    <option>Duran, Nabua</option>
+                                    <option>Inapatan, Nabua</option>
+                                    <option>La Opinion, Nabua</option>
+                                    <option>La Purisima, Nabua</option>
+                                    <option>Lourdes Old, Nabua</option>
+                                    <option>Lourdes Young, Nabua</option>
+                                    <option>Malawag, Nabua</option>
+                                    <option>Paloyon Oriental, Nabua</option>
+                                    <option>Paloyon Proper, Nabua</option>
+                                    <option>Salvacion Que Gatos, Nabua</option>
+                                    <option>San Antonio, Nabua</option>
+                                    <option>San Antonio Ogbon, Nabua</option>
+                                    <option>San Esteban, Nabua</option>
+                                    <option>San Francisco, Nabua</option>
+                                    <option>San Isidro, Nabua</option>
+                                    <option>San Isidro Inapatan, Nabua</option>
+                                    <option>San Jose, Nabua</option>
+                                    <option>San Juan, Nabua</option>
+                                    <option>San Luis, Nabua</option>
+                                    <option>San Miguel, Nabua</option>
+                                    <option>San Nicolas, Nabua</option>
+                                    <option>San Roque, Nabua</option>
+                                    <option>San Roque Madawon, Nabua</option>
+                                    <option>San Roque Sagumay, Nabua</option>
+                                    <option>San Vicente Gorong-Gorong, Nabua</option>
+                                    <option>San Vicente Ogbon, Nabua</option>
+                                    <option>Santa Barbara, Nabua</option>
+                                    <option>Santa Cruz, Nabua</option>
+                                    <option>Santa Elena Baras, Nabua</option>
+                                    <option>Santa Lucia Baras, Nabua</option>
+                                    <option>Santiago Old, Nabua</option>
+                                    <option>Santiago Young, </option>
+                                    <option>Santo Domingo, Nabua</option>
+                                    <option>Tandaay, Nabua</option>
+                                    <option>Topas Proper, Nabua</option>
+                                    <option>Topas Sogod, Nabua</option>
+                                </select>
                             </div>
                         </div>
                       
