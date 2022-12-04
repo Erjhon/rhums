@@ -199,7 +199,7 @@ $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
         </tr>
         <tr>
           <th>BMI :</th>
-          <td><textarea class="form-control" id="bmi" name="bmi" readonly></textarea></td>
+          <td><textarea class="form-control" rows="1" id="bmi" name="bmi" readonly></textarea></td>
         </tr>
         <tr>
           <th>Patient Complaints :</th>
