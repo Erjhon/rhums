@@ -6,17 +6,20 @@
 if(isset($_POST['submit']))
 {
   $vid=$_GET['viewid'];
-  $bp=$_POST['bp'];
-  $bs=$_POST['bs'];
+  $bloodpress=$_POST['bloodpress'];
+  $bloodsugar=$_POST['bloodsugar'];
+  $bodytemp=$_POST['bodytemp'];
   $weight=$_POST['weight'];
-  $temp=$_POST['temp'];
-  $pres=$_POST['pres'];
+  $height=$_POST['height'];
+  $bmi=$_POST['bmi'];
+  $complaints=$_POST['complaints'];
+  $remark=$_POST['remark'];
+ 
 
-
-  $query=mysqli_query($conn, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
-  if ($query) {
+    $query=mysqli_query($conn, "insert  patient_history(patientId,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height', '$bmi', '$complaints','$remark')");
+    if ($query) {
     echo '<script>alert("Medical history has been added.")</script>';
-    echo "<script>window.location.href ='history.php&viewid=['id']'</script>";
+    echo "<script>window.location.href ='history.php&viewid=['pid']'</script>";
 
   }
   else
@@ -103,8 +106,8 @@ if(isset($_POST['submit']))
               <th>Blood Pressure</th>
               <th>Blood Sugar</th>
               <th>Body Temprature</th>
-              <th>Weight</th>
               <th>Height</th>
+              <th>Weight</th>
               <th>BMI</th>
               <th>Patient Complaints</th>
               <th>Remarks</th>
@@ -119,8 +122,8 @@ if(isset($_POST['submit']))
                 <td><?php  echo $row['bloodpress'];?></td>
                 <td><?php  echo $row['bloodsugar'];?></td> 
                 <td><?php  echo $row['bodytemp'];?></td>
-                <td><?php  echo $row['weight'];?></td>
                 <td><?php  echo $row['height'];?></td>
+                <td><?php  echo $row['weight'];?></td>
                 <td><?php  echo $row['bmi'];?></td>
                 <td><?php  echo $row['complaints'];?></td>
                 <td><?php  echo $row['remark'];?></td>
@@ -143,8 +146,8 @@ if(isset($_POST['submit']))
                   <td><?php  echo $row['bloodpress'];?></td>
                   <td><?php  echo $row['bloodsugar'];?></td> 
                   <td><?php  echo $row['bodytemp'];?></td>
-                  <td><?php  echo $row['weight'];?></td>
                   <td><?php  echo $row['height'];?></td>
+                  <td><?php  echo $row['weight'];?></td>
                   <td><?php  echo $row['bmi'];?></td>
                   <td><?php  echo $row['complaints'];?></td>
                   <td><?php  echo $row['remark'];?></td>
