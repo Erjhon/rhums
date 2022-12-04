@@ -264,7 +264,7 @@ if(isset($message)){
                                         <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Weight</label>
@@ -275,7 +275,7 @@ if(isset($message)){
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="bmi" >BMI</label>
-                                        <textarea class="form-control" id="bmi" name="bmi" readonly></textarea>
+                                        <textarea class="form-control" rows="1" id="bmi" name="bmi" readonly></textarea>
                                          <!-- <span class="form-control" id="bmi" name="bmi" ></span> -->
                                         <!-- <span id="category">Normal weight</span> -->
                                     </div>
