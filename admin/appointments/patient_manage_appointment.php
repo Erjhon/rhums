@@ -58,7 +58,6 @@ if (!empty($_SESSION['user_id'])) {
     $dob = "";
     $address = "";
     $reason = "";
-    $created = "Patient";
 }
 
 ?>

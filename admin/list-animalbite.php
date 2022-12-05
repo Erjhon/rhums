@@ -68,8 +68,8 @@ $result = mysqli_query($conn,"SELECT * FROM animalbite");
 
 				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=edit-animalbite&viewid=<?php echo $row['pid'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
 				                
-									<div class="divider"></div>
-									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['pid']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
+									<!-- <div class="divider"></div>
+									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['pid']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a> -->
 				                  </div>
 							</td>
 

@@ -152,7 +152,7 @@ if(isset($_POST['submit']))
                   <td><?php  echo $row['complaints'];?></td>
                   <td><?php  echo $row['remark'];?></td>
                   <td><?php  echo $row['visit'];?></td> 
-                  <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
+                  <td><?php  echo $row['assigned'];?></td> 
                 </tr>
                 <?php $cnt=$cnt+1;} ?>
               </table>

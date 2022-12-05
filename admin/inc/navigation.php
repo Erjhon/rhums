@@ -82,7 +82,7 @@
               <a href="./" class="nav-link nav-home">
                 <i class="nav-icon fas fa-tachometer-alt text-success"></i>
                 
-                 <span class="text-dark">Dashboard</span>                 
+                 <span class="text-dark text-bold"><b>Dashboard</b></span>                 
               </a>
             </li>
             
@@ -90,7 +90,7 @@
               <a href="<?php echo base_url ?>admin/?page=schedule_settings" class="nav-link nav-schedule_settings">
                 <i class="nav-icon fas fa-calendar-day text-orange"></i>
             
-                  <span class="text-dark">Schedule Settings</span>
+                  <span class="text-dark"><b>Schedule Settings</b></span>
                
               </a>
             </li>
@@ -98,7 +98,7 @@
             <li class="dropdown">
               <a href="<?php echo base_url ?>admin/?page=appointments" class="nav-link nav-appointments">
                 <i class="nav-icon ni ni-ruler-pencil"></i>
-                  <span class="text-dark">Appointment List</span>
+                  <span class="text-dark"><b>Appointment List</b></span>
               </a>
             </li>
 
@@ -107,13 +107,13 @@
              <li class="dropdown">
             <!-- <a  href="<?php echo base_url ?>admin/?page=consultation" class="nav-link nav-consultation"> -->
               <a  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link nav-consultation">
-              <i class="ni ni-collection text-teal"></i>
-              <span class="text-dark"> Records</span></a>
+              <i class="nav-icon ni ni-collection text-yellow"></i>
+              <span class="text-dark"><b>Records</b></span></a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
-                 <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="nav-link nav-check-up">Check-up</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="nav-link nav-animalbite"> Animal Bite</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-immunization" class="nav-link nav-immunization">Immunization for Child</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-immunizationSC" class="nav-link nav-immunization">Immunization for Senior Citizens</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="btn nav-link nav-list-check-up">Check-up</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="btn nav-link nav-list-animalbite"> Animal Bite</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-immunization" class="btn nav-link nav-list-immunization">Immunization for Child</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-immunizationSC" class="btn nav-link nav-list-immunizationSC">Immunization for Senior Citizens</a></li>
                  <!-- <li><a href="<?php echo base_url ?>admin/?page=list-prenatal" class="nav-link nav-prenatal"> Prenatal</a></li> -->
               </ul>
           </li>

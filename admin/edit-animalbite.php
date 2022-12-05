@@ -15,22 +15,60 @@ if(isset($_POST['submit']))
     $ownercon=$_POST['ownercon'];
     $location=$_POST['location'];
     $remark=$_POST['remark'];
-    $visit=$_POST['visit'];
+    // $visit=$_POST['visit'];
     $assigned=$_POST['assigned'];
 
 
-      $query=mysqli_query($conn, "insert   animalbite(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
+      $query=mysqli_query($conn, "insert patient_history(patientId,incident,source,part,category,type,owner,ownercon,location,remark,assigned)value('$vid','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')");
       if ($query) {
-      echo '<script>alert("Medical history has been added.")</script>';
-      echo "<script>window.location.href ='history.php&viewid=['pid']'</script>";
+
+     $message[] = "";
       
     }
   else
     {
-      echo '<script>alert("Something Went Wrong. Please try again")</script>';
+      $error[] ="";
     } 
 }
 
+?>
+
+
+<!-- display success -->
+<?php
+if(isset($message)){
+    foreach($message as $message){
+        echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Medical history has been added successfully',
+            toast: true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 1000
+            });
+                </script>.$message.";
+            }
+        }
+        ?>
+
+        <!-- //display error -->
+        <?php
+        if(isset($error)){
+            foreach($error as $error){
+                echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Something went wrong try again',
+            toast: true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 1000
+            })
+                </script>.$error.";
+            };
+        };
+  
 ?>
 <body>
 
@@ -38,7 +76,6 @@ if(isset($_POST['submit']))
     <script>
         alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
     </script>
-
 
 
 <?php endif;?>
@@ -90,9 +127,8 @@ if(isset($_POST['submit']))
 <?php }?>
 <?php  
 
-$ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'");
-
-
+$ret=mysqli_query($conn,"select * from animalbite
+  where pid='$vid'");
  ?>
  <div class="table-responsive">
     <table border="0" class="table table-bordered">
@@ -127,10 +163,35 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
         <td><?php  echo $row['ownercon'];?></td>
         <td><?php  echo $row['location'];?></td>
         <td><?php  echo $row['remark'];?></td> 
+        <td><?php  echo $row['visit'];?></td> 
         <td><?php  echo $row['assigned'];?></td> 
-        <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
+
+<?php  
+
+$ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
+ ?>
+ <tr>
+   <?php  
+    while ($row=mysqli_fetch_array($ret)) { 
+      ?>
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['incident'];?></td>
+        <td><?php  echo $row['source'];?></td> 
+        <td><?php  echo $row['part'];?></td>
+        <td><?php  echo $row['category'];?></td>
+        <td><?php  echo $row['type'];?></td>
+        <td><?php  echo $row['owner'];?></td>
+        <td><?php  echo $row['ownercon'];?></td>
+        <td><?php  echo $row['location'];?></td>
+        <td><?php  echo $row['remark'];?></td> 
+        <td><?php  echo $row['visit'];?></td> 
+        <td><?php  echo $row['assigned'];?></td> 
+      </tr>
+
+<?php $cnt=$cnt+1;} ?>
+
 </table>
 
     <p align="center"> <br>                          
@@ -139,7 +200,7 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
  </div>
 <?php  ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
      <div class="modal-content">
       <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
@@ -154,40 +215,40 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
 
         <tr>
           <th>Date of Incident :</th>
-          <td><input type="date" class="form-control wd-450" required="true"></td>
+          <td><input type="date" class="form-control wd-450" name="incident" required="true"></td>
         </tr>                          
         <tr>
           <th>Source :</th>
           <td>
-            <select type="text" class="form-control form-select-sm-6" name="gender" required>
+            <select type="text" class="form-control form-select-sm-6" name="source" required>
               <option class="placeholder" style="display: none" >Select Source</option>
-              <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Dog</option>
-              <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Cat</option>
+              <option <?php echo isset($patient['source']) && $patient['source'] == "Dog" ? "selected" : "" ?>>Dog</option>
+              <option <?php echo isset($patient['source']) && $patient['source'] == "Cat" ? "selected" : "" ?>>Cat</option>
             </select>
           </td>
         </tr> 
         <tr>
           <th>Part of Body Bitten :</th>
-          <td><input name="bs" placeholder="Sample: Left Leg" class="form-control wd-450" required="true"></td>
+          <td><input name="part" placeholder="Sample: Left Leg" class="form-control wd-450" required="true"></td>
         </tr> 
         <tr>
           <th>Category :</th>
           <td>
-            <select type="text" class="form-control form-select-sm-6" name="gender" required>
+            <select type="text" class="form-control form-select-sm-6" name="category" required>
               <option class="placeholder" style="display: none" >Select Category</option>
-              <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>I</option>
-              <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>II</option>
-              <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>III</option>
+              <option <?php echo isset($patient['category']) && $patient['category'] == "I" ? "selected" : "" ?>>I</option>
+              <option <?php echo isset($patient['category']) && $patient['category'] == "II" ? "selected" : "" ?>>II</option>
+              <option <?php echo isset($patient['category']) && $patient['category'] == "III" ? "selected" : "" ?>>III</option>
             </select>
           </td>
         </tr>
         <tr>
           <th>Type :</th>
           <td>
-            <select type="text" class="form-control form-select-sm-6" name="gender" required>
+            <select type="text" class="form-control form-select-sm-6" name="type" required>
               <option class="placeholder" style="display: none" >Select Type</option>
-              <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Bite</option>
-              <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Scratch</option>
+              <option <?php echo isset($patient['type']) && $patient['type'] == "Bite" ? "selected" : "" ?>>Bite</option>
+              <option <?php echo isset($patient['type']) && $patient['type'] == "Scratch" ? "selected" : "" ?>>Scratch</option>
           </select>
         </td>
         </tr>
@@ -201,11 +262,12 @@ $ret=mysqli_query($conn,"select * from tblmedicalhistory  where PatientID='$vid'
         </tr>
         <tr>
           <th>Location of Biting Incident :</th>
-          <td><textarea name="incident" placeholder="Enter Location of Biting Incident" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+          <td><textarea name="location" placeholder="Enter Location of Biting Incident" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
         </tr>
         <tr>
           <th>Remarks :</th>
-          <td><textarea name="remarks" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+          <td><textarea name="remark" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+          <td><textarea hidden name="assigned" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>" required="true"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea></td>
         </tr>  
   </table>
 
