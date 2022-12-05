@@ -129,6 +129,7 @@ if (!empty($_SESSION['user_id'])) {
                             <!-- <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option> -->
                         </select>
 
+                    <input hidden type="text" class="form-control" id="created" name="created" value="Patient">
                     </div>
                 <?php endif; ?>
                 <div class="form-group">
@@ -148,7 +149,6 @@ if (!empty($_SESSION['user_id'])) {
                             <option value="2" <?php echo isset($status) && $status == "2" ? "selected" : "" ?>>Cancelled</option>
                         </select>
                     </div>
-                    <input hidden type="text" class="form-control" id="created" name="created" value="Patient">
 
                 <?php else : ?>
                     <div class="col-lg-12 col-sm-6 p-1 text-center">

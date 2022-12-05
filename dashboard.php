@@ -99,7 +99,7 @@ if(isset($_GET['logout'])){
     <i class="ni ni-single-02"></i>
     <span>My profile</span>
 </a>
-  <a href="client/logout.php" class="dropdown-item">
+  <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
       <i class="ni ni-user-run"></i>
       <span>Logout</span>
   </a>
@@ -230,7 +230,7 @@ if(isset($_GET['logout'])){
       <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a type="button" class="btn btn-primary" href="admin/login.php?logout=<?php echo $user_id; ?>">Logout</a>
+        <a type="button" class="btn btn-primary" href="patient/logout.php?logout=<?php echo $user_id; ?>">Logout</a>
       </div>
     </div>
   </div>

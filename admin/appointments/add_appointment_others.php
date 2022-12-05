@@ -169,7 +169,7 @@ if (!empty($_SESSION['user_id'])) {
                     <label for="dob" class="control-label">Date of Birth</label>
                     <input type="date" class="form-control" name="dob" value="<?= $dob ?><?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                 </div>
-
+                <input hidden type="text" class="form-control" id="created" name="created" value="Guardian">
                 <div class="form-group">
                     <label for="reason" class="control-label">Reason for Appointment</label>
                     <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->

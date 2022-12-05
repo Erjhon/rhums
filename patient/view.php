@@ -17,7 +17,7 @@ if (isset($_GET['logout'])) {
 
 if (isset($_GET['id'])) {  
   $id = $_GET['id'];  
-  $query = "DELETE FROM `appointments` WHERE id = '$id'";  
+  $query = "DELETE FROM `patient_list` WHERE id = '$id'";  
   $run = mysqli_query($conn,$query);  
   if ($run) {  
     header('location:view.php');  
@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
 } 
 
 
-$query = "select * from appointments";  
+$query = "select * from patient_list";  
 $run = mysqli_query($conn,$query); 
 ?>
 
@@ -109,6 +109,11 @@ $run = mysqli_query($conn,$query);
             <a href="../patient/change_pw.php" class="dropdown-item">
               <i class="ni ni-lock-circle-open"></i>
               <span>Change Password</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
             </a>
   </div>
 </li>
