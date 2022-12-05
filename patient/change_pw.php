@@ -277,7 +277,7 @@ if(isset($_POST['change_pw'])){
 
             <div class=" col-xl-8 col-ml-5">
               <!-- Change password card-->
-              <div class="card mt--8">
+              <div class="card mt-5">
                 <div class="card-header">Change Password</div>
                 <div class="card-body">
                   <?php
