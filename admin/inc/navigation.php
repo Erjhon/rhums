@@ -107,7 +107,7 @@
              <li class="dropdown">
             <!-- <a  href="<?php echo base_url ?>admin/?page=consultation" class="nav-link nav-consultation"> -->
               <a  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link nav-consultation">
-              <i class="nav-icon ni ni-collection text-yellow"></i>
+              <i class="nav-icon ni ni-folder-17 text-info"></i>
               <span class="text-dark"><b>Records</b></span></a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                  <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="btn nav-link nav-list-check-up">Check-up</a></li>
