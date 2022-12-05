@@ -128,7 +128,13 @@ table th {
 				<th>Remarks</th>
 				<!-- <th>Date of Registration</th> -->
 			</tr>
-
+<?php 
+$ret=mysqli_query($conn,"select * from checkup c, patient_history p where c.pid=p.patientId");
+ ?>
+   <?php  
+    while ($row=mysqli_fetch_array($ret)) { 
+      ?>
+     <tr>
 			<tr>
 				<td>PA-<?=$row["pid"] ?></td>
 				<td><?=$row["CreationDate"] ?></td>
@@ -156,7 +162,7 @@ table th {
 				
 				<!-- <td><?=$row["CreationDate"] ?></td> -->
 			</tr>
-
+ <?php } ?>
 
 		</table>
 
