@@ -268,16 +268,16 @@ if(isset($_POST['change_pw'])){
 
           <!-- End Navbar -->
           <!-- Header -->
-          <div class="header pb-12 pt-12 pt-lg-5 d-flex align-items-center" style="min-height: 610px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+          <div class="container header pb-12 d-flex align-items-center" style="min-height: 610px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
 
             <!-- Mask -->
             <span class="mask"style="background: linear-gradient(
             to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
 
 
-            <div class="col-xl-11 ml-5">
+            <div class=" col-xl-8 col-ml-5">
               <!-- Change password card-->
-              <div class="card mb-4">
+              <div class="card mt--8">
                 <div class="card-header">Change Password</div>
                 <div class="card-body">
                   <?php
