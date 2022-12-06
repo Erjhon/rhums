@@ -119,8 +119,8 @@ if(isset($message)){
         <tr>
           <th>Address</th>
           <td><?php  echo $row['paddress'];?></td>
-           <th>Date of Registration</th>
-          <td><?php  echo $row['CreationDate'];?></td>
+          <th>Date of Registration</th>
+          <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
         </tr>
     </tr>
 </table>
@@ -163,7 +163,7 @@ $ret=mysqli_query($conn,"select * from animalbite
         <td><?php  echo $row['ownercon'];?></td>
         <td><?php  echo $row['location'];?></td>
         <td><?php  echo $row['remark'];?></td> 
-        <td><?php  echo $row['visit'];?></td> 
+        <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td> 
         <td><?php  echo $row['assigned'];?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
@@ -186,7 +186,7 @@ $ret=mysqli_query($conn,"select * from animalbite_history where patientId='$vid'
         <td><?php  echo $row['ownercon'];?></td>
         <td><?php  echo $row['location'];?></td>
         <td><?php  echo $row['remark'];?></td> 
-        <td><?php  echo $row['visit'];?></td> 
+        <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td>
         <td><?php  echo $row['assigned'];?></td> 
       </tr>
 
