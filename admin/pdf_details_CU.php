@@ -229,7 +229,6 @@
 				<th class="row-pc">Patient Complaints</th>
 				<th class="row-vd">Visit Date</th>
 				<th class="row-r">Remarks</th>
-				<!-- <th>Date of Registration</th> -->
 			</tr>
 <?php 
 $ret=mysqli_query($conn,"select * from checkup c, patient_history p where c.pid=p.patientId");
@@ -243,26 +242,20 @@ $ret=mysqli_query($conn,"select * from checkup c, patient_history p where c.pid=
 				<td><?=$row["pfname"] ?></td>
 				<td><?=$row["gender"] ?></td>
 				<td><?=$row["pcontact"] ?></td>
-			
 				<td><?php echo date("M, d, Y", strtotime($row['dob']))?></td>
 				<td><?=$row["age"] ?></td>
-			
 				<td><?=$row["placebirth"] ?></td>
 				<td><?=$row["guardian"] ?></td>
 				<td><?=$row["paddress"] ?></td>
 				<td><?=$row["bloodpress"] ?></td>
 				<td><?=$row["bloodsugar"] ?></td>
-			
 				<td><?=$row["bodytemp"] ?></td>
 				<td><?=$row["height"] ?></td>
-			
 				<td><?=$row["weight"] ?></td>
 				<td><?=$row["bmi"] ?></td>
 				<td><?=$row["complaints"] ?></td>
 				<td><?php echo date("m/d/Y", strtotime($row['visit']))?></td>
 				<td><?=$row["remark"] ?></td>
-				
-				<!-- <td><?=$row["CreationDate"] ?></td> -->
 			</tr>
  <?php } ?>
 
