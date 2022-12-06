@@ -2,48 +2,8 @@
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
 
-<?php
-if(isset($_POST['submit']))
-{
-  $vid=$_GET['viewid'];
-  $bloodpress=$_POST['bloodpress'];
-  $bloodsugar=$_POST['bloodsugar'];
-  $bodytemp=$_POST['bodytemp'];
-  $weight=$_POST['weight'];
-  $height=$_POST['height'];
-  $bmi=$_POST['bmi'];
-  $complaints=$_POST['complaints'];
-  $remark=$_POST['remark'];
- 
 
-    $query=mysqli_query($conn, "insert  patient_history(patientId,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height', '$bmi', '$complaints','$remark')");
-    if ($query) {
-    echo '<script>alert("Medical history has been added.")</script>';
-    echo "<script>window.location.href ='history.php&viewid=['pid']'</script>";
-
-  }
-  else
-  {
-    echo '<script>alert("Something Went Wrong. Please try again")</script>';
-  } 
-}
-
-?>
 <body>
-
-  <?php if($_settings->chk_flashdata('success')): ?>
-    <script>
-      alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
-    </script>
-
-
-
-  <?php endif;?>
-
-  <?php
-  $result = mysqli_query($conn,"SELECT * FROM checkup WHERE id = 'pid'");
-  ?>
-
   <div class="card card-outline card-primary">
     <div class="card-header">
       <h2 class="card-title text-center">Patient Records for Check-Up</h2>
