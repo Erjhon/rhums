@@ -39,8 +39,8 @@ $result = mysqli_query($conn,"SELECT * FROM animalbite");
 									<tr>
 										<th>Patient No.</th>
 										<th>Patient Name</th>
-										<th>Date of Incident</th>
-										<th>Source</th>
+										<th>Age</th>
+										<th>Gender</th>
 										<th>Address</th>
 										<th>Action</th>
 									</tr>
@@ -55,8 +55,8 @@ $result = mysqli_query($conn,"SELECT * FROM animalbite");
 										<tr>
 											<td><b>PA-<?php echo $row["pid"]; ?></td>
 											<td><?php echo $row["pfname"]; ?></td>
-											<td><?php echo $row["incident"]; ?></td>
-											<td><?php echo $row["source"]; ?></td>
+											<td><?php echo $row["age"]; ?></td>
+											<td><?php echo $row["gender"]; ?></td>
 											<td><?php echo $row["paddress"]; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">

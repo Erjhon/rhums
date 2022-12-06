@@ -21,6 +21,7 @@ $result = mysqli_query($conn,"SELECT * FROM immunization_child");
 		<h2 class="card-title text-center">List for Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>
 		<div class="card-tools">
 			<a href="<?php echo base_url ?>admin/?page=add-immunization" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>
+			<a class="edit_data btn btn-secondary" target="_blank" href="generate_pdfI.php?id="> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
 		</div>
 
 	</div>
@@ -38,9 +39,9 @@ $result = mysqli_query($conn,"SELECT * FROM immunization_child");
 									<tr>
 										<th>Patient No.</th>
 										<th>Patient Name</th>
+										<th>Age</th>
+										<th>Gender</th>
 										<th>Address</th>
-										<th>Sex</th>
-										<th>Remarks</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -54,19 +55,18 @@ $result = mysqli_query($conn,"SELECT * FROM immunization_child");
 										<tr>
 											<td><b>PA-<?php echo $row["id"]; ?></td>
 											<td><?php echo $row["child"]; ?></td>
-											<td><?php echo $row["address"]; ?></td>
+											<td><?php echo $row["age"]; ?></td>
 											<td><?php echo $row["sex"]; ?></td>
-											<td><?php echo $row["remarks"]; ?></td>
+											<td><?php echo $row["address"]; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=history&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> View</a>
+				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=view-immunization&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> View</a>
 				                
-									<div class="divider"></div>
-									<a class="dropdown-item edit_data" target="_blank" href="generate_pdf.php?id=<?=$row['id']?>"> <span class="fa fa-file-pdf text-danger"></span> Generate PDF</a>
+									<a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=edit-immunization&viewid=<?php echo $row['id'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
 				                  </div>
 							</td>
 
