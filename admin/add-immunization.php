@@ -119,7 +119,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                 showConfirmButton: false,
                                                 timer: 1000
                                                 }).then(function() {
-                                                    window.location.href ='?page=consultation';
+                                                    window.location.href ='?page=list-immunization';
                                                     });
                                                     </script>.$message.";
                                                 }
