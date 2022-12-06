@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 	<html>
 	<head>
 		<meta charset="utf-8">
@@ -22,30 +22,11 @@
 			width: 85%;
 		}
 
-table caption {
-  font-size: 1.5em;
-  margin: 10pt;
-}
-.pic2 {
+		.pic2 {
 			position: relative;
 		  right: 25%;
 		}
 
-table th,
-table td {
-  padding: 5pt;
-  text-align:left;
-  margin-right: 10pt;
-  margin: 100%;
-}
-
-table th {
-  font-size: 8pt;
-  letter-spacing: .1em;
-  text-transform: ;
-  margin: 100%;
-
-}
 
 		table {
 			border: 1px solid;
@@ -62,79 +43,12 @@ table th {
 		  margin: .5em 0 .75em;
 		}
 
-
 		table tr {
 		  background-color: #f8f8f8;
 /*		  border: 1px solid #ddd;*/
 		  padding: .35em;
 		}
 
-  table caption {
-    font-size: 1.3em;
-  }
-  
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-  
-  table tr {
-    border-bottom: 31px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
-  }
-  
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .8em;
-    text-align: right;
-  }
-  
-  table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  table td:last-child {
-    border-bottom: 0;
-  }
-}
-			table, th, td {
-				border: 1px solid black;
-				border-collapse: collapse;
-				text-align: center;
-			}
-			th, td {
-				background-color: #fffff;
-
-			}
-			h1, h2 {
-  text-align:center;
-
-}
-tr {
-  font-size: 12pt;
-}
-
-/* Headers */
-
-th {
-  font-size: 6.2em;
-  font-weight: 500;
-}
 		table th,
 		table td {
 		  padding: .525em;
@@ -318,7 +232,7 @@ th {
 				<!-- <th>Date of Registration</th> -->
 			</tr>
 <?php 
-$ret=mysqli_query($conn,"select * from checkup c,patient_history p where c.pid=p.patientId");
+$ret=mysqli_query($conn,"select * from checkup c, patient_history p where c.pid=p.patientId");
  ?>
    <?php  
     while ($row=mysqli_fetch_array($ret)) { 
