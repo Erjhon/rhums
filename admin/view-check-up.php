@@ -86,7 +86,7 @@ if(isset($_POST['submit']))
                 <th>Address</th>
                 <td><?php  echo $row['paddress'];?></td>
                 <th>Date of Registration</th>
-                <td><?php  echo $row['CreationDate'];?></td>
+                <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
               </tr>
             </tr>
           </table>
@@ -127,7 +127,7 @@ if(isset($_POST['submit']))
                 <td><?php  echo $row['bmi'];?></td>
                 <td><?php  echo $row['complaints'];?></td>
                 <td><?php  echo $row['remark'];?></td>
-                <td><?php  echo $row['visit'];?></td> 
+                <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td> 
                 <td><?php  echo $row['assigned'];?></td> 
               </tr>
               <?php $cnt=$cnt+1;} ?>
@@ -151,7 +151,7 @@ if(isset($_POST['submit']))
                   <td><?php  echo $row['bmi'];?></td>
                   <td><?php  echo $row['complaints'];?></td>
                   <td><?php  echo $row['remark'];?></td>
-                  <td><?php  echo $row['visit'];?></td> 
+                  <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td>
                   <td><?php  echo $row['assigned'];?></td> 
                 </tr>
                 <?php $cnt=$cnt+1;} ?>

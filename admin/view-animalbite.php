@@ -77,7 +77,7 @@ if(isset($_POST['submit']))
           <th>Address</th>
           <td><?php  echo $row['paddress'];?></td>
            <th>Date of Registration</th>
-          <td><?php  echo $row['CreationDate'];?></td>
+          <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
         </tr>
     </tr>
 </table>
@@ -121,14 +121,37 @@ $ret=mysqli_query($conn,"select * from animalbite  where pid='$vid'");
         <td><?php  echo $row['ownercon'];?></td>
         <td><?php  echo $row['location'];?></td>
         <td><?php  echo $row['remark'];?></td>
-        <td><?php  echo $row['visit'];?></td> 
+        <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td> 
         <td><?php  echo $row['assigned'];?></td> 
-        <!-- <td><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></td>  -->
       </tr>
-<?php $cnt=$cnt+1;} ?>
-</table>
+    <?php $cnt=$cnt+1;} ?>
 
-    </form>
+    <?php  
+
+    $ret=mysqli_query($conn,"select * from animalbite_history where patientId='$vid'");
+
+
+    ?>
+    <?php  
+    while ($row=mysqli_fetch_array($ret)) { 
+      ?>
+      <tr>
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['incident'];?></td>
+        <td><?php  echo $row['source'];?></td> 
+        <td><?php  echo $row['part'];?></td>
+        <td><?php  echo $row['category'];?></td>
+        <td><?php  echo $row['type'];?></td>
+        <td><?php  echo $row['owner'];?></td>
+        <td><?php  echo $row['ownercon'];?></td>
+        <td><?php  echo $row['location'];?></td>
+        <td><?php  echo $row['remark'];?></td>
+        <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td>
+        <td><?php  echo $row['assigned'];?></td> 
+      </tr>
+      <?php $cnt=$cnt+1;} ?>
+    </table>
+  </form>
 </div>
 </div>
 </div>
