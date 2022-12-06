@@ -82,19 +82,19 @@
 									<td><?php echo $row['reason'] ?></td>
 									<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
 									<!-- <td><?php echo $row['name'] ?></td> -->
-									<td><?php echo $row['created']?></td>
+									<td><i><?php echo $row['created']?></i></td>
 									<!-- <td><?php echo date("M d, Y h:i A",strtotime($row['date_created'])) ?></td> -->
 									<td class="text-center">
 										<?php 
 										switch($row['status']){ 
 											case(0): 
-											echo '<span class="badge badge-primary">Done</span>';
+											echo '<span class="badge badge-success">Done</span>';
 											break; 
 											case(1): 
-											echo '<span class="badge badge-success">Confirmed</span>';
+											echo '<span class="badge badge-info">Confirmed</span>';
 											break; 
 											case(2): 
-											echo '<span class="badge badge-danger">Cancelled</span>';
+											echo '<span class="badge badge-warning">Cancelled</span>';
 											break; 
 											default: 
 											echo '<span class="badge badge-secondary">NA</span>';

@@ -1,5 +1,7 @@
  <!-- Header-->
- <header class="bg-dark py-2 center" id="main-header">
+
+ <header class="bg-dark py-2 center" id="main-header" style="background: linear-gradient(
+    to bottom,rgba(0, 112, 185, 0.1),rgba(0, 137, 162, 0.2">
      <div class="container px-10 px-lg-6 my-7">
          <div class="text-center text-dark  px-10 px-lg-6 my-7">
              <h3 class="display-1 col-lg-12 text-dark" style="font-family: 'BlackJack', sans-serif;">Online Medical Appointment</h3>

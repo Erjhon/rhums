@@ -19,7 +19,7 @@
 
 table caption {
   font-size: 1.5em;
-  margin: .5em 0 .75em;
+  margin: 10pt;
 }
 
 table tr {
@@ -30,14 +30,18 @@ table tr {
 
 table th,
 table td {
-  padding: .525em;
-  text-align: center;
+  padding: 5pt;
+  text-align:left;
+  margin-right: 10pt;
+  margin: 100%;
 }
 
 table th {
-  font-size: .85em;
+  font-size: 8pt;
   letter-spacing: .1em;
   text-transform: ;
+  margin: 100%;
+
 }
 
 @media screen and (max-width: 600px) {
@@ -95,9 +99,21 @@ table th {
 			}
 			th, td {
 				background-color: #fffff;
+
 			}
 			h1, h2 {
   text-align:center;
+
+}
+tr {
+  font-size: 12pt;
+}
+
+/* Headers */
+
+th {
+  font-size: 6.2em;
+  font-weight: 500;
 }
 		</style>
 
@@ -129,7 +145,7 @@ table th {
 				<!-- <th>Date of Registration</th> -->
 			</tr>
 <?php 
-$ret=mysqli_query($conn,"select * from checkup c, patient_history p where c.pid=p.patientId");
+$ret=mysqli_query($conn,"select * from checkup c,patient_history p where c.pid=p.patientId");
  ?>
    <?php  
     while ($row=mysqli_fetch_array($ret)) { 

@@ -49,7 +49,7 @@ $query_run = mysqli_query($conn,$query);
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>					
 							<td class="img-avatar img-thumbnail p-0 avatar">
-								<img src="<?php echo "../patient/uploaded_img/".$row['image'];?>"></td>
+								<img src="<?php echo "../patient/uploaded_img/".$row['image'];?>" ></td>
 							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->

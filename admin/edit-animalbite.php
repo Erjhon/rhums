@@ -19,7 +19,7 @@ if(isset($_POST['submit']))
     $assigned=$_POST['assigned'];
 
 
-      $query=mysqli_query($conn, "insert patient_history(patientId,incident,source,part,category,type,owner,ownercon,location,remark,assigned)value('$vid','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')");
+      $query=mysqli_query($conn, "insert animalbite_history(patientId,incident,source,part,category,type,owner,ownercon,location,remark,assigned)value('$vid','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')");
       if ($query) {
 
      $message[] = "";
@@ -170,7 +170,7 @@ $ret=mysqli_query($conn,"select * from animalbite
 
 <?php  
 
-$ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
+$ret=mysqli_query($conn,"select * from animalbite_history where patientId='$vid'");
  ?>
  <tr>
    <?php  

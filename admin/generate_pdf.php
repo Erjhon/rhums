@@ -23,7 +23,7 @@ ob_get_clean();
 $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('Legal', 'landscape');
 
 // Render the HTML as PDF
 $dompdf->render();

@@ -8,7 +8,7 @@
         <span class=""><img src="../assets/assets/img/icons/icon.png" height="30" width="30"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-img text-center" href="../admin/index.php">
+      <a class="navbar-img text-center" href="./">
         <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
       </a>
       <!-- User -->
@@ -19,7 +19,7 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="./index.php">
+              <a href="./">
                 <img src="../assets/assets/img/brand/doh.png">
               </a>
             </div>
@@ -110,10 +110,10 @@
               <i class="nav-icon ni ni-folder-17 text-info"></i>
               <span class="text-dark"><b>Records</b></span></a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
-                 <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="btn nav-link nav-list-check-up">Check-up</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="btn nav-link nav-list-animalbite"> Animal Bite</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-immunization" class="btn nav-link nav-list-immunization">Immunization for Child</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-immunizationSC" class="btn nav-link nav-list-immunizationSC">Immunization for Senior Citizens</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="btn nav-link nav-list-check-up text-info">Check-up</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="btn nav-link nav-list-animalbite text-info"> Animal Bite</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-immunization" class="btn nav-link nav-list-immunization text-info">Immunization for Child</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-immunizationSC" class="btn nav-link nav-list-immunizationSC text-info">Immunization for Senior Citizens</a></li>
                  <!-- <li><a href="<?php echo base_url ?>admin/?page=list-prenatal" class="nav-link nav-prenatal"> Prenatal</a></li> -->
               </ul>
           </li>
@@ -124,7 +124,7 @@
             <li class="dropdown">
               <a href="<?php echo base_url ?>admin/?page=user/list"  class="nav-link nav-user_list">
                 <i class="nav-icon fas fa-users text-yellow"></i>
-                  <span class="text-dark">User List</span>
+                  <span class="text-dark"><b>User List</b></span>
               </a>
             </li>
               <?php }?>
@@ -133,7 +133,7 @@
               <a href="<?php echo base_url ?>admin/?page=user/patient" class="nav-link nav-user_patient">
                 <i class="nav-icon fas fa-user text-purple"></i>
               
-                  <span class="text-dark">Patient List</span>
+                  <span class="text-dark"><b>Patient List</b></span>
               
               </a>
             </li>

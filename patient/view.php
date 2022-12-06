@@ -232,12 +232,18 @@ $run = mysqli_query($conn,$query);
   </div>
   <!-- End Navbar -->
   <!-- Header -->
-    <span class="mask" style="background: linear-gradient(
+  <!-- Header -->
+<div class="header pb-10 pt-10 pt-lg-12 d-flex align-items-center" style="min-height: 100%; background-image: url(../assets/assets/img/brand/bg.webp); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask" style="background: linear-gradient(
+    to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
+
+    <!-- <span class="mask" style="background: linear-gradient(
       to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8))"></span>
-  <div class="header pb-10 pt-10 pt-lg-12 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <div class="header pb-10 pt-10 pt-lg-12 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;"> -->
     <!-- Mask -->
       <!-- Header container -->
-      <div class="container px-10 px-lg-5 my-7">
+      <div class="container px-10 px-lg-5 my-9 ">
         <div class="card card-outline">
           <div class="card-header">
             <h2 class="card-title">View Appointments</h2>

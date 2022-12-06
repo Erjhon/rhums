@@ -238,7 +238,7 @@ if(isset($_GET['logout'])){
 
 <!-- End Navbar -->
 <!-- Header -->
-<div class="header pb-10 pt-7 pt-lg-12 d-flex align-items-center" style="min-height: 100%; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+<div class="header pb-10 pt-7 pt-lg-12 d-flex align-items-center" style="min-height: 100%; background-image: url(./assets/assets/img/brand/bg.webp); background-size: cover; background-position: center top;">
   <!-- Mask -->
   <span class="mask" style="background: linear-gradient(
     to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
@@ -266,7 +266,7 @@ if(isset($_GET['logout'])){
 <script src="./assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="./assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <!--   Optional JS   -->
-<script src="./assets/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- <script src="./assets/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script> -->
 <!--   Argon JS   -->
 <script src="./assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
@@ -327,7 +327,7 @@ if(isset($_GET['logout'])){
         if (sessionSecondsCounter >= SessionTimeOut) {
             window.clearInterval(sessionSecondsTimer);
             alert("Your session has expired. Please login again.");
-            window.location = "admin/login.php";
+            window.location = "patient/logout.php";
         }
     }
 </script>
