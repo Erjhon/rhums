@@ -8,6 +8,26 @@
 
 
 	<style>
+		.pic1, .text, .pic2 {
+			display: inline-block;
+			margin-bottom: 20px;
+			margin-top: 5px;
+		}
+		.pic1 {
+			position: relative;
+		 	left: 25%;
+		}
+		.text {
+			text-align: center;
+			width: 85%;
+		}
+
+		.pic2 {
+			position: relative;
+		  right: 25%;
+		}
+
+
 		table {
 			border: 1px solid;
 		  border-collapse: collapse;
@@ -15,6 +35,7 @@
 		  padding: 0;
 		  width: 10%;
 		  table-layout: fixed;
+		  padding-bottom: 50px;
 		}
 
 		table caption {
@@ -159,15 +180,32 @@
 		h1, h2 {
 			text-align:center;
 		}
-		h2 {
-			padding-bottom: 50px;
-		}
 	</style>
 
-
 	<body>
-		<h1>RURAL HEALTH UNIT II</h1>
-		<h2>Patient Records for Check-Up</h2>
+			<!-- Getting image1 -->
+			<?php
+			$path = '../assets/assets/img/brand/rhu.png';
+			$type = pathinfo($path, PATHINFO_EXTENSION);
+			$data = file_get_contents($path);
+			$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+			?>
+			<img class="pic1" src="<?php echo $base64?>" width="120" height="120"/>
+			<div class="text">
+			<h1>RURAL HEALTH UNIT II</h1>
+			<h2>Patient Records for Check-Up</h2>
+		</div>
+
+			<!-- Getting image2 -->
+			<?php
+			$path = '../assets/assets/img/brand/doh.png';
+			$type = pathinfo($path, PATHINFO_EXTENSION);
+			$data = file_get_contents($path);
+			$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+			?>
+			<img class="pic2" src="<?php echo $base64?>" width="120" height="120"/>
+
+	</div>
 		<table style="width:100%">
 
 			<tr>
