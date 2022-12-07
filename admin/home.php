@@ -166,10 +166,10 @@ $sched_arr = array();
                     <a href="?page=list-animalbite">
                       <?php
 
-                      $patient_history = "SELECT * FROM animalbite";
-                      $patient_history_run = mysqli_query($conn, $patient_history);
+                      $animalbite_history = "SELECT * FROM animalbite";
+                      $animalbite_history_run = mysqli_query($conn, $animalbite_history);
 
-                      if ($total = mysqli_num_rows($patient_history_run)) {
+                      if ($total = mysqli_num_rows($animalbite_history_run)) {
                       }
 
                       ?>
