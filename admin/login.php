@@ -31,11 +31,11 @@
           </div>
         </div>
       </div>
-      <!-- <div class="separator separator-bottom separator-skew zindex-100">
+      <div class="separator separator-bottom separator-skew zindex-100">
         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-neutral" points="2560 0 2560 100 0 100"></polygon>
         </svg>
-      </div> -->
+      </div>
     </div>
     <!-- Page content -->
     <div class="container mt--6 pb-5">
@@ -85,6 +85,10 @@
                   </div>
                 </div>
 
+                <div class="ml-1">
+                  <a href="../admin/forgot-pw.php">Forgot password?</a>
+                </div>
+
                 <div class="row">
                   <div class="col-4 ">
                   </div>
@@ -97,10 +101,7 @@
                   <div class="col-12 text-center"><br>Don't have an account?
                     <a href="../patient/register.php">Create an account</a>
                   </div>
-                  <!--  <div class="col-6">
-              <a href="#" class="nav-link"><small>Forgot password?</small></a>
-            </div>
-            <div class="col-6 text-right">
+            <!-- <div class="col-6 text-right">
               <a href="../client/register.php" class="nav-link"><small>Create new account</small></a>
             </div> -->
                 </div>
@@ -112,11 +113,11 @@
     </div>
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
     <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
+    <!-- <script src="dist/js/adminlte.min.js"></script> -->
 
     <script>
       $(document).ready(function() {

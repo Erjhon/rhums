@@ -80,7 +80,7 @@ if(isset($_POST['submit'])){
         <!-- Favicon -->
         <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> -->
         <!-- Icons -->
         <link href="../assets/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
         <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
