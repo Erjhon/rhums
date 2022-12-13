@@ -77,15 +77,15 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label for="dob" class="control-label">Date of Assessment</label>
-                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                        <label for="assessment" class="control-label">Date of Assessment</label>
+                                        <input type="date" class="form-control" id="assessment" name="assessment" value="<?php echo isset($patient['assessment']) ? $patient['assessment'] : '' ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Family Serial Number</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter Family Serial Number" required>
+                                        <input class="form-control" name="serial" placeholder="Enter Family Serial Number" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -93,7 +93,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>OSCA ID No.</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter OSCA ID No." required>
+                                        <input class="form-control" name="oscaid" placeholder="Enter OSCA ID No." required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -127,7 +127,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <label>Age</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter Age" required>
+                                        <input class="form-control" name="age" placeholder="Enter Age" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -136,9 +136,9 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                     <div class="form-group">
                                         <label>Eye Complaints <small>(blurred, floaters, blind spots, redness, photopsia, glare) </small></label>
                                         <label><small>/ - with atleast one <br> X - none of the above</small></label>
-                                        <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                            <option >/</option>
-                                            <option >X</option>
+                                        <select type="text" class="form-control form-select-sm-6" name="eye" required>
+                                            <option>/</option>
+                                            <option>X</option>
                                         </select>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -149,14 +149,14 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>20/40</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter Age in years" required>
+                                        <input class="form-control" name="visual" placeholder="Enter Age in years" required>
                                     </div>
                                 </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>> 20/40</label>
-                                        <input class="form-control" name="fullname" placeholder="Enter Age in years" required>
+                                        <input class="form-control" name="ageyears" placeholder="Enter Age in years" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
@@ -164,13 +164,16 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <label for="dob" class="control-label">PPV Immunization <small>(Date given)</small></label>
-                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                        <label for="immunization" class="control-label">PPV Immunization <small>(Date given)</small></label>
+                                        <input type="date" class="form-control" id="immunization" name="immunization" value="<?php echo isset($patient['immunization']) ? $patient['immunization'] : '' ?>" required>
                                     </div>
                                 </div>
 
                                 
                              
+                            </div>
+                             <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
                             </div>
                         </form>
                     </div>
@@ -178,9 +181,7 @@ $fetchRow = mysqli_fetch_assoc($rs);
             </div>
         </div>
 
-                            <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
-                            </div>
+                           
 
 
         </div>
