@@ -71,7 +71,6 @@ $fetchRow = mysqli_fetch_assoc($rs);
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $dor = $_POST['dor'];
     $dob = $_POST['dob'];
     $fsn = $_POST['fsn'];
     $child = $_POST['child'];
@@ -86,12 +85,23 @@ if (isset($_POST['submit'])) {
     $breastfeed = $_POST['breastfeed'];
     $bcg = $_POST['bcg'];
     $hepa = $_POST['hepa'];
+    $monthage =$_POST['monthage'];
+    $ltaken = $_POST['ltaken'];
+    $wtaken = $_POST['wtaken'];
+    $weightgiven = $_POST['weightgiven'];
+    $onemonth = $_POST['onemonth'];
+    $twomonth = $_POST['twomonth'];
+    $threemonth = $_POST['threemonth'];
+    $immunization = $_POST['immunization'];
+    $dose = $_POST['dose'];
+    $doi = $_POST['doi'];
+    $exbf = $_POST['exbf'];
     $remarks = $_POST['remarks'];
     $user_id = $_SESSION['userdata']['id'];
     $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$id', '$child', '$user_id')") or die('query failed');
 
-    $sql = "INSERT INTO immunization_child (id,dor,dob,fsn,child,sex,mother,address,cpab,age,blength,bweight,status,breastfeed,bcg,hepa,remarks)
-    VALUES ('$id','$dor','$dob','$fsn','$child','$sex','$mother','$address','$cpab','$age','$blength','$bweight','$status','$breastfeed','$bcg','$hepa','$remarks')";
+    $sql = "INSERT INTO immunization_child (id,dob,fsn,child,sex,mother,address,cpab,age,blength,bweight,status,breastfeed,bcg,hepa,monthage,ltaken,wtaken,weightgiven,onemonth,twomonth,threemonth,immunization,dose,doi,exbf,remarks)
+    VALUES ('$id','$dob','$fsn','$child','$sex','$mother','$address','$cpab','$age','$blength','$bweight','$status','$breastfeed','$bcg','$hepa','$monthage','$ltaken','$wtaken','$weightgiven','$onemonth','$twomonth','$threemonth','$immunization','$dose','$doi','$exbf','$remarks')";
     if (mysqli_query($conn, $sql)) {
 
         $message[] = ""; 
@@ -156,7 +166,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Family Serial Number</label>
-                                    <input class="form-control" name="fsn" placeholder="Enter Family Serial Number" required>
+                                    <input class="form-control" name="fsn" placeholder="Enter Family Serial Number">
                                 </div>
                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                             </div>
@@ -164,7 +174,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Name of Child</label>
-                                    <input class="form-control" name="child" placeholder="First Name, Middle Initial, Last Name" required>
+                                    <input class="form-control" name="child" placeholder="First Name, Middle Initial, Last Name">
                                 </div>
                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                             </div>
@@ -172,14 +182,14 @@ $lastRowId = intval($lastRow['id']) + 1;
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="dob" class="control-label">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob" name="dob" onchange="submitBday()" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
+                                    <input type="date" class="form-control" id="dob" name="dob" onchange="submitBday()" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>">
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="sex" class="control-label">Sex</label>
-                                    <select type="text" class="form-control form-select-sm-6" name="sex" required>
+                                    <select type="text" class="form-control form-select-sm-6" name="sex">
                                         <option class="placeholder" style="display: none" >Select Sex</option>
                                         <option <?php echo isset($patient['sex']) && $patient['sex'] == "Male" ? "selected" : "" ?>>Male</option>
                                         <option <?php echo isset($patient['sex']) && $patient['sex'] == "Female" ? "selected" : "" ?>>Female</option>
@@ -190,7 +200,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Complete Name of Mother</label>
-                                    <input class="form-control" name="mother" placeholder="Last Name, First Name, Middle Initial" required>
+                                    <input class="form-control" name="mother" placeholder="Last Name, First Name, Middle Initial">
                                 </div>
                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                             </div>
@@ -198,7 +208,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Complete Address</label>
-                                    <input class="form-control" name="address" placeholder="Enter Complete Address" required>
+                                    <input class="form-control" name="address" placeholder="Enter Complete Address">
                                 </div>
                             </div>
                         </div>
@@ -206,7 +216,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                             <!-- <div class="col-3">
                                 <div class="form-group">
                                     <label for="dob" class="control-label">Date of Registration</label>
-                                    <input type="date" class="form-control" id="dor" name="dor" value="<?php echo isset($patient['dor']) ? $patient['dor'] : '' ?>" required>
+                                    <input type="date" class="form-control" id="dor" name="dor" value="<?php echo isset($patient['dor']) ? $patient['dor'] : '' ?>">
                                 </div>
                             </div> -->
                         </div>
@@ -247,7 +257,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="age" class="control-label">Age</label>
-                                            <select id="selection" type="text" class="form-control form-select-sm-6" name="age" required>
+                                            <select id="selection" type="text" class="form-control form-select-sm-6" name="age">
                                                 <option class="placeholder" style="display: none"> Select Age</option>
                                                 <option value="Newborn"> Newborn (0-28 days old)</option>
                                                 <option value="1-3M"> 1-3 Months old</option>
@@ -262,7 +272,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Length at Birth <small>(cm)</small></label>
-                                                    <input type="number" class="form-control" name="blength" required>
+                                                    <input type="number" class="form-control" name="blength">
                                                 </div>
                                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                             </div>
@@ -270,14 +280,14 @@ $lastRowId = intval($lastRow['id']) + 1;
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Weight at Birth <small>(kg)</small></label>
-                                                    <input type="number" class="form-control" name="bweight" required>
+                                                    <input type="number" class="form-control" name="bweight">
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label for="status" class="control-label">Status <small>(Birth Weight)</small></label>
-                                                    <select type="text" class="form-control form-select-sm-6" name="status" required>
+                                                    <select type="text" class="form-control form-select-sm-6" name="status">
                                                         <option class="placeholder" style="display: none" >Select Status</option>
                                                         <option <?php echo isset($patient['status']) && $patient['status'] == "L - low < 2500gms" ? "selected" : "" ?>>L - low < 2500gms</option>
                                                         <option <?php echo isset($patient['status']) && $patient['status'] == "N - normal > 2500gms" ? "selected" : "" ?>>N - normal > 2500gms</option>
@@ -289,7 +299,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                             <div class="col-5">
                                                 <div class="form-group">
                                                     <label for="breastfeed" class="control-label">Initiated breast feeding immediately after birth lasting for 90 minutes </label>
-                                                    <input type="date" class="form-control" id="breastfeed" name="breastfeed" value="<?php echo isset($patient['breastfeed']) ? $patient['breastfeed'] : '' ?>" required>
+                                                    <input type="date" class="form-control" id="breastfeed" name="breastfeed" value="<?php echo isset($patient['breastfeed']) ? $patient['breastfeed'] : '' ?>">
                                                 </div>
                                             </div>
 
@@ -300,13 +310,13 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                     <div class="col-sm-6">
                                                         <div class="form-group">        
                                                             <label for="bcg" class="control-label">BCG</label>
-                                                            <input type="date" class="form-control" id="bcg" name="bcg" value="<?php echo isset($patient['bcg']) ? $patient['bcg'] : '' ?>" required>
+                                                            <input type="date" class="form-control" id="bcg" name="bcg" value="<?php echo isset($patient['bcg']) ? $patient['bcg'] : '' ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="hepa" class="control-label">Hepa B-BD</label>
-                                                            <input type="date" class="form-control" id="hepa" name="hepa" value="<?php echo isset($patient['hepa']) ? $patient['hepa'] : '' ?>" required>
+                                                            <input type="date" class="form-control" id="hepa" name="hepa" value="<?php echo isset($patient['hepa']) ? $patient['hepa'] : '' ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -323,7 +333,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">
                                                                     <label>Age <small>(in months)</small></label>
-                                                                    <input type="number" class="form-control" name="contactNo" >
+                                                                    <input type="number" class="form-control" name="monthage" >
                                                                 </div>
                                                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                                             </div>
@@ -331,7 +341,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">
                                                                     <label>Length <small>(cm)</small></label>
-                                                                    <input type="number" class="form-control" name="contactNo" >
+                                                                    <input type="number" class="form-control" name="blength" >
                                                                 </div>
                                                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                                             </div>
@@ -339,28 +349,28 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">        
                                                                     <label for="gender" class="control-label">Date Taken <small>(Length)</small></label>
-                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                    <input type="date" class="form-control" id="ltaken" name="ltaken" value="<?php echo isset($patient['ltaken']) ? $patient['ltaken'] : '' ?>" >
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">
                                                                     <label>Weight <small>(kg)</small></label>
-                                                                    <input type="number" class="form-control" name="contactNo" >
+                                                                    <input type="number" class="form-control" name="bweight" >
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">        
                                                                     <label for="gender" class="control-label">Date Taken <small>(Weight)</small></label>
-                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                    <input type="date" class="form-control" id="wtaken" name="wtaken" value="<?php echo isset($patient['wtaken']) ? $patient['wtaken'] : '' ?>" >
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">
                                                                     <label for="gender" class="control-label">Status </label>
-                                                                    <select type="text" class="form-control form-select-sm-6" name="gender" >
+                                                                    <select type="text" class="form-control form-select-sm-6" name="status" >
                                                                         <option class="placeholder" style="display: none" >Select Status</option>
                                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>S: Stunted</option>
                                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-MAM: Wasted MAM</option>
@@ -374,7 +384,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             <div class="col-sm-3">
                                                                 <div class="form-group">
                                                                     <label for="gender">Low birth weight given </label>
-                                                                    <select type="text" class="form-control form-select-sm-6" name="gender" >
+                                                                    <select type="text" class="form-control form-select-sm-6" name="weightgiven" >
                                                                         <option class="placeholder" style="display: none" >Select month/s</option>
                                                                         <option value="1month">1 month</option>
                                                                         <option value="2months">2 months</option>
@@ -388,7 +398,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label for="gender" class="control-label">Date</label>
-                                                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                        <input type="date" class="form-control" id="onemonth" name="onemonth" value="<?php echo isset($patient['onemonth']) ? $patient['onemonth'] : '' ?>" >
                                                                     </div>
                                                                 </div>
                                                             </span>
@@ -397,7 +407,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label for="gender" class="control-label">Date</label>
-                                                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                        <input type="date" class="form-control" id="twomonth" name="twomonth" value="<?php echo isset($patient['twomonth']) ? $patient['twomonth'] : '' ?>" >
                                                                     </div>
                                                                 </div>
                                                             </span>
@@ -406,7 +416,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label for="gender" class="control-label">Date</label>
-                                                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                        <input type="date" class="form-control" id="threemonth" name="threemonth" value="<?php echo isset($patient['threemonth']) ? $patient['threemonth'] : '' ?>" >
                                                                     </div>
                                                                 </div>
                                                             </span>
@@ -414,7 +424,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             <div class="col-sm-3">
                                                                 <div class="form-group">
                                                                     <label for="gender">Immunization </label>
-                                                                    <select type="text" class="form-control form-select-sm-6" name="gender" >
+                                                                    <select type="text" class="form-control form-select-sm-6" name="immunization" >
                                                                         <option class="placeholder" style="display: none" >Select Immunization</option>
                                                                         <option value="1month">DPT-HIB-HepB</option>
                                                                         <option value="2months">OPV</option>
@@ -427,7 +437,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             <div class="col-sm-3">
                                                                 <div class="form-group">
                                                                     <label for="gender">Dose </label>
-                                                                    <select type="text" class="form-control form-select-sm-6" name="gender" >
+                                                                    <select type="text" class="form-control form-select-sm-6" name="dose" >
                                                                         <option class="placeholder" style="display: none" >Select Dose</option>
                                                                         <option>1st Dose</option>
                                                                         <option>2nd Dose</option>
@@ -439,28 +449,28 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                             <div class="col-sm-3">
                                                                 <div class="form-group">
                                                                     <label for="gender" class="control-label">Date of Immunization</label>
-                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                    <input type="date" class="form-control" id="doi" name="doi" value="<?php echo isset($patient['doi']) ? $patient['doi'] : '' ?>" >
                                                                 </div>
                                                             </div> 
 
                                                             <div class="col-6">
                                                                 <div class="form-group">
                                                                     <label for="gender" class="control-label">Exclusive Breastfeeding</label>
-                                                                    <div class="selectBox" onclick="showCheckboxes()">
+                                                                 <!--    <div class="selectBox" onclick="showCheckboxes()">
                                                                         <select class="form-control form-select-sm-6">
                                                                             <option class="placeholder" style="display: none">Select an option</option>
                                                                         </select>
                                                                         <div class="overSelect"></div>
-                                                                    </div>
-                                                                    <div id="checkboxes">
+                                                                    </div> -->
+                                                                    <div id="checkbox">
                                                                         <label for="one">
-                                                                            <input type="checkbox" name="check" id="one" onclick="onlyOne(this)"/> 1 1/2 months</label>
+                                                                            <input type="checkbox" name="exbf" id="one" onclick="onlyOne(this)"/> 1 1/2 months</label>
                                                                             <label for="two">
-                                                                                <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> 2 1/2 months</label>
+                                                                                <input type="checkbox" name="exbf" id="two" onclick="onlyOne(this)"/> 2 1/2 months</label>
                                                                                 <label for="two">
-                                                                                    <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> 3 1/2 months</label>
+                                                                                    <input type="checkbox" name="exbf" id="two" onclick="onlyOne(this)"/> 3 1/2 months</label>
                                                                                     <label for="two">
-                                                                                        <input type="checkbox" name="check" id="two" onclick="onlyOne(this)"/> 4-5 months</label>
+                                                                                        <input type="checkbox" name="exbf" id="two" onclick="onlyOne(this)"/> 4-5 months</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>    
@@ -492,7 +502,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                             <div class="col-sm-4">
                                                                                 <div class="form-group">        
                                                                                     <label for="gender" class="control-label">Date Taken <small>(Length)</small></label>
-                                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                    <input type="date" class="form-control" id="ltaken" name="ltaken" value="<?php echo isset($patient['ltaken']) ? $patient['ltaken'] : '' ?>" >
                                                                                 </div>
                                                                             </div>
 
@@ -506,7 +516,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                             <div class="col-sm-4">
                                                                                 <div class="form-group">        
                                                                                     <label for="gender" class="control-label">Date Taken <small>(Weight)</small></label>
-                                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                    <input type="date" class="form-control" id="wtaken" name="wtaken" value="<?php echo isset($patient['wtaken']) ? $patient['wtaken'] : '' ?>" >
                                                                                 </div>
                                                                             </div>
 
@@ -537,7 +547,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                             <div class="col-sm-6">
                                                                                 <div class="form-group">        
                                                                                     <label for="gender" class="control-label">Date when the infant was assessed</label>
-                                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                    <input type="date" class="form-control" id="infant" name="infant" value="<?php echo isset($patient['infant']) ? $patient['infant'] : '' ?>" >
                                                                                 </div>
                                                                             </div>
 
@@ -568,7 +578,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                             <div class="col-sm-3">
                                                                                 <div class="form-group">        
                                                                                     <label for="gender" class="control-label">Vitamin A <small>(date given)</small></label>
-                                                                                    <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                    <input type="date" class="form-control" id="vitamin" name="vitamin" value="<?php echo isset($patient['vitamin']) ? $patient['vitamin'] : '' ?>" >
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-4">
@@ -627,7 +637,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                                 <div class="col-sm-4">
                                                                                     <div class="form-group">        
                                                                                         <label for="gender" class="control-label">Date Taken <small>(Length)</small></label>
-                                                                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                        <input type="date" class="form-control" id="ltaken" name="ltaken" value="<?php echo isset($patient['ltaken']) ? $patient['ltaken'] : '' ?>" >
                                                                                     </div>
                                                                                 </div>
 
@@ -641,7 +651,7 @@ $lastRowId = intval($lastRow['id']) + 1;
                                                                                 <div class="col-sm-4">
                                                                                     <div class="form-group">        
                                                                                         <label for="gender" class="control-label">Date Taken <small>(Weight)</small></label>
-                                                                                        <input type="date" class="form-control" id="dob" name="dob" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" >
+                                                                                        <input type="date" class="form-control" id="wtaken" name="wtaken" value="<?php echo isset($patient['wtaken']) ? $patient['wtaken'] : '' ?>" >
                                                                                     </div>
                                                                                 </div>
 

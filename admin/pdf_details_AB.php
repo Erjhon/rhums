@@ -226,8 +226,10 @@
 				<th class="row-r">Remarks</th>
 			</tr>
 <?php 
-$ret=mysqli_query($conn,"select * from animalbite a, animalbite_history ab where a.pid=ab.patientId");
+$ret=mysqli_query($conn,"select * from animalbite a join animalbite_history ab on a.pid = ab.patientId");
  ?>
+
+
    <?php  
     while ($row=mysqli_fetch_array($ret)) { 
       ?>
