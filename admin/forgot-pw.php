@@ -59,7 +59,7 @@
             <div class="card-body px-lg-5 py-lg-4">
               <div class="text-center text-dark mb-4">
                 <h1 class="text-dark">Recover Password</h1>
-                <p class="sub-text text-left mt-4">Enter your email address associated with your account.</p>
+                <p class="sub-text text-left mt-4">Enter your Mobile nuber associated with your account.</p>
 
               </div>
 
@@ -70,7 +70,7 @@
                       <span class="fas fa-envelope p-1"></span>
                     </div>
                   </div>
-                  <input type="text" class="form-control" autofocus name="username" placeholder="Enter Email" required>
+                  <input type="text" class="form-control" autofocus name="username" placeholder="Enter Mobile Number" required>
                 </div>
 
                 <div class="row">
