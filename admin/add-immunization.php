@@ -261,18 +261,11 @@ if(isset($message)){
                     <div class="col-6">
                         <div class="form-group">
                             <label for="cpab" class="control-label">Child Protected at Birth (CPAB)</label>
-                            <div class="selectBox" onclick="showCheckboxes()">
-                                <select class="form-control form-select-sm-6">
-                                    <option class="placeholder" style="display: none">Select an option</option>
-                                </select>
-                                <div class="overSelect"></div>
-                            </div>
-                            <div id="checkboxes">
-                                <label for="one">
-                                    <input type="checkbox" name="cpab" id="one" value="TT2/Td2" onclick="onlyOne(this)"/> TT2/Td2</label>
-                                    <label for="two">
-                                        <input type="checkbox" name="cpab" id="two" value="TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)" onclick="onlyOne(this)"/> TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)</label>
-                                    </div>
+                             <select type="text" class="form-control form-select-sm-6" name="cpab" required>
+              <option class="placeholder" style="display: none" >Select Option</option>
+              <option <?php echo isset($patient['cpab']) && $patient['cpab'] == "TT2/Td2" ? "selected" : "" ?>>TT2/Td2</option>
+              <option <?php echo isset($patient['cpab']) && $patient['cpab'] == "TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)" ? "selected" : "" ?>>TT3/Td3 to TT5/Td5 (or TT1/Td1 to TT5/Td5)</option>
+            </select>
                                 </div>
                             </div>
 
@@ -282,9 +275,9 @@ if(isset($message)){
                                     <select id="selection" type="text" class="form-control form-select-sm-6" name="age">
                                         <option class="placeholder" style="display: none"> Select Age</option>
                                         <option value="Newborn"> Newborn (0-28 days old)</option>
-                                        <option value="1-3M"> 1-3 Months old</option>
-                                        <option value="6-11M"> 6-11 Months old</option>
-                                        <option value="twelve"> 12 Months old</option>   
+                                        <option value="1-3Months"> 1-3 Months old</option>
+                                        <option value="6-11Months"> 6-11 Months old</option>
+                                        <option value="12Months"> 12 Months old</option>   
                                     </select>
                                 </div>
                             </div>
@@ -347,7 +340,7 @@ if(isset($message)){
                             </span>
 
 
-                            <span class="Data" id="show1-3M">
+                            <span class="Data" id="show1-3Months">
                                 <div class="col-sm-12">
                                     <label for="gender"><b>Nutritional Status Assessment</b></label>
 
@@ -420,7 +413,7 @@ if(isset($message)){
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for1month" name="for1month" value="<?php echo isset($patient['for1month']) ? $patient['for1month'] : '' ?>" >
+                                                    <input type="date" class="form-control" id="for1month" name="date" value="<?php echo isset($patient['for1month']) ? $patient['for1month'] : '' ?>" >
                                                 </div>
                                             </div>
                                         </div>
@@ -429,7 +422,7 @@ if(isset($message)){
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for2month" name="for2month" value="<?php echo isset($patient['for2month']) ? $patient['for2month'] : '' ?>" >
+                                                    <input type="date" class="form-control" id="for2month" name="date" value="<?php echo isset($patient['for2month']) ? $patient['for2month'] : '' ?>" >
                                                 </div>
                                             </div>
                                         </div>
@@ -438,7 +431,7 @@ if(isset($message)){
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for3month" name="for3month" value="<?php echo isset($patient['for3month']) ? $patient['for3month'] : '' ?>" >
+                                                    <input type="date" class="form-control" id="for3month" name="date" value="<?php echo isset($patient['for3month']) ? $patient['for3month'] : '' ?>" >
                                                 </div>
                                             </div>
                                         </div>
@@ -500,7 +493,7 @@ if(isset($message)){
 </div>
 </span>
 
-<span class="Data" id="show6-11M">
+<span class="Data" id="show6-11Months">
     <div class="col-sm-12">
         <label for="gender"><b>Nutritional Status Assessment</b></label>
 
@@ -635,7 +628,7 @@ if(isset($message)){
                 </div>
             </span>
 
-            <span class="Data" id="showtwelve">
+            <span class="Data" id="show12Months">
                 <div class="col-sm-12">
                     <label for="Nutritional"><b>Nutritional Status Assessment</b></label>
 

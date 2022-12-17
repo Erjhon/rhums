@@ -91,16 +91,15 @@
 
         <?php  
 
-        $ret=mysqli_query($conn,"select * from immunization_new where patienId='$vid'");
-
-
-        ?>
-        <?php  
-        while ($row=mysqli_fetch_array($ret)) { 
-          ?>
-         <tr>
-             <td><?php echo $cnt;?>.</td>
-            <td><?php  echo $row['cpab'];?></td>
+    
+$ret=mysqli_query($conn,"select * from immunization_new where patientId='$vid'");
+ ?>
+ <tr>
+   <?php  
+    while ($row=mysqli_fetch_array($ret)) { 
+      ?>
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['cpab'];?></td>
             <td><?php  echo $row['age'];?></td>
             <td><?php  echo $row['blength'];?></td> 
             <td><?php  echo $row['bweight'];?></td>
@@ -110,9 +109,10 @@
             <td><?php  echo $row['hepa'];?></td>
             <td><?php  echo $row['remarks'];?></td>
             <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
-            <td><?php  echo $row['assigned'];?></td> 
-          </tr>
-          <?php $cnt=$cnt+1;} ?>
+            <td><?php  echo $row['assigned'];?></td>  
+      </tr>
+
+<?php $cnt=$cnt+1;} ?>
         </table>
       </form>
     </div>

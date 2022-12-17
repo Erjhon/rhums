@@ -6,19 +6,20 @@
 if(isset($_POST['submit']))
   {
     $vid=$_GET['viewid'];
-    $cpab=$_POST['cpab'];
-    $age=$_POST['age'];
-    $blength=$_POST['blength'];
-    $bweight=$_POST['bweight'];
-    $stat=$_POST['stat'];
-    $breastfeed=$_POST['breastfeed'];
-    $bcg=$_POST['bcg'];
-    $hepa=$_POST['hepa'];
-    $remarks=$_POST['remarks'];
+    $incident=$_POST['incident'];
+    $source=$_POST['source'];
+    $part=$_POST['part'];
+    $category=$_POST['category'];
+    $type=$_POST['type'];
+    $owner=$_POST['owner'];
+    $ownercon=$_POST['ownercon'];
+    $location=$_POST['location'];
+    $remark=$_POST['remark'];
+    // $visit=$_POST['visit'];
     $assigned=$_POST['assigned'];
 
 
-      $query=mysqli_query($conn, "insert immunization_new(patientId,cpab,age,blength,bweight,stat,breastfeed,bcg,hepa,remarks,assigned)value('$vid','$cpab','$age','$blength','$bweight','$stat','$breastfeed','$bcg','$hepa','$remarks','$assigned')");
+      $query=mysqli_query($conn, "insert immunization1-3(patientId,incident,source,part,category,type,owner,ownercon,location,remark,assigned)value('$vid','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')");
       if ($query) {
 
      $message[] = "";
@@ -135,58 +136,69 @@ $ret=mysqli_query($conn,"select * from immunization_child
       <tr align="center">
       </tr>
       <tr>
-          <th>#</th>
-            <th>Child Protected at Birth (CPAB)</th>
-            <th>Age</th>
-            <th>Length at Birth</th>
-            <th>Weight at Birth</th>
-            <th>Status (Birth Weight)</th>
-            <th>Initiated breast feeding immediately after birth lasting for 90 minutes</th>
-            <th>Immunization BCG</th>
-            <th>Hepa B-BD</th>
-            <th>Remarks</th>
-            <th>Visit Date</th>
-            <th>Assigned Staff</th>
+        <th>#</th>
+        <th>Child Protected at Birth (CPAB)</th>
+        <th>Age</th>
+        <th>Age (in months)</th>
+        <th>Length</th>
+        <th>Date Taken</th>
+        <th>Weight</th>
+        <th>Date Taken</th>
+        <th>Status</th>
+        <th>Low birth weight given</th>
+        <th>Date</th>
+        <th>Immunization</th>
+        <th>Exclusive Breastfeeding</th>
+        <th>Remarks</th>
+        <th>Assigned Staff</th>
       </tr>
     <?php  
     while ($row=mysqli_fetch_array($ret)) { 
       ?>
       <tr>
-       <td><?php echo $cnt;?>.</td>
-            <td><?php  echo $row['cpab'];?></td>
-            <td><?php  echo $row['age'];?></td>
-            <td><?php  echo $row['blength'];?></td> 
-            <td><?php  echo $row['bweight'];?></td>
-            <td><?php  echo $row['stat'];?></td>
-            <td><?php  echo $row['breastfeed'];?></td>
-            <td><?php  echo $row['bcg'];?></td>
-            <td><?php  echo $row['hepa'];?></td>
-            <td><?php  echo $row['remarks'];?></td>
-            <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
-            <td><?php  echo $row['assigned'];?></td> 
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['cpab'];?></td>
+        <td><?php  echo $row['age'];?></td>
+        <td><?php  echo $row['monthage'];?></td> 
+        <td><?php  echo $row['length'];?></td>
+        <td><?php  echo $row['ltaken'];?></td>
+        <td><?php  echo $row['weight'];?></td>
+        <td><?php  echo $row['wtaken'];?></td>
+        <td><?php  echo $row['status'];?></td>
+        <td><?php  echo $row['weightgiven'];?></td>
+        <td><?php  echo $row['date'];?></td> 
+        <td><?php  echo $row['immunization'];?></td> 
+        <td><?php  echo $row['exbf'];?></td> 
+        <td><?php  echo $row['remarks'];?></td> 
+        <!-- <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td>  -->
+        <td><?php  echo $row['assigned'];?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
 
 <?php  
 
-$ret=mysqli_query($conn,"select * from immunization_new where patientId='$vid'");
+$ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'");
  ?>
  <tr>
    <?php  
     while ($row=mysqli_fetch_array($ret)) { 
       ?>
-        <td><?php echo $cnt;?>.</td>
+       <td><?php echo $cnt;?>.</td>
         <td><?php  echo $row['cpab'];?></td>
-            <td><?php  echo $row['age'];?></td>
-            <td><?php  echo $row['blength'];?></td> 
-            <td><?php  echo $row['bweight'];?></td>
-            <td><?php  echo $row['stat'];?></td>
-            <td><?php  echo $row['breastfeed'];?></td>
-            <td><?php  echo $row['bcg'];?></td>
-            <td><?php  echo $row['hepa'];?></td>
-            <td><?php  echo $row['remarks'];?></td>
-            <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
-            <td><?php  echo $row['assigned'];?></td>  
+        <td><?php  echo $row['age'];?></td>
+        <td><?php  echo $row['monthage'];?></td> 
+        <td><?php  echo $row['length'];?></td>
+        <td><?php  echo $row['ltaken'];?></td>
+        <td><?php  echo $row['weight'];?></td>
+        <td><?php  echo $row['wtaken'];?></td>
+        <td><?php  echo $row['status'];?></td>
+        <td><?php  echo $row['weightgiven'];?></td>
+        <td><?php  echo $row['date'];?></td> 
+        <td><?php  echo $row['immunization'];?></td> 
+        <td><?php  echo $row['exbf'];?></td> 
+        <td><?php  echo $row['remarks'];?></td> 
+        <!-- <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td>  -->
+        <td><?php  echo $row['assigned'];?></td> 
       </tr>
 
 <?php $cnt=$cnt+1;} ?>
@@ -212,7 +224,6 @@ $ret=mysqli_query($conn,"select * from immunization_new where patientId='$vid'")
 
         <form method="post" name="submit">
 
-        
 
 <div class="card-header mt--4">
     <h2 class="card-title">Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>

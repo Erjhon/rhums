@@ -70,14 +70,14 @@ $result = mysqli_query($conn,"SELECT * FROM immunization_child");
 												case ($row['age'] == 'Newborn'):
 												echo base_url ?>admin/?page=view-immunization&viewid=<?php echo $row['id'];
 												break;
-												case ($row['age'] == '1-3M'):
+												case ($row['age'] == '1-3Months'):
 												echo base_url ?>admin/?page=view-immunization1-3&viewid=<?php echo $row['id'];
 												break;
-												case ($row['age'] == '6-11M'):
-												echo base_url ?>admin/?page=add-immunization6-11&id=<?php echo $row['id'];
+												case ($row['age'] == '6-11Months'):
+												echo base_url ?>admin/?page=view-immunization6-11&viewid=<?php echo $row['id'];
 												break;
-												case ($row['age'] == 'twelve'):
-												echo base_url ?>admin/?page=add-immunization12&id=<?php echo $row['id'];
+												case ($row['age'] == '12Months'):
+												echo base_url ?>admin/?page=view-immunization12&viewid=<?php echo $row['id'];
 												break;
 											} ?>"> 
 											<span class="fa fa-file text-primary"></span>View</a>
@@ -90,13 +90,13 @@ $result = mysqli_query($conn,"SELECT * FROM immunization_child");
 												case ($row['age'] == 'Newborn'):
 												echo base_url ?>admin/?page=edit-immunization&viewid=<?php echo $row['id'];
 												break;
-												case ($row['age'] == '1-3M'):
+												case ($row['age'] == '1-3Months'):
 												echo base_url ?>admin/?page=edit-immunization1-3&viewid=<?php echo $row['id'];
 												break;
-												case ($row['age'] == '6-11M'):
+												case ($row['age'] == '6-11Months'):
 												echo base_url ?>admin/?page=edit-immunization6-11&viewid=<?php echo $row['id'];
 												break;
-												case ($row['age'] == 'twelve'):
+												case ($row['age'] == '12Months'):
 												echo base_url ?>admin/?page=edit-immunization12&viewid=<?php echo $row['id'];
 												break;
 											} ?>"> 
