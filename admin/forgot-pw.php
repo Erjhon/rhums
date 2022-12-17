@@ -17,6 +17,7 @@
   <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.js" integrity="sha512-NMtENEqUQ8zHZWjwLg6/1FmcTWwRS2T5f487CCbQB3pQwouZfbrQfylryimT3XvQnpE7ctEKoZgQOAkWkCW/vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 
@@ -63,21 +64,37 @@
 
               </div>
 
-              <form id="login-frm" action="" method="post">
+              <form id="login-frm" method="post">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
                       <span class="fas fa-envelope p-1"></span>
                     </div>
                   </div>
-                  <input type="text" class="form-control" autofocus name="username" placeholder="Enter Mobile Number" required>
+                  <input type="text" class="form-control" autofocus name="username" id="number" placeholder="Enter Mobile Number" required>
                 </div>
-
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope p-1"></span>
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" autofocus name="username" id="password" placeholder="Enter New Password" required disabled>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope p-1"></span>
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" autofocus name="username" id="OTP" placeholder="Enter OTP" required disabled>
+                </div>
                 <div class="row">
                   <div class="col-6">
                   </div>
                   <div class="mt-4 mb-3 text-end">
-                    <input type="submit" name="send-link" class="btn btn-primary">
+                    <input type="submit" name="verify" class="btn btn-primary verify" value="Verify number">
+                    <input type="button" name="update" class="btn btn-primary d-none" id="update" value="Update"> 
                     <a href="../admin/login.php" class="btn btn-danger">Back</a>
                   </div>
                   <br>
@@ -91,11 +108,85 @@
     </div>
 
 
-   <!--  <script>
+    <script>
       $(document).ready(function() {
-        end_loader();
+        $('.verify').click(function (e) { 
+          e.preventDefault();
+
+          const base_url = "<?= base_url?>" //base url?
+
+          let number = $('#number').val()
+          const verify = 'verify'
+          
+          $.ajax({
+            type: "POST",
+            url: 'ForgotPassModel.php', //should send data here
+            data: {verify, number},
+            dataType: "json",
+            success: (response) => {
+              console.log(response);
+
+              if(response.code == 200) {
+                //disabled number input field
+                $('#number').attr('readonly', true)
+
+                //then enable the password and otp field
+                $('#password').removeAttr('disabled')
+                $('#OTP').removeAttr('disabled')
+
+                //hide the verify button
+                $(this).addClass('d-none')
+
+                //show update button
+                $('#update').removeClass('d-none')
+                
+                alert('OTP send to your number')
+
+                return
+              }
+
+              console.log(response.code)
+              //else no data found
+              alert('no data found')
+            }
+          });
+        });
+
+        $('#update').click(function (e) { 
+          e.preventDefault();
+          let number = $('#number').val()
+          let password = $('#password').val()
+          let otp = $('#OTP').val()
+          const verify = 'update'
+
+          $.ajax({
+            type: "POST",
+            url: "ForgotPassModel.php",
+            data: {
+              number: number,
+              password: password,
+              otp: otp,
+              action: verify
+            },
+            dataType: "dataType",
+            success: function (response) {
+              if (response.code == 500){
+                alert('Number is null')
+              }
+              else if(response.code == 300){
+                alert(response.message)
+              }
+              else if (response.code == 200){
+                window.location.href = 'http://localhost/rhums/admin/login.php'
+              }
+              else{
+                alert('something is wrong')
+              }
+            }
+          });
+        });
       })
-    </script> -->
+    </script>
 
 
 
