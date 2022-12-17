@@ -84,6 +84,7 @@ if (isset($_POST['submit'])) {
     $blength = $_POST['blength'];
     $bweight = $_POST['bweight'];
     $status = $_POST['status'];
+    $stat = $_POST['stat'];
     $breastfeed = $_POST['breastfeed'];
     $bcg = $_POST['bcg'];
     $hepa = $_POST['hepa'];
@@ -116,12 +117,13 @@ if (isset($_POST['submit'])) {
     $mvc2 = $_POST['mvc2'];
     $fic = $_POST['fic'];
     $cic = $_POST['cic'];
+    $assigned = $_POST['assigned'];
     $remarks = $_POST['remarks'];
     $user_id = $_SESSION['userdata']['id'];
     $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$id', '$child', '$user_id')") or die('query failed');
 
-    $sql = "INSERT INTO immunization_child (id,dob,fsn,child,sex,mother,address,cpab,age,blength,bweight,status,breastfeed,bcg,hepa,monthage,length,weight,ltaken,wtaken,weightgiven,for1month,for2month,for3month,immunization,dose,doi,exbf,age11m,length11m,weight11m,wtaken11m,ltaken11m,status11m,exbf11m,infant,feeding,breastfed,vitamin,mnp,mvc1,mvc2,fic,cic,remarks)
-    VALUES ('$id','$dob','$fsn','$child','$sex','$mother','$address','$cpab','$age','$blength','$bweight','$status','$breastfeed','$bcg','$hepa','$monthage','$length','$weight','$ltaken','$wtaken','$weightgiven','$for1month','$for2month','$for3month','$immunization','$dose','$doi','$exbf','$age11m','$length11m','$weight11m','$wtaken11m','$ltaken11m','$status11m','$exbf11m','$infant','$feeding','$breastfed','$vitamin','$mnp','$mvc1','$mvc2','$fic','$cic','$remarks')";
+    $sql = "INSERT INTO immunization_child (id,dob,fsn,child,sex,mother,address,cpab,age,blength,bweight,status,stat,breastfeed,bcg,hepa,monthage,length,weight,ltaken,wtaken,weightgiven,for1month,for2month,for3month,immunization,dose,doi,exbf,age11m,length11m,weight11m,wtaken11m,ltaken11m,status11m,exbf11m,infant,feeding,breastfed,vitamin,mnp,mvc1,mvc2,fic,cic,assigned,remarks)
+    VALUES ('$id','$dob','$fsn','$child','$sex','$mother','$address','$cpab','$age','$blength','$bweight','$status','$stat','$breastfeed','$bcg','$hepa','$monthage','$length','$weight','$ltaken','$wtaken','$weightgiven','$for1month','$for2month','$for3month','$immunization','$dose','$doi','$exbf','$age11m','$length11m','$weight11m','$wtaken11m','$ltaken11m','$status11m','$exbf11m','$infant','$feeding','$breastfed','$vitamin','$mnp','$mvc1','$mvc2','$fic','$cic','$assigned','$remarks')";
     if (mysqli_query($conn, $sql)) {
 
         $message[] = ""; 
@@ -307,11 +309,11 @@ if(isset($message)){
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label for="status" class="control-label">Status <small>(Birth Weight)</small></label>
-                                            <select type="text" class="form-control form-select-sm-6" name="status">
-                                                <option class="placeholder" style="display: none" >Select Status</option>
-                                                <option <?php echo isset($patient['status']) && $patient['status'] == "L - low < 2500gms" ? "selected" : "" ?>>L - low < 2500gms</option>
-                                                <option <?php echo isset($patient['status']) && $patient['status'] == "N - normal > 2500gms" ? "selected" : "" ?>>N - normal > 2500gms</option>
-                                                <option <?php echo isset($patient['status']) && $patient['status'] == "U - unknown" ? "selected" : "" ?>>U - unknown</option>
+                                            <select type="text" class="form-control form-select-sm-6" name="stat">
+                                                <option class="placeholder" style="display: none" >Select stat</option>
+                                                <option <?php echo isset($patient['stat']) && $patient['stat'] == "L - low < 2500gms" ? "selected" : "" ?>>L - low < 2500gms</option>
+                                                <option <?php echo isset($patient['stat']) && $patient['stat'] == "N - normal > 2500gms" ? "selected" : "" ?>>N - normal > 2500gms</option>
+                                                <option <?php echo isset($patient['stat']) && $patient['stat'] == "U - unknown" ? "selected" : "" ?>>U - unknown</option>
                                             </select>
                                         </div>
                                     </div>
@@ -484,13 +486,13 @@ if(isset($message)){
 </div> -->
 <div class="form-group">
     <label for="1 1/2 months">
-        <input type="checkbox" name="exbf"> 1 1/2 months</label>
+        <input type="checkbox" name="exbf" value="1 1/2 months"> 1 1/2 months</label>
         <label for="2 1/2 months" >
-            <input type="checkbox" name="exbf"> 2 1/2 months</label>
+            <input type="checkbox" name="exbf" value=" 2 1/2 months"> 2 1/2 months</label>
             <label for="3 1/2 months">
-                <input type="checkbox" name="exbf"> 3 1/2 months</label>
+                <input type="checkbox" name="exbf" value=" 3 1/2 months"> 3 1/2 months</label>
                 <label for="4-5 months">
-                    <input type="checkbox" name="exbf"> 4-5 months</label>
+                    <input type="checkbox" name="exbf" value=" 4-5 months"> 4-5 months</label>
                 </div>
             </div>
         </div>    

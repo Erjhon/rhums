@@ -64,9 +64,45 @@ $result = mysqli_query($conn,"SELECT * FROM immunization_child");
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=view-immunization&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> View</a>
+				                  		<a class="dropdown-item edit_data" href="
+											<?php switch(true)
+											{
+												case ($row['age'] == 'Newborn'):
+												echo base_url ?>admin/?page=view-immunization&viewid=<?php echo $row['id'];
+												break;
+												case ($row['age'] == '1-3M'):
+												echo base_url ?>admin/?page=view-immunization1-3&viewid=<?php echo $row['id'];
+												break;
+												case ($row['age'] == '6-11M'):
+												echo base_url ?>admin/?page=add-immunization6-11&id=<?php echo $row['id'];
+												break;
+												case ($row['age'] == 'twelve'):
+												echo base_url ?>admin/?page=add-immunization12&id=<?php echo $row['id'];
+												break;
+											} ?>"> 
+											<span class="fa fa-file text-primary"></span>View</a>
+
+				                    <!-- <a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=view-immunization&viewid=<?php echo $row['id'] ?>><span class="fa fa-search text-success"></span> View</a> -->
 				                
-									<a class="dropdown-item view_data" href=<?php echo base_url ?>admin/?page=edit-immunization&viewid=<?php echo $row['id'] ?>><span class="fa fa-edit text-danger"></span> Update</a>
+									<a class="dropdown-item view_data" href="
+										<?php switch(true)
+											{
+												case ($row['age'] == 'Newborn'):
+												echo base_url ?>admin/?page=edit-immunization&viewid=<?php echo $row['id'];
+												break;
+												case ($row['age'] == '1-3M'):
+												echo base_url ?>admin/?page=edit-immunization1-3&viewid=<?php echo $row['id'];
+												break;
+												case ($row['age'] == '6-11M'):
+												echo base_url ?>admin/?page=edit-immunization6-11&viewid=<?php echo $row['id'];
+												break;
+												case ($row['age'] == 'twelve'):
+												echo base_url ?>admin/?page=edit-immunization12&viewid=<?php echo $row['id'];
+												break;
+											} ?>"> 
+
+
+										<span class="fa fa-edit text-danger"></span> Update</a>
 				                  </div>
 							</td>
 

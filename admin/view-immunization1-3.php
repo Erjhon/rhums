@@ -58,14 +58,19 @@
           </tr>
           <tr>
             <th>#</th>
-              <th>Child Protected at Birth (CPAB)</th>
-            <th>Age</th>
-            <th>Length at Birth</th>
-            <th>Weight at Birth</th>
-            <th>Status (Birth Weight)</th>
-            <th>Initiated breast feeding immediately after birth lasting for 90 minutes</th>
-            <th>Immunization BCG</th>
-            <th>Hepa B-BD</th>
+           <th>Child Protected at Birth (CPAB)</th>
+           <th>Age</th>
+           <th>Age (in months)</th>
+           <th>Length (cm)</th>
+           <th>Date Taken (Length)</th>
+           <th>Weight (kg)</th>
+           <th>Date Taken (Weight)</th>
+           <th>Status</th>
+           <th>Low birth weight given</th>
+           <th>Immunization</th>
+           <th>Dose</th>
+           <th>Date of Immunization</th>
+           <th>Exclusive Breastfeeding</th>
             <th>Remarks</th>
             <th>Visit Date</th>
             <th>Assigned Staff</th>
@@ -77,12 +82,17 @@
              <td><?php echo $cnt;?>.</td>
             <td><?php  echo $row['cpab'];?></td>
             <td><?php  echo $row['age'];?></td>
-            <td><?php  echo $row['blength'];?></td> 
-            <td><?php  echo $row['bweight'];?></td>
-            <td><?php  echo $row['stat'];?></td>
-            <td><?php  echo $row['breastfeed'];?></td>
-            <td><?php  echo $row['bcg'];?></td>
-            <td><?php  echo $row['hepa'];?></td>
+            <td><?php  echo $row['monthage'];?></td>
+            <td><?php  echo $row['length'];?></td> 
+            <td><?php  echo $row['ltaken'];?></td> 
+            <td><?php  echo $row['weight'];?></td>
+            <td><?php  echo $row['wtaken'];?></td>
+            <td><?php  echo $row['status'];?></td>
+            <td><?php  echo $row['weightgiven'];?></td>
+            <td><?php  echo $row['immunization'];?></td>
+            <td><?php  echo $row['dose'];?></td>
+            <td><?php  echo $row['doi'];?></td>
+            <td><?php  echo $row['exbf'];?></td>
             <td><?php  echo $row['remarks'];?></td>
             <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
             <td><?php  echo $row['assigned'];?></td> 
@@ -91,23 +101,29 @@
 
         <?php  
 
-        $ret=mysqli_query($conn,"select * from immunization_new where patienId='$vid'");
+        $ret=mysqli_query($conn,"select * from immunization1-3 where patienId='$vid'");
 
 
         ?>
         <?php  
         while ($row=mysqli_fetch_array($ret)) { 
           ?>
-         <tr>
-             <td><?php echo $cnt;?>.</td>
+          <tr>
+            <td><?php echo $cnt;?>.</td>
             <td><?php  echo $row['cpab'];?></td>
             <td><?php  echo $row['age'];?></td>
-            <td><?php  echo $row['blength'];?></td> 
-            <td><?php  echo $row['bweight'];?></td>
-            <td><?php  echo $row['stat'];?></td>
-            <td><?php  echo $row['breastfeed'];?></td>
-            <td><?php  echo $row['bcg'];?></td>
-            <td><?php  echo $row['hepa'];?></td>
+            <td><?php  echo $row['monthage'];?></td>
+            <td><?php  echo $row['length'];?></td> 
+            <td><?php  echo $row['ltaken'];?></td> 
+            <td><?php  echo $row['weight'];?></td>
+            <td><?php  echo $row['wtaken'];?></td>
+            <td><?php  echo $row['status'];?></td>
+            <td><?php  echo $row['weightgiven'];?></td>
+            <td><?php  echo $row['immunization'];?></td>
+            <td><?php  echo $row['dose'];?></td>
+            <td><?php  echo $row['doi'];?></td>
+            <td><?php  echo $row['exbf'];?></td>
+            <td><?php  echo $row['remarks'];?></td>
             <td><?php  echo $row['remarks'];?></td>
             <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
             <td><?php  echo $row['assigned'];?></td> 

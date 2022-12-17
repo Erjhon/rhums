@@ -136,35 +136,35 @@ $ret=mysqli_query($conn,"select * from immunization_child
       <tr align="center">
       </tr>
       <tr>
-          <th>#</th>
-            <th>Child Protected at Birth (CPAB)</th>
-            <th>Age</th>
-            <th>Length at Birth</th>
-            <th>Weight at Birth</th>
-            <th>Status (Birth Weight)</th>
-            <th>Initiated breast feeding immediately after birth lasting for 90 minutes</th>
-            <th>Immunization BCG</th>
-            <th>Hepa B-BD</th>
-            <th>Remarks</th>
-            <th>Visit Date</th>
-            <th>Assigned Staff</th>
+        <th>#</th>
+        <th>Date of Incident</th>
+        <th>Source</th>
+        <th>Part of Body Bitten</th>
+        <th>Category</th>
+        <th>Type</th>
+        <th>Name <small>(Pet Owner)</small></th>
+        <th>Contact Number <small>(Pet Owner)</small></th>
+        <th>Location of biting Incident</th>
+        <th>Remarks</th>
+        <th>Visit Date</th>
+        <th>Assigned Staff</th>
       </tr>
     <?php  
     while ($row=mysqli_fetch_array($ret)) { 
       ?>
       <tr>
-       <td><?php echo $cnt;?>.</td>
-            <td><?php  echo $row['cpab'];?></td>
-            <td><?php  echo $row['age'];?></td>
-            <td><?php  echo $row['blength'];?></td> 
-            <td><?php  echo $row['bweight'];?></td>
-            <td><?php  echo $row['stat'];?></td>
-            <td><?php  echo $row['breastfeed'];?></td>
-            <td><?php  echo $row['bcg'];?></td>
-            <td><?php  echo $row['hepa'];?></td>
-            <td><?php  echo $row['remarks'];?></td>
-            <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
-            <td><?php  echo $row['assigned'];?></td> 
+        <td><?php echo $cnt;?>.</td>
+        <td><?php  echo $row['incident'];?></td>
+        <td><?php  echo $row['source'];?></td> 
+        <td><?php  echo $row['part'];?></td>
+        <td><?php  echo $row['category'];?></td>
+        <td><?php  echo $row['type'];?></td>
+        <td><?php  echo $row['owner'];?></td>
+        <td><?php  echo $row['ownercon'];?></td>
+        <td><?php  echo $row['location'];?></td>
+        <td><?php  echo $row['remark'];?></td> 
+        <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td> 
+        <td><?php  echo $row['assigned'];?></td> 
       </tr>
 <?php $cnt=$cnt+1;} ?>
 

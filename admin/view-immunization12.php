@@ -58,14 +58,14 @@
           </tr>
           <tr>
             <th>#</th>
-              <th>Child Protected at Birth (CPAB)</th>
-            <th>Age</th>
-            <th>Length at Birth</th>
-            <th>Weight at Birth</th>
-            <th>Status (Birth Weight)</th>
-            <th>Initiated breast feeding immediately after birth lasting for 90 minutes</th>
-            <th>Immunization BCG</th>
-            <th>Hepa B-BD</th>
+            <th>Date of Incident</th>
+            <th>Source</th>
+            <th>Part of Body Bitten</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Name <small>(Pet Owner)</small></th>
+            <th>Contact Number <small>(Pet Owner)</small></th>
+            <th>Location of biting Incident</th>
             <th>Remarks</th>
             <th>Visit Date</th>
             <th>Assigned Staff</th>
@@ -75,14 +75,14 @@
           ?>
           <tr>
              <td><?php echo $cnt;?>.</td>
-            <td><?php  echo $row['cpab'];?></td>
             <td><?php  echo $row['age'];?></td>
             <td><?php  echo $row['blength'];?></td> 
             <td><?php  echo $row['bweight'];?></td>
-            <td><?php  echo $row['stat'];?></td>
-            <td><?php  echo $row['breastfeed'];?></td>
-            <td><?php  echo $row['bcg'];?></td>
-            <td><?php  echo $row['hepa'];?></td>
+            <td><?php  echo $row['status'];?></td>
+            <td><?php  echo $row['weightgiven'];?></td>
+            <td><?php  echo $row['immunization'];?></td>
+            <td><?php  echo $row['dose'];?></td>
+            <td><?php  echo $row['exbf'];?></td>
             <td><?php  echo $row['remarks'];?></td>
             <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
             <td><?php  echo $row['assigned'];?></td> 
@@ -91,23 +91,23 @@
 
         <?php  
 
-        $ret=mysqli_query($conn,"select * from immunization_new where patienId='$vid'");
+        $ret=mysqli_query($conn,"select * from immunization_child where patienId='$vid'");
 
 
         ?>
         <?php  
         while ($row=mysqli_fetch_array($ret)) { 
           ?>
-         <tr>
-             <td><?php echo $cnt;?>.</td>
-            <td><?php  echo $row['cpab'];?></td>
+          <tr>
+            <td><?php echo $cnt;?>.</td>
             <td><?php  echo $row['age'];?></td>
             <td><?php  echo $row['blength'];?></td> 
             <td><?php  echo $row['bweight'];?></td>
-            <td><?php  echo $row['stat'];?></td>
-            <td><?php  echo $row['breastfeed'];?></td>
-            <td><?php  echo $row['bcg'];?></td>
-            <td><?php  echo $row['hepa'];?></td>
+            <td><?php  echo $row['status'];?></td>
+            <td><?php  echo $row['weightgiven'];?></td>
+            <td><?php  echo $row['immunization'];?></td>
+            <td><?php  echo $row['dose'];?></td>
+            <td><?php  echo $row['exbf'];?></td>
             <td><?php  echo $row['remarks'];?></td>
             <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
             <td><?php  echo $row['assigned'];?></td> 
