@@ -2,24 +2,38 @@
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
 
+
+
 <?php
+  error_reporting(0);
+ini_set('display_errors', 0);
+
 if(isset($_POST['submit']))
   {
     $vid=$_GET['viewid'];
-    $incident=$_POST['incident'];
-    $source=$_POST['source'];
-    $part=$_POST['part'];
-    $category=$_POST['category'];
-    $type=$_POST['type'];
-    $owner=$_POST['owner'];
-    $ownercon=$_POST['ownercon'];
-    $location=$_POST['location'];
-    $remark=$_POST['remark'];
-    // $visit=$_POST['visit'];
+    $cpab=$_POST['cpab'];
+    $age=$_POST['age'];
+    $monthage=$_POST['monthage'];
+    $blength=$_POST['length'];
+    $ltaken=$_POST['ltaken'];
+    $bweight=$_POST['weight'];
+    $wtaken=$_POST['wtaken'];
+    // $stat=$_POST['stat'];
+    $status=$_POST['status'];
+    $weightgiven=$_POST['weightgiven'];
+    $birthdate=$_POST['birthdate'];
+    $immunization=$_POST['immunization'];
+    $dose=$_POST['dose'];
+    $doi=$_POST['doi'];
+    $exbf=$_POST['exbf'];
+    $breastfeed=$_POST['breastfeed'];
+    $bcg=$_POST['bcg'];
+    $hepa=$_POST['hepa'];
+    $remarks=$_POST['remarks'];
     $assigned=$_POST['assigned'];
 
 
-      $query=mysqli_query($conn, "insert immunization1-3(patientId,incident,source,part,category,type,owner,ownercon,location,remark,assigned)value('$vid','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')");
+      $query=mysqli_query($conn, "insert immunization_1to3(patientId,cpab,age,monthage,length,ltaken,weight,wtaken,status,weightgiven,birthdate,immunization,dose,doi,exbf,breastfeed,bcg,hepa,remarks,assigned)value('$vid','$cpab','$monthage','$age','$blength','$ltaken','$bweight','$wtaken','$status','$weightgiven','$birthdate','$immunization','$dose','$doi','$exbf','$breastfeed','$bcg','$hepa','$remarks','$assigned')");
       if ($query) {
 
      $message[] = "";
@@ -32,6 +46,7 @@ if(isset($_POST['submit']))
 }
 
 ?>
+
 
 
 <!-- display success -->
@@ -166,7 +181,7 @@ $ret=mysqli_query($conn,"select * from immunization_child
         <td><?php  echo $row['wtaken'];?></td>
         <td><?php  echo $row['status'];?></td>
         <td><?php  echo $row['weightgiven'];?></td>
-        <td><?php  echo $row['date'];?></td> 
+        <td><?php  echo $row['birthdate'];?></td> 
         <td><?php  echo $row['immunization'];?></td> 
         <td><?php  echo $row['exbf'];?></td> 
         <td><?php  echo $row['remarks'];?></td> 
@@ -177,13 +192,13 @@ $ret=mysqli_query($conn,"select * from immunization_child
 
 <?php  
 
-$ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'");
+$ret=mysqli_query($conn,"select * from immunization_1to3 where patientId='$vid'");
  ?>
  <tr>
    <?php  
     while ($row=mysqli_fetch_array($ret)) { 
       ?>
-       <td><?php echo $cnt;?>.</td>
+      <td><?php echo $cnt;?>.</td>
         <td><?php  echo $row['cpab'];?></td>
         <td><?php  echo $row['age'];?></td>
         <td><?php  echo $row['monthage'];?></td> 
@@ -193,7 +208,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
         <td><?php  echo $row['wtaken'];?></td>
         <td><?php  echo $row['status'];?></td>
         <td><?php  echo $row['weightgiven'];?></td>
-        <td><?php  echo $row['date'];?></td> 
+        <td><?php  echo $row['birthdate'];?></td> 
         <td><?php  echo $row['immunization'];?></td> 
         <td><?php  echo $row['exbf'];?></td> 
         <td><?php  echo $row['remarks'];?></td> 
@@ -214,7 +229,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
   <div class="modal-dialog modal-lg" role="document">
      <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5> -->
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
           </button>
@@ -226,7 +241,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
 
 
 <div class="card-header mt--4">
-    <h2 class="card-title">Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>
+    <h2 class="card-title">Add Medical History</h2>
 </div>
 
 <div class="card-body">
@@ -249,24 +264,24 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="age" class="control-label">Age</label>
-                                    <select id="selection" type="text" class="form-control form-select-sm-6" name="age">
+                                    <select id="selection" type="text" class="form-control form-select-sm-6" name="age" required>
                                         <option class="placeholder" style="display: none"> Select Age</option>
-                                        <option value="Newborn"> Newborn (0-28 days old)</option>
+                                        <option hidden value="Newborn"> Newborn (0-28 days old)</option>
                                         <option value="1-3Months"> 1-3 Months old</option>
-                                        <option value="6-11Months"> 6-11 Months old</option>
-                                        <option value="12Months"> 12 Months old</option>   
+                                        <option hidden value="6-11Months"> 6-11 Months old</option>
+                                        <option hidden value="12Months"> 12 Months old</option>   
                                     </select>
                                 </div>
                             </div>
 
-                            <span class="Data" id="showNewborn">
+            <!--                 <span class="Data" id="showNewborn">
                                 <div class="row pl-3 pr-3">
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Length at Birth <small>(cm)</small></label>
                                             <input type="number" class="form-control" name="blength">
                                         </div>
-                                        <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                       
                                     </div>
 
                                     <div class="col-sm-4">
@@ -315,7 +330,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                                     </div>
                                 </div>
                             </span>
-
+ -->
 
                             <span class="Data" id="show1-3Months">
                                 <div class="col-sm-12">
@@ -327,7 +342,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                                                 <label>Age <small>(in months)</small></label>
                                                 <input type="number" class="form-control" name="monthage" >
                                             </div>
-                                            <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                           
                                         </div>
 
                                         <div class="col-sm-4">
@@ -364,11 +379,11 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                                                 <label for="gender" class="control-label">Status </label>
                                                 <select type="text" class="form-control form-select-sm-6" name="status" >
                                                     <option class="placeholder" style="display: none" >Select Status</option>
-                                                    <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>S: Stunted</option>
-                                                    <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-MAM: Wasted MAM</option>
-                                                    <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>W-SAM: Wasted SAM</option>
-                                                    <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>O: Obese/Overweight</option>
-                                                    <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>N: Normal</option>
+                                                    <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>S: Stunted</option>
+                                                    <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>W-MAM: Wasted MAM</option>
+                                                    <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>W-SAM: Wasted SAM</option>
+                                                    <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>O: Obese/Overweight</option>
+                                                    <option <?php echo isset($patient['status']) && $patient['status'] == "Male" ? "selected" : "" ?>>N: Normal</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -378,37 +393,19 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                                                 <label for="gender">Low birth weight given </label>
                                                 <select id="select" type="text" class="form-control form-select-sm-6" name="weightgiven" >
                                                     <option class="placeholder" style="display: none" >Select month/s</option>
-                                                    <option value="1month">1 month</option>
-                                                    <option value="2months">2 months</option>
-                                                    <option value="3months">3 months</option>
+                                                    <option>1 month</option>
+                                                    <option >2 months</option>
+                                                    <option >3 months</option>
                                                 </select>
                                             </div>
                                         </div>  
 
 
-                                        <div class="1month Data col-lg-3" id="print1month">
+                                        <div class="col-lg-3" id="">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for1month" name="date" value="<?php echo isset($patient['for1month']) ? $patient['for1month'] : '' ?>" >
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="2months Data col-lg-3"  id="print2months">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for2month" name="date" value="<?php echo isset($patient['for2month']) ? $patient['for2month'] : '' ?>" >
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="3months Data col-lg-3"  id="print3month">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for3month" name="date" value="<?php echo isset($patient['for3month']) ? $patient['for3month'] : '' ?>" >
+                                                    <input type="date" class="form-control" id="date" name="birthdate" value="<?php echo isset($patient['birthdate']) ? $patient['birthdate'] : '' ?>" >
                                                 </div>
                                             </div>
                                         </div>
@@ -418,10 +415,10 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                                                 <label for="gender">Immunization </label>
                                                 <select type="text" class="form-control form-select-sm-6" name="immunization" >
                                                     <option class="placeholder" style="display: none" >Select Immunization</option>
-                                                    <option value="DPT-HIB-HepB">DPT-HIB-HepB</option>
-                                                    <option value="OPV">OPV</option>
-                                                    <option value="PCV">PCV</option>
-                                                    <option value="IPV">IPV</option>
+                                                    <option >DPT-HIB-HepB</option>
+                                                    <option>OPV</option>
+                                                    <option>PCV</option>
+                                                    <option>IPV</option>
                                                 </select>
                                             </div>
                                         </div>   
@@ -456,20 +453,21 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
 </div> -->
 <div class="form-group">
     <label for="1 1/2 months">
-        <input type="checkbox" name="exbf" value="1 1/2 months"> 1 1/2 months</label>
-        <label for="2 1/2 months" >
-            <input type="checkbox" name="exbf" value=" 2 1/2 months"> 2 1/2 months</label>
-            <label for="3 1/2 months">
-                <input type="checkbox" name="exbf" value=" 3 1/2 months"> 3 1/2 months</label>
-                <label for="4-5 months">
-                    <input type="checkbox" name="exbf" value=" 4-5 months"> 4-5 months</label>
+         <select type="text" class="form-control form-select-sm-6" name="exbf" >
+                                                    <option class="placeholder" style="display: none" >Select Dose</option>
+                                                    <option>1 1/2 months</option>
+                                                    <option>2 1/2 months</option>
+                                                    <option> 3 1/2 months</option>
+                                                    <option> 4-5 months</option>
+                                                </select>
+    
                 </div>
             </div>
         </div>    
     </div>
 </div>
 </span>
-
+<!-- 
 <span class="Data" id="show6-11Months">
     <div class="col-sm-12">
         <label for="gender"><b>Nutritional Status Assessment</b></label>
@@ -480,7 +478,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                     <label>Age <small>(in months)</small></label>
                     <input type="number" class="form-control" name="age11m" >
                 </div>
-                <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+             
             </div>
 
             <div class="col-sm-4">
@@ -488,7 +486,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                     <label>Length <small>(cm)</small></label>
                     <input type="number" class="form-control" name="length11m" >
                 </div>
-                <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+              
             </div>
 
             <div class="col-sm-4">
@@ -529,7 +527,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                 <div class="form-group">
                     <label for="exbf11m">Exclusively Breastfed up to 6 months</label>
                     <select type="text" class="form-control form-select-sm-6" name="exbf11m" >
-                        <!-- <option class="placeholder" style="display: none" >Select Dose</option> -->
+                     
                         <option>Yes</option>
                         <option>No</option>
                     </select>
@@ -547,7 +545,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                 <div class="form-group">
                     <label for="gender">Introduction of Complementary Feeding at 6 months old</label>
                     <select type="text" class="form-control form-select-sm-6" name="feeding" >
-                        <!-- <option class="placeholder" style="display: none" >Select Dose</option> -->
+                       
                         <option>Yes</option>
                         <option>No</option>
                     </select>
@@ -559,7 +557,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                     <label for="gender">1 <small>- With continuous breastfeeding</small><br>
                         2 <small>- No longer breastfeeding or never breastfed</small></label>
                         <select type="text" class="form-control form-select-sm-6" name="breastfed" >
-                            <!-- <option class="placeholder" style="display: none" >Select Dose</option> -->
+                          
                             <option>1</option>
                             <option>2</option>
                         </select>
@@ -615,7 +613,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                                 <label>Age <small>(in months)</small></label>
                                 <input type="number" class="form-control" name="age12" >
                             </div>
-                            <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                      
                         </div>
 
                         <div class="col-sm-4">
@@ -623,7 +621,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
                                 <label>Length <small>(cm)</small></label>
                                 <input type="number" class="form-control" name="length12" >
                             </div>
-                            <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                      
                         </div>
 
                         <div class="col-sm-4">
@@ -667,18 +665,18 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
 
         </div>
     </div>
-</span>
+</span> -->
 </div>
 
 <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-12">
         <div class="form-group">
             <label>Remarks</label>
             <textarea class="form-control" name="remarks" placeholder="Enter remarks" ></textarea>
         </div>
     </div>
 
-    <div class="col-sm-3">
+    <div hidden class="col-sm-3">
         <div class="form-group ">
             <label>Assigned Staff</label>
             <textarea class="form-control" name="assigned" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
@@ -691,7 +689,7 @@ $ret=mysqli_query($conn,"select * from immunization_1-3 where patientId='$vid'")
 </div>
 
 <div class="mt-2 text-center">
-    <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
+    <button class="btn btn-primary submit-btn" name="submit">Add Medical History</button>
 </div>  
 </form>
 

@@ -68,8 +68,8 @@ $fetchRow = mysqli_fetch_assoc($rs);
 ?> 
 -->
 <?php
- error_reporting(0);
-ini_set('display_errors', 0);
+//  error_reporting(0);
+// ini_set('display_errors', 0);
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
@@ -94,9 +94,7 @@ if (isset($_POST['submit'])) {
     $ltaken = $_POST['ltaken'];
     $wtaken = $_POST['wtaken'];
     $weightgiven = $_POST['weightgiven'];
-    $for1month = $_POST['for1month'];
-    $for2month = $_POST['for2month'];
-    $for3month= $_POST['for3month'];
+    $birthdate = $_POST['birthdate'];
     $immunization = $_POST['immunization'];
     $dose = $_POST['dose'];
     $doi = $_POST['doi'];
@@ -113,8 +111,8 @@ if (isset($_POST['submit'])) {
     $breastfed = $_POST['breastfed'];
     $vitamin = $_POST['vitamin'];
     $mnp = $_POST['mnp'];
-    $mvc1 = $_POST['mvc1'];
-    $mvc2 = $_POST['mvc2'];
+    $mcv1 = $_POST['mcv1'];
+    $mcv2 = $_POST['mcv2'];
     $fic = $_POST['fic'];
     $cic = $_POST['cic'];
     $assigned = $_POST['assigned'];
@@ -122,8 +120,8 @@ if (isset($_POST['submit'])) {
     $user_id = $_SESSION['userdata']['id'];
     $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$id', '$child', '$user_id')") or die('query failed');
 
-    $sql = "INSERT INTO immunization_child (id,dob,fsn,child,sex,mother,address,cpab,age,blength,bweight,status,stat,breastfeed,bcg,hepa,monthage,length,weight,ltaken,wtaken,weightgiven,for1month,for2month,for3month,immunization,dose,doi,exbf,age11m,length11m,weight11m,wtaken11m,ltaken11m,status11m,exbf11m,infant,feeding,breastfed,vitamin,mnp,mvc1,mvc2,fic,cic,assigned,remarks)
-    VALUES ('$id','$dob','$fsn','$child','$sex','$mother','$address','$cpab','$age','$blength','$bweight','$status','$stat','$breastfeed','$bcg','$hepa','$monthage','$length','$weight','$ltaken','$wtaken','$weightgiven','$for1month','$for2month','$for3month','$immunization','$dose','$doi','$exbf','$age11m','$length11m','$weight11m','$wtaken11m','$ltaken11m','$status11m','$exbf11m','$infant','$feeding','$breastfed','$vitamin','$mnp','$mvc1','$mvc2','$fic','$cic','$assigned','$remarks')";
+    $sql = "INSERT INTO immunization_child (id,dob,fsn,child,sex,mother,address,cpab,age,blength,bweight,status,stat,breastfeed,bcg,hepa,monthage,length,weight,ltaken,wtaken,weightgiven,birthdate,immunization,dose,doi,exbf,age11m,length11m,weight11m,wtaken11m,ltaken11m,status11m,exbf11m,infant,feeding,breastfed,vitamin,mnp,mcv1,mcv2,fic,cic,assigned,remarks)
+    VALUES ('$id','$dob','$fsn','$child','$sex','$mother','$address','$cpab','$age','$blength','$bweight','$status','$stat','$breastfeed','$bcg','$hepa','$monthage','$length','$weight','$ltaken','$wtaken','$weightgiven','$birthdate','$immunization','$dose','$doi','$exbf','$age11m','$length11m','$weight11m','$wtaken11m','$ltaken11m','$status11m','$exbf11m','$infant','$feeding','$breastfed','$vitamin','$mnp','$mcv1','$mcv2','$fic','$cic','$assigned','$remarks')";
     if (mysqli_query($conn, $sql)) {
 
         $message[] = ""; 
@@ -409,20 +407,20 @@ if(isset($message)){
                                         </div>  
 
 
-                                        <div class="1month Data col-lg-3" id="print1month">
+                                        <div class=" col-lg-3" id="">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for1month" name="date" value="<?php echo isset($patient['for1month']) ? $patient['for1month'] : '' ?>" >
+                                                    <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?php echo isset($patient['birthdate']) ? $patient['birthdate'] : '' ?>" >
                                                 </div>
                                             </div>
                                         </div>
-
+<!-- 
                                         <div class="2months Data col-lg-3"  id="print2months">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for2month" name="date" value="<?php echo isset($patient['for2month']) ? $patient['for2month'] : '' ?>" >
+                                                    <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?php echo isset($patient['birthdate']) ? $patient['birthdate'] : '' ?>" >
                                                 </div>
                                             </div>
                                         </div>
@@ -431,10 +429,10 @@ if(isset($message)){
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Date</label>
-                                                    <input type="date" class="form-control" id="for3month" name="date" value="<?php echo isset($patient['for3month']) ? $patient['for3month'] : '' ?>" >
+                                                    <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?php echo isset($patient['birthdate']) ? $patient['birthdate'] : '' ?>" >
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="col-sm-3">
                                             <div class="form-group">

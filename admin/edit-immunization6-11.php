@@ -3,6 +3,9 @@
 <?php require_once('inc/header.php') ?>
 
 <?php
+  error_reporting(0);
+ini_set('display_errors', 0);
+
 if(isset($_POST['submit']))
   {
     $vid=$_GET['viewid'];
@@ -203,7 +206,7 @@ $ret=mysqli_query($conn,"select * from immunization_history where patientId='$vi
   <div class="modal-dialog modal-lg" role="document">
      <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5> -->
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
           </button>
@@ -216,7 +219,7 @@ $ret=mysqli_query($conn,"select * from immunization_history where patientId='$vi
         
 
 <div class="card-header mt--4">
-    <h2 class="card-title">Immunization and Nutrition Services for Infants Age 0-11 Months Old and Children Age 12 Months Old</h2>
+    <h2 class="card-title">Add Medical History</h2>
 </div>
 
 <div class="card-body">
@@ -661,14 +664,14 @@ $ret=mysqli_query($conn,"select * from immunization_history where patientId='$vi
 </div>
 
 <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-12">
         <div class="form-group">
             <label>Remarks</label>
             <textarea class="form-control" name="remarks" placeholder="Enter remarks" ></textarea>
         </div>
     </div>
 
-    <div class="col-sm-3">
+    <div hidden class="col-sm-3">
         <div class="form-group ">
             <label>Assigned Staff</label>
             <textarea class="form-control" name="assigned" value="" readonly><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea>
@@ -681,7 +684,7 @@ $ret=mysqli_query($conn,"select * from immunization_history where patientId='$vi
 </div>
 
 <div class="mt-2 text-center">
-    <button class="btn btn-primary submit-btn" name="submit">Add Patient Record</button>
+    <button class="btn btn-primary submit-btn" name="submit">Add Medical History</button>
 </div>  
 </form>
 

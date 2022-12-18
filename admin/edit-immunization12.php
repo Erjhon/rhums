@@ -3,6 +3,9 @@
 <?php require_once('inc/header.php') ?>
 
 <?php
+  error_reporting(0);
+ini_set('display_errors', 0);
+
 if(isset($_POST['submit']))
   {
     $vid=$_GET['viewid'];
@@ -47,7 +50,7 @@ if(isset($message)){
             showConfirmButton: false,
             timer: 1000
             });
-                </script>.$message.";
+                </script>";
             }
         }
         ?>
@@ -65,7 +68,7 @@ if(isset($message)){
             showConfirmButton: false,
             timer: 1000
             })
-                </script>.$error.";
+                </script>";
             };
         };
   

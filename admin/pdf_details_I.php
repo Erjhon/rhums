@@ -226,20 +226,20 @@
 				<th class="row-r">Remarks</th>
 			</tr>
 <?php 
-$ret=mysqli_query($conn,"select * from animalbite a, animalbite_history ab where a.pid=ab.patientId");
+$ret=mysqli_query($conn,"select * from immunization_child");
  ?>
    <?php  
     while ($row=mysqli_fetch_array($ret)) { 
       ?>
 			<tr>
-				<td>PA-<?=$row["pid"] ?></td>
+				<td>PA-<?=$row["id"] ?></td>
 				<td><?php echo date("m/d/Y", strtotime($row['CreationDate']))?></td>
-				<td><?=$row["pfname"] ?></td>
-				<td><?=$row["gender"] ?></td>
-				<td><?=$row["pcontact"] ?></td>
+				<td><?=$row["child"] ?></td>
+				<td><?=$row["sex"] ?></td>
+				<td><?=$row["mother"] ?></td>
 				<td><?php echo date("M, d, Y", strtotime($row['dob']))?></td>
 				<td><?=$row["age"] ?></td>
-				<td><?=$row["paddress"] ?></td>
+				<td><?=$row["address"] ?></td>
 				<td><?=$row["incident"] ?></td>
 				<td><?=$row["source"] ?></td>
 				<td><?=$row["part"] ?></td>
