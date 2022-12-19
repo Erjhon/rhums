@@ -15,9 +15,10 @@ if(isset($_POST['update_profile'])){
    $update_dob = mysqli_real_escape_string($conn, $_POST['update_dob']);
    $update_gender = mysqli_real_escape_string($conn, $_POST['update_gender']);
    $update_contact = mysqli_real_escape_string($conn, $_POST['update_contact']);
+   $update_username = mysqli_real_escape_string($conn, $_POST['update_username']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', address = '$update_address', username = '$update_email', gender = '$update_gender', contact = '$update_contact', dob = '$update_dob' WHERE id = '$user_id'") or die('query failed');
+   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', address = '$update_address', username = '$update_username', email = '$update_email', gender = '$update_gender', contact = '$update_contact', dob = '$update_dob' WHERE id = '$user_id'") or die('query failed');
    $message[] = " <script>
             Swal.fire({
                  icon: 'success',
@@ -343,11 +344,19 @@ if(isset($_POST['update_profile'])){
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
                     <form>
+                        <div class="row gx-3 mb-3">
                         <!-- Form Group (username)-->
-                        <div class="mb-3">
+                        <div class="col-md-6">
                             <label class="small mb-1" for="inputUsername">Username</label>
-                            <input class="form-control" id="inputUsername" type="text"name="update_email" value="<?php echo $fetch['username']; ?>">
+                            <input class="form-control" id="inputUsername" type="text"name="update_username" value="<?php echo $fetch['username']; ?>">
                         </div>
+
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputEmail">Email Address</label>
+                            <input class="form-control" id="inputEmail" type="text"name="update_email" value="<?php echo $fetch['email']; ?>">
+                        </div>
+                        </div>
+
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->

@@ -81,7 +81,7 @@
       </div>
     </div>
   </div>
-<script>
+<!-- <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
 			_conf("Are you sure you want to delete this user permanently?","delete_user",[$(this).attr('data-id')])
@@ -106,4 +106,4 @@
 			}
 		})
 	}
-</script>
+</script> -->

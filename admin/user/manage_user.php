@@ -39,34 +39,44 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                         </div>
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
+                            <!-- Form Group (username)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Username</label>
+                                <label class="small mb-1" for="inputusername">Username</label>
                                 <input type="text" name="username" id="username" onBlur="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 								  <span id="user-availability-status1" style="font-size:12px;"></span>
                             </div>
-                            <!-- Form Group (location)-->
+                            <!-- Form Group (email)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Password</label>
+                                <label class="small mb-1" for="inputEmailAddress">Email Address</label>
+                                <input type="text" name="email" id="email" class="form-control" onBlur="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>">
+                                <span id="user-availability-status2" style="font-size:12px;"></span>
+                            </div>
+
+                        </div>
+                          <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                        	<!-- Form Group (password)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPassword">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": 'required' ?>>
 		                    <?php if(isset($_GET['id'])): ?>
 							<small><i>Leave this blank if you dont want to change the password.</i></small>
 		                    <?php endif; ?>
                             </div>
-                        </div>
-                          <!-- Form Row        -->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
+
+                            <!-- Form Group (user type)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">User Type</label>
+                                <label class="small mb-1" for="inputusertype">User Type</label>
                                 <select  class="form-control input-group input-group-alternative" name="role" >
                                 	<!-- <option class="placeholder" style="display: none" >Select user type</option> -->
 			                        <option class="text-muted" value="Admin">Super Admin</option>
 			                        <option class="text-muted" value="Staff">Staff</option>
 			                     </select>
                             </div>
-                            <!-- Form Group (location)-->
-                            <div class="form-group col-6">
+                        </div>
+                        <div class="row gx-3 mb-3">
+                        	<!-- Form Group (avatar)-->
+                            <div class="form-group col-12">
 								<label for="" class="control-label">Avatar</label>
 								<div class="custom-file">
 					              	<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
@@ -74,6 +84,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					            </div>
 							</div>
                         </div>
+
+
 	<!-- <div class="card-footer"> -->
 			<div class="form-group col-12 d-flex justify-content-center">
 				<div class="row">
@@ -179,6 +191,22 @@ var _this = $(this)
       type: "POST",
       success:function(data){
         $("#user-availability-status1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
+
+<script>
+  function userAvailability2() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "user/check_availability_users.php",
+      data:'email='+$("#email").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status2").html(data);
         $("#loaderIcon").hide();
       },
       error:function (){}

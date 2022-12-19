@@ -11,6 +11,7 @@ if(isset($_POST['submit'])){
   $middleInitial = mysqli_real_escape_string($conn, $_POST['middleInitial']);
   $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
   $username = mysqli_real_escape_string($conn, $_POST['username']);
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
   $contact = mysqli_real_escape_string($conn, $_POST['contact']);
   $gender = mysqli_real_escape_string($conn, $_POST['gender']);
   $dob = mysqli_real_escape_string($conn, $_POST['dob']);
@@ -33,7 +34,7 @@ if(isset($_POST['submit'])){
     }elseif($image_size > 2000000){
       $error[] = 'Image size is too large!';
     }else{
-      $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,middleInitial,lastname, username,contact,gender,dob,address, password, image) VALUES('$firstname', '$middleInitial', '$lastname', '$username','$contact','$gender','$dob','$address', '$pass', '$image')") or die('query failed');
+      $insert = mysqli_query($conn, "INSERT INTO `patient`(firstname,middleInitial,lastname, username,email,contact,gender,dob,address, password, image) VALUES('$firstname', '$middleInitial', '$lastname', '$username', '$email', '$contact','$gender','$dob','$address', '$pass', '$image')") or die('query failed');
 
       if($insert){
         move_uploaded_file($image_tmp_name, $image_folder);
@@ -210,11 +211,18 @@ echo '<div class="message">'.$message.'</div>';
         <p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-5 mb--1">
+      <div class="form-group col-4 mb--1">
         <h5 class="text-dark required">Username</h5>
         <input type="username" class="form-control" name="username" id="username" onBlur="userAvailability()"  placeholder="Username">
         <span id="user-availability-status1" style="font-size:12px;"></span>
         <p class="text-danger" id="un" style="font-size: 13px; margin-top: 4px"></p>
+      </div>
+
+      <div class="form-group col-4 mb--1">
+        <h5 class="text-dark required">Email Address</h5>
+        <input type="email" class="form-control" name="email" id="email"  onBlur="userAvailability2()" placeholder="Email Address">
+        <span id="user-availability-status2" style="font-size:12px;"></span>
+        <p class="text-danger" id="em" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-4 mb--1">
@@ -232,7 +240,7 @@ echo '<div class="message">'.$message.'</div>';
         <p class="text-danger" id="g" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-6 mb--1">
+      <div class="form-group col-3 mb--1">
         <h5 for="dob" class="control-label required">Date of Birth</h5>
         <input type="date" class="form-control" id="dob" name="dob">
         <p class="text-danger" id="db" style="font-size: 13px; margin-top: 4px"></p>
@@ -376,7 +384,7 @@ echo '<div class="message">'.$message.'</div>';
 
         <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
         <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
-        <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
+        <p>When you register for an Account, we may ask for your contact information, including items such as name, username, address, email address, and contact number, gender, date of birth, address, password and picture.</p>
 
         <h2>How we use your information</h2>
 
@@ -492,6 +500,11 @@ echo '<div class="message">'.$message.'</div>';
       return false;
     }
 
+    if(email == ""){
+      document.getElementById('em').innerHTML ="<b> ** Please fill the email field.";
+      return false;
+    }
+
     if(contact == ""){
       document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
       return false;
@@ -603,6 +616,22 @@ echo '<div class="message">'.$message.'</div>';
   }
 </script> 
 
+<script>
+  function userAvailability2() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'email='+$("#email").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status2").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
+
 <!-- //check birthdays start -->
 <script>
   const picker = document.getElementById('dob');
@@ -654,6 +683,8 @@ echo '<div class="message">'.$message.'</div>';
     }
   })
 </script>
+
+
 </body>
 
 </html>
