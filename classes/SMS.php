@@ -10,7 +10,7 @@ class SMS
 
     function __construct()
     {
-        //instantiate variables
+        // instantiate variables
         // $this->api_username = 'APIV6MABK2NUP';
         // $this->api_password = 'APIV6MABK2NUPV6MAB';
         $this->sms_from = 'rhums';

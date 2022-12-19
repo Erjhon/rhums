@@ -58,18 +58,10 @@
             }
         </style>
     <?php endif; ?>
-<!-- 
 
 <?php
-$sql = "select * from appointments";
-$rs = mysqli_query($conn, $sql);
-//get row
-$fetchRow = mysqli_fetch_assoc($rs);
-?> 
--->
-<?php
-//  error_reporting(0);
-// ini_set('display_errors', 0);
+ error_reporting(0);
+ini_set('display_errors', 0);
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];

@@ -160,8 +160,8 @@ if (!empty($_SESSION['user_id'])) {
                             <option class="placeholder" style="display: none" >Select reason</option>
                             <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                             <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
-                            <option value="Immunization for Child"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationC" ? "selected": "" ?>>Immunization for Child</option>
-                            <option value="Immunization for Senior Citizen"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationSC" ? "selected": "" ?>>Immunization for Senior Citizen</option>
+                            <option hidden> value="Immunization for Child"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationC" ? "selected": "" ?>>Immunization for Child</option>
+                            <option hidden> value="Immunization for Senior Citizen"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationSC" ? "selected": "" ?>>Immunization for Senior Citizen</option>
                             <!-- <option value="Pre-Natal" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option> -->
                         </select>
                     </div>

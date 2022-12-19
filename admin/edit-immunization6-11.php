@@ -140,16 +140,27 @@ $ret=mysqli_query($conn,"select * from immunization_child
       </tr>
       <tr>
         <th>#</th>
-        <th>Date of Incident</th>
-        <th>Source</th>
-        <th>Part of Body Bitten</th>
-        <th>Category</th>
-        <th>Type</th>
-        <th>Name <small>(Pet Owner)</small></th>
-        <th>Contact Number <small>(Pet Owner)</small></th>
-        <th>Location of biting Incident</th>
-        <th>Remarks</th>
+        <th>Child Protected at Birth (CPAB)</th>
+        <th>Age</th>
+        <th>Age (in months)</th>
+        <th>Length</th>
+        <th>Date Taken</th>
+        <th>Weigth</th>
+        <th>Date Taken</th>
+        <th>Status</th>
+        <th>Exclusive Breastfeed up to 6 months</th>
+        <th>Date when the infant was assessed</th>
+        <th>Introduction of Complementary Feeding at 6 months old</th>
+        <th>1 - With continuous breastfeeding
+            2 - No longer breastfeeding or never breastfed</th>
+            <th>Vitamin A (date given)</th>
+            <th>MNP (date when 90 sachets given)</th>
+            <th>MCV 1 Dose at 9th month (date given)</th>
+            <th>MCV 2 Dose 2</th>
+            <th>FIC</th>
+            <th>CIC</th>
         <th>Visit Date</th>
+        <th>Remarks</th>
         <th>Assigned Staff</th>
       </tr>
     <?php  
@@ -157,14 +168,24 @@ $ret=mysqli_query($conn,"select * from immunization_child
       ?>
       <tr>
         <td><?php echo $cnt;?>.</td>
-        <td><?php  echo $row['incident'];?></td>
-        <td><?php  echo $row['source'];?></td> 
-        <td><?php  echo $row['part'];?></td>
-        <td><?php  echo $row['category'];?></td>
-        <td><?php  echo $row['type'];?></td>
-        <td><?php  echo $row['owner'];?></td>
-        <td><?php  echo $row['ownercon'];?></td>
-        <td><?php  echo $row['location'];?></td>
+        <td><?php  echo $row['cpab'];?></td>
+        <td><?php  echo $row['age'];?></td> 
+        <td><?php  echo $row['age11m'];?></td>
+        <td><?php  echo $row['length11m'];?></td>
+        <td><?php  echo $row['ltaken11m'];?></td>
+        <td><?php  echo $row['weight11m'];?></td>
+        <td><?php  echo $row['wtaken11m'];?></td>
+        <td><?php  echo $row['status11m'];?></td>
+        <td><?php  echo $row['exbf11m'];?></td>
+        <td><?php  echo $row['infant'];?></td>
+        <td><?php  echo $row['feeding'];?></td>
+        <td><?php  echo $row['breastfed'];?></td>
+        <td><?php  echo $row['vitamin'];?></td>
+        <td><?php  echo $row['mnp'];?></td>
+        <td><?php  echo $row['mcv1'];?></td>
+        <td><?php  echo $row['mcv2'];?></td>
+        <td><?php  echo $row['fic'];?></td>
+        <td><?php  echo $row['cic'];?></td>
         <td><?php  echo $row['remark'];?></td> 
         <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td> 
         <td><?php  echo $row['assigned'];?></td> 
