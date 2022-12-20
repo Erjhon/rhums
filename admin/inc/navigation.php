@@ -122,7 +122,7 @@
             <li class="dropdown">
               <a href="<?php echo base_url ?>admin/?page=user/list"  class="nav-link nav-user_list">
                 <i class="nav-icon fas fa-users text-yellow"></i>
-                  <span class="text-dark"><b>User List</b></span>
+                  <span class="text-dark"><b>Staff List</b></span>
               </a>
             </li>
               <?php }?>
