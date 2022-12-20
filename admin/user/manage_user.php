@@ -13,11 +13,89 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 </script>
 <?php endif;?>
 <div class="card card-outline card-primary">
+	<div class="card-header">
+        <h2 class="card-title">Add User</h2>
+    </div>
 	<div class="card-body">
 		<div class="container-fluid">
 			<div id="msg"></div>
-			<form action="" id="manage-user">	
-				<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
+			<form action="" id="manage-user">
+			<div class="form-group col-12 d-flex justify-content-center">
+					<img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail">
+				</div>	
+					<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
+				  <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName">First name</label>
+                                <input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">Last name</label>
+                                <input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (username)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputusername">Username</label>
+                                <input type="text" name="username" id="username" onBlur="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+								  <span id="user-availability-status1" style="font-size:12px;"></span>
+                            </div>
+                            <!-- Form Group (email)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputEmailAddress">Email Address</label>
+                                <input type="text" name="email" id="email" class="form-control" onBlur="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>">
+                                <span id="user-availability-status2" style="font-size:12px;"></span>
+                            </div>
+
+                        </div>
+                          <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                        	<!-- Form Group (password)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPassword">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": 'required' ?>>
+		                    <?php if(isset($_GET['id'])): ?>
+							<small><i>Leave this blank if you dont want to change the password.</i></small>
+		                    <?php endif; ?>
+                            </div>
+
+                            <!-- Form Group (user type)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputusertype">User Type</label>
+                                <select  class="form-control input-group input-group-alternative" name="role" >
+                                	<!-- <option class="placeholder" style="display: none" >Select user type</option> -->
+			                        <option class="text-muted" value="Admin">Super Admin</option>
+			                        <option class="text-muted" value="Staff">Staff</option>
+			                     </select>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                        	<!-- Form Group (avatar)-->
+                            <div class="form-group col-12">
+								<label for="" class="control-label">Avatar</label>
+								<div class="custom-file">
+					              	<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
+						            <label class="custom-file-label" for="customFile">Choose file</label>
+					            </div>
+							</div>
+                        </div>
+
+
+	<!-- <div class="card-footer"> -->
+			<div class="form-group col-12 d-flex justify-content-center">
+				<div class="row">
+					<button class="btn btn-md btn-primary mr-2" form="manage-user">Save</button>
+					<a class="btn btn-md btn-secondary" href="./?page=user/list">Cancel</a>
+				</div>
+			</div>
+		</div>
+
+			<!-- 	<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
 				<div class="form-group col-6">
 					<label for="name">First Name</label>
 					<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
@@ -37,11 +115,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					<small><i>Leave this blank if you dont want to change the password.</i></small>
                     <?php endif; ?>
 				</div>
-				<div class="form-group col-6">
+				<div  class="form-group col-6">
 					<label for="user_type">User Type</label>
-                      <select  class="input-group input-group-alternative" name="role">
-                          <option class="text-muted" value="admin">Admin</option>
-                          <option class="text-muted" value="staff">Staff</option>
+                      <select  class="form-control input-group input-group-alternative" name="role">
+                          <option class="text-muted" value="Admin">Admin</option>
+                          <option class="text-muted" value="Staff">Staff</option>
                      </select>
                 </div>
 
@@ -57,15 +135,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				</div>
 			</form>
 		</div>
-	</div>
-	<div class="card-footer">
-			<div class="col-md-12">
-				<div class="row">
-					<button class="btn btn-sm btn-primary mr-2" form="manage-user">Save</button>
-					<a class="btn btn-sm btn-secondary" href="./?page=user/list">Cancel</a>
-				</div>
-			</div>
-		</div>
+	</div> -->
 </div>
 <style>
 	img#cimg{
@@ -111,3 +181,35 @@ var _this = $(this)
 	})
 
 </script>
+
+<script>
+  function userAvailability() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "user/check_availability_users.php",
+      data:'username='+$("#username").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
+
+<script>
+  function userAvailability2() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "user/check_availability_users.php",
+      data:'email='+$("#email").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status2").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 

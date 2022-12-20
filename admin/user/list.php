@@ -3,7 +3,7 @@
 	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
 <?php endif;?>
-
+ 
 <style>
     .img-avatar{
         width:45px;
@@ -13,7 +13,8 @@
         border-radius:100%;
     }
 </style>
-<div class="card card-outline card-primary">
+
+<div class="card card-outline card-primary ">
 	<div class="card-header">
 		<h2 class="card-title text-center">List of System Users</h2>
 		<div class="card-tools">
@@ -21,8 +22,8 @@
 		</div>
 	</div>
 	<div class="card-body ">
-        <div class="container-fluid">
-			<table class="table py-1 py-lg-1 table-hover table-striped">
+        <div class="container-fluid table-responsive">
+			<table class="table py-1 py-lg-1 table-hover table-striped ">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -52,8 +53,8 @@
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
 				                    <a class="dropdown-item" href="?page=user/manage_user&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
-				                    <div class="dropdown-divider"></div>
-				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
+				                    <!-- <div class="dropdown-divider"></div> -->
+				                    <!-- <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a> -->
 				                  </div>
 							</td>
 						</tr>
@@ -64,10 +65,26 @@
 		</div>
 	</div>
 </div>
-<script>
+<div class="modal fade" id="confirm_modal" role='dialog'>
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+      </div>
+      <div class="modal-body">
+        <div id="delete_content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id='confirm' onclick="">Continue</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+<!-- <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this User permanently?","delete_user",[$(this).attr('data-id')])
+			_conf("Are you sure you want to delete this user permanently?","delete_user",[$(this).attr('data-id')])
 		})
 		$('.table').dataTable();
 	})
@@ -78,19 +95,15 @@
 			method:"POST",
 			data:{id: $id},
 			dataType:"json",
-			error:err=>{
-				console.log(err)
-				alert_toast("An error occured.",'error');
-				end_loader();
-			},
 			success:function(resp){
-				if(typeof resp== 'object' && resp.status == 'success'){
-					location.reload();
-				}else{
-					alert_toast("An error occured.",'error');
+				if(resp ==1){
+					location.href = './?page=user/list';
+				 }else{
+					alert_toast("An error occured",'error');
 					end_loader();
+                    console.log(resp)
 				}
 			}
 		})
 	}
-</script>
+</script> -->

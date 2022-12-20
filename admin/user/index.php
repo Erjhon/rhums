@@ -10,7 +10,10 @@ foreach($user->fetch_array() as $k =>$v){
 </script>
 <?php endif;?>
 <div class="card card-outline card-primary">
-	<div class="card-body">
+	<div class="card-header">
+        <h2 class="card-title">Edit Details</h2>
+    </div>
+	<div class="card-body ">
 		<div class="container-fluid">
 			<div id="msg"></div>
 			<form action="" id="manage-user">	
@@ -46,7 +49,7 @@ foreach($user->fetch_array() as $k =>$v){
 		</div>
 	</div>
 	<div class="card-footer">
-			<div class="col-md-12">
+			<div class="col-md-12 d-flex justify-content-center">
 				<div class="row">
 					<button class="btn btn-md btn-primary" form="manage-user">Update</button>
 				</div>

@@ -1,31 +1,74 @@
-
-
-
 <?php
-function gw_send_sms($user,$pass,$sms_from,$sms_to,$sms_msg)  
-            {           
-                        $query_string = "api.aspx?apiusername=".$user."&apipassword=".$pass;
-                        $query_string .= "&senderid=".rawurlencode($sms_from)."&mobileno=".rawurlencode($sms_to);
-                        $query_string .= "&message=".rawurlencode(stripslashes($sms_msg)) . "&languagetype=1";        
-                        $url = "http://gateway.onewaysms.com.au:10001/".$query_string;       
-                        $fd = @implode ('', file ($url));      
-                        if ($fd)  
-                        {                       
-				    if ($fd > 0) {
-					Print("MT ID : " . $fd);
-					$ok = "success";
-				    }        
-				    else {
-					print("Please refer to API on Error : " . $fd);
-					$ok = "fail";
-				    }
-                        }           
-                        else      
-                        {                       
-                                    // no contact with gateway                      
-                                    $ok = "fail";       
-                        }           
-                        return $ok;  
-            }  
-     Print("Sending to one way sms " . gw_send_sms("apiusername", "apipassword", "senderid", "61412345678", "test message"));
-?>
+class OneWaySMS
+{
+    protected $api_username;
+    protected $api_password;
+    protected $sms_from;
+    protected $url;
+    protected $con_number;
+    protected $message;
+
+    function __construct()
+    {
+        //instantiate variables
+        $this->api_username = 'APIB2G4UDW4TD';
+        $this->api_password = 'APIB2G4UDW4TDB2G4U';
+        $this->sms_from = 'rhums';
+        $this->url = 'http://gateway.onewaysms.ph:10001/api.aspx?';
+    }
+
+    /**
+     * func : sample code given by the api provider
+     * @return json message and code [0 = fail, 1 = success]
+     */
+    private function gw_send_sms($user, $pass, $from, $sms_to, $message)
+    {
+
+        $query_string = "apiusername=" . $user . "&apipassword=" . $pass;
+        $query_string .= "&senderid=" . rawurlencode($from) . "&mobileno=" . rawurlencode($sms_to);
+        $query_string .= "&message=" . rawurlencode(stripslashes($message)) . "&languagetype=1";
+
+        //concatinate url and the query string
+        $url = "{$this->url}{$query_string}";
+        $fd = @implode('', file($url));
+
+        if (!$fd) {
+            return [
+                'message' => 'no contact with gateway',
+                'code'    => 0
+            ];
+        }
+
+        if ($fd < 0) {
+            return [
+                'message' => "Please refer to API on Error : {$fd}",
+                'code'    => 0
+            ];
+        }
+
+        return [
+            'message' => "Success with MT ID : {$fd}",
+            'code'    => 1
+        ];
+    }
+
+    /**
+     * @Function: Send SMS
+     * Description: this is the one to use in controllers to accept input data
+     * and send sms
+     * @return array contain response code and message from api
+     */
+    public function sendSMS($con_number, $message)
+    {
+
+        $send = $this->gw_send_sms(
+            $this->api_username,
+            $this->api_password,
+            $this->sms_from,
+            $con_number,
+            $message
+        );
+
+        return $send;
+    }
+}

@@ -7,13 +7,15 @@ require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 $id = $_GET['id'];
-$sql = mysqli_query($conn,"SELECT * FROM patient_history WHERE id='$id'");
+$sql = mysqli_query($conn,"SELECT * FROM checkup ");
 $row = mysqli_fetch_assoc($sql);
+
+
 
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 ob_start();
-require('pdf_details.php');
+require('pdf_details_CU.php');
 $html =ob_get_contents();
 ob_get_clean();
 
@@ -21,7 +23,7 @@ ob_get_clean();
 $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A2', 'landscape');
 
 // Render the HTML as PDF
 $dompdf->render();
