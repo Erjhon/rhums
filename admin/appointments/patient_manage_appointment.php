@@ -120,10 +120,10 @@ if (!empty($_SESSION['user_id'])) {
                 <?php else : ?>
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
-                        <select name="reason" id="reason" class="form-control form-select">
-                            <option class="placeholder" style="display: none" >Select reason</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                        <select name="reason" id="reason" class="form-control form-select" required>
+                            <option class="placeholder" style="display: none"  selected disabled value="" >Select reason</option>
+                            <option   <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
+                            <option   <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
                             
                         </select>
 

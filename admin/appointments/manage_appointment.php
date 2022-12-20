@@ -83,7 +83,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
@@ -156,7 +156,7 @@ if (!empty($_SESSION['user_id'])) {
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
-                        <select name="reason" id="reason" class="form-control form-select-sm-6">
+                        <select name="reason" id="reason" class="form-control form-select-sm-6"required>
                             <option class="placeholder" style="display: none" >Select reason</option>
                             <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                             <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
@@ -168,7 +168,7 @@ if (!empty($_SESSION['user_id'])) {
                     <div class="form-group">
                         <label for="reason" class="control-label">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
-                        <select name="reason" id="reason" class="form-control form-select-sm-6">
+                        <select name="reason" id="reason" class="form-control form-select-sm-6"required>
                             <option class="placeholder" style="display: none" >Select reason</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                             <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
@@ -187,7 +187,7 @@ if (!empty($_SESSION['user_id'])) {
                 <?php if ($_settings->userdata('id') > 0) : ?>
                     <div hidden class="form-group">
                         <label for="status" class="control-label">Status</label>
-                        <select name="status" id="status" class="custom custom-select">
+                        <select name="status" id="status" class="custom custom-select"required>
                             <option value="1" <?php echo isset($status) && $status == "1" ? "selected" : "" ?>>Confirmed</option>
                             <option value="0" <?php echo isset($status) && $status == "0" ? "selected" : "" ?>>Pending</option>
                             <option value="2" <?php echo isset($status) && $status == "2" ? "selected" : "" ?>>Cancelled</option>
