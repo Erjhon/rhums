@@ -443,8 +443,9 @@ if(isset($_POST['update_profile'])){
                             <!-- Form Group (phone number)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" name="update_contact" value="<?php echo $fetch['contact']; ?>">
+                                <input class="form-control" id="inputPhone" type="tel" name="update_contact" maxlength="11" value="<?php echo $fetch['contact']; ?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                             </div>
+
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputBirthday">Birthday</label>

@@ -69,7 +69,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                                 <label class="small mb-1" for="inputusertype">User Type</label>
                                 <select  class="form-control input-group input-group-alternative" name="role" >
                                 	<!-- <option class="placeholder" style="display: none" >Select user type</option> -->
-			                        <option class="text-muted" value="Admin">Super Admin</option>
+			                        <option class="text-muted" value=" Super Admin">Super Admin</option>
 			                        <option class="text-muted" value="Staff">Staff</option>
 			                     </select>
                             </div>
