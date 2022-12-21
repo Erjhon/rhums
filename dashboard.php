@@ -21,6 +21,8 @@ if(isset($_GET['logout'])){
   
  <head>
   <?php require_once('inc/header.php') ?>
+    <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 <!-- Favicon -->
 <link href="./assets/assets/img/brand/doh.png" rel="icon" type="image/png">
@@ -83,9 +85,9 @@ if(isset($_GET['logout'])){
    ?>
       <?php
          if($fetch['image'] == ''){
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/images/default-avatar.png"></div>';
          }else{
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/uploaded_img/'.$fetch['image'].'"></div>';
          }
          if(isset($message)){
             foreach($message as $message){
