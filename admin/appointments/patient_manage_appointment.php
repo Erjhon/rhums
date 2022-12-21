@@ -149,7 +149,7 @@ if (!empty($_SESSION['user_id'])) {
                     </div>
 
                 <?php else : ?>
-                    <div class="col-lg-12 col-sm-6 p-1 text-center">
+                    <div hidden class="col-lg-12 col-sm-6 p-1 text-center">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="create_new" name="authorized" value="">
                         <label class="form-check-label" for="authorized">Appointment for others?</label>

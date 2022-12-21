@@ -17,7 +17,7 @@
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
-			<table class=" table py-1 py-lg-1 table-hover table-striped text-center datatable ">
+			<table class=" table py-1 py-lg-1 table-hover table-striped text-center datatable table-responsive">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -48,12 +48,12 @@
 
 							</td>
 							<td><?php echo ucwords($row['firstname']) ?> <?php echo ucwords($row['lastname']) ?></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['email'] ?></p></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['contact'] ?></p></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['gender'] ?></p></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['dob'] ?></p></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['address'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['username'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['email'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['contact'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['gender'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['dob'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['address'] ?></p></td>
 						
 							
 						<?php if (isset($_GET['id'])) {  
