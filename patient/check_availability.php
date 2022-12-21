@@ -17,16 +17,24 @@ if(!empty($_POST["username"])) {
 	}
 }
 
+if(!empty($_POST["email"])) {
+	$email= $_POST["email"];
+
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    exit('Invalid email address'); // Use your own error handling ;)
+    exit ('Invalid email address'); // Use your own error handling ;)
 }
 $select = mysqli_query($conn, "SELECT `email` FROM `patient` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
-if(mysqli_num_rows($select)) {
+$select1 = mysqli_query($conn, "SELECT `email` FROM `users` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
+$result=mysqli_num_rows($select);
+$result1=mysqli_num_rows($select1);
+
+if($result||$result1>0) {
     	echo "<span style='color:red'> Email already registered.</span>";
 	 	echo "<script>$('#submit').prop('disabled',true);</script>";
 	} else{
 		echo "<span style='color:green'> Email available.</span>";
 	 	echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
+}
 
 ?>
