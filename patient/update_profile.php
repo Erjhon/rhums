@@ -227,16 +227,24 @@ if(isset($_POST['update_profile'])){
   <li class="nav-item dropdown">
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-        <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
+        <span class="avatar rounded-circle">
+               <!-- Profile picture image-->
+                     <?php
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+      <?php
          if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
          }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
+         }
+         if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="">'.$message.'</div>';
+            }
          }
       ?>
 
@@ -317,9 +325,9 @@ if(isset($_POST['update_profile'])){
    ?>
       <?php
          if($fetch['image'] == ''){
-            echo '<div class="avatar"><img src="images/default-avatar.png"></div>';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
          }else{
-            echo '<div class="avatar"><img src="uploaded_img/'.$fetch['image'].'"></div>';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
          }
          if(isset($message)){
             foreach($message as $message){
@@ -348,12 +356,14 @@ if(isset($_POST['update_profile'])){
                         <!-- Form Group (username)-->
                         <div class="col-md-6">
                             <label class="small mb-1" for="inputUsername">Username</label>
-                            <input class="form-control" id="inputUsername" type="text"name="update_username" value="<?php echo $fetch['username']; ?>">
+                            <input type="username" class="form-control" name="update_username" id="username" value="<?php echo $fetch['username']; ?>" onkeyup="userAvailability()">
+                             <span id="user-availability-status1" style="font-size:12px;"></span>
                         </div>
 
                         <div class="col-md-6">
                             <label class="small mb-1" for="inputEmail">Email Address</label>
-                            <input class="form-control" id="inputEmail" type="text"name="update_email" value="<?php echo $fetch['email']; ?>">
+                            <input class="form-control" id="email" type="email" name="update_email" value="<?php echo $fetch['email']; ?>" onkeyup="userAvailability2()">
+                             <span id="user-availability-status2" style="font-size:12px;"></span>
                         </div>
                         </div>
 
@@ -483,7 +493,39 @@ if(isset($_POST['update_profile'])){
 
 <div onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
 
-</div>  -->            
+</div>  -->    
+<style>
+
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+
+}
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
+
+</style>        
 
 </body>
 
@@ -526,5 +568,41 @@ if(isset($_POST['update_profile'])){
         }
     }
 </script>
+
+
+<script>
+  function userAvailability() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'username='+$("#username").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
+
+<script>
+  function userAvailability2() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'email='+$("#email").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status2").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
+
+
+
 
 </html>

@@ -471,7 +471,7 @@ echo '<div class="message">'.$message.'</div>';
 
     if(firstname == ""){
       document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field."; }else {
-        document.getElementById('fn').innerHTML = "";
+      document.getElementById('fn').innerHTML = ""; 
     }
 
     if(middleInitial == ""){
@@ -577,6 +577,9 @@ echo '<div class="message">'.$message.'</div>';
   }
 
 </script>
+
+
+
 
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
