@@ -120,11 +120,7 @@ if(isset($_POST['submit'])){
                 </div>
               </div>
             </div>
-            <div class="separator separator-bottom separator-skew zindex-100">
-              <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-neutral" points="2560 0 2560 100 0 100"></polygon>
-              </svg>
-            </div>
+          
           </div>
           <!-- Page content -->
           <div class="container mt--7 pb-5">
@@ -191,65 +187,65 @@ echo '<div class="message">'.$message.'</div>';
 
   <form action="" id="appointment_form" class="py-6">
     <div class="row" id="appointment">
-      <div class="col-4" id="frm-field">
+      <div class="col-sm-4" id="frm-field">
         <div class="form-group mb--1">
           <h5 class="text-dark required">First Name</h5>
-          <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname" onBlur="return validation()">
+          <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname" onkeyup="return validation()">
           <p class="text-danger" id="fn" style="font-size: 13px; margin-top: 4px"></p>
         </div>
       </div>
 
-      <div class="form-group col-4 mb--1">
+      <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Middle Initial</h5>
-        <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial"onBlur="return validation()">
+        <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="return validation()">
         <p class="text-danger" id="mI" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-4 mb--1">
+      <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Last Name</h5>
-        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname"onBlur="return validation()">
+        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname"onkeyup="return validation()">
         <p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-4 mb--1">
+      <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Username</h5>
-        <input type="username" class="form-control" name="username" id="username"  onBlur="userAvailability()|| validation()" placeholder="Username">
+        <input type="username" class="form-control" name="username" id="username"  onkeyup="userAvailability()|| validation()" placeholder="Username">
         <span id="user-availability-status1" style="font-size:12px;"></span>
         <p class="text-danger" id="un" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-4 mb--1">
+      <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Email Address</h5>
-        <input type="email" class="form-control" name="email" id="email"  onBlur="userAvailability2()|| validation()" placeholder="Email Address" onBlur="return validation()">
+        <input type="email" class="form-control" name="email" id="email"  onkeyup="userAvailability2()|| validation()" placeholder="Email Address" onkeyup="return validation()">
         <span id="user-availability-status2" style="font-size:12px;"></span>
         <p class="text-danger" id="em" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-4 mb--1">
+      <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Contact Number</h5>
-        <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onBlur="return validation()">
+        <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validation()">
         <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-3 mb--1">
+      <div class="form-group col-sm-3 mb--1">
         <h5 for="gender" class="text-dark required">Gender</h5>
-        <select type="text" class="form-control form-select-sm-6" name="gender" id="gender" onBlur="return validation()">
+        <select type="text" class="form-control form-select-sm-6" name="gender" id="gender" onkeyup="return validation()">
           <option >Male</option>
           <option >Female</option>
         </select>
         <p class="text-danger" id="g" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-3 mb--1">
+      <div class="form-group col-sm-3 mb--1">
         <h5 for="dob" class="control-label required">Date of Birth</h5>
-        <input type="date" class="form-control" id="dob" name="dob" onBlur="return validation()">
+        <input type="date" class="form-control" id="dob" name="dob" onkeyup="return validation()">
         <p class="text-danger" id="db" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-6 mb--1">
+      <div class="form-group col-sm-6 mb--1">
         <h5 class="text-dark required">Address</h5>
         <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
-         <select class="form-control" id="address" name="address" rows="2" required onBlur="return validation()">
+         <select class="form-control" id="address" name="address" rows="2" required onkeyup="return validation()">
                                                     <option class="placeholder" style="display: none" >Select Address</option>
                                                     <option>Angustia, Nabua</option>
                                                     <option>Antipolo Old, Nabua</option>
@@ -297,13 +293,13 @@ echo '<div class="message">'.$message.'</div>';
         <p class="text-danger" id="ad" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
-      <div class="form-group col-6 ">
+      <div class="form-group col-sm-6 ">
         <h5 class="text-dark required">Password</h5>
         <div class="input-group input-group-alternative mb--1">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
           </div>
-          <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onBlur="return validation()">
+          <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validation()">
           <span class="input-group-text">
             <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
           </span>
@@ -311,13 +307,13 @@ echo '<div class="message">'.$message.'</div>';
         <p class="text-danger" id="pw" style="font-size: 13px; margin-top:7px; margin-bottom: -15px"></p>
       </div>
 
-      <div class="form-group col-6 ">
+      <div class="form-group col-sm-6 ">
         <h5 class="text-dark required">Confirm Password</h5>
         <div class="input-group input-group-alternative mb--1">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
           </div>
-          <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password" onBlur="return validation()">
+          <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password" onkeyup="return validation()">
           <span class="input-group-text">
             <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
           </span>
