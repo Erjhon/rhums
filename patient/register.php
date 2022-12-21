@@ -194,46 +194,46 @@ echo '<div class="message">'.$message.'</div>';
       <div class="col-4" id="frm-field">
         <div class="form-group mb--1">
           <h5 class="text-dark required">First Name</h5>
-          <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname">
+          <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname" onBlur="return validation()">
           <p class="text-danger" id="fn" style="font-size: 13px; margin-top: 4px"></p>
         </div>
       </div>
 
       <div class="form-group col-4 mb--1">
         <h5 class="text-dark required">Middle Initial</h5>
-        <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial">
+        <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial"onBlur="return validation()">
         <p class="text-danger" id="mI" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-4 mb--1">
         <h5 class="text-dark required">Last Name</h5>
-        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname">
+        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname"onBlur="return validation()">
         <p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-4 mb--1">
         <h5 class="text-dark required">Username</h5>
-        <input type="username" class="form-control" name="username" id="username" onBlur="userAvailability()"  placeholder="Username">
+        <input type="username" class="form-control" name="username" id="username"  onBlur="userAvailability()|| validation()" placeholder="Username">
         <span id="user-availability-status1" style="font-size:12px;"></span>
         <p class="text-danger" id="un" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-4 mb--1">
         <h5 class="text-dark required">Email Address</h5>
-        <input type="email" class="form-control" name="email" id="email"  onBlur="userAvailability2()" placeholder="Email Address">
+        <input type="email" class="form-control" name="email" id="email"  onBlur="userAvailability2()|| validation()" placeholder="Email Address" onBlur="return validation()">
         <span id="user-availability-status2" style="font-size:12px;"></span>
         <p class="text-danger" id="em" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-4 mb--1">
         <h5 class="text-dark required">Contact Number</h5>
-        <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onBlur="return validation()">
         <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-3 mb--1">
         <h5 for="gender" class="text-dark required">Gender</h5>
-        <select type="text" class="form-control form-select-sm-6" name="gender" id="gender">
+        <select type="text" class="form-control form-select-sm-6" name="gender" id="gender" onBlur="return validation()">
           <option >Male</option>
           <option >Female</option>
         </select>
@@ -242,14 +242,14 @@ echo '<div class="message">'.$message.'</div>';
 
       <div class="form-group col-3 mb--1">
         <h5 for="dob" class="control-label required">Date of Birth</h5>
-        <input type="date" class="form-control" id="dob" name="dob">
+        <input type="date" class="form-control" id="dob" name="dob" onBlur="return validation()">
         <p class="text-danger" id="db" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-6 mb--1">
         <h5 class="text-dark required">Address</h5>
         <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
-         <select class="form-control" id="address" name="address" rows="2" required>
+         <select class="form-control" id="address" name="address" rows="2" required onBlur="return validation()">
                                                     <option class="placeholder" style="display: none" >Select Address</option>
                                                     <option>Angustia, Nabua</option>
                                                     <option>Antipolo Old, Nabua</option>
@@ -303,7 +303,7 @@ echo '<div class="message">'.$message.'</div>';
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
           </div>
-          <input class="form-control" placeholder="Password" id ="password" name ="password" type="password">
+          <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onBlur="return validation()">
           <span class="input-group-text">
             <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
           </span>
@@ -317,7 +317,7 @@ echo '<div class="message">'.$message.'</div>';
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
           </div>
-          <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password">
+          <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password" onBlur="return validation()">
           <span class="input-group-text">
             <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
           </span>
@@ -464,96 +464,120 @@ echo '<div class="message">'.$message.'</div>';
     var middleInitial = document.getElementById('middleInitial').value;
     var lastname = document.getElementById('lastname').value;
     var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
     var contact = document.getElementById('contact').value;
     var gender = document.getElementById('gender').value;
     var dob = document.getElementById('dob').value;
     var address = document.getElementById('address').value;
     var password = document.getElementById('password').value;
-    var cpassword = document.getElementById('password').value;
+    var cpassword = document.getElementById('cpassword').value;
 
 
     if(firstname == ""){
-      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field.";
-      return false;
+      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field."; }else {
+        document.getElementById('fn').innerHTML = "";
     }
 
     if(middleInitial == ""){
-      document.getElementById('mI').innerHTML ="<b> ** Please fill the middle initial field.";
-      return false;
+      document.getElementById('mI').innerHTML ="<b> ** Please fill the middle initial field.";}else {
+        document.getElementById('mI').innerHTML = "";
     }
-
     if(lastname == ""){
       document.getElementById('ln').innerHTML ="<b> ** Please fill the lastname field.";
-      return false;
+     }else {
+        document.getElementById('ln').innerHTML = "";
     }
 
     if(username == ""){
       document.getElementById('un').innerHTML ="<b> ** Please fill the username field.";
-      return false;
+     }else {
+        document.getElementById('un').innerHTML = "";
     }
     if((username.length <= 4) || (username.length > 20)) {
       document.getElementById('un').innerHTML ="<b> ** Username length must be between 5 and 20.";
-      return false; 
+    }else {
+        document.getElementById('un').innerHTML = "";
     }
     if(!isNaN(username)){
       document.getElementById('un').innerHTML ="<b> ** A combination of letters and numbers are only allowed.";
-      return false;
+    }else {
+        document.getElementById('un').innerHTML = "";
+    }
+    
+     if (email.indexOf('@') <= 0) {
+    document.getElementById("em").innerHTML = " ** Email id not valid, @ position is wrong";
+ 
+    }
+   if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
+    document.getElementById("em").innerHTML = " ** Email id not valid, . position is wrong";
+}else {
+        document.getElementById('em').innerHTML = "";
+    }
+    if (email == "") {
+    document.getElementById("em").innerHTML = " ** Please fill email id field";
+  }else {
+        document.getElementById('em').innerHTML = "";
     }
 
-    if(email == ""){
-      document.getElementById('em').innerHTML ="<b> ** Please fill the email field.";
-      return false;
-    }
 
     if(contact == ""){
       document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
-      return false;
+     }else {
+        document.getElementById('cn').innerHTML = "";
     }
     if(isNaN(contact)){
       document.getElementById('cn').innerHTML ="<b> ** User must write digits only not characters.";
-      return false;
+     }else {
+        document.getElementById('cn').innerHTML = "";
     }
     if(contact.length!=11){
-      document.getElementById('cn').innerHTML ="<b> ** Contact Number must be 11 digits only.";
-      return false;
+      document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be 11 digits only.";
+     }else {
+        document.getElementById('cn').innerHTML = "";
     }
 
     if(gender == ""){
       document.getElementById('g').innerHTML ="<b> ** Please fill the gender field.";
-      return false;
+     }else {
+        document.getElementById('g').innerHTML = "";
     }
-
     if(dob == ""){
       document.getElementById('db').innerHTML ="<b> ** Please fill the date of birth field.";
-      return false;
+    }else {
+        document.getElementById('db').innerHTML = "";
     }
-
     if(address == ""){
       document.getElementById('ad').innerHTML ="<b> ** Please fill the address field.";
-      return false;
+     }else {
+        document.getElementById('ad').innerHTML = "";
     }
     if(!isNaN(address)){
       document.getElementById('ad').innerHTML ="<b> ** Only characters are allowed.";
-      return false;
+     }else {
+        document.getElementById('ad').innerHTML = "";
     }
     if(password == ""){
       document.getElementById('pw').innerHTML ="<b> ** Please fill the password field.";
-      return false;
+     }else {
+        document.getElementById('pw').innerHTML = "";
     }
     if((password.length <= 5) || (password.length > 20)) {
       document.getElementById('pw').innerHTML ="<b> ** Password length must be between 5 and 20.";
-      return false; 
+     }else {
+        document.getElementById('pw').innerHTML = "";
     }
 
     if(password!=cpassword){
       document.getElementById('cpw').innerHTML ="<b> ** Password does not match the confirm password.";
-      return false;
+     }else {
+        document.getElementById('cpw').innerHTML = "";
     }
 
     if(cpassword == ""){
       document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirm password field.";
-      return false;
-    }
+      }else {
+        document.getElementById('cpw').innerHTML = "";
+    }return false;
   }
 
 </script>

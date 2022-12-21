@@ -1,4 +1,4 @@
-<!-- <?php 
+<?php 
 include 'config.php';
 
 if(!empty($_POST["username"])) {
@@ -37,9 +37,9 @@ if($result||$result1>0) {
 	}
 }
 
-?> -->
+?>
 
-
+<!-- 
 <?php 
 include 'config.php';
 if(!empty($_POST["username"])) {
@@ -65,4 +65,4 @@ if(!empty($_POST["email"])) {
 	 	echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }
-?>
+?> -->
