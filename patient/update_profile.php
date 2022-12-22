@@ -51,7 +51,7 @@ if(isset($_POST['update_profile'])){
    $update_image_folder = 'uploaded_img/'.$update_image;
 
    if(!empty($update_image)){
-      if($update_image_size > 2000000){
+      if($update_image_size > 5000000){
          $message[] = " <script>
             Swal.fire({
                  icon: 'error',
@@ -363,13 +363,13 @@ if(isset($_POST['update_profile'])){
                         <!-- Form Group (username)-->
                         <div class="col-md-6">
                             <label class="small mb-1" for="inputUsername">Username</label>
-                            <input type="username" class="form-control" name="update_username" id="username" value="<?php echo $fetch['username']; ?>" onkeyup="userAvailability()">
+                            <input type="username" class="form-control" name="update_username" id="username" value="<?php echo $fetch['username']; ?>" onkeyup="return userAvailability()">
                              <span id="user-availability-status1" style="font-size:12px;"></span>
                         </div>
 
                         <div class="col-md-6">
                             <label class="small mb-1" for="inputEmail">Email Address</label>
-                            <input class="form-control" id="email" type="email" name="update_email" value="<?php echo $fetch['email']; ?>" onkeyup="userAvailability2()">
+                            <input class="form-control" id="email" type="email" name="update_email" value="<?php echo $fetch['email']; ?>" onkeyup="return userAvailability2()">
                              <span id="user-availability-status2" style="font-size:12px;"></span>
                         </div>
                         </div>
@@ -478,7 +478,7 @@ if(isset($_POST['update_profile'])){
     </div>
 </div>
 
-  
+
 
             <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
          <!-- <div class="inputBox">
@@ -535,7 +535,6 @@ if(isset($_POST['update_profile'])){
 </style>        
 
 </body>
-
 
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
