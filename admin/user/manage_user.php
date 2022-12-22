@@ -49,7 +49,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputEmailAddress">Email Address</label>
                                 <input type="text" name="email" id="email" class="form-control" onBlur="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>">
-                                <span id="user-availability-status2" style="font-size:12px;"></span>
+                                <span id="user-availability-status2" style="font-size:12px;" required></span>
                             </div>
 
                         </div>
@@ -109,7 +109,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 	<!-- <div class="card-footer"> -->
 			<div class="form-group col-12 d-flex justify-content-center">
 				<div class="row">
-					<button class="btn btn-md btn-primary mr-2" form="manage-user">Save</button>
+					<button class="btn btn-md btn-primary mr-2" id="submit" form="manage-user">Save</button>
 					<a class="btn btn-md btn-secondary" href="./?page=user/list">Cancel</a>
 				</div>
 			</div>

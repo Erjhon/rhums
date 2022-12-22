@@ -190,46 +190,47 @@ echo '<div class="message">'.$message.'</div>';
       <div class="col-sm-4" id="frm-field">
         <div class="form-group mb--1">
           <h5 class="text-dark required">First Name</h5>
-          <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname" onkeyup="return validation()">
+          <input class="form-control" placeholder="First Name" name="firstname" id="firstname" type="firstname" onkeyup="return validate('firstname')">
           <p class="text-danger" id="fn" style="font-size: 13px; margin-top: 4px"></p>
         </div>
       </div>
 
       <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Middle Initial</h5>
-        <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="return validation()">
+        <input class="form-control" placeholder="Middle Initial" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="return validate('middleInitial')">
         <p class="text-danger" id="mI" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Last Name</h5>
-        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname"onkeyup="return validation()">
+        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="lastname"onkeyup="return validate('lastname')">
         <p class="text-danger" id="ln" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Username</h5>
-        <input type="username" class="form-control" name="username" id="username"  onkeyup="userAvailability()|| validation()" placeholder="Username">
+        <input type="username" class="form-control" name="username" id="username"  onkeyup="userAvailability()|| validate('username')" placeholder="Username">
         <span id="user-availability-status1" style="font-size:12px;"></span>
         <p class="text-danger" id="un" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Email Address</h5>
-        <input type="email" class="form-control" name="email" id="email"  onkeyup="userAvailability2()|| validation()" placeholder="Email Address" onkeyup="return validation()">
+        <input type="email" class="form-control" name="email" id="email"  onkeyup="userAvailability2()|| validation()" placeholder="Email Address" onkeyup="return validate('email')">
         <span id="user-availability-status2" style="font-size:12px;"></span>
         <p class="text-danger" id="em" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Contact Number</h5>
-        <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validation()">
+        <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')">
         <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-sm-3 mb--1">
         <h5 for="gender" class="text-dark required">Gender</h5>
-        <select type="text" class="form-control form-select-sm-6" name="gender" id="gender" onkeyup="return validation()">
+        <select type="text" class="form-control form-select-sm-6" name="gender" id="gender" onkeyup="return validate('gender')" >
+         
           <option >Male</option>
           <option >Female</option>
         </select>
@@ -238,15 +239,15 @@ echo '<div class="message">'.$message.'</div>';
 
       <div class="form-group col-sm-3 mb--1">
         <h5 for="dob" class="control-label required">Date of Birth</h5>
-        <input type="date" class="form-control" id="dob" name="dob" onkeyup="return validation()">
+        <input type="date" class="form-control" id="dob" name="dob" onkeyup="return validate('dob')">
         <p class="text-danger" id="db" style="font-size: 13px; margin-top: 4px"></p>
       </div>
 
       <div class="form-group col-sm-6 mb--1">
         <h5 class="text-dark required">Address</h5>
         <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
-         <select class="form-control" id="address" name="address" rows="2" required onkeyup="return validation()">
-                                                    <option class="placeholder" style="display: none" >Select Address</option>
+         <select class="form-control" id="address" name="address" rows="2" onkeyup="return validate('address')" >
+                                                    <option class="placeholder" style="display: none">Select Address</option>
                                                     <option>Angustia, Nabua</option>
                                                     <option>Antipolo Old, Nabua</option>
                                                     <option>Antipolo Young, Nabua</option>
@@ -299,7 +300,7 @@ echo '<div class="message">'.$message.'</div>';
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
           </div>
-          <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validation()">
+          <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validate('password')">
           <span class="input-group-text">
             <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
           </span>
@@ -313,7 +314,7 @@ echo '<div class="message">'.$message.'</div>';
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
           </div>
-          <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password" onkeyup="return validation()">
+          <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password" onkeyup="return validate('cpassword')">
           <span class="input-group-text">
             <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
           </span>
@@ -502,7 +503,7 @@ echo '<div class="message">'.$message.'</div>';
     
      if (email.indexOf('@') <= 0) {
     document.getElementById("em").innerHTML = " ** Email id not valid, @ position is wrong";
- 
+
     }
    if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
     document.getElementById("em").innerHTML = " ** Email id not valid, . position is wrong";
@@ -510,11 +511,10 @@ echo '<div class="message">'.$message.'</div>';
         document.getElementById('em').innerHTML = "";
     }
     if (email == "") {
-    document.getElementById("em").innerHTML = " ** Please fill email id field";
+    document.getElementById("em").innerHTML = " ** Please fill email address field";
   }else {
         document.getElementById('em').innerHTML = "";
     }
-
 
     if(contact == ""){
       document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
@@ -574,6 +574,79 @@ echo '<div class="message">'.$message.'</div>';
       }else {
         document.getElementById('cpw').innerHTML = "";
     }
+  }
+
+  function validate(id){
+    var input_id = document.getElementById(''+id).value;
+
+    if(id == 'firstname' ){
+        if(input_id == ""){
+          document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field."; 
+        }else {
+          document.getElementById('fn').innerHTML = ""; 
+        }
+    }else if(id == 'middleInitial'){
+      if(middleInitial == ""){
+        document.getElementById('mI').innerHTML ="<b> ** Please fill the middle initial field.";
+      }else {
+          document.getElementById('mI').innerHTML = "";
+      }
+    }else if(id == 'lastname'){
+      if(lastname == ""){
+        document.getElementById('ln').innerHTML ="<b> ** Please fill the lastname field.";
+     }else {
+        document.getElementById('ln').innerHTML = "";
+      }
+    }else if(id == 'username'){
+      if(username == ""){
+        document.getElementById('un').innerHTML ="<b> ** Please fill the username field.";
+     }else {
+        document.getElementById('un').innerHTML = "";
+      }
+    }else if(id == 'email'){
+      if(email == ""){
+        document.getElementById('em').innerHTML ="<b> ** Please fill the email address field.";
+     }else {
+        document.getElementById('em').innerHTML = "";
+      }
+    }else if(id == 'contact'){
+      if(contact == ""){
+        document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+     }else {
+        document.getElementById('cn').innerHTML = "";
+      }
+    }else if(id == 'gender'){
+      if(gender == ""){
+        document.getElementById('g').innerHTML ="<b> ** Please fill the gender field.";
+     }else {
+        document.getElementById('g').innerHTML = "";
+      }
+    }else if(id == 'dob'){
+      if(dob == ""){
+        document.getElementById('db').innerHTML ="<b> ** Please fill the date of birth field.";
+     }else {
+        document.getElementById('db').innerHTML = "";
+      }
+    }else if(id == 'address'){
+      if(address == ""){
+        document.getElementById('ad').innerHTML ="<b> ** Please fill the address field.";
+     }else {
+        document.getElementById('ad').innerHTML = "";
+      }
+    }else if(id == 'password'){
+      if(password == ""){
+        document.getElementById('pw').innerHTML ="<b> ** Please fill the password field.";
+     }else {
+        document.getElementById('pw').innerHTML = "";
+      }
+    }else if(id == 'cpassword'){
+      if(cpassword == ""){
+        document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirm password field.";
+     }else {
+        document.getElementById('cpw').innerHTML = "";
+      }return false;
+    }
+
   }
 
 </script>

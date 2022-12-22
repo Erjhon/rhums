@@ -42,7 +42,7 @@ if (!empty($_SESSION['user_id'])) {
 
 
     $user_id = $row['id'];
-    $full_name = "{$row['firstname']} {$row['middleInitial']} {$row['lastname']}";
+    $full_name = "{$row['firstname']} {$row['middleInitial']}. {$row['lastname']}";
     $contact = "{$row['contact']}";
     $gender = "{$row['gender']}";
     $dob = "{$row['dob']}";
