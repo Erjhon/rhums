@@ -89,11 +89,6 @@ if(isset($_GET['logout'])){
          }else{
             echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/uploaded_img/'.$fetch['image'].'"></div>';
          }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="">'.$message.'</div>';
-            }
-         }
       ?>
 
       </span>
@@ -197,11 +192,6 @@ if(isset($_GET['logout'])){
             echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/images/default-avatar.png"></div>';
          }else{
             echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/uploaded_img/'.$fetch['image'].'"></div>';
-         }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="">'.$message.'</div>';
-            }
          }
       ?>
 
