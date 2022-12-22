@@ -152,11 +152,6 @@ if(isset($_POST['update_profile'])){
          }else{
             echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
          }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="">'.$message.'</div>';
-            }
-         }
       ?>
 
       </span>
@@ -248,11 +243,6 @@ if(isset($_POST['update_profile'])){
             echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
          }else{
             echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
-         }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="">'.$message.'</div>';
-            }
          }
       ?>
 
