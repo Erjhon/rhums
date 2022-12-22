@@ -113,7 +113,7 @@ if(isset($_POST['submit'])){
 
       <body class="bg-neutral">
         <div class="main-content">
-          <div class="header py-8 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
+          <div class="header py-sm-4 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
 
             <div class="container">
               <div class="text-center">
@@ -134,7 +134,7 @@ if(isset($_POST['submit'])){
           
           </div>
           <!-- Page content -->
-          <div class="container mt--7 pb-5">
+          <div class="container mt--6 pb-5">
             <!-- Table -->
             <div class="row justify-content-center">
               <div class="col-lg-9 col-md-7">
@@ -188,7 +188,7 @@ if(isset($_POST['submit'])){
 
       <div class="form-group col-sm-4 mb--1">
         <h5 class="text-dark required">Middle Initial</h5>
-        <input class="form-control" placeholder="Middle Initial" value="<?php echo isset($_POST['middleInitial']) ? $_POST['middleInitial'] : ''; ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="return validate('middleInitial')">
+        <input class="form-control" placeholder="Middle Initial" value="<?php echo isset($_POST['middleInitial']) ? $_POST['middleInitial'] : ''; ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="return validate('middleInitial')" maxlength="2">
          <p  class="text-danger" id="mI" style="font-size:12px;"></p>
       </div>
 
