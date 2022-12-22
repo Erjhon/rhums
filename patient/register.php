@@ -325,7 +325,7 @@ if(isset($_POST['submit'])){
             <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
             <label class="custom-control-label" for="customCheckRegister">
               <!-- <span class="text-dark">I agree with the <a href="privacy.php" target="_blank">Privacy Policy</a></span> -->
-              <span class="text-dark">I agree with the <a href="https://www.privacypolicygenerator.info/live.php?token=W9MHivbFeduOOsIHHIsk5jbZ2d92trv9"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
+              <span class="text-dark">I agree with the <a href="privacy.php"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
 
             </label>
           </div>
