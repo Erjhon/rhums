@@ -52,7 +52,16 @@ if(isset($_POST['update_profile'])){
 
    if(!empty($update_image)){
       if($update_image_size > 2000000){
-         $message[] = 'image is too large';
+         $message[] = " <script>
+            Swal.fire({
+                 icon: 'error',
+                title: 'Image is to large',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
       }else{
          $image_update_query = mysqli_query($conn, "UPDATE patient SET image = '$update_image' WHERE id = '$user_id'") or die('query failed');
          if($image_update_query){
