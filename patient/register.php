@@ -573,7 +573,7 @@ echo '<div class="message">'.$message.'</div>';
       document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirm password field.";
       }else {
         document.getElementById('cpw').innerHTML = "";
-    }return false;
+    }
   }
 
 </script>
