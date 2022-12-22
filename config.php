@@ -26,6 +26,18 @@ function validate_image($file){
 		return base_url.'dist/img/no-image-available.png';
 	}
 }
+function validate_avatar($file){
+    if(!empty($file)){
+            // exit;
+        if(is_file($file)){
+            return $file;
+        }else{
+            return '../patient/images/default-avatar.png';
+        }
+    }else{
+        return '../patient/images/default-avatar.png';
+    }
+}
 function isMobileDevice(){
     $aMobileUA = array(
         '/iphone/i' => 'iPhone', 

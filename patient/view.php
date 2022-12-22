@@ -81,18 +81,21 @@ $run = mysqli_query($conn,$query);
 <li class="nav-item dropdown">
   <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <div class="media align-items-center">
-      <span class="avatar avatar-sm rounded-circle">
-        <?php
-        $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-        if (mysqli_num_rows($select) > 0) {
-          $fetch = mysqli_fetch_assoc($select);
-        }
-        if ($fetch['image'] == '') {
-          echo '<img src="../patient/images/default-avatar.png">';
-        } else {
-          echo '<img src="../patient/uploaded_img/' . $fetch['image'] . '">';
-        }
-        ?>
+         <span class="avatar rounded-circle">
+               <!-- Profile picture image-->
+                     <?php
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+      <?php
+         if($fetch['image'] == ''){
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
+         }else{
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
+         }
+      ?>
 
       </span>
     </div>
@@ -169,20 +172,28 @@ $run = mysqli_query($conn,$query);
         <li class="nav-item dropdown">
           <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <?php
-                $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-                if (mysqli_num_rows($select) > 0) {
-                  $fetch = mysqli_fetch_assoc($select);
-                }
-                if ($fetch['image'] == '') {
-                  echo '<img src="../patient/images/default-avatar.png">';
-                } else {
-                  echo '<img src="../patient/uploaded_img/' . $fetch['image'] . '">';
-                }
-                ?>
+              <span class="avatar rounded-circle">
+               <!-- Profile picture image-->
+                     <?php
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+      <?php
+         if($fetch['image'] == ''){
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
+         }else{
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
+         }
+         if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="">'.$message.'</div>';
+            }
+         }
+      ?>
 
-              </span>
+      </span>
               <div class="media-body ml-2 d-none d-lg-block">
                 <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
               </div>
@@ -319,6 +330,39 @@ $i++;
 </table>
 </div>
 
+<style>
+
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+
+}
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
+
+</style>
+
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
@@ -353,4 +397,5 @@ $i++;
         }
     }
 </script>
+
 </html>

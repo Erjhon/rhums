@@ -1,8 +1,3 @@
-<?php if($_settings->chk_flashdata('success')): ?>
-	<script>
-		alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
-	</script>
-<?php endif;?>
 
 <style>
 	.img-avatar{
@@ -22,38 +17,44 @@
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
-			<table class=" table py-1 py-lg-1 table-hover table-striped text-center datatable ">
+			<table class=" table py-1 py-lg-1 table-hover table-striped text-center datatable table-responsive">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>Avatar</th>
 						<th>Name</th>
 						<th>Username</th>
+						<th>Email</th>
+						<th>Contact</th>
+						<th>Gender</th>
+						<th>Date of Birth</th>
+						<th>Address</th>
+					
+					
 						
 					</tr>
 				</thead>
-				<tbody>
-<?php
-
-$conn = mysqli_connect("localhost","root","","scheduler_db");
-$query ="SELECT * FROM patient";
-$query_run = mysqli_query($conn,$query);
-
-?>
-
-					<?php 
+				<tbody>	<?php 
 					$i = 1;
-					$qry = $conn->query("SELECT * FROM `patient`");
-					while($row = $qry->fetch_assoc()):
-						?>
+						$qry = $conn->query("SELECT * From patient");
+						while($row = $qry->fetch_assoc()):
+					?>
 						<tr>
-							<td class="text-center"><?php echo $i++; ?></td>					
-							<td class="img-avatar img-thumbnail p-0 avatar">
-								<img src="<?php echo "../patient/uploaded_img/".$row['image'];?>" ></td>
-							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
-							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
+							<td class="text-center"><?php echo $i++; ?></td>
+							<td class="text-center">
+								<img src="<?php echo "../patient/uploaded_img/".$row['image'];?> "  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "  alt="">
+							
 
+
+							</td>
+							<td><?php echo ucwords($row['firstname']) ?> <?php echo ucwords($row['lastname']) ?></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['username'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['email'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['contact'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['gender'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['dob'] ?></p></td>
+							<td ><p class="m-0 truncate-1" style="font-size:10pt;"><?php echo $row['address'] ?></p></td>
+						
 							
 						<?php if (isset($_GET['id'])) {  
 							$id = $_GET['id'];  
@@ -99,4 +100,46 @@ $query_run = mysqli_query($conn,$query);
 		$('table').DataTable();
 	} );
 </script>
+<style>
+
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+
+}
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
+.avatar--default.default--two {
+  background-color: #f2f2f2;
+  border-radius: 50%;
+}
+.avatar--default.default--two::before {
+  background-color: #999;
+}
+.avatar--default.default--two::after {
+  background-color: #999;
+  box-shadow: 0 0 0 4px #f2f2f2;
+}
+</style>
 

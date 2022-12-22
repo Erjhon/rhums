@@ -21,6 +21,8 @@ if(isset($_GET['logout'])){
   
  <head>
   <?php require_once('inc/header.php') ?>
+    <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 <!-- Favicon -->
 <link href="./assets/assets/img/brand/doh.png" rel="icon" type="image/png">
@@ -73,16 +75,19 @@ if(isset($_GET['logout'])){
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-           <span class="avatar avatar-sm rounded-circle">
-          <?php
-         $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
+          <span class="avatar rounded-circle">
+               <!-- Profile picture image-->
+                     <?php
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+      <?php
          if($fetch['image'] == ''){
-            echo '<img src="patient/images/default-avatar.png">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/images/default-avatar.png"></div>';
          }else{
-            echo '<img src="patient/uploaded_img/'.$fetch['image'].'">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/uploaded_img/'.$fetch['image'].'"></div>';
          }
       ?>
 
@@ -174,16 +179,19 @@ if(isset($_GET['logout'])){
   <li class="nav-item dropdown">
     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-        <span class="avatar avatar-sm rounded-circle">
-          <?php
-         $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
+         <span class="avatar rounded-circle">
+               <!-- Profile picture image-->
+                     <?php
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+      <?php
          if($fetch['image'] == ''){
-            echo '<img src="patient/images/default-avatar.png">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/images/default-avatar.png"></div>';
          }else{
-            echo '<img src="patient/uploaded_img/'.$fetch['image'].'">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="./patient/uploaded_img/'.$fetch['image'].'"></div>';
          }
       ?>
 
@@ -331,5 +339,37 @@ if(isset($_GET['logout'])){
         }
     }
 </script>
+<style>
+
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+
+}
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
+
+</style>
 
 </html>

@@ -7,7 +7,8 @@
              <h3 class="display-1 col-lg-12 text-dark" style="font-family: 'BlackJack', sans-serif;">Online Medical Appointment</h3>
              <h2 class="fw-normal" style="font-family: Century Gothic">A PASSION FOR PUTTING PATIENTS FIRST</h2><br>
              <p class="lead fw-normal text-white-50 mb-0">
-                 <button class="btn btn-primary my-4" type="button" id="create_appointment">Set an Appointment Now</button>
+                 <button class="btn btn-primary my-4" type="button" id="create_appointment">Appointment for Yourself</button>
+                 <button class="btn btn-primary my-4" type="button" id="create_appointment1">Appointment for Others</button>
              </p>
          </div>
      </div>
@@ -38,5 +39,8 @@
          $('#create_appointment').click(function() {
              uni_modal("<h2>Medical Appointment Form</h2>Please fill out the reason and preferred date and time. An SMS notification will be sent to you.", "admin/appointments/patient_manage_appointment.php", 'mid-large')
          })
+      $('#create_appointment1').click(function() {
+         uni_modal("<h2>Medical Appointment Form</h2>Please fill out the form below. An SMS notification will be sent to you.", "admin/appointments/add_appointment_others.php", 'mid-large')
+     })
      })
  </script>

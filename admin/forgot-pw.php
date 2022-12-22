@@ -24,9 +24,9 @@ require "mail.php";
         $email = $_POST['email'];
         //validate email
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-          $error[] = '<div class="alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"></i> Please enter a valid email';
+          $error[] = "Please enter a valid email";
         }elseif(!valid_email($email)){
-          $error[] = '<div class="alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"></i> That email was not found';
+          $error[] = "That email was not found";
         }else{
 
           $_SESSION['forgot']['email'] = $email;
@@ -57,7 +57,7 @@ require "mail.php";
         $password2 = $_POST['password2'];
 
         if($password !== $password2){
-          $error[] = '<div class="alert alert-danger text-white err_msg"><i class="fa fa-exclamation-triangle"></i> Password do not matched';
+          $error[] = "Passwords do not match";
         }elseif(!isset($_SESSION['forgot']['email']) || !isset($_SESSION['forgot']['code'])){
           header("Location: forgot-pw.php");
           die;

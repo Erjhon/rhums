@@ -94,7 +94,7 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
                     <select type="text" class="form-control form-select" name="gender"  required>
-                        <option class="placeholder" style="display: none" >Select gender</option>
+                        <option class="placeholder" style="display: none"  selected disabled value="" >Select gender</option>
                         <option  <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option  <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>
@@ -103,7 +103,7 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="form-group">
                     <label for="address" class="control-label">Address</label>
                     <select class="form-control"  name="address" rows="2" required>
-                        <option class="placeholder" style="display: none" >Select address</option>
+                        <option class="placeholder" style="display: none"  selected disabled value="" >Select address</option>
                         <option>Angustia, Nabua</option>
                         <option>Antipolo Old, Nabua</option>
                         <option>Antipolo Young, Nabua</option>
@@ -173,13 +173,11 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="form-group">
                     <label for="reason" class="control-label">Reason for Appointment</label>
                     <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
-                    <select name="reason" id="reason" class="form-control form-select">
-                        <option class="placeholder" style="display: none" >Select reason</option>
+                    <select name="reason" id="reason" class="form-control form-select"required>
+                        <option class="placeholder" style="display: none"  selected disabled value="">Select reason</option>
                         <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                         <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
-                       <!--  <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationC" ? "selected": "" ?>>Immunization for Child</option>
-                        <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationSC" ? "selected": "" ?>>Immunization for Senior Citizen</option> -->
-                        <!-- <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option> -->
+                       
                     </select>
 
                     </div>

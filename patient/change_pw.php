@@ -115,16 +115,19 @@ if(isset($_POST['change_pw'])){
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-           <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
+             <span class="avatar rounded-circle">
+               <!-- Profile picture image-->
+                     <?php
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+      <?php
          if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
          }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
          }
       ?>
 
@@ -204,17 +207,21 @@ if(isset($_POST['change_pw'])){
   <li class="nav-item dropdown">
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-        <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
+          <span class="avatar rounded-circle">
+               <!-- Profile picture image-->
+                     <?php
+      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+      <?php
          if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
          }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
+            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
          }
+         
       ?>
 
       </span>
@@ -288,28 +295,17 @@ if(isset($_POST['change_pw'])){
                   ?>
 
                   <form action="" method="post">
-                    <?php
-// if($fetch['image'] == ''){
-//    echo '<div ><img src="images/default-avatar.png"></div>';
-// }else{
-//    echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
-// }
-                    if(isset($message)){
-                      foreach($message as $message){
-                        echo '<div class="">'.$message.'</div>';
-                      }
-                    }
-                    ?> 
+                   
                     <!-- Form Group (username)-->
                     <div class="mb-3">
                       <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-                      <label class="small mb-1" for="inputUsername">Current Password</label>
-                      <!-- <div class="input-group input-group-alternative mb--1"> -->
-                        <input class="form-control" type="oldpassword" name="update_pass" placeholder="Enter current password" required>
-                        <!-- <span class="input-group-text">
-                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye0" onclick="toggle0()"></i>
+                      <label class="small mb-1" for="inputUsername">Current Password</label>               
+                       <div class="input-group input-group-alternative mb--1">
+                        <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter current password" required>
+                         <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle()"></i>
                         </span>
-                      </div> -->
+                      </div>
                     </div>
 
                     <div class="mb-3">
@@ -341,17 +337,46 @@ if(isset($_POST['change_pw'])){
 
         </div>
       </div>
-<!--   <script type="text/javascript">
-window.history.forward();
-function noBack()
-{
-window.history.forward();
+<?php 
+ if(isset($message)){
+            foreach($message as $message){
+               echo ''.$message.'';
+            }
+         }
+
+?>
+<style>
+
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+
 }
-</script>
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
 
-<div onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
-
-</div>  -->            
+</style>        
 
 </body>
 
@@ -375,12 +400,12 @@ window.history.forward();
 <!-- show password -->
 <script>
   var state = false;
-  function toggle1(){
+  function toggle(){
     if (state){
-      document.getElementById("oldpassword").setAttribute("type", "password");
+      document.getElementById("update_pass").setAttribute("type", "password");
       state = false;
     } else{
-      document.getElementById("oldpassword").setAttribute("type", "text");
+      document.getElementById("update_pass").setAttribute("type", "text");
       state = true;
     }
   }
