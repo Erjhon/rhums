@@ -38,11 +38,29 @@
 					$i = 1;
 						$qry = $conn->query("SELECT * From patient");
 						while($row = $qry->fetch_assoc()):
-					?>
+				$pathx = "../patient/uploaded_img/";
+				$file = $row["image"];
+
+	?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td class="text-center">
-								<img src="<?php echo "../patient/uploaded_img/".$row['image'];?> "  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "  alt="">
+								<!-- <img src="<?php echo "../patient/uploaded_img/".$row['image'];?> "  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "  alt=""> -->
+								<?php switch(true)
+											{
+												case ($row['image'] == (!empty($row['gender'])) ):
+												echo '<img src="'.$pathx.$file.'"  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>>';
+											 	// echo <img src="../patient/uploaded_img/".$row['image'];
+												default:
+												case ($row['gender'] == 'Male'):
+												 echo '<img src="../patient/images/male.png" class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>';
+												break;
+												case ($row['gender'] == 'Female'):
+											 echo '<img src="../patient/images/female.png" class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>';
+												break;
+											} 
+
+								?>"> 
 							
 
 
