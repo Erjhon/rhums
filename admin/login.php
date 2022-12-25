@@ -75,7 +75,7 @@
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="icon-area">
-                        <i id="icon" class="fa fa-eye-slash"></i>
+                        <i id="icon" class="fa fa-eye-slash" style="cursor: pointer;"></i>
                       </span>
                     </div>
                   </div>
