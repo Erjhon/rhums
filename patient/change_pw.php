@@ -115,23 +115,35 @@ if(isset($_POST['change_pw'])){
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-             <span class="avatar rounded-circle">
-               <!-- Profile picture image-->
-                     <?php
-      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-      if(mysqli_num_rows($select) > 0){
-         $fetch = mysqli_fetch_assoc($select);
-      }
-   ?>
-      <?php
-         if($fetch['image'] == ''){
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
-         }else{
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
+       <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+         if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="">'.$message.'</div>';
+            }
          }
       ?>
-
-      </span>
+                </span>
     </div>
 </a>
 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -207,24 +219,35 @@ if(isset($_POST['change_pw'])){
   <li class="nav-item dropdown">
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-          <span class="avatar rounded-circle">
-               <!-- Profile picture image-->
-                     <?php
-      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-      if(mysqli_num_rows($select) > 0){
-         $fetch = mysqli_fetch_assoc($select);
-      }
-   ?>
-      <?php
-         if($fetch['image'] == ''){
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
-         }else{
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
+          <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+         if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="">'.$message.'</div>';
+            }
          }
-         
       ?>
-
-      </span>
+                </span>
        <div class="media-body ml-2 d-none d-lg-block">
           <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
