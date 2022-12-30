@@ -4,6 +4,7 @@ foreach($user->fetch_array() as $k =>$v){
 	$meta[$k] = $v;
 }
 ?>
+
 <?php if($_settings->chk_flashdata('success')): ?>
 <script>
 	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
@@ -29,13 +30,15 @@ foreach($user->fetch_array() as $k =>$v){
 				</div>
 				<div class="form-group">
 					<label for="username">Username</label>
-					<input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+					<input type="text" name="username" id="username" onBlur="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+						<span id="user-availability-status1" style="font-size:12px;"></span>
 				</div>
 				<div class="form-group">
 					<label for="username">Email</label>
-					<input type="text" name="email" id="email" class="form-control" value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required  autocomplete="off">
+					<input type="text" name="email" id="email" class="form-control" onBlur="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>">
+						<span id="user-availability-status2" style="font-size:12px;" required></span>
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="password">Password</label>
 					   <div class="input-group input-group-alternative mb--1">
                         <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" onkeyup='check();' />
@@ -43,7 +46,7 @@ foreach($user->fetch_array() as $k =>$v){
                           <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
                         </span>
                       </div>
-  							<!-- <small><i>Leave this blank if you dont want to change the password.</i></small>                -->
+  						
                             </div>
 
                             <div class="form-group">
@@ -55,7 +58,7 @@ foreach($user->fetch_array() as $k =>$v){
                         </span>
                       </div>	
                      	  <span id='message'></span>						             
-                            </div>
+                            </div> -->
 
 				<div class="form-group">
 					<label for="" class="control-label">Avatar</label>
@@ -162,3 +165,36 @@ var _this = $(this)
     }
   }
 </script>
+
+
+<script>
+	function userAvailability() {
+		$("#loaderIcon").show();
+		jQuery.ajax({
+			url: "user/check_availability_users.php",
+			data:'username='+$("#username").val(),
+			type: "POST",
+			success:function(data){
+				$("#user-availability-status1").html(data);
+				$("#loaderIcon").hide();
+			},
+			error:function (){}
+		});
+	}
+</script> 
+
+<script>
+	function userAvailability2() {
+		$("#loaderIcon").show();
+		jQuery.ajax({
+			url: "user/check_availability_users.php",
+			data:'email='+$("#email").val(),
+			type: "POST",
+			success:function(data){
+				$("#user-availability-status2").html(data);
+				$("#loaderIcon").hide();
+			},
+			error:function (){}
+		});
+	}
+</script> 

@@ -52,7 +52,7 @@
 								<input type="checkbox" class="form-check-input" id="selectAll">
 							</div></td>
 							<th class="text-center">#</th>
-							<th>Patient No.</th>
+							<th>Appointment No.</th>
 							<th>Patient Name</th>
 							<th>Reason</th>
 							<th>Schedule</th>
@@ -88,10 +88,10 @@
 										<?php 
 										switch($row['status']){ 
 											case(0): 
-											echo '<span class="badge badge-success">Done</span>';
+											echo '<span class="badge badge-info">Done</span>';
 											break; 
 											case(1): 
-											echo '<span class="badge badge-info">Confirmed</span>';
+											echo '<span class="badge badge-success">Confirmed</span>';
 											break; 
 											case(2): 
 											echo '<span class="badge badge-warning">Cancelled</span>';

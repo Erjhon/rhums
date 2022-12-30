@@ -333,9 +333,9 @@ $sched_arr = json_encode($sched_query->fetch_all(MYSQLI_ASSOC));
         var days = moment(event.end).diff(moment(event.start), 'days')
         var events = []
         Object.keys(scheds).map(k => {
-          var bg = 'var(--primary)';
+          var bg = 'var(--info)';
           if (scheds[k].status == 0)
-            bg = 'var(--primary)';
+            bg = 'var(--info)';
           if (scheds[k].status == 1)
             bg = 'var(--success)';
           console.log(bg)

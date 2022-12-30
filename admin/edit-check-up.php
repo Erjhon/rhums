@@ -125,7 +125,7 @@ if(isset($_POST['submit']))
             <?php }?>
             <?php  
 
-            $ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
+            $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
 
 
             ?>
@@ -164,132 +164,108 @@ if(isset($_POST['submit']))
                     <td><?php  echo $row['assigned'];?></td> 
                   </tr>
                   <?php $cnt=$cnt+1;} ?>
-
-                  <?php  
-
-                  $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
+                </table>
 
 
-                  ?>
-                  <?php  
-                  while ($row=mysqli_fetch_array($ret)) { 
-                    ?>
-                    <tr>
-                      <td><?php echo $cnt;?>.</td>
-                      <td><?php  echo $row['bloodpress'];?></td>
-                      <td><?php  echo $row['bloodsugar'];?></td> 
-                      <td><?php  echo $row['bodytemp'];?></td>
-                      <td><?php  echo $row['height'];?></td>
-                      <td><?php  echo $row['weight'];?></td>
-                      <td><?php  echo $row['bmi'];?></td>
-                      <td><?php  echo $row['complaints'];?></td>
-                      <td><?php  echo $row['remark'];?></td>
-                      <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td>
-                      <td><?php  echo $row['assigned'];?></td> 
-                    </tr>
-                    <?php $cnt=$cnt+1;} ?>
-                  </table>
+              </div>
+              <p align="center"> <br>                          
+                <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
+                <?php  ?>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <table class="table table-bordered table-hover data-tables">
 
+                          <form method="post" name="submit">
 
-                </div>
-                <p align="center"> <br>                          
-                  <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
-                  <?php  ?>
-                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-lg" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <table class="table table-bordered table-hover data-tables">
+                            <tr>
+                              <th>Blood Pressure :</th>
+                              <td><input name="bloodpress" placeholder="Sample: 120/80" class="form-control wd-450" required="true"></td>
+                            </tr>                          
+                            <tr>
+                              <th>Blood Sugar :</th>
+                              <td><input name="bloodsugar" placeholder="Sample: 70" class="form-control wd-450" required="true"></td>
+                            </tr> 
+                            <tr>
+                              <th>Body Temperature :</th>
+                              <td><input name="bodytemp" placeholder="Sample: 36.5" class="form-control wd-450" required="true"></td>
+                            </tr> 
+                            <tr>
+                              <th>Height :</th>
+                              <td><input type="number" id="height" name="height" placeholder="Enter height in centimeters" class="form-control wd-450" required="true"></td>
+                            </tr>
+                            <tr>
+                              <th>Weight :</th>
+                              <td><input type="number" id="weight" name="weight" placeholder="Enter weight in kilograms" class="form-control wd-450" required="true"></td>
+                            </tr>
+                            <tr>
+                              <th>BMI :</th>
+                              <td><textarea class="form-control" rows="1" id="bmi" name="bmi" readonly></textarea></td>
+                            </tr>
+                            <tr>
+                              <th>Patient Complaints :</th>
+                              <td><textarea name="complaints" placeholder="Enter Patient Complaints" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+                            </tr> 
+                            <tr>
+                              <th>Remarks :</th>
+                              <td><textarea name="remark" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
+                              <td><textarea hidden name="assigned" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>" required="true"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea></td>
+                            </tr>  
+                          </table>
 
-                            <form method="post" name="submit">
-
-                              <tr>
-                                <th>Blood Pressure :</th>
-                                <td><input name="bloodpress" placeholder="Sample: 120/80" class="form-control wd-450" required="true"></td>
-                              </tr>                          
-                              <tr>
-                                <th>Blood Sugar :</th>
-                                <td><input name="bloodsugar" placeholder="Sample: 70" class="form-control wd-450" required="true"></td>
-                              </tr> 
-                              <tr>
-                                <th>Body Temperature :</th>
-                                <td><input name="bodytemp" placeholder="Sample: 36.5" class="form-control wd-450" required="true"></td>
-                              </tr> 
-                              <tr>
-                                <th>Height :</th>
-                                <td><input type="number" id="height" name="height" placeholder="Enter height in centimeters" class="form-control wd-450" required="true"></td>
-                              </tr>
-                              <tr>
-                                <th>Weight :</th>
-                                <td><input type="number" id="weight" name="weight" placeholder="Enter weight in kilograms" class="form-control wd-450" required="true"></td>
-                              </tr>
-                              <tr>
-                                <th>BMI :</th>
-                                <td><textarea class="form-control" rows="1" id="bmi" name="bmi" readonly></textarea></td>
-                              </tr>
-                              <tr>
-                                <th>Patient Complaints :</th>
-                                <td><textarea name="complaints" placeholder="Enter Patient Complaints" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
-                              </tr> 
-                              <tr>
-                                <th>Remarks :</th>
-                                <td><textarea name="remark" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" required="true"></textarea></td>
-                                <td><textarea hidden name="assigned" placeholder="Enter Remarks" rows="4" cols="14" class="form-control wd-450" value="<?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?>" required="true"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></textarea></td>
-                              </tr>  
-                            </table>
-
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                          </form>
-                        </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </body>
+            </div>
+          </body>
 
 
 
-            <script type="text/javascript">
+          <script type="text/javascript">
 
-              $(document).ready( function () {
-                $('table').DataTable();
-              } );
-            </script>
+            $(document).ready( function () {
+              $('table').DataTable();
+            } );
+          </script>
 
-            <!-- COMPUTE BMI -->
-            <script>
-              $(document).ready(function(){
-                let keyupTimer;
-                $('#height').keyup(function(){
-                  var weight = $("#weight").val();
-                  var height = $(this).val();
-                  clearTimeout(keyupTimer);
-                  keyupTimer = setTimeout(function () {
-                    var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
-                    $("#bmi").text(bmi);
-                  }, 400);
-                });
+          <!-- COMPUTE BMI -->
+          <script>
+            $(document).ready(function(){
+              let keyupTimer;
+              $('#height').keyup(function(){
+                var weight = $("#weight").val();
+                var height = $(this).val();
+                clearTimeout(keyupTimer);
+                keyupTimer = setTimeout(function () {
+                  var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+                  $("#bmi").text(bmi);
+                }, 400);
+              });
 
-                let keyupTimer2;
-                $('#weight').keyup(function(){
-                  var weight = $(this).val();
-                  var height = $("#height").val();
-                  clearTimeout(keyupTimer2);
-                  keyupTimer2 = setTimeout(function () {
-                    var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
-                    $("#bmi").text(bmi);
-                  }, 400);
-                });
+              let keyupTimer2;
+              $('#weight').keyup(function(){
+                var weight = $(this).val();
+                var height = $("#height").val();
+                clearTimeout(keyupTimer2);
+                keyupTimer2 = setTimeout(function () {
+                  var bmi = (weight / Math.pow( (height/100), 2 )).toFixed(1);
+                  $("#bmi").text(bmi);
+                }, 400);
+              });
 
 // if(result < 18.5){
 //     category = "Underweight";
@@ -308,8 +284,8 @@ if(isset($_POST['submit']))
 //     result.style.color = "#ff5e57";
 // }
 // document.getElementById("category").textContent = category;
-              });
-            </script>
+            });
+          </script>
 
-            <!-- patients23:19-->
+          <!-- patients23:19-->
 <!-- </html> -->
