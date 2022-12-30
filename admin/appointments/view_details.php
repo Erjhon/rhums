@@ -34,7 +34,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         <?php 
         switch($status){ 
             case(0): 
-                echo '<span class="badge badge-info">Done</span>';
+                echo '<span class="badge badge-primary">Done</span>';
             break; 
             case(1): 
             echo '<span class="badge badge-success">Confirmed</span>';

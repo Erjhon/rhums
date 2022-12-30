@@ -384,7 +384,7 @@ if(isset($_POST['update_profile'])){
                             <!-- Form Group (middle initial)-->
                             <div class="col-md-4">
                                 <label class="small mb-1" for="inputMiddleInitial">Middle Initial</label>
-                                <input class="form-control" id="inputMiddleInitial" type="text" name="update_middle" value="<?php echo $fetch['middleInitial']; ?>.">
+                                <input class="form-control" id="inputMiddleInitial" type="text" name="update_middle" value="<?php echo $fetch['middleInitial']; ?>">
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-4">
@@ -470,7 +470,7 @@ if(isset($_POST['update_profile'])){
                             </div>
                         </div>
                         <!-- Save changes button-->
-                         <input type="submit" id="submit" class="btn btn-primary" value="Update" name="update_profile">
+                         <input type="submit" class="btn btn-primary" value="Update" name="update_profile">
                     </form>
                 </div>
             </div>

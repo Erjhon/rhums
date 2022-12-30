@@ -91,10 +91,6 @@ h3 {
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="<?php echo base_url.'admin/?page=user/change_pass' ?>" class="dropdown-item">
-                <i class="ni ni-lock-circle-open"></i>
-                <span>Change Password</span>
-              </a>
               <div class="dropdown-divider"></div>
               <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
                 <i class="ni ni-user-run"></i>

@@ -53,7 +53,7 @@
         <?php }?>
 
         <?php  
-        $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
+        $ret=mysqli_query($conn,"select * from checkup  where pid='$vid'");
         ?>
 
         <div class="table-responsive">
@@ -92,21 +92,43 @@
               </tr>
               <?php $cnt=$cnt+1;} ?>
 
+              <?php  
 
-            </table>
+              $ret=mysqli_query($conn,"select * from patient_history where patientId='$vid'");
 
-          </form>
 
+              ?>
+              <?php  
+              while ($row=mysqli_fetch_array($ret)) { 
+                ?>
+                <tr>
+                  <td><?php echo $cnt;?>.</td>
+                  <td><?php  echo $row['bloodpress'];?></td>
+                  <td><?php  echo $row['bloodsugar'];?></td> 
+                  <td><?php  echo $row['bodytemp'];?></td>
+                  <td><?php  echo $row['height'];?></td>
+                  <td><?php  echo $row['weight'];?></td>
+                  <td><?php  echo $row['bmi'];?></td>
+                  <td><?php  echo $row['complaints'];?></td>
+                  <td><?php  echo $row['remark'];?></td>
+                  <td><?php echo date("m-d-Y", strtotime($row['visit']))?></td>
+                  <td><?php  echo $row['assigned'];?></td> 
+                </tr>
+                <?php $cnt=$cnt+1;} ?>
+              </table>
+
+            </form>
+
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
 </body>
 <script type="text/javascript">
   $(document).ready(function () {
     $('table').DataTable();
-  });
+});
 </script>
 </html>

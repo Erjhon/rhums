@@ -71,11 +71,11 @@
                       <span class="fas fa-lock p-1"></span>
                     </div>
                   </div>
-                  <input type="password" class="active form-control" id="input-area" name="password" placeholder="Password" required>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                   <div class="input-group-append">
                     <div class="input-group-text">
-                      <span class="icon-area">
-                        <i id="icon" class="fa fa-eye-slash" style="cursor: pointer;"></i>
+                      <span>
+                        <i class="fa fa-eye rounded " aria-hidden="true" id="eye" onclick="toggle()"></i>
                       </span>
                     </div>
                   </div>
@@ -97,6 +97,9 @@
                   <div class="col-12 text-center"><br>Don't have an account?
                     <a href="../patient/register.php">Create an account</a>
                   </div>
+            <!-- <div class="col-6 text-right">
+              <a href="../client/register.php" class="nav-link"><small>Create new account</small></a>
+            </div> -->
                 </div>
               </form>
             </div>
@@ -119,21 +122,17 @@
     </script>
 
     <script>
-      var x = document.getElementById('input-area');
-      var y = document.getElementById('icon');
+      var state = false;
 
-      y.onclick = function(){
-        if(x.className == 'active form-control'){
-          x.setAttribute('type', 'text');
-          icon.className = 'fa fa-eye';
-          x.className = 'form-control';
-        }else{
-          x.setAttribute('type', 'password');
-          icon.className = 'fa fa-eye-slash';
-          x.className = 'active form-control';
+      function toggle() {
+        if (state) {
+          document.getElementById("password").setAttribute("type", "password");
+          state = false;
+        } else {
+          document.getElementById("password").setAttribute("type", "text");
+          state = true;
         }
       }
-
     </script>
 
     <!-- <script type="text/javascript">
