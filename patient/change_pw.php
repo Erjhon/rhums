@@ -80,6 +80,12 @@ if(isset($_POST['change_pw'])){
 <!-- CSS Files -->
 <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 </head>
+<?php 
+ if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="">'.$message.'</div>';
+            }
+         } ?>
 
 <style>
 #selectAll{
@@ -137,11 +143,6 @@ if(isset($_POST['change_pw'])){
                     echo '<img src="images/female.png"/>';
                     break;
                   } 
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="">'.$message.'</div>';
-            }
-         }
       ?>
                 </span>
     </div>
@@ -241,11 +242,6 @@ if(isset($_POST['change_pw'])){
                     echo '<img src="images/female.png"/>';
                     break;
                   } 
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="">'.$message.'</div>';
-            }
-         }
       ?>
                 </span>
        <div class="media-body ml-2 d-none d-lg-block">
@@ -360,14 +356,6 @@ if(isset($_POST['change_pw'])){
 
         </div>
       </div>
-<?php 
- if(isset($message)){
-            foreach($message as $message){
-               echo ''.$message.'';
-            }
-         }
-
-?>
 <style>
 
 .avatar--default {
