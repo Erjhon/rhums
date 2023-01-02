@@ -304,7 +304,7 @@
                                       <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
                                     </span>
                                   </div>
-                                  <p  id="cpw" style="font-size:12px;"></p>
+                                  <p  class="text-danger" id="cpw" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="col-12 mb-2">
@@ -492,7 +492,7 @@ function validation(){
     document.getElementById("pw").innerHTML = "**Fill the password field!";  
 
   }  if(cpassword == "") {  
-    document.getElementById("cpw").innerHTML = '<p class="text-danger">**Fill the confirm password field!</p>';  
+    document.getElementById("cpw").innerHTML = '**Fill the confirm password field!';  
     return false;  
   }  
 
@@ -701,7 +701,7 @@ function validate(id){
       error:function (){}
     });
   }
-</script> 
+</script>
 
 <!-- //check birthdays start -->
 <script>
