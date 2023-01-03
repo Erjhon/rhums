@@ -78,7 +78,7 @@
 								</td>
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td><b>PA-<?php echo $row['id'] ?></td>
-									<td><?php echo $row['name'] ?> <?php echo $row['mname'] ?> <?php echo $row['lname'] ?></td>
+									<td><?php echo $row['name'] ?> <?php echo $row['mname'] ?>. <?php echo $row['lname'] ?></td>
 									<td><?php echo $row['reason'] ?></td>
 									<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
 									<!-- <td><?php echo $row['name'] ?></td> -->
@@ -151,7 +151,7 @@
 					uni_modal("Appointment Form","appointments/manage_appointment.php",'mid-large')
 				})
 				$('.edit_data').click(function(){
-					uni_modal("Edit Appointment Details","appointments/manage_appointment.php?id="+$(this).attr('data-id'),'mid-large')
+					uni_modal("Edit Appointment Details","appointments/edit_appointment.php?id="+$(this).attr('data-id'),'mid-large')
 				})
 				$('#selectAll').change(function(){
 // if($(this).is(":checked") == true){

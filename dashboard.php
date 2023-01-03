@@ -93,6 +93,10 @@ if(isset($_GET['logout'])){
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
+             <a href="patient/change_pw.php" class="dropdown-item">
+              <i class="ni ni-lock-circle-open"></i>
+              <span>Change Password</span>
+            </a>
             <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
