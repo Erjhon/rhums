@@ -86,6 +86,7 @@ if(isset($message)){
 
       <div class="card card-outline card-primary">
         <div class="card-header">
+          <a href="#" class="nav-icon ni ni-bold-left text-success" onclick="history.back()"> Back</a>
           <h2 class="card-title text-center">Patient Records for Animal Bite</h2>
         </div>
         <?php

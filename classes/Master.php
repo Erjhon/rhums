@@ -87,7 +87,7 @@ class Master extends DBConnection
 
 		//
 		if (empty($patient_id))
-			$sql = "INSERT INTO `patient_list` set name = '{$name}'  ";
+			$sql = "INSERT INTO `patient_list` set name = '{$name}',mname = '{$mname}',lname = '{$lname}'  ";
 		else
 			$sql = "UPDATE `patient_list` set name = '{$name}' where id = '{$id}'  ";
 		$save_inv = $this->conn->query($sql);

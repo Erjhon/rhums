@@ -231,6 +231,25 @@ if(isset($_GET['logout'])){
           </div>
         </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Ready to Leave?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a type="button" class="btn btn-primary" href="./patient/logout.php?logout=<?php echo $user_id; ?>">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
         <!--   Core   -->
         <script src="./assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
         <script src="./assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -15,7 +15,7 @@
 		<div class="container-fluid table-responsive">
 			<table class="table py-1 py-lg-1 table-hover table-striped ">
 				<thead>
-					<tr class="text-center">
+					<tr class="">
 						<th>#</th>
 						<th>Avatar</th>
 						<th>Name</th>
@@ -36,8 +36,8 @@
 
 					?>
 					<tr>
-						<td class="text-center"><?php echo $i++; ?></td>
-						<td class="text-center">
+						<td><?php echo $i++; ?></td>
+						<td>
 							<?php switch(true)
 							{
 								case ($row['image'] == (!empty($row['gender'])) ):
@@ -61,7 +61,7 @@
 					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['email'] ?></p></td>
 					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['contact'] ?></p></td>
 					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['gender'] ?></p></td>
-					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['dob'] ?></p></td>
+					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo date("F d, Y",strtotime($row['dob'])) ?></p></td>
 					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['address'] ?></p></td>
 
 

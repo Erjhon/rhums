@@ -75,9 +75,13 @@ if (!empty($_SESSION['user_id'])) {
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
 
-                <div class="form-group">
-                    <label for="name" class="control-label">Fullname</label>
-                    <input type="text" class="form-control" name="name" placeholder="FN, MI, LN" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                 <div class="form-group">
+                    <label for="name" class="control-label">Firstname</label>
+                    <input type="text" class="form-control" name="name" placeholder="Firstname" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                </div>
+                   <div class="form-group">
+                    <label for="name" class="control-label">Lastname</label>
+                    <input type="text" class="form-control" name="lname" placeholder="Lastname" value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
                 </div>
                 
                 <div hidden class="form-group">
@@ -164,6 +168,10 @@ if (!empty($_SESSION['user_id'])) {
                         <option>Relatives</option>
                     </select>
                 </div> -->
+                  <div class="form-group">
+                    <label for="name" class="control-label">Middle Initial</label>
+                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
+                </div>
 
                 <div class="form-group">
                     <label for="dob" class="control-label">Date of Birth</label>

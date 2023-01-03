@@ -469,7 +469,7 @@ function validation(){
     document.getElementById('cn').innerHTML ="<b> ** User must write digits only not characters.";
   }
   if(contact.length!=11){
-    document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be 11 digits only.";
+    document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be valid and consist of 11 digits only.";
   }
   if(contact == ""){
     document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";

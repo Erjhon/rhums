@@ -281,7 +281,7 @@ $run = mysqli_query($conn,$query);
                           <tr class="text-center">
                             <td><b>PA-<?php echo $row["patient_id"]; ?></td>
                               <td><?php echo $row["reason"]; ?></td>
-                              <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>
+                              <td><?php echo date("M d, Y h:i A",strtotime($row["date_sched"])); ?></td>
                               <td class="text-center">
                                 <?php
                                 switch ($row['status']) {

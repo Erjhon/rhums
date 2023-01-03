@@ -145,6 +145,7 @@ if(isset($message)){
 
             <div class="card card-outline card-primary">
                 <div class="card-header">
+                    <a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end"onclick="history.back()"> Back</a>
                     <h2 class="card-title">Patient Information</h2>
                 </div>
                 <div class="card-body">

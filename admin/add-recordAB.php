@@ -75,19 +75,25 @@ function get_record_details($patient_id, $conn)
 {
 
     $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'name' ");
-    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'contact' ");
-    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'dob' ");
-    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'gender' ");
-    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'address' ");
+    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'mname' ");
+    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'lname' ");
+    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'contact' ");
+    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'dob' ");
+    $query6 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'gender' ");
+    $query7 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'address' ");
 
     $name = mysqli_fetch_assoc($query1);
-    $contact = mysqli_fetch_assoc($query2);
-    $dob = mysqli_fetch_assoc($query3);
-    $address = mysqli_fetch_assoc($query5);
-    $gender = mysqli_fetch_assoc($query4);
+    $mname = mysqli_fetch_assoc($query2);
+    $lname = mysqli_fetch_assoc($query3);
+    $contact = mysqli_fetch_assoc($query4);
+    $dob = mysqli_fetch_assoc($query5);
+    $address = mysqli_fetch_assoc($query6);
+    $gender = mysqli_fetch_assoc($query7);
 
     $data = [
         'name' => $name['meta_value'],
+        'mname' => $mname['meta_value'],
+        'lname' => $lname['meta_value'],
         'contact_n' => $contact['meta_value'],
         'dob' => $dob['meta_value'],
         'address' => $address['meta_value'],
@@ -144,6 +150,7 @@ if(isset($message)){
 
             <div class="card card-outline card-primary">
                 <div class="card-header">
+                    <a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end"onclick="history.back()"> Back</a>
                     <h2 class="card-title">Patient Information</h2>
                 </div>
                 <div class="card-body">
@@ -161,7 +168,7 @@ if(isset($message)){
                                         <div class="col-sm-8">
                                             <div class="form-group">
                                                 <label>Patient Fullname</label>
-                                                <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name'] ?>" required>
+                                                <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name'] ?> <?php echo $data_p['mname'] ?>. <?php echo $data_p['lname'] ?>" required>
                                             </div>                           
                                         </div>
                                         <div class="col-sm-4">
