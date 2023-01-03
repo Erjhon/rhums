@@ -122,48 +122,47 @@ if(isset($_POST['update_profile'])){
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
+
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <!-- Brand -->
     <a class="navbar-img text-center">
           <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a>
-    <!-- User -->
+
     <!-- User -->
     <ul class="nav align-items-center d-md-none">
-       <!--  <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-bell-55"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-    </li> -->
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-      <span class="avatar rounded-circle">
-               <!-- Profile picture image-->
-                     <?php
-      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-      if(mysqli_num_rows($select) > 0){
-         $fetch = mysqli_fetch_assoc($select);
-      }
-   ?>
-      <?php
-         if($fetch['image'] == ''){
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
-         }else{
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
-         }
-      ?>
-
-      </span>
+                  
+                  <!-- Profile picture image -->
+      <span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                    break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+                  ?>
+                </span>
     </div>
 </a>
 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -239,23 +238,30 @@ if(isset($_POST['update_profile'])){
   <li class="nav-item dropdown">
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-        <span class="avatar rounded-circle">
-               <!-- Profile picture image-->
-                     <?php
-      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-      if(mysqli_num_rows($select) > 0){
-         $fetch = mysqli_fetch_assoc($select);
-      }
-   ?>
-      <?php
-         if($fetch['image'] == ''){
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
-         }else{
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
-         }
-      ?>
-
-      </span>
+           <!-- Profile picture image -->
+      <span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+                  ?>
+                </span>
        <div class="media-body ml-2 d-none d-lg-block">
           <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
@@ -323,25 +329,35 @@ if(isset($_POST['update_profile'])){
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
-                    <!-- Profile picture image-->
-                     <?php
-      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-      if(mysqli_num_rows($select) > 0){
-         $fetch = mysqli_fetch_assoc($select);
-      }
-   ?>
-      <?php
-         if($fetch['image'] == ''){
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="images/default-avatar.png"></div>';
-         }else{
-            echo '<div class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default default--two "><img src="uploaded_img/'.$fetch['image'].'"></div>';
-         }
+                       <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
          if(isset($message)){
             foreach($message as $message){
                echo '<div class="">'.$message.'</div>';
             }
          }
       ?>
+                </span>
                     <!-- Profile picture help block-->
 
    <form action="" method="post" enctype="multipart/form-data">
