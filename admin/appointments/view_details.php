@@ -22,8 +22,9 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 }
 </style>
 <div class="container-fluid">
-    <p><b>Appointment Schedule:</b> <?php echo date("F d, Y",strtotime($date_sched))  ?></p>
-    <p><b>Patient Name:</b> <?php echo $patient['name'] ?></p>
+    <?php error_reporting(0);?>
+    <p><b>Appointment Schedule:</b> <?php echo date("M d, Y h:i A",strtotime($date_sched))  ?></p>
+    <p><b>Patient Name:</b> <?php echo $patient['name'] ?> <?php echo $patient['mname'] ?>. <?php echo $patient['lname'] ?></p>
     <p><b>Gender:</b> <?php echo ucwords($patient['gender']) ?></p>
     <p><b>Date of Birth:</b> <?php echo date("F d, Y",strtotime($patient['dob'])) ?></p>
     <p><b>Contact Number:</b> <?php echo $patient['contact'] ?></p>
@@ -34,7 +35,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         <?php 
         switch($status){ 
             case(0): 
-                echo '<span class="badge badge-primary">Done</span>';
+                echo '<span class="badge badge-info">Done</span>';
             break; 
             case(1): 
             echo '<span class="badge badge-success">Confirmed</span>';
@@ -47,6 +48,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         }
         ?>
     </p>
+    <p><b>Creation Date:</b>  <?php echo date("M d, Y h:i A",strtotime($row['date_created'])) ?></p>
 </div>
 
 <div class="modal-footer border-0">

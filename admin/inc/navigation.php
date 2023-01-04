@@ -8,7 +8,7 @@
         <span class=""><img src="../assets/assets/img/icons/icon.png" height="30" width="30"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-img text-center" href="../admin/index.php">
+      <a class="navbar-img text-center" href="./">
         <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
       </a>
       <!-- User -->
@@ -19,7 +19,7 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="./index.php">
+              <a href="./">
                 <img src="../assets/assets/img/brand/doh.png">
               </a>
             </div>
@@ -77,12 +77,12 @@
 
 <!-- Navigation with color -->
  <ul class="navbar-nav">
-          <nav class="mt-4">
+          <nav class="mt-1">
            <ul class="nav nav-pills flex-column nav-flat">
               <a href="./" class="nav-link nav-home">
                 <i class="nav-icon fas fa-tachometer-alt text-success"></i>
                 
-                 <span class="text-dark">Dashboard</span>                 
+                 <span class="text-dark text-bold"><b>Dashboard</b></span>                 
               </a>
             </li>
             
@@ -90,7 +90,7 @@
               <a href="<?php echo base_url ?>admin/?page=schedule_settings" class="nav-link nav-schedule_settings">
                 <i class="nav-icon fas fa-calendar-day text-orange"></i>
             
-                  <span class="text-dark">Schedule Settings</span>
+                  <span class="text-dark"><b>Schedule Settings</b></span>
                
               </a>
             </li>
@@ -98,32 +98,40 @@
             <li class="dropdown">
               <a href="<?php echo base_url ?>admin/?page=appointments" class="nav-link nav-appointments">
                 <i class="nav-icon ni ni-ruler-pencil"></i>
-                  <span class="text-dark">Appointment List</span>
+                  <span class="text-dark"><b>Appointment List</b></span>
               </a>
             </li>
 
            
 
              <li class="dropdown">
-            <a  href="<?php echo base_url ?>admin/?page=consultation" class="nav-link nav-consultation">
-              <i class="ni ni-collection text-teal"></i>
-              <span class="text-dark"> Records</span>
-            </a>
+            <!-- <a  href="<?php echo base_url ?>admin/?page=consultation" class="nav-link nav-consultation"> -->
+              <a  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link nav-consultation">
+              <i class="nav-icon ni ni-folder-17 text-info"></i>
+              <span class="text-dark"><b>Records</b></span></a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                 <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="btn nav-link nav-list-check-up text-info">Check-up</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="btn nav-link nav-list-animalbite text-info"> Animal Bite</a></li>
+                <!--  -->
+              </ul>
           </li>
 
+             <?php
+                  if ($_SESSION['userdata']['role'] == 'Admin') {
+                  ?>   
             <li class="dropdown">
-              <a href="<?php echo base_url ?>admin/?page=user/list" class="nav-link nav-user_list">
+              <a href="<?php echo base_url ?>admin/?page=user/list"  class="nav-link nav-user_list">
                 <i class="nav-icon fas fa-users text-yellow"></i>
-              
-                  <span class="text-dark">User List</span>
-              
+                  <span class="text-dark"><b>Staff List</b></span>
               </a>
             </li>
+              <?php }?>
+              
              <li class="dropdown">
               <a href="<?php echo base_url ?>admin/?page=user/patient" class="nav-link nav-user_patient">
                 <i class="nav-icon fas fa-user text-purple"></i>
               
-                  <span class="text-dark">Patient List</span>
+                  <span class="text-dark"><b>Patient List</b></span>
               
               </a>
             </li>

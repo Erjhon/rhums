@@ -76,9 +76,9 @@ class Master extends DBConnection
 			return json_encode($resp);
 			exit;
 		}
-		$check = $this->conn->query("SELECT * FROM `appointments` where ('" . strtotime($date_sched) . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 15 MINUTE)) OR '" . strtotime($date_sched . ' +15 mins') . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 15 MINUTE))) " . ($id > 0 ? " and id != '{$id}' " : ""))->num_rows;
+		$check = $this->conn->query("SELECT * FROM `appointments` where ('" . strtotime($date_sched) . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 15 MINUTE)) OR '" . strtotime($date_sched . ' +15 mins') . "' Between unix_timestamp(date_sched) and unix_timestamp(DATE_ADD(date_sched, interval 15 MINUTE))) " . ($id > 4 ? " and id != '{$id}' " : ""))->num_rows;
 		$this->capture_err();
-		if ($check > 0) {
+		if ($check > 4) {
 			$resp['status'] = 'failed';
 			$resp['msg'] = "Selected Schedule DateTime conflicts to other appointment.";
 			return json_encode($resp);
@@ -87,9 +87,9 @@ class Master extends DBConnection
 
 		//
 		if (empty($patient_id))
-			$sql = "INSERT INTO `patient_list` set name = '{$name}'  ";
+			$sql = "INSERT INTO `patient_list` set name = '{$name}',mname = '{$mname}',lname = '{$lname}'  ";
 		else
-			$sql = "UPDATE `patient_list` set name = '{$name}' where id = '{$id}'  ";
+			$sql = "UPDATE `patient_list` set name = '{$name}',mname = '{$mname}',lname = '{$lname}' where id = '{$id}'  ";
 		$save_inv = $this->conn->query($sql);
 		$this->capture_err();
 
@@ -107,15 +107,15 @@ class Master extends DBConnection
 			// $sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
 			if (!empty($current_user_id)) {
 				if (empty($id))
-					$sql = "INSERT INTO `appointments` SET `date_sched` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `p_id`='{$current_user_id}'";
+					$sql = "INSERT INTO `appointments` SET `date_sched` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `p_id`='{$current_user_id}',`created`='{$created}'";
 				else
-					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
+					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}',`created`='{$created}' where id = '{$id}' ";
 			} else {
 				if (empty($id)) {
 					if ($user_id) {
-						$sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
+						$sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`,`created`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status','$created')";
 					} else {
-						$sql = "INSERT INTO `appointments`(`patient_id`, `date_sched`, `reason`, `status`, `p_id`) VALUES ('$patient_id','$date_sched','$reason','$status', '$current_user_id')";
+						$sql = "INSERT INTO `appointments`(`patient_id`, `date_sched`, `reason`, `status`, `p_id`,`created`) VALUES ('$patient_id','$date_sched','$reason','$status', '$current_user_id','$created')";
 					}
 				}
 				// else

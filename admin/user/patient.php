@@ -1,9 +1,3 @@
-<?php if($_settings->chk_flashdata('success')): ?>
-	<script>
-		alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
-	</script>
-<?php endif;?>
-
 <style>
 	.img-avatar{
 		width:45px;
@@ -13,82 +7,82 @@
 		border-radius:100%;
 	}
 </style>
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary ">
 	<div class="card-header">
-		<h2 class="card-title text-center">List of Patient Users</h2>
-		<div class="card-tools">
-			<!-- <a href="?page=user/manage_patient" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a> -->
-		</div>
+		<h2 class="card-title text-center">List of Registered Patient</h2>
 	</div>
 	<div class="card-body ">
-		<div class="container-fluid">
-			<table class="table py-1 py-lg-1 table-hover table-striped text-center datatable">
+		<div class="container-fluid table-responsive">
+			<table class="table py-1 py-lg-1 table-hover table-striped ">
 				<thead>
-					<tr>
+					<tr class="">
 						<th>#</th>
 						<th>Avatar</th>
 						<th>Name</th>
 						<th>Username</th>
-						<!-- <th>User Type</th> -->
-						<!-- <th>Action</th> -->
+						<th>Email</th>
+						<th>Contact</th>
+						<th>Gender</th>
+						<th>Date of Birth</th>
+						<th>Address</th>
 					</tr>
 				</thead>
-				<tbody>
-					<?php 
-					$i = 1;
-					$qry = $conn->query("SELECT * FROM `patient`");
-					while($row = $qry->fetch_assoc()):
-						?>
-						<tr>
-							<td class="text-center"><?php echo $i++; ?></td>
-							<td class="avatar avatar-sm rounded-circle">
-								<?php
-								$select = mysqli_query($conn, "SELECT * FROM patient") or die('query failed');
-								if(mysqli_num_rows($select) > 0){
-									$fetch = mysqli_fetch_assoc($select);
-								}
-								if($fetch['image'] == ''){
-									echo '<img src="../patient/images/default-avatar.png">';
-								}else{
-									echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-								}
-								?>
-							</td>
+				<tbody>	<?php 
+				$i = 1;
+				$qry = $conn->query("SELECT * From patient");
+				while($row = $qry->fetch_assoc()):
+					$pathx = "../patient/uploaded_img/";
+					$file = $row["image"];
 
-							<td><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
-							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
-							<!-- <td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td> -->
+					?>
+					<tr>
+						<td><?php echo $i++; ?></td>
+						<td>
+							<?php switch(true)
+							{
+								case ($row['image'] == (!empty($row['gender'])) ):
+								echo '<img src="'.$pathx.$file.'"  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>>';
+								default:
+								case ($row['gender'] == 'Male'):
+								echo '<img src="../patient/images/male.png" class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+								break;
+								case ($row['gender'] == 'Female'):
+								echo '<img src="../patient/images/female.png"class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+								break;
+							} 
 
-							<td hidden align="center">
+						?>"> 
 
-							<!-- <td align="center">
-								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-									Action
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<div class="dropdown-menu" role="menu">
-									<a class="dropdown-item" href=""><span class="fa fa-edit text-primary"></span> Edit</a> -->
-									<!-- ?page=user/manage_user&id=<?php echo $row['id'] ?> -->
-								<!-- 	<div class="dropdown-divider"></div>
-									<a class="dropdown-item delete_data" href="?page=user/patient&id=<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
-								</div>
-							</td> -->
-						</tr>
-						<?php if (isset($_GET['id'])) {  
-							$id = $_GET['id'];  
-							$query = "DELETE FROM `patient` WHERE id = '$id'";  
-							$run = mysqli_query($conn,$query);  
-							if ($run) {  
 
-							}else{  
-								echo "Error: ".mysqli_error($conn);  
-							}  
-						} ?>
-					<?php endwhile; ?>
-				</tbody>
-			</table>
-		</div>
+
+					</td>
+					<td><?php echo ucwords($row['firstname']) ?> <?php echo ucwords($row['lastname']) ?></td>
+					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['username'] ?></p></td>
+					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['email'] ?></p></td>
+					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['contact'] ?></p></td>
+					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['gender'] ?></p></td>
+					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo date("F d, Y",strtotime($row['dob'])) ?></p></td>
+					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['address'] ?></p></td>
+
+
+					<?php if (isset($_GET['id'])) {  
+						$id = $_GET['id'];  
+						$query = "DELETE FROM `patient` WHERE id = '$id'";  
+						$run = mysqli_query($conn,$query);  
+						if ($run) {  
+
+						}else{  
+							echo "Error: ".mysqli_error($conn);  
+						}  
+					} ?>
+				<?php endwhile; ?>
+
+			</tbody>
+
+		</table>
+
 	</div>
+</div>
 </div>
 </div>
 <div class="modal fade" id="confirm_modal" role='dialog'>
@@ -107,9 +101,54 @@
 		</div>
 	</div>
 </div>
+
+
 <script type="text/javascript">
-	
+
 	$(document).ready( function () {
 		$('table').DataTable();
 	} );
 </script>
+<style>
+
+	.avatar--default {
+		position: relative;
+		overflow: hidden;
+		width: 50px;
+		height: 50px;
+		margin: auto;
+
+	}
+	.avatar--default::before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		width: 70%;
+		height: 44%;
+		margin: 0 0 0 -35%;
+		border-radius: 100% 100% 0 0;
+	}
+	.avatar--default::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 19%;
+		width: 40%;
+		height: 40%;
+		margin: 0 0 0 -20%;
+		border-radius: 50%;
+	}
+	.avatar--default.default--two {
+		background-color: #f2f2f2;
+		border-radius: 50%;
+	}
+	.avatar--default.default--two::before {
+		background-color: #999;
+	}
+	.avatar--default.default--two::after {
+		background-color: #999;
+		box-shadow: 0 0 0 4px #f2f2f2;
+	}
+</style>
+

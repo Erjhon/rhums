@@ -10,36 +10,9 @@
 
 <body class="bg-neutral">
   <div class="main-content">
-    <!-- Navbar -->
-    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
-      <div class="container px-3">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-collapse-main">
-          <!-- Collapse header -->
-          <div class="navbar-collapse-header d-md-none">
-            <div class="row">
-              <div class="col-6 collapse-brand">
-                <!-- <a href="../index.html">
-                  <img src="../assets/img/brand/blue.png">
-                </a> -->
-              </div>
-              <div class="col-6 collapse-close">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
-            </div>
-          </div>
-          </ul>
-        </div>
-      </div>
-    </nav>
     <!-- Header -->
-    <div class="header py-8 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
+    <div class="header py-5 py-lg-4" style="background: linear-gradient(to bottom,rgba(23, 173, 106, 0.8),rgba(23, 173, 160, 0.8)),url(../assets/assets/img/brand/bg.webp);">
       <div class="container">
         <div class="text-center">
           <a class="" href="<?php echo base_url ?>">
@@ -51,21 +24,17 @@
         </div>
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-1">
+            <div class="col-lg-8 col-md-8">
 
               <h1 class="text-white" style="text-shadow: 2px 2px 5px black;">RURAL HEALTH UNIT II</h1>
             </div>
           </div>
         </div>
       </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-neutral" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
+     
     </div>
     <!-- Page content -->
-    <div class="container mt--6 pb-5">
+    <div class="container mt--6 pb-4">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-6">
           <div class="card bg-secondary shadow border-0">
@@ -102,14 +71,18 @@
                       <span class="fas fa-lock p-1"></span>
                     </div>
                   </div>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                  <input type="password" class="active form-control" id="input-area" name="password" placeholder="Password" required>
                   <div class="input-group-append">
                     <div class="input-group-text">
-                      <span>
-                        <i class="fa fa-eye rounded " aria-hidden="true" id="eye" onclick="toggle()"></i>
+                      <span class="icon-area">
+                        <i id="icon" class="fa fa-eye-slash" style="cursor: pointer;"></i>
                       </span>
                     </div>
                   </div>
+                </div>
+
+                <div class="ml-1">
+                  <a href="../admin/forgot-pw.php">Forgot password?</a>
                 </div>
 
                 <div class="row">
@@ -124,12 +97,6 @@
                   <div class="col-12 text-center"><br>Don't have an account?
                     <a href="../patient/register.php">Create an account</a>
                   </div>
-                  <!--  <div class="col-6">
-              <a href="#" class="nav-link"><small>Forgot password?</small></a>
-            </div>
-            <div class="col-6 text-right">
-              <a href="../client/register.php" class="nav-link"><small>Create new account</small></a>
-            </div> -->
                 </div>
               </form>
             </div>
@@ -139,11 +106,11 @@
     </div>
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
     <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
+    <!-- <script src="dist/js/adminlte.min.js"></script> -->
 
     <script>
       $(document).ready(function() {
@@ -152,17 +119,21 @@
     </script>
 
     <script>
-      var state = false;
+      var x = document.getElementById('input-area');
+      var y = document.getElementById('icon');
 
-      function toggle() {
-        if (state) {
-          document.getElementById("password").setAttribute("type", "password");
-          state = false;
-        } else {
-          document.getElementById("password").setAttribute("type", "text");
-          state = true;
+      y.onclick = function(){
+        if(x.className == 'active form-control'){
+          x.setAttribute('type', 'text');
+          icon.className = 'fa fa-eye';
+          x.className = 'form-control';
+        }else{
+          x.setAttribute('type', 'password');
+          icon.className = 'fa fa-eye-slash';
+          x.className = 'active form-control';
         }
       }
+
     </script>
 
     <!-- <script type="text/javascript">

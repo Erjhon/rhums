@@ -1,5 +1,7 @@
-<?php
-
+<html>
+    <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
+    </head><?php
 include '../config.php';
 // session_start();
 $user_id = $_SESSION['user_id'];
@@ -7,15 +9,27 @@ $user_id = $_SESSION['user_id'];
 if(isset($_POST['update_profile'])){
 
    $update_fname = mysqli_real_escape_string($conn, $_POST['update_fname']);
+   $update_middle = mysqli_real_escape_string($conn, $_POST['update_middle']);
    $update_lname = mysqli_real_escape_string($conn, $_POST['update_lname']);
    $update_address = mysqli_real_escape_string($conn, $_POST['update_address']);
    $update_dob = mysqli_real_escape_string($conn, $_POST['update_dob']);
    $update_gender = mysqli_real_escape_string($conn, $_POST['update_gender']);
    $update_contact = mysqli_real_escape_string($conn, $_POST['update_contact']);
+   $update_username = mysqli_real_escape_string($conn, $_POST['update_username']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', lastname = '$update_lname', username = '$update_email' WHERE id = '$user_id'") or die('query failed');
-   $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> User successfully updated </div>';
+   mysqli_query($conn, "UPDATE patient SET firstname = '$update_fname', middleInitial = '$update_middle', lastname = '$update_lname', address = '$update_address', username = '$update_username', email = '$update_email', gender = '$update_gender', contact = '$update_contact', dob = '$update_dob' WHERE id = '$user_id'") or die('query failed');
+   $message[] = " <script>
+            Swal.fire({
+                 icon: 'success',
+                title: 'User successfully updated',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
+
 
    // $old_pass = $_POST['old_pass'];
    // $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
@@ -37,14 +51,32 @@ if(isset($_POST['update_profile'])){
    $update_image_folder = 'uploaded_img/'.$update_image;
 
    if(!empty($update_image)){
-      if($update_image_size > 2000000){
-         $message[] = 'image is too large';
+      if($update_image_size > 5000000){
+         $message[] = " <script>
+            Swal.fire({
+                 icon: 'error',
+                title: 'Image is to large',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
       }else{
          $image_update_query = mysqli_query($conn, "UPDATE patient SET image = '$update_image' WHERE id = '$user_id'") or die('query failed');
          if($image_update_query){
             move_uploaded_file($update_image_tmp_name, $update_image_folder);
          }
-         $message[] = '<div class="alert alert-success text-white err_msg"><i class="fa fa-check"></i> Image successfully updated </div>';
+         $message[] = " <script>
+            Swal.fire({
+                 icon: 'success',
+                title: 'Image successfully updated',
+              toast: true,
+              position:'top-end',
+              showConfirmButton: false,
+              timer: 5000
+            })
+        </script>";
            
       } 
            
@@ -90,45 +122,47 @@ if(isset($_POST['update_profile'])){
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
+
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <!-- Brand -->
     <a class="navbar-img text-center">
           <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a>
-    <!-- User -->
+
     <!-- User -->
     <ul class="nav align-items-center d-md-none">
-       <!--  <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-bell-55"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-    </li> -->
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-           <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
-         if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
-         }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-         }
-      ?>
-
-      </span>
+                  
+                  <!-- Profile picture image -->
+      <span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                    break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+                  ?>
+                </span>
     </div>
 </a>
 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -136,14 +170,20 @@ if(isset($_POST['update_profile'])){
       <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></h5>
   </div>
   <div class="dropdown-divider"></div>
-  <a href="../patient/update_profile.php" class="dropdown-item">
+<a href="../patient/update_profile.php" class="dropdown-item">
     <i class="ni ni-single-02"></i>
     <span>My profile</span>
 </a>
-  <a href="pages/logout.php" class="dropdown-item">
-      <i class="ni ni-user-run"></i>
-      <span>Logout</span>
-  </a>
+<a href="../patient/change_pw.php" class="dropdown-item">
+    <i class="ni ni-lock-circle-open"></i>
+    <span>Change Password</span>
+</a>
+
+<div class="dropdown-divider"></div>
+ <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
+    <i class="ni ni-user-run"></i>
+    <span>Logout</span>
+</a>
 </div>
 </li>
 </ul>
@@ -198,21 +238,31 @@ if(isset($_POST['update_profile'])){
   <li class="nav-item dropdown">
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-        <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
-         if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
-         }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-         }
-      ?>
-
-      </span>
-      <div class="media-body ml-2 d-none d-lg-block">
+           <!-- Profile picture image -->
+      <span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+                  ?>
+                </span>
+       <div class="media-body ml-2 d-none d-lg-block">
           <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
   </div>
@@ -268,60 +318,185 @@ if(isset($_POST['update_profile'])){
   <span class="mask"style="background: linear-gradient(
     to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
 
-  <!-- Header container -->
-      <div class="container px-10 px-lg-10 my-4">
-<div class="card card-outline">
-  <div class="card-header">
-    <h2 class="card-title">Edit Profile</h2>
-   </div>
+ 
 
-<div class="update-profile ">
+    <div class="container-l px-5 mt-1">
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
 
-   <?php
-      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-      if(mysqli_num_rows($select) > 0){
-         $fetch = mysqli_fetch_assoc($select);
-      }
-   ?>
-
-   <form action="" method="post" enctype="multipart/form-data">
-      <?php
-         if($fetch['image'] == ''){
-            echo '<div ><img src="images/default-avatar.png"></div>';
-         }else{
-            echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
-         }
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                       <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
          if(isset($message)){
             foreach($message as $message){
                echo '<div class="">'.$message.'</div>';
             }
          }
       ?>
-      <div class="flex">
-         <div class="inputBox">
-            <span>First Name:</span>
-            <input type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>" class="box">
-            <span>Address:</span>
-            <input type="text" name="update_address" value="<?php echo $fetch['address']; ?>" class="box">
-            <span>Gender:</span>
-            <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
-            <select type="text" class="custom-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
+                </span>
+                    <!-- Profile picture help block-->
+
+   <form action="" method="post" enctype="multipart/form-data">
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+                    <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8">
+
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form>
+                        <div class="row gx-3 mb-3">
+                        <!-- Form Group (username)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputUsername">Username</label>
+                            <input type="username" class="form-control" name="update_username" id="username" value="<?php echo $fetch['username']; ?>" onkeyup="return userAvailability()">
+                             <span id="user-availability-status1" style="font-size:12px;"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="inputEmail">Email Address</label>
+                            <input class="form-control" id="email" type="email" name="update_email" value="<?php echo $fetch['email']; ?>" onkeyup="return userAvailability2()">
+                             <span id="user-availability-status2" style="font-size:12px;"></span>
+                        </div>
+                        </div>
+
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputFirstName">First name</label>
+                                <input class="form-control" id="inputFirstName" type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>">
+                            </div>
+                            <!-- Form Group (middle initial)-->
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputMiddleInitial">Middle Initial</label>
+                                <input class="form-control" id="inputMiddleInitial" type="text" name="update_middle" value="<?php echo $fetch['middleInitial']; ?>.">
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputLastName">Last name</label>
+                                <input class="form-control" id="inputLastName" type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>">
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="inputOrgName">Gender</label>
+                                <select type="text" class="form-control form-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
+                <option hidden><?php echo $fetch['gender']; ?></option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
             </select>
-            <span>Contact Number:</span>
-            <input type="text" name="update_contact" value="<?php echo $fetch['contact']; ?>" class="box">
-         </div>
-         <div class="inputBox">
-            <span>Last Name:</span>
-            <input type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>" class="box">
-            <span>Date of Birth:</span>
-            <input type="date" name="update_dob" value="<?php echo $fetch['dob']; ?>" class="box">
-            <span>Username:</span>
-            <input type="username" name="update_email" value="<?php echo $fetch['username']; ?>" class="box">
-            <span>Profile Picture:</span>
-            <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
-         </div>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-8">
+                                <label class="small mb-1" for="inputLocation">Address</label>
+                                <!-- <input class="form-control" id="inputLocation" type="text" name="update_address" value="<?php echo $fetch['address']; ?>"> -->
+                                <select class="form-control" name="update_address"  required>
+                                    <option class="placeholder" style="display: none" ><?php echo $fetch['address'] ?></option>
+                                    <option>Angustia, Nabua</option>
+                                    <option>Antipolo Old, Nabua</option>
+                                    <option>Antipolo Young, Nabua</option>
+                                    <option>Aro-aldao, Nabua</option>
+                                    <option>Bustrac, Nabua</option>
+                                    <option>Dolorosa, Nabua</option>
+                                    <option>Duran, Nabua</option>
+                                    <option>Inapatan, Nabua</option>
+                                    <option>La Opinion, Nabua</option>
+                                    <option>La Purisima, Nabua</option>
+                                    <option>Lourdes Old, Nabua</option>
+                                    <option>Lourdes Young, Nabua</option>
+                                    <option>Malawag, Nabua</option>
+                                    <option>Paloyon Oriental, Nabua</option>
+                                    <option>Paloyon Proper, Nabua</option>
+                                    <option>Salvacion Que Gatos, Nabua</option>
+                                    <option>San Antonio, Nabua</option>
+                                    <option>San Antonio Ogbon, Nabua</option>
+                                    <option>San Esteban, Nabua</option>
+                                    <option>San Francisco, Nabua</option>
+                                    <option>San Isidro, Nabua</option>
+                                    <option>San Isidro Inapatan, Nabua</option>
+                                    <option>San Jose, Nabua</option>
+                                    <option>San Juan, Nabua</option>
+                                    <option>San Luis, Nabua</option>
+                                    <option>San Miguel, Nabua</option>
+                                    <option>San Nicolas, Nabua</option>
+                                    <option>San Roque, Nabua</option>
+                                    <option>San Roque Madawon, Nabua</option>
+                                    <option>San Roque Sagumay, Nabua</option>
+                                    <option>San Vicente Gorong-Gorong, Nabua</option>
+                                    <option>San Vicente Ogbon, Nabua</option>
+                                    <option>Santa Barbara, Nabua</option>
+                                    <option>Santa Cruz, Nabua</option>
+                                    <option>Santa Elena Baras, Nabua</option>
+                                    <option>Santa Lucia Baras, Nabua</option>
+                                    <option>Santiago Old, Nabua</option>
+                                    <option>Santiago Young, </option>
+                                    <option>Santo Domingo, Nabua</option>
+                                    <option>Tandaay, Nabua</option>
+                                    <option>Topas Proper, Nabua</option>
+                                    <option>Topas Sogod, Nabua</option>
+                                </select>
+                            </div>
+                        </div>
+                      
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <input class="form-control" id="inputPhone" type="tel" name="update_contact" maxlength="11" value="<?php echo $fetch['contact']; ?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                            </div>
+
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Birthday</label>
+                                <input class="form-control" id="inputBirthday" type="date" name="update_dob" value="<?php echo $fetch['dob']; ?>">
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                         <input type="submit" id="submit" class="btn btn-primary" value="Update" name="update_profile">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+            <!-- <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" class="box"> -->
          <!-- <div class="inputBox">
             <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
             <span>Old password :</span>
@@ -331,12 +506,6 @@ if(isset($_POST['update_profile'])){
             <span>Confirm password :</span>
             <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
          </div> -->
-      </div>
-      <div class="form-group text-center w-100 form-group">
-        <input type="submit" class="btn btn-primary" value="Update" name="update_profile">
-      </div>
-      
-   </form>
  <!--   <script type="text/javascript">
     window.history.forward();
     function noBack()
@@ -347,10 +516,41 @@ if(isset($_POST['update_profile'])){
 
 <div onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
 
-</div>  -->            
+</div>  -->    
+<style>
+
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+
+}
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
+
+</style>        
 
 </body>
-
 
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
@@ -367,4 +567,64 @@ if(isset($_POST['update_profile'])){
         application: "argon-dashboard-free"
     });
 </script>
+
+<script type="text/javascript">
+    var SessionTimeOut = 180; //3 minutes
+    var sessionSecondsTimer = null;
+    var sessionSecondsCounter = 0;
+    document.onclick = function () { sessionSecondsCounter = 0; };
+    document.onmousemove = function () { sessionSecondsCounter = 0; };
+    document.onkeypress = function () { sessionSecondsCounter = 0; };
+    sessionSecondsTimer = window.setInterval(CheckSessionTime, 1000);
+
+    function CheckSessionTime() {
+        sessionSecondsCounter++;
+        var oPanel = document.getElementById("timeOut");
+        if (oPanel) {
+            oPanel.innerHTML = (SessionTimeOut - sessionSecondsCounter);
+        }
+        if (sessionSecondsCounter >= SessionTimeOut) {
+            window.clearInterval(sessionSecondsTimer);
+            alert("Your session has expired. Please login again.");
+            window.location = "../admin/login.php";
+        }
+    }
+</script>
+
+
+<script>
+  function userAvailability() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'username='+$("#username").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
+
+<script>
+  function userAvailability2() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'email='+$("#email").val(),
+      type: "POST",
+      success:function(data){
+        $("#user-availability-status2").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+</script> 
+
+
+
+
 </html>

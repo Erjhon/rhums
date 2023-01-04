@@ -1,30 +1,60 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
+</head>
 <?php
-
 include '../config.php';
 // session_start();
 $user_id = $_SESSION['user_id'];
 
 if(isset($_POST['change_pw'])){
 
-   $old_pass = $_POST['old_pass'];
-   $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
-   $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-   $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
+  $old_pass = $_POST['old_pass'];
+  $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
+  $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
+  $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
 
-   if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
-      if($update_pass != $old_pass){
-         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Old password not matched</div>';
+  if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
+    if($update_pass != $old_pass){
+      $message[] = " <script>
+      Swal.fire({
+        icon: 'error',
+        title: 'Old password not matched',
+        toast: true,
+        position:'top-end',
+        showConfirmButton: false,
+        timer: 5000
+        })
+        </script>";
       }elseif($new_pass != $confirm_pass){
-         $message[] = '<div class="alert alert-danger text-white err_msg"> <i class="fa fa-exclamation-triangle"></i>Confirmed password not matched</div>';
-      }else{
-         mysqli_query($conn, "UPDATE patient SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
-         $message[] = '<div class="alert alert-success text-white err_msg"> <i class="fa fa-check"></i> Password updated successfully </div>';
+        $message[] = " <script>
+        Swal.fire({
+          icon: 'error',
+          title: 'Confirmed password not matched',
+          toast: true,
+          position:'top-end',
+          showConfirmButton: false,
+          timer: 5000
+          })
+          </script>";
+        }else{
+          mysqli_query($conn, "UPDATE patient SET password = '$confirm_pass' WHERE id = '$user_id'") or die('query failed');
+          $message[] = " <script>
+          Swal.fire({
+            icon: 'success',
+            title: 'Password updated successfully',
+            toast: true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 5000
+            })
+            </script>";
+          }
+        }
       }
-   }
-}
 
-?>
- <!DOCTYPE html>
+      ?>
+    <!DOCTYPE html>
  <html lang="en">
 
  <head>
@@ -50,11 +80,18 @@ if(isset($_POST['change_pw'])){
 <!-- CSS Files -->
 <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 </head>
+<?php 
+ if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="">'.$message.'</div>';
+            }
+         } ?>
 
 <style>
 #selectAll{
    top:0
 }
+
 </style>
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -67,11 +104,81 @@ if(isset($_POST['change_pw'])){
     <a class="navbar-img text-center">
           <img src="../assets/assets/img/brand/rhu.png"  height="100" width="100"/>
         </a>
+    <!-- User -->
+    <!-- User -->
+    <ul class="nav align-items-center d-md-none">
+       <!--  <li class="nav-item dropdown">
+          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ni ni-bell-55"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </li> -->
+    <li class="nav-item dropdown">
+      <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="media align-items-center">
+       <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+      ?>
+                </span>
+    </div>
+</a>
+<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+    <div class=" dropdown-header noti-title">
+      <h5 class="text-overflow m-0"><?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></h5>
+  </div>
+  <div class="dropdown-divider"></div>
+ <a href="../patient/update_profile.php" class="dropdown-item">
+    <i class="ni ni-single-02"></i>
+    <span>My profile</span>
+</a>
+<a href="../patient/change_pw.php" class="dropdown-item">
+    <i class="ni ni-lock-circle-open"></i>
+    <span>Change Password</span>
+</a>
+
+<div class="dropdown-divider"></div>
+ <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" class="dropdown-item">
+    <i class="ni ni-user-run"></i>
+    <span>Logout</span>
+</a>
+</div>
+</li>
+</ul>
 <!-- Collapse -->
 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
     <!-- Collapse header -->
     <div class="navbar-collapse-header d-md-none">
       <div class="row">
+        <div class="col-6 collapse-brand">
+          <a href="./index.php">
+              <img src="../assets/assets/img/brand/rhu.png"  height="60" width="40"/>
+        </a>
+    </div>
     <div class="col-6 collapse-close">
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
         <span></span>
@@ -106,28 +213,38 @@ if(isset($_POST['change_pw'])){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Change Password</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">CHANGE PASSWORD</a>
  
 <!-- User -->
 <ul class="navbar-nav align-items-center d-none d-md-flex">
   <li class="nav-item dropdown">
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-        <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
-         if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
-         }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-         }
+          <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
       ?>
-
-      </span>
-      <div class="media-body ml-2 d-none d-lg-block">
+                </span>
+       <div class="media-body ml-2 d-none d-lg-block">
           <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
   </div>
@@ -175,75 +292,102 @@ if(isset($_POST['change_pw'])){
   </div>
 </div>
 
-<!-- End Navbar -->
-<!-- Header -->
-<div class="header pb-10 pt-10 pt-lg-5 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+          <!-- End Navbar -->
+          <!-- Header -->
+          <div class="container header pb-12 d-flex align-items-center" style="min-height: 610px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
 
-     <!-- Mask -->
-  <span class="mask"style="background: linear-gradient(
-    to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
+            <!-- Mask -->
+            <span class="mask"style="background: linear-gradient(
+            to bottom,rgba(0, 112, 185, 1),rgba(0, 137, 162, 0.8)"></span>
 
-  <!-- Header container -->
-    <div class="container px-10 px-lg-10 my-4">
-        <div class="card card-outline">
-            <div class="card-header">
-                <h2 class="card-title">Change Password</h2>
-           </div>
 
-    <div class="update-profile ">
+            <div class=" col-xl-8 col-ml-5">
+              <!-- Change password card-->
+              <div class="card mt-5">
+                <div class="card-header">Change Password</div>
+                <div class="card-body">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  ?>
 
-   <?php
-      $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-      if(mysqli_num_rows($select) > 0){
-         $fetch = mysqli_fetch_assoc($select);
-      }
-   ?>
+                  <form action="" method="post">
+                   
+                    <!-- Form Group (username)-->
+                    <div class="mb-3">
+                      <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
+                      <label class="small mb-1" for="inputUsername">Current Password</label>               
+                       <div class="input-group input-group-alternative mb--1">
+                        <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter current password" required>
+                         <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle()"></i>
+                        </span>
+                      </div>
+                    </div>
 
-   <form action="" method="post">
-      <?php
-         // if($fetch['image'] == ''){
-         //    echo '<div ><img src="images/default-avatar.png"></div>';
-         // }else{
-         //    echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
-         // }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="">'.$message.'</div>';
-            }
-         }
-      ?> 
-      <div class="flex mt-4">
-         <div class="inputBox w-100" style="margin-bottom: 10px">
-            <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-            <span>Current Password:</span>
-            <input type="password" name="update_pass" placeholder="Enter current password" class="box">
-            <span>New Password:</span>
-            <input type="password" name="new_pass" placeholder="Enter new password" class="box">
-            <span>Confirm Password:</span>
-            <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
-      <div class="form-group text-center w-100 form-group" style="margin-top: 35px">
-        <input type="submit" class="btn btn-primary" value="Update" name="change_pw">
+                    <div class="mb-3">
+                      <label class="small mb-1" for="inputUsername">New Password</label>
+                      <div class="input-group input-group-alternative mb--1">
+                        <input class="form-control" id="password" type="password" name="new_pass" placeholder="Enter new password" required>
+                        <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="small mb-1" for="inputUsername">Confirm Password</label>
+                      <div class="input-group input-group-alternative mb--1">
+                        <input class="form-control" id="cpassword" type="password" name="confirm_pass" placeholder="Confirm new password" required>
+                        <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <!-- Save changes button-->
+                    <input type="submit" class="btn btn-primary" value="Update" name="change_pw">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-         </div>
-      </div>
-      
-   </form>
-</div>
-</div>
-</div>
-</div>
-</div>
- <!--   <script type="text/javascript">
-    window.history.forward();
-    function noBack()
-    {
-        window.history.forward();
-    }
-</script>
+<style>
 
-<div onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
 
-</div>  -->            
+}
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
+
+</style>        
 
 </body>
 
@@ -257,10 +401,73 @@ if(isset($_POST['change_pw'])){
 <script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 <script>
-    window.TrackJS &&
-    TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-    });
+  window.TrackJS &&
+  TrackJS.install({
+    token: "ee6fab19c5a04ac1a32a645abde4613a",
+    application: "argon-dashboard-free"
+  });
 </script>
+
+<!-- show password -->
+<script>
+  var state = false;
+  function toggle(){
+    if (state){
+      document.getElementById("update_pass").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("update_pass").setAttribute("type", "text");
+      state = true;
+    }
+  }
+</script>
+
+<script>
+  var state = false;
+  function toggle1(){
+    if (state){
+      document.getElementById("password").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("password").setAttribute("type", "text");
+      state = true;
+    }
+  }
+</script>
+<script>
+  var state = false;
+  function toggle2(){
+    if (state){
+      document.getElementById("cpassword").setAttribute("type", "password");
+      state = false;
+    } else{
+      document.getElementById("cpassword").setAttribute("type", "text");
+      state = true;
+    }
+  }
+</script>
+
+<script type="text/javascript">
+    var SessionTimeOut = 180; //3 minutes
+    var sessionSecondsTimer = null;
+    var sessionSecondsCounter = 0;
+    document.onclick = function () { sessionSecondsCounter = 0; };
+    document.onmousemove = function () { sessionSecondsCounter = 0; };
+    document.onkeypress = function () { sessionSecondsCounter = 0; };
+    sessionSecondsTimer = window.setInterval(CheckSessionTime, 1000);
+
+    function CheckSessionTime() {
+        sessionSecondsCounter++;
+        var oPanel = document.getElementById("timeOut");
+        if (oPanel) {
+            oPanel.innerHTML = (SessionTimeOut - sessionSecondsCounter);
+        }
+        if (sessionSecondsCounter >= SessionTimeOut) {
+            window.clearInterval(sessionSecondsTimer);
+            alert("Your session has expired. Please login again.");
+            window.location = "../admin/login.php";
+        }
+    }
+</script>
+
 </html>

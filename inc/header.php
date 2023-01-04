@@ -11,6 +11,7 @@
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback"> -->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url ?>plugins/fontawesome-free/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/black-jack" rel="stylesheet">
     <!-- Ionicons -->
     <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- Tempusdominus Bootstrap 4 -->
@@ -27,9 +28,9 @@
     <!-- JQVMap -->
     <link rel="stylesheet" href="<?php echo base_url ?>plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url ?>dist/css/adminlte.css">
+   <!-- <link rel="stylesheet" href="<?php echo base_url ?>dist/css/adminlte.css"> -->
     <link rel="stylesheet" href="<?php echo base_url ?>dist/css/custom.css">
-    <link rel="stylesheet" href="<?php echo base_url ?>assets/css/styles.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url ?>assets/css/styles.css">  -->
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?php echo base_url ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
