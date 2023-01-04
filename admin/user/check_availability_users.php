@@ -21,7 +21,7 @@ if(!empty($_POST["email"])) {
 	$email= $_POST["email"];
 
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    exit ('Invalid email address'); // Use your own error handling ;)
+    exit ("<span class='text-danger'>Invalid email address</span>"); // Use your own error handling ;)
 }
 $select = mysqli_query($conn, "SELECT `email` FROM `patient` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
 $select1 = mysqli_query($conn, "SELECT `email` FROM `users` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
