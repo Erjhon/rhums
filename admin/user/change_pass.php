@@ -35,6 +35,14 @@ if(isset($_POST['Submit']))
     }
 }
 ?>
+<style>
+    .required::after{
+      content: " *";
+      color: red;
+      font-size: 16px;
+    }
+</style>
+
 <div class="card card-outline card-primary">
     <div class="card-header">
         <h2 class="card-title">Change Password</h2>
@@ -45,7 +53,7 @@ if(isset($_POST['Submit']))
             <?php echo $_SESSION['msg1'];?><?php echo $_SESSION['msg1']="";?>
             <form name="chngpwd" action="" method="post" onSubmit="return valid();">
                 <div class="form-group">
-                    <label for="password">Old Password</label>
+                    <label for="password" class="required">Old Password</label>
                     <div class="input-group input-group-alternative mb--1">
                         <input type="password" name="opwd" id="opwd" class="form-control" value="" autocomplete="off" onkeyup='check();' />
                         <span class="input-group-text">
@@ -56,7 +64,7 @@ if(isset($_POST['Submit']))
                 </div>
 
                 <div class="form-group">
-                    <label for="password">New Password</label>
+                    <label for="password" class="required">New Password</label>
                     <div class="input-group input-group-alternative mb--1">
                         <input  type="password" name="npwd" id="npwd" class="form-control" value="" autocomplete="off" onkeyup='check();' />
                         <span class="input-group-text">
@@ -67,7 +75,7 @@ if(isset($_POST['Submit']))
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Confirm Password</label>
+                    <label for="password" class="required">Confirm Password</label>
                     <div class="input-group input-group-alternative mb--1">
                         <input  type="password" name="cpwd" id="cpwd" class="form-control" value="" autocomplete="off" onkeyup='check();' />
                         <span class="input-group-text">
@@ -100,7 +108,7 @@ if(isset($_POST['Submit']))
 <!-- <div class="card-footer"> -->
     <div class="col-md-12 d-flex justify-content-center">
         <div class="row">
-            <input type="submit" name="Submit" class="btn btn-md btn-primary" value="Change Password" />
+            <input type="submit" name="Submit" class="btn btn-md btn-primary" value="Update" />
         </div>
     </div>
     <!-- </div> -->

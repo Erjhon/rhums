@@ -318,7 +318,7 @@ if(isset($_POST['change_pw'])){
                     <!-- Form Group (username)-->
                     <div class="mb-3">
                       <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-                      <label class="small mb-1" for="inputUsername">Current Password</label>               
+                      <label class="small mb-1 required" for="inputUsername">Current Password</label>               
                        <div class="input-group input-group-alternative mb--1">
                         <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter current password" required>
                          <span class="input-group-text">
@@ -328,7 +328,7 @@ if(isset($_POST['change_pw'])){
                     </div>
 
                     <div class="mb-3">
-                      <label class="small mb-1" for="inputUsername">New Password</label>
+                      <label class="small mb-1 required" for="inputUsername">New Password</label>
                       <div class="input-group input-group-alternative mb--1">
                         <input class="form-control" id="password" type="password" name="new_pass" placeholder="Enter new password" required>
                         <span class="input-group-text">
@@ -338,7 +338,7 @@ if(isset($_POST['change_pw'])){
                     </div>
 
                     <div class="mb-3">
-                      <label class="small mb-1" for="inputUsername">Confirm Password</label>
+                      <label class="small mb-1 required" for="inputUsername">Confirm Password</label>
                       <div class="input-group input-group-alternative mb--1">
                         <input class="form-control" id="cpassword" type="password" name="confirm_pass" placeholder="Confirm new password" required>
                         <span class="input-group-text">
@@ -357,36 +357,39 @@ if(isset($_POST['change_pw'])){
         </div>
       </div>
 <style>
+  .avatar--default {
+    position: relative;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin: auto;
 
-.avatar--default {
-  position: relative;
-  overflow: hidden;
-  width: 50px;
-  height: 50px;
-  margin: auto;
-
-}
-.avatar--default::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 70%;
-  height: 44%;
-  margin: 0 0 0 -35%;
-  border-radius: 100% 100% 0 0;
-}
-.avatar--default::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 19%;
-  width: 40%;
-  height: 40%;
-  margin: 0 0 0 -20%;
-  border-radius: 50%;
-}
-
+  }
+  .avatar--default::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 70%;
+    height: 44%;
+    margin: 0 0 0 -35%;
+    border-radius: 100% 100% 0 0;
+  }
+  .avatar--default::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 19%;
+    width: 40%;
+    height: 40%;
+    margin: 0 0 0 -20%;
+    border-radius: 50%;
+  }
+  .required::after{
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
 </style>        
 
 </body>
