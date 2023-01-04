@@ -1,4 +1,3 @@
-
 <?php 
 if(isset($_GET['id']) && $_GET['id'] > 0){
 	$user = $conn->query("SELECT * FROM users where id ='{$_GET['id']}'");
@@ -28,12 +27,12 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				<div class="row gx-3 mb-3">
 					<!-- Form Group (first name)-->
 					<div class="col-md-6">
-						<label class="small mb-1" for="inputFirstName">First name</label>
+						<label class="small mb-1 required" for="inputFirstName">First Name</label>
 						<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
 					</div>
 					<!-- Form Group (last name)-->
 					<div class="col-md-6">
-						<label class="small mb-1" for="inputLastName">Last name</label>
+						<label class="small mb-1 required" for="inputLastName">Last Name</label>
 						<input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
 					</div>
 				</div>
@@ -41,15 +40,15 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				<div class="row gx-3 mb-3">
 					<!-- Form Group (username)-->
 					<div class="col-md-6">
-						<label class="small mb-1" for="inputusername">Username</label>
-						<input type="text" name="username" id="username" onBlur="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+						<label class="small mb-1 required" for="inputusername">Username</label>
+						<input type="text" name="username" id="username" onkeyup="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 						<span id="user-availability-status1" style="font-size:12px;"></span>
 					</div>
 					<!-- Form Group (email)-->
 					<div class="col-md-6">
-						<label class="small mb-1" for="inputEmailAddress">Email Address</label>
-						<input type="text" name="email" id="email" class="form-control" onBlur="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>">
-						<span id="user-availability-status2" style="font-size:12px;" required></span>
+						<label class="small mb-1 required" for="inputEmailAddress">Email Address</label>
+						<input type="text" name="email" id="email" class="form-control" onkeyup="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required>
+						<span id="user-availability-status2" style="font-size:12px;" ></span>
 					</div>
 
 				</div>
@@ -57,9 +56,9 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				<div class="row gx-3 mb-3">
 					<!-- Form Group (password)-->
 					<div class="col-md-6">
-						<label class="small mb-1" for="inputPassword">Password</label>
+						<label class="small mb-1 required" for="inputPassword">Password</label>
 						<div class="input-group input-group-alternative mb--1">
-							<input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": 'required' ?>>
+							<input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": '' ?> required>
 							<?php if(isset($_GET['id'])): ?>
 							<?php endif; ?>
 							<span class="input-group-text">
@@ -74,9 +73,9 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 </div>
 
 <div class="col-md-6">
-	<label class="small mb-1" for="password"> Confirm Password</label>
+	<label class="small mb-1 required" for="password"> Confirm Password</label>
 	<div class="input-group input-group-alternative mb--1">
-		<input type="password" name="password" id="confirm_password" class="form-control" value="" autocomplete="off" onkeyup='check();'/>
+		<input type="password" name="password" id="confirm_password" class="form-control" value="" autocomplete="off" onkeyup='check();'/ required>
 		<span class="input-group-text">
 			<i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle2()"></i>
 		</span>
@@ -86,8 +85,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
 <!-- Form Group (user type)-->
 <div class="col-md-6">
-	<label class="small mb-1" for="inputusertype">User Type</label>
-	<select  class="form-control input-group input-group-alternative" name="role" >
+	<label class="small mb-1 required" for="inputusertype">User Type</label>
+	<select  class="form-control input-group input-group-alternative" name="role" required>
 		<!-- <option class="placeholder" style="display: none" >Select user type</option> -->
 		<option class="text-muted" value="Staff">Staff</option>
 		<option class="text-muted" value=" Super Admin">Super Admin</option>
@@ -97,7 +96,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 <div class="row gx-3 mb-3">
 	<!-- Form Group (avatar)-->
 	<div class="form-group col-12">
-		<label for="" class="control-label">Avatar</label>
+		<label for="" class="small mb-1">Avatar</label>
 		<div class="custom-file">
 			<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
 			<label class="custom-file-label" for="customFile">Choose file</label>
@@ -164,6 +163,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		object-fit: cover;
 		border-radius: 100% 100%;
 	}
+	.required::after{
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
 </style>
 <!-- show password -->
 <script>
