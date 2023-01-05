@@ -44,7 +44,8 @@ Class Users extends DBConnection {
 			if($qry){
 				$this->settings->set_flashdata('success','User Details successfully saved.');
 				return 1;
-			}else{
+			}
+			else{
 				return 2;
 			}
 
@@ -52,12 +53,13 @@ Class Users extends DBConnection {
 			$qry = $this->conn->query("UPDATE users set $data where id = {$id}");
 			if($qry){
 				$this->settings->set_flashdata('success','User Details successfully updated.');
-				foreach($_POST as $k => $v){
-					if($k != 'id'){
-						if(!empty($data)) $data .=" , ";
-						$this->settings->set_userdata($k,$v);
-					}
-				}
+						
+				// foreach($_POST as $k => $v){
+				// 	if($k != 'id'){
+				// 		if(!empty($data)) $data .=" , ";
+				// 		$this->settings->set_userdata($k,$v);
+				// 	}
+				// }
 				if(isset($fname) && isset($move))
 				$this->settings->set_userdata('avatar',$fname);
 
