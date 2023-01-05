@@ -58,6 +58,12 @@ if (!empty($_SESSION['user_id'])) {
 }
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="admin/appointments/jquery.datetimepicker.min.css">
+</head>
+<body>
 <style>
     #uni_modal .modal-content>.modal-footer {
         display: none;
@@ -189,9 +195,21 @@ if (!empty($_SESSION['user_id'])) {
                     </select>
 
                     </div>
+                <script src="admin/appointments/jquery.datetimepicker.full.min.js" ></script>
+<script>
+    $("#appointment-date").datetimepicker({
+        formatTime: 'h:ia',
+        step:60
+    });
+
+    $('#appointment-date').datetimepicker({
+    minDate: 0
+});
+
+</script>
                 <div class="form-group">
                     <label for="date_sched" class="control-label">Preferred Date and Time</label>
-                    <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
+                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/>
                 </div>
 
 
