@@ -174,6 +174,9 @@ if (!empty($_SESSION['user_id'])) {
 });
 
 </script>
+
+
+
                 <div class="form-group">
                     <label for="date_sched" class="control-label">Preferred Date and Time</label>
                     <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/>

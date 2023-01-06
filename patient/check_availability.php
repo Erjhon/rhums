@@ -42,10 +42,10 @@ if(!empty($_POST["username"])) {
 	$count1=mysqli_num_rows($result1);
 
 	if($count||$count1>0) {
-		echo "<span class='text-danger''> Username already exists.</span>";
+		echo "<p class='text-danger''><b> Username already exists.</p>";
 		echo "<script>$('#submit').prop('disabled',true);</script>";
 	} else{
-		echo "<span class='text-success''> Username available.</span>";
+		echo "<p class='text-success''> <b>Username available.</p>";
 		echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }
@@ -54,7 +54,7 @@ if(!empty($_POST["email"])) {
 	$email= $_POST["email"];
 
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-	exit ("<span class='text-danger'>Invalid email address</span>"); //error handling ;)
+	exit ("<p class='text-danger'><b>Invalid email address</p>"); //error handling ;)
 	}
 	$select = mysqli_query($conn, "SELECT `email` FROM `patient` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
 	$select1 = mysqli_query($conn, "SELECT `email` FROM `users` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
@@ -62,10 +62,10 @@ if(!empty($_POST["email"])) {
 	$result1=mysqli_num_rows($select1);
 
 	if($result||$result1>0) {
-		echo "<span class='text-danger''> Email already registered.</span>";
+		echo "<p class='text-danger'><b>Email already registered.</p>";
 		echo "<script>$('#submit').prop('disabled',true);</script>";
 	} else{
-		echo "<span class='text-success''> Email available.</span>";
+		echo "<p class='text-success'><b> Email available.</p>";
 		echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }
