@@ -101,7 +101,7 @@ require "mail.php";
     $password = md5($password);
     $email = addslashes($_SESSION['forgot']['email']);
 
-    $query = "update users set password = '$password' where email = '$email' limit 1";
+    $query = "update staff set password = '$password' where email = '$email' limit 1";
     mysqli_query($conn,$query);
 
     $query2 = "update patient set password = '$password' where email = '$email' limit 1";
@@ -114,7 +114,7 @@ require "mail.php";
 
     $email = addslashes($email);
 
-    $query = "select * from users where email = email limit 1";    
+    $query = "select * from staff where email = email limit 1";    
     $query2 = "select * from patient where email = '$email' limit 1";    
     $result = mysqli_query($conn,$query);
     $result2 = mysqli_query($conn,$query2);

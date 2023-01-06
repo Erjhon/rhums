@@ -6,11 +6,11 @@ if(isset($_POST['Submit']))
     $user_id = isset($_SESSION['userdata']['id']) ? $_SESSION['userdata']['id'] : "";
     $oldpass=md5($_POST['opwd']);
     $newpassword=md5($_POST['npwd']);
-    $sql=mysqli_query($conn,"SELECT password FROM users where password='$oldpass'");
+    $sql=mysqli_query($conn,"SELECT password FROM staff where password='$oldpass'");
     $num=mysqli_fetch_array($sql);
     if($num>0)
     {
-        $conn=mysqli_query($conn,"update users set password='$newpassword' where id='$user_id'");
+        $conn=mysqli_query($conn,"update staff set password='$newpassword' where id='$user_id'");
         $_SESSION['msg1']= " <script>
         Swal.fire({
             icon: 'success',
