@@ -29,6 +29,14 @@
     p {
       text-align: justify;
     }
+    .text-success{
+      font-size: 12px;
+      padding-top: 7px;
+    }
+    .text-danger1{
+      font-size: 12px;
+      padding-top: 7px;
+    }
   </style>
 
   <?php
@@ -169,27 +177,30 @@
                           };
                           ?>
 
-                          <form role="form" action="" method="post" enctype="multipart/form-data"  onsubmit="return validation()" >
+                          <form role="form" action="" method="post" enctype="multipart/form-data"  onsubmit="return validation()">
 
                             <form action="" id="appointment_form" class="py-6">
                               <div class="row" id="appointment">
                                 <div class="col-sm-4" id="frm-field">
                                   <div class="form-group mb--1">
                                     <h5 class="text-dark required">First Name</h5>
-                                    <input class="form-control" placeholder="First Name" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>" name="firstname" id="firstname" type="firstname" onkeyup="return validate('firstname')">
+                                    <input class="form-control" placeholder="First Name" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>" name="firstname" id="firstname" type="firstname" onkeyup="validateFirstname()|| validate('firstname')" onkeyup="return validate('firstname')">
+                                    <span id="validatefirstname1" style="font-size:12px;"></span>
                                     <p  class="text-danger" id="fn" style="font-size:12px;"></p>
                                   </div>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Middle Initial</h5>
-                                  <input class="form-control" placeholder="Middle Initial" value="<?php echo isset($_POST['middleInitial']) ? $_POST['middleInitial'] : ''; ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="return validate('middleInitial')" maxlength="2">
+                                  <input class="form-control" placeholder="Middle Initial" value="<?php echo isset($_POST['middleInitial']) ? $_POST['middleInitial'] : ''; ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="validateMI()|| validate('middleInitial')" onkeyup="return validate('middleInitial')" maxlength="2">
+                                  <span id="validateMI1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="mI" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Last Name</h5>
-                                  <input class="form-control" placeholder="Last Name" value="<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>" name="lastname" id="lastname" type="lastname"onkeyup="return validate('lastname')">
+                                  <input class="form-control" placeholder="Last Name" value="<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>" name="lastname" id="lastname" type="lastname" onkeyup="validateLN()|| validate('lastname')" onkeyup="return validate('lastname')">
+                                  <span id="validateLN1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="ln" style="font-size:12px;"></p>
                                 </div>
 
@@ -209,7 +220,8 @@
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Contact Number</h5>
-                                  <input type="tel" class="form-control" id="contact" placeholder="Contact Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')">
+                                  <input type="tel" class="form-control" id="contact" placeholder="09524423145" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="validateContact()|| validate('contact')" onkeyup="return validate('contact')">
+                                  <span id="validateContact1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="cn" style="font-size:12px;"></p>
                                 </div>
 
@@ -291,7 +303,7 @@
                                       <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
                                     </span>
                                   </div>
-                                  <p  class="text-danger" id="pw" style="font-size:12px;"></p>
+                                  <p  class="text-danger" id="pw" style="font-size:12px; padding-top: 5px;"></p>
                                 </div>
                                 <div class="form-group col-sm-6 ">
                                   <h5 class="text-dark required">Confirm Password</h5>
@@ -304,7 +316,7 @@
                                       <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
                                     </span>
                                   </div>
-                                  <p  class="text-danger" id="cpw" style="font-size:12px;"></p>
+                                  <p  class="text-danger" id="cpw" style="font-size:12px; padding-top: 5px;"></p>
                                 </div>
 
                                 <div class="col-12 mb-2">
@@ -326,7 +338,7 @@
                                 </div>
                               </div>
                               <div class="text-center">
-                                <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1" >Create account</button>
+                                <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
                               </div><br>
                               <div class="col-12 text-center mt--3">
                                 Already have an account? <a href="../admin/login.php">Log in</a>
@@ -353,60 +365,53 @@
                       </div>
                       <div class="modal-body">
                         <h1>Privacy Policy for Rural Health Unit II</h1>
-<!-- 
-<p>At  Medical Appointment and Record Management System, accessible from http://ruralhealthunit2stodomingo.epizy.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by  Medical Appointment and Record Management System and how we use it.</p>
 
-<p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
+                        <p>At Rural Health Unit II, one of our main priorities is the privacy of our visitors. This privacy policy document contains types of information that is collected and recorded by Rural Health Unit II and how we use it.</p>
 
-<p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in  Medical Appointment and Record Management System. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info/">Free Privacy Policy Generator</a>.</p>
--->
+                        <h2>Consent</h2>
 
-                                <p>At Rural Health Unit II, one of our main priorities is the privacy of our visitors. This privacy policy document contains types of information that is collected and recorded by Rural Health Unit II and how we use it.</p>
+                        <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
 
-                                <h2>Consent</h2>
+                        <h2>Information we collect</h2>
 
-                                <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+                        <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
+                        <p>When you register for an account, we may ask for your contact information, including items such as name, username, address, email address, and contact number, gender, date of birth, address, password and picture.</p>
+                        <p>Medical History will also be collected.</p>
+                        <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
 
-                                <h2>Information we collect</h2>
+                        <h2>How we use your information</h2>
 
-                                <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
-                                <p>When you register for an account, we may ask for your contact information, including items such as name, username, address, email address, and contact number, gender, date of birth, address, password and picture.</p>
-                                <p>Medical History will also be collected.</p>
-                                <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
+                        <p>We use the information we collect in various ways, including to:</p>
 
-                                <h2>How we use your information</h2>
+                        <ul>
+                          <li>Provide, operate, and maintain our website.</li>
+                          <li>Communicate with you to provide you with updates and other information relating to the website.</li>
+                          <li>Send you emails.</li>
+                        </ul>
 
-                                <p>We use the information we collect in various ways, including to:</p>
+                        <h2>Data Protection Rights</h2>
 
-                                <ul>
-                                  <li>Provide, operate, and maintain our website.</li>
-                                  <li>Communicate with you to provide you with updates and other information relating to the website.</li>
-                                  <li>Send you emails.</li>
-                                </ul>
+                        <p>Rural Health Unit II would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
+                        <p>The right to access – You have the right to request copies of your personal data.<br>
+                          The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.<br>
+                          The right to erasure – You have the right to request that we erase your personal data, under certain conditions.<br>
+                          The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.<br>
+                        The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</p>
 
-                                <h2>Data Protection Rights</h2>
+                        <h2>Children's Information</h2>
 
-                                <p>Rural Health Unit II would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
-                                <p>The right to access – You have the right to request copies of your personal data.<br>
-                                  The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.<br>
-                                  The right to erasure – You have the right to request that we erase your personal data, under certain conditions.<br>
-                                  The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.<br>
-                                The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</p>
+                        <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
 
-                                <h2>Children's Information</h2>
+                        <p>Rural Health Unit II does not knowingly collect any Personal Identifiable Information from children under the age of 5. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
 
-                                <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
-
-                                <p>Rural Health Unit II does not knowingly collect any Personal Identifiable Information from children under the age of 5. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
-
-                                <p>If you have any concerns, you may contact Rural Health Unit II at <a href="mailto:nabua.rhu2@gmail.com">nabua.rhu2@gmail.com.</p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-</div>
-</div>
-</div>
-</div>
+                        <p>If you have any concerns, you may contact Rural Health Unit II at <a href="mailto:nabua.rhu2@gmail.com">nabua.rhu2@gmail.com.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -418,7 +423,7 @@
       document.getElementById('cpassword').value) {
       document.getElementById('cpw').innerHTML = '<p  class="text-success">Password matched</p>';
   } else {
-    document.getElementById('cpw').innerHTML = '<p  class="text-danger">Password not matched</p>';
+    document.getElementById('cpw').innerHTML = '<p  class="text-danger1">Password not matched</p>';
   }
 }
 
@@ -435,7 +440,6 @@ function validation(){
   var address = document.getElementById('address').value;
   var password = document.getElementById('password').value;
   var cpassword = document.getElementById('cpassword').value;
-
 
   if(firstname == ""){
     document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field.";
@@ -463,7 +467,7 @@ function validation(){
     document.getElementById("em").innerHTML = " ** Email id not valid, . position is wrong"; 
   }
   if (email == "") {
-    document.getElementById("em").innerHTML = " ** Please fill email address field";
+    document.getElementById("em").innerHTML = " ** Please fill the email address field.";
   }
   if(isNaN(contact)){
     document.getElementById('cn').innerHTML ="<b> ** User must write digits only not characters.";
@@ -489,22 +493,22 @@ function validation(){
 
   }
   if(password == "") {  
-    document.getElementById("pw").innerHTML = "**Fill the password field!";  
+    document.getElementById("pw").innerHTML = "** Fill the password field!";  
 
   }  if(cpassword == "") {  
-    document.getElementById("cpw").innerHTML = '**Fill the confirm password field!';  
+    document.getElementById("cpw").innerHTML = '** Fill the confirm password field!';  
     return false;  
   }  
 
 //minimum password length validation  
   if(password.length < 5) {  
-    document.getElementById("pw").innerHTML = "**Password length must be atleast 5 characters and up";  
+    document.getElementById("pw").innerHTML = "** Password length must be atleast 5 characters and up";  
     return false;  
   }  
 
 //maximum length of password validation  
   if(password.length > 15) {  
-    document.getElementById("pw").innerHTML = "**Password length must not exceed 15 characters";  
+    document.getElementById("pw").innerHTML = "** Password length must not exceed 15 characters";  
     return false;  
   } else {  
     alert("Password is correct");  
@@ -672,6 +676,48 @@ function validate(id){
 </script>
 
 <script>
+  function validateFirstname() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'firstname='+$("#firstname").val(),
+      type: "POST",
+      success:function(data){
+        $("#validatefirstname1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
+  function validateMI() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'middleInitial='+$("#middleInitial").val(),
+      type: "POST",
+      success:function(data){
+        $("#validateMI1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
+  function validateLN() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'lastname='+$("#lastname").val(),
+      type: "POST",
+      success:function(data){
+        $("#validateLN1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
   function userAvailability() {
     $("#loaderIcon").show();
     jQuery.ajax({
@@ -685,9 +731,7 @@ function validate(id){
       error:function (){}
     });
   }
-</script> 
 
-<script>
   function userAvailability2() {
     $("#loaderIcon").show();
     jQuery.ajax({
@@ -696,6 +740,20 @@ function validate(id){
       type: "POST",
       success:function(data){
         $("#user-availability-status2").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
+  function validateContact() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'contact='+$("#contact").val(),
+      type: "POST",
+      success:function(data){
+        $("#validateContact1").html(data);
         $("#loaderIcon").hide();
       },
       error:function (){}
