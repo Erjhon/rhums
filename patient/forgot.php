@@ -114,7 +114,7 @@ if($total = mysqli_num_rows($patient_history_run)){
                       <h5 class="card-title text-uppercase text-dark mb-0">Staff</h5>
                                               <?php
 
-$staff ="SELECT * FROM users where role = '1'";
+$staff ="SELECT * FROM staff where role = '1'";
 $staff_run = mysqli_query($conn,$staff);
 
 if($total = mysqli_num_rows($patient_history_run)){

@@ -13,7 +13,7 @@ Class Users extends DBConnection {
 	public function save_users(){
 		extract($_POST);
 		$data = '';
-		$chk = $this->conn->query("SELECT * FROM `users` where username ='{$username}' ".($id>0? " and id!= '{$id}' " : ""))->num_rows;
+		$chk = $this->conn->query("SELECT * FROM `staff` where username ='{$username}' ".($id>0? " and id!= '{$id}' " : ""))->num_rows;
 		if($chk > 0){
 			return 3;
 			exit;
@@ -40,30 +40,32 @@ Class Users extends DBConnection {
 				}
 		}
 		if(empty($id)){
-			$qry = $this->conn->query("INSERT INTO users set {$data}");
+			$qry = $this->conn->query("INSERT INTO staff set {$data}");
 			if($qry){
 				$this->settings->set_flashdata('success','User Details successfully saved.');
 				return 1;
-			}else{
+			}
+			else{
 				return 2;
 			}
 
 		}else{
-			$qry = $this->conn->query("UPDATE users set $data where id = {$id}");
+			$qry = $this->conn->query("UPDATE staff set $data where id = {$id}");
 			if($qry){
 				$this->settings->set_flashdata('success','User Details successfully updated.');
-				foreach($_POST as $k => $v){
-					if($k != 'id'){
-						if(!empty($data)) $data .=" , ";
-						$this->settings->set_userdata($k,$v);
-					}
-				}
+						
+				// foreach($_POST as $k => $v){
+				// 	if($k != 'id'){
+				// 		if(!empty($data)) $data .=" , ";
+				// 		$this->settings->set_userdata($k,$v);
+				// 	}
+				// }
 				if(isset($fname) && isset($move))
 				$this->settings->set_userdata('avatar',$fname);
 
 				return 1;
 			}else{
-				return "UPDATE users set $data where id = {$id}";
+				return "UPDATE staff set $data where id = {$id}";
 			}
 			
 		}
@@ -128,7 +130,7 @@ Class Users extends DBConnection {
 	}
 	public function delete_users(){
 		extract($_POST);
-		$qry = $this->conn->query("DELETE FROM users where id = {$id}");
+		$qry = $this->conn->query("DELETE FROM staff where id = {$id}");
 		if($qry){
 			$this->settings->set_flashdata('success','User Details successfully deleted.');
 			return 1;

@@ -20,7 +20,7 @@ class Login extends DBConnection {
 	public function login(){
 		extract($_POST);
 
-		$qry = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password') ");
+		$qry = $this->conn->query("SELECT * from staff where username = '$username' and password = md5('$password') ");
 		if($qry->num_rows > 0){
 			foreach($qry->fetch_array() as $k => $v){
 				if(!is_numeric($k) && $k != 'password'){
@@ -31,7 +31,7 @@ class Login extends DBConnection {
 			$this->settings->set_userdata('login_type',1);
 			return json_encode(array('status'=>'success'));
 		}else{
-			return json_encode(array('status'=>'incorrect','last_qry'=>"SELECT * from users where username = '$username' and password = md5('$password') "));
+			return json_encode(array('status'=>'incorrect','last_qry'=>"SELECT * from staff where username = '$username' and password = md5('$password') "));
 		}
 	}
 
@@ -43,7 +43,7 @@ class Login extends DBConnection {
 
 	function login_user(){
 		extract($_POST);
-		$qry = $this->conn->query("SELECT * from users where usersname = '$usersname' and password = md5('$password') ");
+		$qry = $this->conn->query("SELECT * from staff where usersname = '$usersname' and password = md5('$password') ");
 		if($qry->num_rows > 0){
 			foreach($qry->fetch_array() as $k => $v){
 				$this->settings->set_userdata($k,$v);
@@ -66,7 +66,7 @@ class Login extends DBConnection {
 		//if user username is admin
 		$verify_ = $this->check_admin($username, $password);
 		if($verify_){
-			$admin_q = $this->conn->query("SELECT * from users where username = '$username' and password = md5('$password')");
+			$admin_q = $this->conn->query("SELECT * from staff where username = '$username' and password = md5('$password')");
 			if($admin_q->num_rows > 0){
 				foreach(mysqli_fetch_assoc($admin_q) as $k => $v){
 					$this->settings->set_userdata($k,$v);
@@ -109,7 +109,7 @@ class Login extends DBConnection {
 
 	//if user username is admin
 	function check_admin($username, $password){
-		$admin = $this->conn->query("SELECT * from users where username = '$username'");
+		$admin = $this->conn->query("SELECT * from staff where username = '$username'");
 		if($admin->num_rows > 0){
 			return true;
 		}

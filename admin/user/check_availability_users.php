@@ -4,7 +4,7 @@ include '../../config.php';
 if(!empty($_POST["username"])) {
 	$username= $_POST["username"];
 	$result =mysqli_query($conn,"SELECT username FROM patient WHERE username='$username'");
-	$result1 =mysqli_query($conn,"SELECT username FROM users WHERE username='$username'");
+	$result1 =mysqli_query($conn,"SELECT username FROM staff WHERE username='$username'");
 	$count=mysqli_num_rows($result);
 	$count1=mysqli_num_rows($result1);
 
@@ -21,10 +21,10 @@ if(!empty($_POST["email"])) {
 	$email= $_POST["email"];
 
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    exit ('Invalid email address'); // Use your own error handling ;)
+    exit ("<span class='text-danger'>Invalid email address</span>"); // Use your own error handling ;)
 }
 $select = mysqli_query($conn, "SELECT `email` FROM `patient` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
-$select1 = mysqli_query($conn, "SELECT `email` FROM `users` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
+$select1 = mysqli_query($conn, "SELECT `email` FROM `staff` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($conn));
 $result=mysqli_num_rows($select);
 $result1=mysqli_num_rows($select1);
 

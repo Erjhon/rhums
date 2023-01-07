@@ -7,10 +7,11 @@
   <title>
     RURAL HEALTH UNIT II
   </title>
+
   <!-- Favicon -->
   <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
   <!-- Fonts -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
   <link href="../assets/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
   <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
@@ -21,14 +22,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
   <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+    *{
+      font-family: 'Poppins', sans-serif;
+      margin:0; padding:0;
+      box-sizing: border-box;
+      outline: none; border: none;
+      text-decoration: none;
+    }
     .required::after{
       content: " *";
       color: red;
       font-size: 13px;
     }
-    p {
-      text-align: justify;
-    }
+
   </style>
 
   <?php
@@ -51,8 +58,6 @@
     $image_size = $_FILES['image']['size'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
     $image_folder = 'uploaded_img/'.$image;
-
-
 //   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$pass'") or die('query failed');
 
 //   if(mysqli_num_rows($select) > 0){
@@ -169,27 +174,30 @@
                           };
                           ?>
 
-                          <form role="form" action="" method="post" enctype="multipart/form-data"  onsubmit="return validation()" >
+                          <form role="form" action="" method="post" enctype="multipart/form-data"  onsubmit="return validation()">
 
                             <form action="" id="appointment_form" class="py-6">
                               <div class="row" id="appointment">
                                 <div class="col-sm-4" id="frm-field">
                                   <div class="form-group mb--1">
                                     <h5 class="text-dark required">First Name</h5>
-                                    <input class="form-control" placeholder="First Name" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>" name="firstname" id="firstname" type="firstname" onkeyup="return validate('firstname')">
+                                    <input class="form-control" placeholder="First Name" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>" name="firstname" id="firstname" type="firstname" onkeyup="validateFirstname()|| validate('firstname')" onkeyup="return validate('firstname')">
+                                    <span id="validatefirstname1" style="font-size:12px;"></span>
                                     <p  class="text-danger" id="fn" style="font-size:12px;"></p>
                                   </div>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Middle Initial</h5>
-                                  <input class="form-control" placeholder="Middle Initial" value="<?php echo isset($_POST['middleInitial']) ? $_POST['middleInitial'] : ''; ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="return validate('middleInitial')" maxlength="2">
+                                  <input class="form-control" placeholder="Middle Initial" value="<?php echo isset($_POST['middleInitial']) ? $_POST['middleInitial'] : ''; ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="validateMI()|| validate('middleInitial')" onkeyup="return validate('middleInitial')" maxlength="2">
+                                  <span id="validateMI1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="mI" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Last Name</h5>
-                                  <input class="form-control" placeholder="Last Name" value="<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>" name="lastname" id="lastname" type="lastname"onkeyup="return validate('lastname')">
+                                  <input class="form-control" placeholder="Last Name" value="<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>" name="lastname" id="lastname" type="lastname" onkeyup="validateLN()|| validate('lastname')" onkeyup="return validate('lastname')">
+                                  <span id="validateLN1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="ln" style="font-size:12px;"></p>
                                 </div>
 
@@ -209,203 +217,200 @@
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Contact Number</h5>
-                                  <input type="tel" class="form-control" id="contact" placeholder="Contact Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')">
-                                  <p  class="text-danger" id="cn" style="font-size:12px;"></p>
-                                </div>
-
-                                <div class="form-group col-sm-3 mb--1">
-                                  <h5 for="gender" class="text-dark required">Gender</h5>
-                                  <select type="text" class="form-control form-select-sm-6" value="<?php echo isset($_POST['gender']) ? $_POST['gender'] : ''; ?>" name="gender" id="gender" onchange ="return validate('gender')" >
-                                    <option class="placeholder" value="" style="display: none">Select Gender</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                  </select>
-                                  <p  class="text-danger" id="g" style="font-size:12px;"></p>
-                                </div>
-
-                                <div class="form-group col-sm-3 mb--1">
-                                  <h5 for="dob" class="control-label required">Date of Birth</h5>
-                                  <input type="date" class="form-control" id="dob" value="<?php echo isset($_POST['dob']) ? $_POST['dob'] : ''; ?>" name="dob" onkeyup="return validate('dob')">
-                                  <p  class="text-danger" id="db" style="font-size:12px;"></p>
-                                </div>
-
-                                <div class="form-group col-sm-6 mb--1">
-                                  <h5 class="text-dark required">Address</h5>
-                                  <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
-                                  <select class="form-control" id="address" value="<?php echo isset($_POST['address']) ? $_POST['address'] : ''; ?>" name="address" rows="2" onchange ="return validate('address')" >
-                                    <option class="placeholder" style="display: none" value="">Select Address</option>
-                                    <option>Angustia, Nabua</option>
-                                    <option>Antipolo Old, Nabua</option>
-                                    <option>Antipolo Young, Nabua</option>
-                                    <option>Aro-aldao, Nabua</option>
-                                    <option>Bustrac, Nabua</option>
-                                    <option>Dolorosa, Nabua</option>
-                                    <option>Duran, Nabua</option>
-                                    <option>Inapatan, Nabua</option>
-                                    <option>La Opinion, Nabua</option>
-                                    <option>La Purisima, Nabua</option>
-                                    <option>Lourdes Old, Nabua</option>
-                                    <option>Lourdes Young, Nabua</option>
-                                    <option>Malawag, Nabua</option>
-                                    <option>Paloyon Oriental, Nabua</option>
-                                    <option>Paloyon Proper, Nabua</option>
-                                    <option>Salvacion Que Gatos, Nabua</option>
-                                    <option>San Antonio, Nabua</option>
-                                    <option>San Antonio Ogbon, Nabua</option>
-                                    <option>San Esteban, Nabua</option>
-                                    <option>San Francisco, Nabua</option>
-                                    <option>San Isidro, Nabua</option>
-                                    <option>San Isidro Inapatan, Nabua</option>
-                                    <option>San Jose, Nabua</option>
-                                    <option>San Juan, Nabua</option>
-                                    <option>San Luis, Nabua</option>
-                                    <option>San Miguel, Nabua</option>
-                                    <option>San Nicolas, Nabua</option>
-                                    <option>San Roque, Nabua</option>
-                                    <option>San Roque Madawon, Nabua</option>
-                                    <option>San Roque Sagumay, Nabua</option>
-                                    <option>San Vicente Gorong-Gorong, Nabua</option>
-                                    <option>San Vicente Ogbon, Nabua</option>
-                                    <option>Santa Barbara, Nabua</option>
-                                    <option>Santa Cruz, Nabua</option>
-                                    <option>Santa Elena Baras, Nabua</option>
-                                    <option>Santa Lucia Baras, Nabua</option>
-                                    <option>Santiago Old, Nabua</option>
-                                    <option>Santiago Young, </option>
-                                    <option>Santo Domingo, Nabua</option>
-                                    <option>Tandaay, Nabua</option>
-                                    <option>Topas Proper, Nabua</option>
-                                    <option>Topas Sogod, Nabua</option>
-                                  </select>
-                                  <p  class="text-danger" id="ad" style="font-size:12px;"></p>
-                                </div>
-
-                                <div class="form-group col-sm-6 ">
-                                  <h5 class="text-dark required">Password</h5>
-                                  <div class="input-group input-group-alternative mb--1">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                    </div>
-                                    <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validate('password')||check('');">
-                                    <span class="input-group-text">
-                                      <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
-                                    </span>
-                                  </div>
-                                  <p  class="text-danger" id="pw" style="font-size:12px;"></p>
-                                </div>
-                                <div class="form-group col-sm-6 ">
-                                  <h5 class="text-dark required">Confirm Password</h5>
-                                  <div class="input-group input-group-alternative mb--1">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                    </div>
-                                    <input class="form-control" placeholder="Confirm Password" id ="cpassword" name ="cpassword" type="password" onkeyup="return validate('cpassword')||check('');">
-                                    <span class="input-group-text">
-                                      <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
-                                    </span>
-                                  </div>
-                                  <p  class="text-danger" id="cpw" style="font-size:12px;"></p>
-                                </div>
-
-                                <div class="col-12 mb-2">
-                                  <h5 class="text-dark">Add Profile Image</h5>
-                                  <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
-                                </div>
-                              </div>
-
-                              <div class="row my-2">
-                                <div class="col-12">
-                                  <div class="custom-control custom-control-alternative custom-checkbox text-center">
-                                    <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-                                    <label class="custom-control-label" for="customCheckRegister">
-                                      <!-- <span class="text-dark">I agree with the <a href="privacy.php" target="_blank">Privacy Policy</a></span> -->
-                                      <span class="text-dark">I agree with the <a href="privacy.php"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
-
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="text-center">
-                                <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1" >Create account</button>
-                              </div><br>
-                              <div class="col-12 text-center mt--3">
-                                Already have an account? <a href="../admin/login.php">Log in</a>
-                              </div>
-
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+<!-- <<<<<<< Updated upstream
+                  <input type="tel" class="form-control" id="contact" placeholder="09524423145" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="validateContact()|| validate('contact')" onkeyup="return validate('contact')">
+                  <span id="validateContact1" style="font-size:12px;"></span>
+                  ======= -->
+                  <input type="tel" class="form-control" id="contact" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" placeholder="Contact Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')" oninvalid="setCustomValidity(' ')" />
+                  <p  class="text-danger" id="cn" style="font-size:12px;"></p>
                 </div>
 
+                <div class="form-group col-sm-3 mb--1">
+                  <h5 for="gender" class="text-dark required">Gender</h5>
+                  <select type="text" class="form-control form-select-sm-6" value="<?php echo isset($_POST['gender']) ? $_POST['gender'] : ''; ?>" name="gender" id="gender" onchange ="return validate('gender')" >
+                    <option class="placeholder" value="" style="display: none">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                  <p  class="text-danger" id="g" style="font-size:12px;"></p>
+                </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Privacy Policy</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <h1>Privacy Policy for Rural Health Unit II</h1>
-<!-- 
-<p>At  Medical Appointment and Record Management System, accessible from http://ruralhealthunit2stodomingo.epizy.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by  Medical Appointment and Record Management System and how we use it.</p>
+                <div class="form-group col-sm-3 mb--1">
+                  <h5 for="dob" class="control-label required">Date of Birth</h5>
+                  <input type="date" class="form-control" id="dob" value="<?php echo isset($_POST['dob']) ? $_POST['dob'] : ''; ?>" name="dob" onkeyup="return validate('dob')">
+                  <p  class="text-danger" id="db" style="font-size:12px;"></p>
+                </div>
 
-<p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
+                <div class="form-group col-sm-6 mb--1">
+                  <h5 class="text-dark required">Address</h5>
+                  <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
+                  <select class="form-control" id="address" value="<?php echo isset($_POST['address']) ? $_POST['address'] : ''; ?>" name="address" rows="2" onchange ="return validate('address')" >
+                    <option class="placeholder" style="display: none" value="">Select Address</option>
+                    <option>Angustia, Nabua</option>
+                    <option>Antipolo Old, Nabua</option>
+                    <option>Antipolo Young, Nabua</option>
+                    <option>Aro-aldao, Nabua</option>
+                    <option>Bustrac, Nabua</option>
+                    <option>Dolorosa, Nabua</option>
+                    <option>Duran, Nabua</option>
+                    <option>Inapatan, Nabua</option>
+                    <option>La Opinion, Nabua</option>
+                    <option>La Purisima, Nabua</option>
+                    <option>Lourdes Old, Nabua</option>
+                    <option>Lourdes Young, Nabua</option>
+                    <option>Malawag, Nabua</option>
+                    <option>Paloyon Oriental, Nabua</option>
+                    <option>Paloyon Proper, Nabua</option>
+                    <option>Salvacion Que Gatos, Nabua</option>
+                    <option>San Antonio, Nabua</option>
+                    <option>San Antonio Ogbon, Nabua</option>
+                    <option>San Esteban, Nabua</option>
+                    <option>San Francisco, Nabua</option>
+                    <option>San Isidro, Nabua</option>
+                    <option>San Isidro Inapatan, Nabua</option>
+                    <option>San Jose, Nabua</option>
+                    <option>San Juan, Nabua</option>
+                    <option>San Luis, Nabua</option>
+                    <option>San Miguel, Nabua</option>
+                    <option>San Nicolas, Nabua</option>
+                    <option>San Roque, Nabua</option>
+                    <option>San Roque Madawon, Nabua</option>
+                    <option>San Roque Sagumay, Nabua</option>
+                    <option>San Vicente Gorong-Gorong, Nabua</option>
+                    <option>San Vicente Ogbon, Nabua</option>
+                    <option>Santa Barbara, Nabua</option>
+                    <option>Santa Cruz, Nabua</option>
+                    <option>Santa Elena Baras, Nabua</option>
+                    <option>Santa Lucia Baras, Nabua</option>
+                    <option>Santiago Old, Nabua</option>
+                    <option>Santiago Young, </option>
+                    <option>Santo Domingo, Nabua</option>
+                    <option>Tandaay, Nabua</option>
+                    <option>Topas Proper, Nabua</option>
+                    <option>Topas Sogod, Nabua</option>
+                  </select>
+                  <p  class="text-danger" id="ad" style="font-size:12px;"></p>
+                </div>
 
-<p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in  Medical Appointment and Record Management System. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info/">Free Privacy Policy Generator</a>.</p>
--->
+                <div class="form-group col-sm-6 ">
+                  <h5 class="text-dark required">Password</h5>
+                  <div class="input-group input-group-alternative mb--1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validate('password')||check('');">
+                    <span class="input-group-text">
+                      <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                    </span>
+                  </div>
+                  <p  class="text-danger" id="pw" style="font-size:12px; padding-top: 3px;"></p>
+                </div>
+                <div class="form-group col-sm-6 ">
+                  <h5 class="text-dark required">Confirm Password</h5>
+                  <div class="input-group input-group-alternative mb--1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Confirm Password" id ="cpassword" name="cpassword" type="password" onkeyup="return validate('cpassword')||check('');">
+                    <span class="input-group-text">
+                      <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+                    </span>
+                  </div>
+                  <p  class="text-danger" id="cpw" style="font-size:12px; padding-top: 3px;"></p>
+                </div>
 
-                                <p>At Rural Health Unit II, one of our main priorities is the privacy of our visitors. This privacy policy document contains types of information that is collected and recorded by Rural Health Unit II and how we use it.</p>
+                <div class="col-12 mb-2">
+                  <h5 class="text-dark">Add Profile Image</h5>
+                  <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+                </div>
+              </div>
 
-                                <h2>Consent</h2>
+              <div class="row my-2">
+                <div class="col-12">
+                  <div class="custom-control custom-control-alternative custom-checkbox text-center">
+                    <input class="custom-control-input" id="customCheckRegister" type="checkbox" oninvalid="this.setCustomValidity('By confirming this, you are agreeing to our Privacy Policy')" onchange="this.setCustomValidity('')" required />
+                    <label class="custom-control-label" for="customCheckRegister">
+                      <!-- <span class="text-dark">I agree with the <a href="privacy.php" target="_blank">Privacy Policy</a></span> -->
+                      <span class="text-dark">I agree with the <a href="privacy.php"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
 
-                                <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
+              </div><br>
+              <div class="col-12 text-center mt--3">
+                Already have an account? <a href="../admin/login.php">Log in</a>
+              </div>
 
-                                <h2>Information we collect</h2>
-
-                                <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
-                                <p>When you register for an account, we may ask for your contact information, including items such as name, username, address, email address, and contact number, gender, date of birth, address, password and picture.</p>
-                                <p>Medical History will also be collected.</p>
-                                <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
-
-                                <h2>How we use your information</h2>
-
-                                <p>We use the information we collect in various ways, including to:</p>
-
-                                <ul>
-                                  <li>Provide, operate, and maintain our website.</li>
-                                  <li>Communicate with you to provide you with updates and other information relating to the website.</li>
-                                  <li>Send you emails.</li>
-                                </ul>
-
-                                <h2>Data Protection Rights</h2>
-
-                                <p>Rural Health Unit II would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
-                                <p>The right to access – You have the right to request copies of your personal data.<br>
-                                  The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.<br>
-                                  The right to erasure – You have the right to request that we erase your personal data, under certain conditions.<br>
-                                  The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.<br>
-                                The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</p>
-
-                                <h2>Children's Information</h2>
-
-                                <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
-
-                                <p>Rural Health Unit II does not knowingly collect any Personal Identifiable Information from children under the age of 5. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
-
-                                <p>If you have any concerns, you may contact Rural Health Unit II at <a href="mailto:nabua.rhu2@gmail.com">nabua.rhu2@gmail.com.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-</div>
-</div>
-</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Privacy Policy</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"/>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h1>Privacy Policy for Rural Health Unit II</h1>
+
+      <p>At Rural Health Unit II, one of our main priorities is the privacy of our visitors. This privacy policy document contains types of information that is collected and recorded by Rural Health Unit II and how we use it.</p>
+
+      <h2>Consent</h2>
+
+      <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+
+      <h2>Information we collect</h2>
+
+      <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
+      <p>When you register for an account, we may ask for your contact information, including items such as name, username, address, email address, and contact number, gender, date of birth, address, password and picture.</p>
+      <p>Medical History will also be collected.</p>
+      <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
+
+      <h2>How we use your information</h2>
+
+      <p>We use the information we collect in various ways, including to:</p>
+
+      <ul>
+        <li>Provide, operate, and maintain our website.</li>
+        <li>Communicate with you to provide you with updates and other information relating to the website.</li>
+        <li>Send you emails.</li>
+      </ul>
+
+      <h2>Data Protection Rights</h2>
+
+      <p>Rural Health Unit II would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
+      <p>The right to access – You have the right to request copies of your personal data.<br>
+        The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.<br>
+        The right to erasure – You have the right to request that we erase your personal data, under certain conditions.<br>
+        The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.<br>
+      The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</p>
+
+      <h2>Children's Information</h2>
+
+      <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
+
+      <p>Rural Health Unit II does not knowingly collect any Personal Identifiable Information from children under the age of 5. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+
+      <p>If you have any concerns, you may contact Rural Health Unit II at <a href="mailto:nabua.rhu2@gmail.com">nabua.rhu2@gmail.com.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 
@@ -416,9 +421,9 @@
   var check = function() {
     if (document.getElementById('password').value ==
       document.getElementById('cpassword').value) {
-      document.getElementById('cpw').innerHTML = '<p  class="text-success">Password matched</p>';
+      document.getElementById('cpw').innerHTML = '<p class="text-success"><b>Password matched</p>';
   } else {
-    document.getElementById('cpw').innerHTML = '<p  class="text-danger">Password not matched</p>';
+    document.getElementById('cpw').innerHTML = '<p class="text-danger"><b>Password not matched</p>';
   }
 }
 
@@ -436,9 +441,8 @@ function validation(){
   var password = document.getElementById('password').value;
   var cpassword = document.getElementById('cpassword').value;
 
-
   if(firstname == ""){
-    document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field.";
+    document.getElementById('fn').innerHTML ="<b> ** Please fill the firstname field.";
   }
   if(middleInitial == ""){
     document.getElementById('mI').innerHTML ="<b> ** Please fill the middle initial field."; 
@@ -457,24 +461,23 @@ function validation(){
     document.getElementById('un').innerHTML ="<b> ** Please fill the username field.";
   }
   if (email.indexOf('@') <= 0) {
-    document.getElementById("em").innerHTML = " ** Email id not valid, @ position is wrong"; 
+    document.getElementById("em").innerHTML = "<b> ** Email id not valid, @ position is wrong"; 
   }
   if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
-    document.getElementById("em").innerHTML = " ** Email id not valid, . position is wrong"; 
+    document.getElementById("em").innerHTML = "<b> ** Email id not valid, . position is wrong"; 
   }
   if (email == "") {
-    document.getElementById("em").innerHTML = " ** Please fill email address field";
+    document.getElementById("em").innerHTML = "<b> ** Please fill the email address field.";
   }
-  if(isNaN(contact)){
-    document.getElementById('cn').innerHTML ="<b> ** User must write digits only not characters.";
+  if(contact=="/(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})/"){
+    document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be valid.";
   }
   if(contact.length!=11){
-    document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be valid and consist of 11 digits only.";
+    document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be consist of 11 digits only.";
   }
   if(contact == ""){
     document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
   }
-
   if(gender == ""){
     document.getElementById('g').innerHTML ="<b> ** Please select in gender field.";
   }
@@ -489,45 +492,31 @@ function validation(){
 
   }
   if(password == "") {  
-    document.getElementById("pw").innerHTML = "**Fill the password field!";  
-
-  }  if(cpassword == "") {  
-    document.getElementById("cpw").innerHTML = '**Fill the confirm password field!';  
+    document.getElementById("pw").innerHTML = "<b>**Fill the password field!";
+  } if(cpassword == "") {  
+    document.getElementById("cpw").innerHTML = '<b>**Fill the confirm password field!';  
+    return false;  
+  } if(password != cpassword) {  
+    document.getElementById("cpw").innerHTML = '<b>**Confirm password not matched!';  
     return false;  
   }  
 
 //minimum password length validation  
   if(password.length < 5) {  
-    document.getElementById("pw").innerHTML = "**Password length must be atleast 5 characters and up";  
+    document.getElementById("pw").innerHTML = "<b>**Password length must be atleast 5 characters and up";  
     return false;  
   }  
 
 //maximum length of password validation  
   if(password.length > 15) {  
-    document.getElementById("pw").innerHTML = "**Password length must not exceed 15 characters";  
+    document.getElementById("pw").innerHTML = "<b>**Password length must not exceed 15 characters";  
     return false;  
   } else {  
-    alert("Password is correct");  
+    if(firstname == ""){
+      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field.";
+      return false;
+    } 
   }
-
-
-//  if(password == ""){
-//   document.getElementById('pw').innerHTML ="<b> ** Please fill the password field.";
-// }
-
-//  if((password.length != 5) || (password.length > 20)) {
-//   document.getElementById('pw').innerHTML ="<b> ** Password length must be between 5 and 20.";
-
-// }
-
-// if(cpassword == ""){
-//   document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirm password field.";
-
-// }
-// if(password!=cpassword){
-//   document.getElementById('cpw').innerHTML ="";
-// }
-
 }
 
 function validate(id){
@@ -628,6 +617,22 @@ function validate(id){
 
 </script>
 
+<script>
+  var contact = document.getElementById("contact");
+
+  contact.addEventListener('input', () => {
+    contact.setCustomValidity('');
+    contact.checkValidity();
+  });
+
+  contact.addEventListener('invalid', () => {
+    if(contact.value === '') {
+      document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+    } else {
+      document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
+    } 
+  });
+</script>
 
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
@@ -672,6 +677,48 @@ function validate(id){
 </script>
 
 <script>
+  function validateFirstname() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'firstname='+$("#firstname").val(),
+      type: "POST",
+      success:function(data){
+        $("#validatefirstname1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
+  function validateMI() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'middleInitial='+$("#middleInitial").val(),
+      type: "POST",
+      success:function(data){
+        $("#validateMI1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
+  function validateLN() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'lastname='+$("#lastname").val(),
+      type: "POST",
+      success:function(data){
+        $("#validateLN1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
   function userAvailability() {
     $("#loaderIcon").show();
     jQuery.ajax({
@@ -685,9 +732,7 @@ function validate(id){
       error:function (){}
     });
   }
-</script> 
 
-<script>
   function userAvailability2() {
     $("#loaderIcon").show();
     jQuery.ajax({
@@ -696,6 +741,20 @@ function validate(id){
       type: "POST",
       success:function(data){
         $("#user-availability-status2").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
+  }
+
+  function validateContact() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "check_availability.php",
+      data:'contact='+$("#contact").val(),
+      type: "POST",
+      success:function(data){
+        $("#validateContact1").html(data);
         $("#loaderIcon").hide();
       },
       error:function (){}

@@ -13,7 +13,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 <?php endif;?>
 <div class="card card-outline card-primary">
 	<div class="card-header">
-	<a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end" onclick="history.back()">Back</a>
+		<a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end"onclick="history.back()">Back</a>
 		<h2 class="card-title">Add User</h2>
 	</div>
 	<div class="card-body">
@@ -225,7 +225,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		var _this = $(this)
 		start_loader()
 		$.ajax({
-			url:_base_url_+'classes/Users.php?f=csave',
+			url:_base_url_+'classes/Users.php?f=save',
 			data: new FormData($(this)[0]),
 			cache: false,
 			contentType: false,
@@ -234,7 +234,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 			type: 'POST',
 			success:function(resp){
 				if(resp ==1){
-					location.href = './?page=user/list';
+					location.href = './?page=user/manage_user&id=<?php echo("{$_GET['id']}")?>';
 				}else{
 					$('#msg').html('<div class="alert alert-danger">Username already exist</div>')
 					$("html, body").animate({ scrollTop: 0 }, "fast");

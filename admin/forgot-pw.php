@@ -101,7 +101,7 @@ require "mail.php";
     $password = md5($password);
     $email = addslashes($_SESSION['forgot']['email']);
 
-    $query = "update users set password = '$password' where email = '$email' limit 1";
+    $query = "update staff set password = '$password' where email = '$email' limit 1";
     mysqli_query($conn,$query);
 
     $query2 = "update patient set password = '$password' where email = '$email' limit 1";
@@ -114,7 +114,7 @@ require "mail.php";
 
     $email = addslashes($email);
 
-    $query = "select * from users where email = email limit 1";    
+    $query = "select * from staff where email = email limit 1";    
     $query2 = "select * from patient where email = '$email' limit 1";    
     $result = mysqli_query($conn,$query);
     $result2 = mysqli_query($conn,$query2);
@@ -187,6 +187,18 @@ require "mail.php";
   <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+
+*{
+   font-family: 'Poppins', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; border: none;
+   text-decoration: none;
+}
+  </style>
 </head>
 
 
