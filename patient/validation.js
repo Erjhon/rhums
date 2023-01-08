@@ -2,9 +2,9 @@
 var check = function() {
   if (document.getElementById('password').value ==
     document.getElementById('cpassword').value) {
-    document.getElementById('cpw').innerHTML = '<p class="text-success"><b>Password matched</p>';
+    document.getElementById('cpw').innerHTML = '<p class="text-success" style="font-size:12px;"><b>Password matched</p>';
 } else {
-  document.getElementById('cpw').innerHTML = '<p class="text-danger"><b>Password not matched</p>';
+  document.getElementById('cpw').innerHTML = '<p class="text-danger" style="font-size:12px;"><b>Password not matched</p>';
 }
 }
 
