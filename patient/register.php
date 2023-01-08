@@ -298,11 +298,12 @@
     <div class="input-group-prepend">
       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
     </div>
-    <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validate('password')||check('');">
+    <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="validatePassword()|| validate('password')" onkeyup="return validate('password')||check('');">
     <span class="input-group-text">
       <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
     </span>
   </div>
+    <span id="validatePassword1" style="font-size:12px;"></span>
   <p  class="text-danger" id="pw" style="font-size:12px; padding-top: 3px;"></p>
 </div>
 <div class="form-group col-sm-6 ">

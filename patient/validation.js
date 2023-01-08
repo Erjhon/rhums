@@ -73,22 +73,22 @@ function validation(){
 
   }
   if(password == "") {  
-    document.getElementById("pw").innerHTML = "<b>**Fill the password field!";
+    document.getElementById("pw").innerHTML = "<b>** Fill the password field!";
   } if(cpassword == "") {  
-    document.getElementById("cpw").innerHTML = '<b>**Fill the confirm password field!';  
+    document.getElementById("cpw").innerHTML = '<b>** Fill the confirm password field!';  
     return false;  
   } if(password != cpassword) {  
-    document.getElementById("cpw").innerHTML = '<b>**Confirm password not matched!';  
+    document.getElementById("cpw").innerHTML = '<b>** Confirm password not matched!';  
     return false;  
   }  
 //minimum password length validation  
   if(password.length < 5) {  
-    document.getElementById("pw").innerHTML = "<b>**Password length must be atleast 5 characters and up";  
+    document.getElementById("pw").innerHTML = "<b>** Password length must be atleast 5 characters and up";  
     return false;  
   }  
 //maximum length of password validation  
   if(password.length > 15) {  
-    document.getElementById("pw").innerHTML = "<b>**Password length must not exceed 15 characters";  
+    document.getElementById("pw").innerHTML = "<b>** Password length must not exceed 15 characters";  
     return false;  
   } else {  
     if(firstname == ""){
@@ -368,6 +368,20 @@ function validateContact() {
     type: "POST",
     success:function(data){
       $("#validateContact1").html(data);
+      $("#loaderIcon").hide();
+    },
+    error:function (){}
+  });
+}
+
+function validatePassword() {
+  $("#loaderIcon").show();
+  jQuery.ajax({
+    url: "check_availability.php",
+    data:'password='+$("#password").val(),
+    type: "POST",
+    success:function(data){
+      $("#validatePassword1").html(data);
       $("#loaderIcon").hide();
     },
     error:function (){}

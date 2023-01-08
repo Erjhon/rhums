@@ -81,5 +81,15 @@ if(!empty($_POST["contact"])) {
 	}
 }
 
+if(!empty($_POST["password"])) {
+	$password= $_POST["password"];
+
+	if (preg_match("/(?=.*\d)(?=.*[`!%^*()$#\\+_=+-{}:\\?\\.,~&@])(?=.*[a-z])(?=.*[A-Z]).{8,}/",$password)){
+		echo "<script>$('#submit').prop('disabled',false);</script>";
+	}else{
+		echo "<span class='text-danger''>Password must be at least 8 characters and contain at least one uppercase, one lowercase, one number, and one special character.</span>";
+		echo "<script>$('#submit').prop('disabled',true);</script>";
+	}
+}
 
 ?>
