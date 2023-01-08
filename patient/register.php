@@ -429,6 +429,58 @@
     token: "ee6fab19c5a04ac1a32a645abde4613a",
     application: "argon-dashboard-free"
   });
+
+const picker = document.getElementById('dob');
+let date = new Date();
+
+// check birthdays start 
+picker.addEventListener('input', function(e){
+  let day = new Date(this.value).getUTCDate();
+  let mm = new Date(this.value).getUTCMonth()+1;
+  let yy = new Date(this.value).getUTCFullYear();
+  let yyyy = date.getFullYear();
+  let mmmm = date.getMonth()+1;
+  let dddd = date.getDate();
+
+  let age = yyyy - yy;
+  let m = mmmm - mm;
+
+
+//check if year is >= current year
+  if(yy >= yyyy){
+    e.preventDefault();
+    this.value = '';
+    Swal.fire({
+      width: 500,
+      position: 'center',
+      icon: 'warning',
+      title: 'Invalid Birthdate',
+      showConfirmButton: false,
+      timer: 2500
+    })
+  }
+
+
+//Check valid age
+  else if (m < 0 || (m === 0 && dddd < day)) {
+    age--;
+  }
+  else if (age < 5){
+    e.preventDefault();
+    this.value = '';
+    Swal.fire({
+      position: 'center',
+      icon: 'warning',
+      title: 'Children under the age of five are not permitted to create an account.',
+      showConfirmButton: false,
+      timer: 2500
+    })
+
+  }
+  else {
+//   alert("Valid");
+  }
+})
 </script>
 
 </body>

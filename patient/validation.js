@@ -1,3 +1,13 @@
+
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('cpassword').value) {
+    document.getElementById('cpw').innerHTML = '<p class="text-success"><b>Password matched</p>';
+} else {
+  document.getElementById('cpw').innerHTML = '<p class="text-danger"><b>Password not matched</p>';
+}
+}
+
 function validation(){
 
   var firstname = document.getElementById('firstname').value;
@@ -261,20 +271,15 @@ contact.addEventListener('invalid', () => {
 // <!-- Checks Form validation -->
 // <script type="text/javascript">
 
-var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('cpassword').value) {
-    document.getElementById('cpw').innerHTML = '<p class="text-success"><b>Password matched</p>';
-} else {
-  document.getElementById('cpw').innerHTML = '<p class="text-danger"><b>Password not matched</p>';
-}
-}
+
 
 // </script>
 
 
-// <!-- show password -->
 // <script>
+
+
+// <!-- show password -->
 var state = false;
 function toggle1(){
   if (state){
@@ -387,56 +392,5 @@ function validateContact() {
 
 // <!-- //check birthdays start -->
 // <script>
-const picker = document.getElementById('dob');
-let date = new Date();
 
-picker.addEventListener('input', function(e){
-  let day = new Date(this.value).getUTCDate();
-  let mm = new Date(this.value).getUTCMonth()+1;
-  let yy = new Date(this.value).getUTCFullYear();
-  let yyyy = date.getFullYear();
-  let mmmm = date.getMonth()+1;
-  let dddd = date.getDate();
-
-  let age = yyyy - yy;
-  let m = mmmm - mm;
-
-
-//check if year is >= current year
-  if(yy >= yyyy){
-    e.preventDefault();
-    this.value = '';
-    Swal.fire({
-      width: 500,
-      position: 'center',
-      icon: 'warning',
-      title: 'Invalid Birthdate',
-      showConfirmButton: false,
-      timer: 2500
-    })
-  }
-
-
-
-
-//Check valid age
-  else if (m < 0 || (m === 0 && dddd < day)) {
-    age--;
-  }
-  else if (age < 5){
-    e.preventDefault();
-    this.value = '';
-    Swal.fire({
-      position: 'center',
-      icon: 'warning',
-      title: 'Children under the age of five are not permitted to create an account.',
-      showConfirmButton: false,
-      timer: 2500
-    })
-
-  }
-  else {
-//   alert("Valid");
-  }
-})
 // </script>
