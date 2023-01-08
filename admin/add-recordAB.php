@@ -277,7 +277,7 @@ if(isset($message)){
                                             <div class="form-group">
                                                 <label for="source" class="control-label">Source</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="source" required>
-                                                    <option class="placeholder" style="display: none" >Select Source</option>
+                                                    <option class="placeholder" style="display: none" value="">Select Source</option>
                                                     <option <?php echo isset($patient['source']) && $patient['source'] == "Dog" ? "selected" : "" ?>>Dog</option>
                                                     <option <?php echo isset($patient['source']) && $patient['source'] == "Cat" ? "selected" : "" ?>>Cat</option>
                                                 </select>
@@ -295,7 +295,7 @@ if(isset($message)){
                                             <div class="form-group">
                                                 <label for="category" class="control-label">Category</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="category" required>
-                                                    <option class="placeholder" style="display: none" >Select Category</option>
+                                                    <option class="placeholder" style="display: none" value="">Select Category</option>
                                                     <option <?php echo isset($patient['category']) && $patient['category'] == "I" ? "selected" : "" ?>>I</option>
                                                     <option <?php echo isset($patient['category']) && $patient['category'] == "II" ? "selected" : "" ?>>II</option>
                                                     <option <?php echo isset($patient['category']) && $patient['category'] == "III" ? "selected" : "" ?>>III</option>
@@ -307,7 +307,7 @@ if(isset($message)){
                                             <div class="form-group">
                                                 <label for="type" class="control-label">Type</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="type" required>
-                                                    <option class="placeholder" style="display: none" >Select Type</option>
+                                                    <option class="placeholder" style="display: none" value="">Select Type</option>
                                                     <option <?php echo isset($patient['type']) && $patient['type'] == "Bite" ? "selected" : "" ?>>Bite</option>
                                                     <option <?php echo isset($patient['type']) && $patient['type'] == "Scratch" ? "selected" : "" ?>>Scratch</option>
                                                 </select>
@@ -317,7 +317,7 @@ if(isset($message)){
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Name <small>(Pet Owner)</small></label>
-                                                <input class="form-control" name="owner" placeholder="Enter Name"></textarea>
+                                                <input class="form-control" name="owner" placeholder="Enter Name" required></textarea>
                                             </div>
                                         </div>
 

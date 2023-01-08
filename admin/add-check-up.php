@@ -142,7 +142,7 @@
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Gender</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                                        <option class="placeholder" style="display: none" >Select Gender</option>
+                                                        <option class="placeholder" style="display: none" value="" >Select Gender</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                                                     </select>
@@ -163,13 +163,13 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Place of Birth <small>(for child)</small></label>
-                                                    <input class="form-control" name="placebirth" placeholder="Enter Place of Birth">
+                                                    <input class="form-control" name="placebirth" placeholder="Enter Place of Birth" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Guardian/Mother <small>(for child)</small></label>
-                                                    <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother">
+                                                    <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
@@ -177,7 +177,7 @@
                                                     <label>Patient Address</label>
                                                     <!-- <input class="form-control" name="paddress" placeholder="Enter Patient Address" required> -->
                                                     <select class="form-control" name="paddress" placeholder="Enter Patient Address" required>
-                                                        <option class="placeholder" style="display: none" >Select Patient Address</option>
+                                                        <option class="placeholder" style="display: none" value="">Select Patient Address</option>
                                                         <option>Angustia, Nabua</option>
                                                         <option>Antipolo Old, Nabua</option>
                                                         <option>Antipolo Young, Nabua</option>
@@ -251,7 +251,7 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>Blood Sugar</label>
-                                                    <input class="form-control" name="bloodsugar" placeholder="Sample: 70" >
+                                                    <input class="form-control" name="bloodsugar" placeholder="Sample: 70" required>
                                                 </div>
                                             </div>
 

@@ -200,13 +200,13 @@ if(isset($message)){
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Place of Birth <small>(for child)</small></label>
-                                                <input class="form-control" name="placebirth" placeholder="Enter Place of Birth">
+                                                <input class="form-control" name="placebirth" placeholder="Enter Place of Birth" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Guardian/Mother <small>(for child)</small></label>
-                                                <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother">
+                                                <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -288,7 +288,7 @@ if(isset($message)){
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Blood Sugar</label>
-                                                <input class="form-control" name="bloodsugar" placeholder="Sample: 70">
+                                                <input class="form-control" name="bloodsugar" placeholder="Sample: 70" required>
                                             </div>
                                         </div>
 

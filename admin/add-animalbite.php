@@ -129,7 +129,7 @@
                                                 <div class="form-group">
                                                     <label>Patient Contact Number</label>
                                                     <!-- <input class="form-control" name="pcontact" placeholder="Enter Patient Contact Number" required maxlength="11"> -->
-                                                    <input type="tel" class="form-control" id="pcontact" placeholder="Contact Number" name="pcontact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                                    <input type="tel" class="form-control" id="pcontact" placeholder="Contact Number" name="pcontact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                                                     <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                                 </div>
                                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -138,7 +138,7 @@
                                                 <div class="form-group">
                                                     <label for="gender" class="control-label">Gender</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                                        <option class="placeholder" style="display: none" >Select Gender</option>
+                                                        <option class="placeholder" style="display: none" value="" >Select Gender</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                                                     </select>
@@ -161,7 +161,7 @@
                                                 <div class="form-group">
                                                     <label>Patient Address</label>
                                                     <select class="form-control" name="paddress" placeholder="Enter Patient Address" required>
-                                                        <option class="placeholder" style="display: none" >Select Patient Address</option>
+                                                        <option class="placeholder" style="display: none" value="">Select Patient Address</option>
                                                         <option>Angustia, Nabua</option>
                                                         <option>Antipolo Old, Nabua</option>
                                                         <option>Antipolo Young, Nabua</option>
@@ -226,7 +226,7 @@
                                             <div class="col-3">
                                                 <div class="form-group">
                                                     <label for="visit" class="control-label">Date of Visit</label>
-                                                    <input type="date" class="form-control" name="visit" >
+                                                    <input type="date" class="form-control" name="visit" required>
                                                 </div>
                                             </div>
                                             <div class="col-3">
@@ -240,7 +240,7 @@
                                                 <div class="form-group">
                                                     <label for="source" class="control-label">Source</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="source" required>
-                                                        <option class="placeholder" style="display: none" >Select Source</option>
+                                                        <option class="placeholder" style="display: none" value="">Select Source</option>
                                                         <option <?php echo isset($patient['source']) && $patient['source'] == "Dog" ? "selected" : "" ?>>Dog</option>
                                                         <option <?php echo isset($patient['source']) && $patient['source'] == "Cat" ? "selected" : "" ?>>Cat</option>
                                                     </select>
@@ -260,7 +260,7 @@
                                                 <div class="form-group">
                                                     <label for="category" class="control-label">Category</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="category" required>
-                                                        <option class="placeholder" style="display: none" >Select Category</option>
+                                                        <option class="placeholder" style="display: none" value="">Select Category</option>
                                                         <option <?php echo isset($patient['category']) && $patient['category'] == "I" ? "selected" : "" ?>>I</option>
                                                         <option <?php echo isset($patient['category']) && $patient['category'] == "II" ? "selected" : "" ?>>II</option>
                                                         <option <?php echo isset($patient['category']) && $patient['category'] == "III" ? "selected" : "" ?>>III</option>
@@ -273,7 +273,7 @@
                                                 <div class="form-group">
                                                     <label for="type" class="control-label">Type</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="type" required>
-                                                        <option class="placeholder" style="display: none" >Select Type</option>
+                                                        <option class="placeholder" style="display: none" value="">Select Type</option>
                                                         <option <?php echo isset($patient['type']) && $patient['type'] == "Bite" ? "selected" : "" ?>>Bite</option>
                                                         <option <?php echo isset($patient['type']) && $patient['type'] == "Scratch" ? "selected" : "" ?>>Scratch</option>
                                                     </select>
@@ -292,7 +292,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Contact Number <small>(Pet Owner)</small></label>
-                                                    <input type="tel" class="form-control" id="ownercon" placeholder="Contact Number" name="ownercon" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                                    <input type="tel" class="form-control" id="ownercon" placeholder="Contact Number" name="ownercon" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                                                     <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                                 </div>
                                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -309,7 +309,7 @@
                                             <div class="col-sm-9">
                                                 <div class="form-group">
                                                     <label>Remarks</label>
-                                                    <textarea class="form-control" name="remark" placeholder="Enter Remarks" ></textarea>
+                                                    <textarea class="form-control" name="remark" placeholder="Enter Remarks" required></textarea>
                                                 </div>
                                             </div>
 
