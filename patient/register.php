@@ -430,6 +430,23 @@
     application: "argon-dashboard-free"
   });
 
+
+// Validate PH mobile number
+  var contact = document.getElementById("contact");
+
+contact.addEventListener('input', () => {
+  contact.setCustomValidity('');
+  contact.checkValidity();
+});
+
+contact.addEventListener('invalid', () => {
+  if(contact.value === '') {
+    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+  } else {
+    document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
+  } 
+});
+
 const picker = document.getElementById('dob');
 let date = new Date();
 

@@ -252,21 +252,6 @@ function validate(id){
 }
 
 
-var contact = document.getElementById("contact");
-
-contact.addEventListener('input', () => {
-  contact.setCustomValidity('');
-  contact.checkValidity();
-});
-
-contact.addEventListener('invalid', () => {
-  if(contact.value === '') {
-    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
-  } else {
-    document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
-  } 
-});
-
 
 // <!-- Checks Form validation -->
 // <script type="text/javascript">
@@ -390,7 +375,7 @@ function validateContact() {
 }
 // </script>
 
-// <!-- //check birthdays start -->
+// 
 // <script>
 
 // </script>
