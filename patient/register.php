@@ -35,6 +35,13 @@
       color: red;
       font-size: 13px;
     }
+    p{
+      text-align: justify;
+    }
+    ul li{
+      margin-left: 4%;
+      text-align: justify;
+    }
 
   </style>
 
