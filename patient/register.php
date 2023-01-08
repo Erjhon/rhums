@@ -17,7 +17,7 @@
   <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
-
+  <script type = "text/javascript" src="validation.js"></script>  
   <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
   <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
@@ -218,138 +218,138 @@
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Contact Number</h5>
 <!-- <<<<<<< Updated upstream
-                  <input type="tel" class="form-control" id="contact" placeholder="09524423145" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="validateContact()|| validate('contact')" onkeyup="return validate('contact')">
-                  <span id="validateContact1" style="font-size:12px;"></span>
-                  ======= -->
-                  <input type="tel" class="form-control" id="contact" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" placeholder="Contact Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')" oninvalid="setCustomValidity(' ')" />
-                  <p  class="text-danger" id="cn" style="font-size:12px;"></p>
-                </div>
+<input type="tel" class="form-control" id="contact" placeholder="09524423145" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="validateContact()|| validate('contact')" onkeyup="return validate('contact')">
+<span id="validateContact1" style="font-size:12px;"></span>
+======= -->
+<input type="tel" class="form-control" id="contact" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" placeholder="Contact Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')" oninvalid="setCustomValidity(' ')" />
+<p  class="text-danger" id="cn" style="font-size:12px;"></p>
+</div>
 
-                <div class="form-group col-sm-3 mb--1">
-                  <h5 for="gender" class="text-dark required">Gender</h5>
-                  <select type="text" class="form-control form-select-sm-6" value="<?php echo isset($_POST['gender']) ? $_POST['gender'] : ''; ?>" name="gender" id="gender" onchange ="return validate('gender')" >
-                    <option class="placeholder" value="" style="display: none">Select Gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                  <p  class="text-danger" id="g" style="font-size:12px;"></p>
-                </div>
+<div class="form-group col-sm-3 mb--1">
+  <h5 for="gender" class="text-dark required">Gender</h5>
+  <select type="text" class="form-control form-select-sm-6" value="<?php echo isset($_POST['gender']) ? $_POST['gender'] : ''; ?>" name="gender" id="gender" onchange ="return validate('gender')" >
+    <option class="placeholder" value="" style="display: none">Select Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+  <p  class="text-danger" id="g" style="font-size:12px;"></p>
+</div>
 
-                <div class="form-group col-sm-3 mb--1">
-                  <h5 for="dob" class="control-label required">Date of Birth</h5>
-                  <input type="date" class="form-control" id="dob" value="<?php echo isset($_POST['dob']) ? $_POST['dob'] : ''; ?>" name="dob" onkeyup="return validate('dob')">
-                  <p  class="text-danger" id="db" style="font-size:12px;"></p>
-                </div>
+<div class="form-group col-sm-3 mb--1">
+  <h5 for="dob" class="control-label required">Date of Birth</h5>
+  <input type="date" class="form-control" id="dob" value="<?php echo isset($_POST['dob']) ? $_POST['dob'] : ''; ?>" name="dob" onkeyup="return validate('dob')">
+  <p  class="text-danger" id="db" style="font-size:12px;"></p>
+</div>
 
-                <div class="form-group col-sm-6 mb--1">
-                  <h5 class="text-dark required">Address</h5>
-                  <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
-                  <select class="form-control" id="address" value="<?php echo isset($_POST['address']) ? $_POST['address'] : ''; ?>" name="address" rows="2" onchange ="return validate('address')" >
-                    <option class="placeholder" style="display: none" value="">Select Address</option>
-                    <option>Angustia, Nabua</option>
-                    <option>Antipolo Old, Nabua</option>
-                    <option>Antipolo Young, Nabua</option>
-                    <option>Aro-aldao, Nabua</option>
-                    <option>Bustrac, Nabua</option>
-                    <option>Dolorosa, Nabua</option>
-                    <option>Duran, Nabua</option>
-                    <option>Inapatan, Nabua</option>
-                    <option>La Opinion, Nabua</option>
-                    <option>La Purisima, Nabua</option>
-                    <option>Lourdes Old, Nabua</option>
-                    <option>Lourdes Young, Nabua</option>
-                    <option>Malawag, Nabua</option>
-                    <option>Paloyon Oriental, Nabua</option>
-                    <option>Paloyon Proper, Nabua</option>
-                    <option>Salvacion Que Gatos, Nabua</option>
-                    <option>San Antonio, Nabua</option>
-                    <option>San Antonio Ogbon, Nabua</option>
-                    <option>San Esteban, Nabua</option>
-                    <option>San Francisco, Nabua</option>
-                    <option>San Isidro, Nabua</option>
-                    <option>San Isidro Inapatan, Nabua</option>
-                    <option>San Jose, Nabua</option>
-                    <option>San Juan, Nabua</option>
-                    <option>San Luis, Nabua</option>
-                    <option>San Miguel, Nabua</option>
-                    <option>San Nicolas, Nabua</option>
-                    <option>San Roque, Nabua</option>
-                    <option>San Roque Madawon, Nabua</option>
-                    <option>San Roque Sagumay, Nabua</option>
-                    <option>San Vicente Gorong-Gorong, Nabua</option>
-                    <option>San Vicente Ogbon, Nabua</option>
-                    <option>Santa Barbara, Nabua</option>
-                    <option>Santa Cruz, Nabua</option>
-                    <option>Santa Elena Baras, Nabua</option>
-                    <option>Santa Lucia Baras, Nabua</option>
-                    <option>Santiago Old, Nabua</option>
-                    <option>Santiago Young, </option>
-                    <option>Santo Domingo, Nabua</option>
-                    <option>Tandaay, Nabua</option>
-                    <option>Topas Proper, Nabua</option>
-                    <option>Topas Sogod, Nabua</option>
-                  </select>
-                  <p  class="text-danger" id="ad" style="font-size:12px;"></p>
-                </div>
+<div class="form-group col-sm-6 mb--1">
+  <h5 class="text-dark required">Address</h5>
+  <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
+  <select class="form-control" id="address" value="<?php echo isset($_POST['address']) ? $_POST['address'] : ''; ?>" name="address" rows="2" onchange ="return validate('address')" >
+    <option class="placeholder" style="display: none" value="">Select Address</option>
+    <option>Angustia, Nabua</option>
+    <option>Antipolo Old, Nabua</option>
+    <option>Antipolo Young, Nabua</option>
+    <option>Aro-aldao, Nabua</option>
+    <option>Bustrac, Nabua</option>
+    <option>Dolorosa, Nabua</option>
+    <option>Duran, Nabua</option>
+    <option>Inapatan, Nabua</option>
+    <option>La Opinion, Nabua</option>
+    <option>La Purisima, Nabua</option>
+    <option>Lourdes Old, Nabua</option>
+    <option>Lourdes Young, Nabua</option>
+    <option>Malawag, Nabua</option>
+    <option>Paloyon Oriental, Nabua</option>
+    <option>Paloyon Proper, Nabua</option>
+    <option>Salvacion Que Gatos, Nabua</option>
+    <option>San Antonio, Nabua</option>
+    <option>San Antonio Ogbon, Nabua</option>
+    <option>San Esteban, Nabua</option>
+    <option>San Francisco, Nabua</option>
+    <option>San Isidro, Nabua</option>
+    <option>San Isidro Inapatan, Nabua</option>
+    <option>San Jose, Nabua</option>
+    <option>San Juan, Nabua</option>
+    <option>San Luis, Nabua</option>
+    <option>San Miguel, Nabua</option>
+    <option>San Nicolas, Nabua</option>
+    <option>San Roque, Nabua</option>
+    <option>San Roque Madawon, Nabua</option>
+    <option>San Roque Sagumay, Nabua</option>
+    <option>San Vicente Gorong-Gorong, Nabua</option>
+    <option>San Vicente Ogbon, Nabua</option>
+    <option>Santa Barbara, Nabua</option>
+    <option>Santa Cruz, Nabua</option>
+    <option>Santa Elena Baras, Nabua</option>
+    <option>Santa Lucia Baras, Nabua</option>
+    <option>Santiago Old, Nabua</option>
+    <option>Santiago Young, </option>
+    <option>Santo Domingo, Nabua</option>
+    <option>Tandaay, Nabua</option>
+    <option>Topas Proper, Nabua</option>
+    <option>Topas Sogod, Nabua</option>
+  </select>
+  <p  class="text-danger" id="ad" style="font-size:12px;"></p>
+</div>
 
-                <div class="form-group col-sm-6 ">
-                  <h5 class="text-dark required">Password</h5>
-                  <div class="input-group input-group-alternative mb--1">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validate('password')||check('');">
-                    <span class="input-group-text">
-                      <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
-                    </span>
-                  </div>
-                  <p  class="text-danger" id="pw" style="font-size:12px; padding-top: 3px;"></p>
-                </div>
-                <div class="form-group col-sm-6 ">
-                  <h5 class="text-dark required">Confirm Password</h5>
-                  <div class="input-group input-group-alternative mb--1">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Confirm Password" id ="cpassword" name="cpassword" type="password" onkeyup="return validate('cpassword')||check('');">
-                    <span class="input-group-text">
-                      <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
-                    </span>
-                  </div>
-                  <p  class="text-danger" id="cpw" style="font-size:12px; padding-top: 3px;"></p>
-                </div>
+<div class="form-group col-sm-6 ">
+  <h5 class="text-dark required">Password</h5>
+  <div class="input-group input-group-alternative mb--1">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+    </div>
+    <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="return validate('password')||check('');">
+    <span class="input-group-text">
+      <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+    </span>
+  </div>
+  <p  class="text-danger" id="pw" style="font-size:12px; padding-top: 3px;"></p>
+</div>
+<div class="form-group col-sm-6 ">
+  <h5 class="text-dark required">Confirm Password</h5>
+  <div class="input-group input-group-alternative mb--1">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+    </div>
+    <input class="form-control" placeholder="Confirm Password" id ="cpassword" name="cpassword" type="password" onkeyup="return validate('cpassword')||check('');">
+    <span class="input-group-text">
+      <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+    </span>
+  </div>
+  <p  class="text-danger" id="cpw" style="font-size:12px; padding-top: 3px;"></p>
+</div>
 
-                <div class="col-12 mb-2">
-                  <h5 class="text-dark">Add Profile Image</h5>
-                  <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
-                </div>
-              </div>
+<div class="col-12 mb-2">
+  <h5 class="text-dark">Add Profile Image</h5>
+  <input  type="file" name="image" class="form-control box" accept="image/jpg, image/jpeg, image/png">
+</div>
+</div>
 
-              <div class="row my-2">
-                <div class="col-12">
-                  <div class="custom-control custom-control-alternative custom-checkbox text-center">
-                    <input class="custom-control-input" id="customCheckRegister" type="checkbox" oninvalid="this.setCustomValidity('By confirming this, you are agreeing to our Privacy Policy')" onchange="this.setCustomValidity('')" required />
-                    <label class="custom-control-label" for="customCheckRegister">
-                      <!-- <span class="text-dark">I agree with the <a href="privacy.php" target="_blank">Privacy Policy</a></span> -->
-                      <span class="text-dark">I agree with the <a href="privacy.php"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
+<div class="row my-2">
+  <div class="col-12">
+    <div class="custom-control custom-control-alternative custom-checkbox text-center">
+      <input class="custom-control-input" id="customCheckRegister" type="checkbox" oninvalid="this.setCustomValidity('By confirming this, you are agreeing to our Privacy Policy')" onchange="this.setCustomValidity('')" required />
+      <label class="custom-control-label" for="customCheckRegister">
+        <!-- <span class="text-dark">I agree with the <a href="privacy.php" target="_blank">Privacy Policy</a></span> -->
+        <span class="text-dark">I agree with the <a href="privacy.php"  data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
 
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center">
-                <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
-              </div><br>
-              <div class="col-12 text-center mt--3">
-                Already have an account? <a href="../admin/login.php">Log in</a>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
+      </label>
     </div>
   </div>
+</div>
+<div class="text-center">
+  <button type="submit" id="submit" name="submit" class="btn btn-primary mt-1">Create account</button>
+</div><br>
+<div class="col-12 text-center mt--3">
+  Already have an account? <a href="../admin/login.php">Log in</a>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -414,226 +414,6 @@
 </div>
 </div>
 
-
-<!-- Checks Form validation -->
-<script type="text/javascript">
-
-  var check = function() {
-    if (document.getElementById('password').value ==
-      document.getElementById('cpassword').value) {
-      document.getElementById('cpw').innerHTML = '<p class="text-success"><b>Password matched</p>';
-  } else {
-    document.getElementById('cpw').innerHTML = '<p class="text-danger"><b>Password not matched</p>';
-  }
-}
-
-function validation(){
-
-  var firstname = document.getElementById('firstname').value;
-  var middleInitial = document.getElementById('middleInitial').value;
-  var lastname = document.getElementById('lastname').value;
-  var username = document.getElementById('username').value;
-  var email = document.getElementById('email').value;
-  var contact = document.getElementById('contact').value;
-  var gender = document.getElementById('gender').value;
-  var dob = document.getElementById('dob').value;
-  var address = document.getElementById('address').value;
-  var password = document.getElementById('password').value;
-  var cpassword = document.getElementById('cpassword').value;
-
-  if(firstname == ""){
-    document.getElementById('fn').innerHTML ="<b> ** Please fill the firstname field.";
-  }
-  if(middleInitial == ""){
-    document.getElementById('mI').innerHTML ="<b> ** Please fill the middle initial field."; 
-  }
-  if(lastname == ""){
-    document.getElementById('ln').innerHTML ="<b> ** Please fill the lastname field.";
-  }
-
-  if((username.length <= 4) || (username.length > 20)) {
-    document.getElementById('un').innerHTML ="<b> ** Username length must be between 5 and 20.";
-  }
-  if(!isNaN(username)){
-    document.getElementById('un').innerHTML ="<b> ** A combination of letters and numbers are only allowed.";
-  }
-  if(username == ""){
-    document.getElementById('un').innerHTML ="<b> ** Please fill the username field.";
-  }
-  if (email.indexOf('@') <= 0) {
-    document.getElementById("em").innerHTML = "<b> ** Email id not valid, @ position is wrong"; 
-  }
-  if ((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
-    document.getElementById("em").innerHTML = "<b> ** Email id not valid, . position is wrong"; 
-  }
-  if (email == "") {
-    document.getElementById("em").innerHTML = "<b> ** Please fill the email address field.";
-  }
-  if(contact=="/(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})/"){
-    document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be valid.";
-  }
-  if(contact.length!=11){
-    document.getElementById('cn').innerHTML ="<b> ** Mobile Number must be consist of 11 digits only.";
-  }
-  if(contact == ""){
-    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
-  }
-  if(gender == ""){
-    document.getElementById('g').innerHTML ="<b> ** Please select in gender field.";
-  }
-  if(dob == ""){
-    document.getElementById('db').innerHTML ="<b> ** Please fill the date of birth field.";
-  }
-  if(address == ""){
-    document.getElementById('ad').innerHTML ="<b> ** Please select in the address field."; 
-  }
-  else if(!isNaN(address)){
-    document.getElementById('ad').innerHTML ="<b> ** Only characters are allowed.";
-
-  }
-  if(password == "") {  
-    document.getElementById("pw").innerHTML = "<b>**Fill the password field!";
-  } if(cpassword == "") {  
-    document.getElementById("cpw").innerHTML = '<b>**Fill the confirm password field!';  
-    return false;  
-  } if(password != cpassword) {  
-    document.getElementById("cpw").innerHTML = '<b>**Confirm password not matched!';  
-    return false;  
-  }  
-
-//minimum password length validation  
-  if(password.length < 5) {  
-    document.getElementById("pw").innerHTML = "<b>**Password length must be atleast 5 characters and up";  
-    return false;  
-  }  
-
-//maximum length of password validation  
-  if(password.length > 15) {  
-    document.getElementById("pw").innerHTML = "<b>**Password length must not exceed 15 characters";  
-    return false;  
-  } else {  
-    if(firstname == ""){
-      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field.";
-      return false;
-    } 
-  }
-}
-
-function validate(id){
-  var input_id = document.getElementById(''+id).value;
-
-  if(id == 'firstname' ){
-    if(input_id == ""){
-      document.getElementById('fn').innerHTML ="<b>** Please fill the firstname field."; 
-    }else {
-      document.getElementById('fn').innerHTML = ""; 
-    }
-  }
-  else if(id == 'middleInitial'){
-    if(middleInitial == ""){
-      document.getElementById('mI').innerHTML ="<b> ** Please fill the middle initial field.";
-    }else {
-      document.getElementById('mI').innerHTML = "";
-    }
-  }
-  else if(id == 'lastname'){
-    if(lastname == ""){
-      document.getElementById('ln').innerHTML ="<b> ** Please fill the lastname field.";
-    }else {
-      document.getElementById('ln').innerHTML = "";
-    }
-  }
-  else if(id == 'username'){
-    if(username == ""){
-      document.getElementById('un').innerHTML ="<b> ** Please fill the username field.";
-    }else {
-      document.getElementById('un').innerHTML = "";
-    }
-  }
-  else if(id == 'email'){
-    if(email == ""){
-      document.getElementById('em').innerHTML ="<b> ** Please fill the email address field.";
-    }else {
-      document.getElementById('em').innerHTML = "";
-    }
-  }
-  else if(id == 'email'){
-    if(email == ""){
-      document.getElementById('em').innerHTML ="<b> ** Please fill the email address field.";
-    }else {
-      document.getElementById('em').innerHTML = "";
-    }
-  }
-  else if(id == 'email'){
-    if(email == ""){
-      document.getElementById('em').innerHTML ="<b> ** Please fill the email address field.";
-    }else {
-      document.getElementById('em').innerHTML = "";
-    }
-  }
-  else if(id == 'contact'){
-    if(contact == ""){
-      document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
-    }else {
-      document.getElementById('cn').innerHTML = "";
-    }
-  }
-  else if(id == 'gender'){
-    if(gender == ""){
-      document.getElementById('g').innerHTML ="<b> ** Please fill the gender field.";
-    }else {
-      document.getElementById('g').innerHTML = "";
-    }
-  }
-  else if(id == 'dob'){
-    if(dob == ""){
-      document.getElementById('db').innerHTML ="<b> ** Please fill the date of birth field.";
-    }else {
-      document.getElementById('db').innerHTML = "";
-    }
-  }
-  else if(id == 'address'){
-    if(address == ""){
-      document.getElementById('ad').innerHTML ="<b> ** Please fill the address field.";
-    }else {
-      document.getElementById('ad').innerHTML = "";
-    }
-  }
-  else if(id == 'password'){
-    if(password == ""){
-      document.getElementById('pw').innerHTML ="<b> ** Please fill the password field.";
-    }else {
-      document.getElementById('pw').innerHTML = "";
-    }
-  }
-  else if(id == 'cpassword'){
-    if(cpassword == ""){
-      document.getElementById('cpw').innerHTML ="<b> ** Please fill the confirm password field.";
-    }else {
-      document.getElementById('cpw').innerHTML = "";
-    }
-  }return false;
-}
-
-</script>
-
-<script>
-  var contact = document.getElementById("contact");
-
-  contact.addEventListener('input', () => {
-    contact.setCustomValidity('');
-    contact.checkValidity();
-  });
-
-  contact.addEventListener('invalid', () => {
-    if(contact.value === '') {
-      document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
-    } else {
-      document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
-    } 
-  });
-</script>
-
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="../assets/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -642,6 +422,7 @@ function validate(id){
 <script src="../assets/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
 <script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+
 <script>
   window.TrackJS &&
   TrackJS.install({
@@ -650,175 +431,5 @@ function validate(id){
   });
 </script>
 
-<!-- show password -->
-<script>
-  var state = false;
-  function toggle1(){
-    if (state){
-      document.getElementById("password").setAttribute("type", "password");
-      state = false;
-    } else{
-      document.getElementById("password").setAttribute("type", "text");
-      state = true;
-    }
-  }
-</script>
-<script>
-  var state = false;
-  function toggle2(){
-    if (state){
-      document.getElementById("cpassword").setAttribute("type", "password");
-      state = false;
-    } else{
-      document.getElementById("cpassword").setAttribute("type", "text");
-      state = true;
-    }
-  }
-</script>
-
-<script>
-  function validateFirstname() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "check_availability.php",
-      data:'firstname='+$("#firstname").val(),
-      type: "POST",
-      success:function(data){
-        $("#validatefirstname1").html(data);
-        $("#loaderIcon").hide();
-      },
-      error:function (){}
-    });
-  }
-
-  function validateMI() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "check_availability.php",
-      data:'middleInitial='+$("#middleInitial").val(),
-      type: "POST",
-      success:function(data){
-        $("#validateMI1").html(data);
-        $("#loaderIcon").hide();
-      },
-      error:function (){}
-    });
-  }
-
-  function validateLN() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "check_availability.php",
-      data:'lastname='+$("#lastname").val(),
-      type: "POST",
-      success:function(data){
-        $("#validateLN1").html(data);
-        $("#loaderIcon").hide();
-      },
-      error:function (){}
-    });
-  }
-
-  function userAvailability() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "check_availability.php",
-      data:'username='+$("#username").val(),
-      type: "POST",
-      success:function(data){
-        $("#user-availability-status1").html(data);
-        $("#loaderIcon").hide();
-      },
-      error:function (){}
-    });
-  }
-
-  function userAvailability2() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "check_availability.php",
-      data:'email='+$("#email").val(),
-      type: "POST",
-      success:function(data){
-        $("#user-availability-status2").html(data);
-        $("#loaderIcon").hide();
-      },
-      error:function (){}
-    });
-  }
-
-  function validateContact() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "check_availability.php",
-      data:'contact='+$("#contact").val(),
-      type: "POST",
-      success:function(data){
-        $("#validateContact1").html(data);
-        $("#loaderIcon").hide();
-      },
-      error:function (){}
-    });
-  }
-</script>
-
-<!-- //check birthdays start -->
-<script>
-  const picker = document.getElementById('dob');
-  let date = new Date();
-
-  picker.addEventListener('input', function(e){
-    let day = new Date(this.value).getUTCDate();
-    let mm = new Date(this.value).getUTCMonth()+1;
-    let yy = new Date(this.value).getUTCFullYear();
-    let yyyy = date.getFullYear();
-    let mmmm = date.getMonth()+1;
-    let dddd = date.getDate();
-
-    let age = yyyy - yy;
-    let m = mmmm - mm;
-
-
-//check if year is >= current year
-    if(yy >= yyyy){
-      e.preventDefault();
-      this.value = '';
-      Swal.fire({
-        width: 500,
-        position: 'center',
-        icon: 'warning',
-        title: 'Invalid Birthdate',
-        showConfirmButton: false,
-        timer: 2500
-      })
-    }
-
-
-
-
-//Check valid age
-    else if (m < 0 || (m === 0 && dddd < day)) {
-      age--;
-    }
-    else if (age < 5){
-      e.preventDefault();
-      this.value = '';
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Children under the age of five are not permitted to create an account.',
-        showConfirmButton: false,
-        timer: 2500
-      })
-
-    }
-    else {
-//   alert("Valid");
-    }
-  })
-</script>
-
-
 </body>
-
 </html>
