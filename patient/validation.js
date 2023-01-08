@@ -82,10 +82,10 @@ function validation(){
     return false;  
   }  
 //minimum password length validation  
-  if(password.length < 5) {  
-    document.getElementById("pw").innerHTML = "<b>** Password length must be atleast 5 characters and up";  
-    return false;  
-  }  
+  // if(password.length < 5) {  
+  //   document.getElementById("pw").innerHTML = "<b>** Password length must be atleast 5 characters and up";  
+  //   return false;  
+  // }  
 //maximum length of password validation  
   if(password.length > 15) {  
     document.getElementById("pw").innerHTML = "<b>** Password length must not exceed 15 characters";  
