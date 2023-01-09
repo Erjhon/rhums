@@ -83,16 +83,16 @@ function send_email($email){
 
   global $conn;
 
-  $expire = time() + (60 * 1);
+  $expire = time() + (60 * 2);
   $code = rand(10000,99999);
   $email = addslashes($email);
 
   $query = "insert into codes (email,code,expire) value ('$email','$code','$expire')";
   mysqli_query($conn,$query);
 
-//send email here
-  send_mail($email,'Password reset',"To reset your password, you have to enter this verification code: " . $code);
-}
+  //send email here
+  send_mail($email, 'Password Reset', '<p>Your verification code is: <b style="font-size: 25px; display: block;">' . $code . '</b>It expires in 2 minutes. Please do not share this code with anyone.</p>');
+  }
 
 function save_password($password){
 
@@ -153,16 +153,16 @@ function is_code_correct($code){
       $row = mysqli_fetch_assoc($result);
       if($row['expire'] > $expire){
 
-        return "the code is correct";
+        return "The code is correct";
       }else{
-        return "the code is expired";
+        return "The code is expired";
       }
     }else{
-      return "the code is incorrect";
+      return "The code is incorrect";
     }
   }
 
-  return "the code is incorrect";
+  return "The code is incorrect";
 }
 
 
@@ -191,15 +191,29 @@ function is_code_correct($code){
 <style type="text/css">
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
-
   *{
-    font-family: 'Poppins', sans-serif;
-    margin:0; padding:0;
-    box-sizing: border-box;
-    outline: none; border: none;
-    text-decoration: none;
+     font-family: 'Poppins', sans-serif;
+     margin:0; padding:0;
+     box-sizing: border-box;
+     outline: none; border: none;
+     text-decoration: none;
+  }
+  #hide{
+    display: none;
+    cursor: pointer;
+  }
+  #show{
+    cursor: pointer;
+  }
+  #hide1{
+    display: none;
+    cursor: pointer;
+  }
+  #show1{
+    cursor: pointer;
   }
 </style>
+</head>
 
 
 <body class="bg-neutral">
@@ -237,7 +251,6 @@ function is_code_correct($code){
 
     switch ($mode) {
       case 'enter_email':
-// code...
       ?>
       <form method="post" action="forgot-pw.php?mode=enter_email"> 
         <div class="container mt--6 pb-5">
@@ -254,7 +267,6 @@ function is_code_correct($code){
                     <span style="font-size: 12px;color:red;">
                       <?php 
                       foreach ($error as $err) {
-// code...
                         echo $err . "<br>";
                       }
                       ?>
@@ -266,12 +278,11 @@ function is_code_correct($code){
                         <span class="fas fa-envelope p-1"></span>
                       </div>
                     </div>
-                    <input type="email" class="form-control" autofocus name="email" placeholder="Enter Email">
+                    <input type="email" class="form-control" autofocus name="email" placeholder="Enter Email" required>
                   </div>
 
-
                   <div class="row">
-                    <div class="col-4 ">
+                    <div class="col-6">
                     </div>
                     <div class="row-3 text-center">
                       <a href="../admin/login.php" class="btn btn-danger">Back</a>
@@ -283,8 +294,6 @@ function is_code_correct($code){
                   <div class="row">
                     <div class="col-6">
                       <div class="mt-4 mb-3 text-end text-center">
-
-
                       </div>
                     </div>
                     <br>
@@ -299,46 +308,44 @@ function is_code_correct($code){
 
       break;
 
-
       case 'enter_code':
-// code...
       ?>
       <form method="post" action="forgot-pw.php?mode=enter_code"> 
-        <div class="container mt--6 pb-5">
-          <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-6">
-              <div class="card bg-secondary shadow border-0">
-                <div class="bg-transparent pb-1">
+      <div class="container mt--6 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <div class="card bg-secondary shadow border-0">
+            <div class="bg-transparent pb-1">
+            </div>
+            <div class="card-body px-lg-5 py-lg-4">
+              <div class="text-center text-dark mb-4">
+                <h1 class="text-dark">Recover Password</h1>
+                <p class="sub-text text-left mt-4">Enter the code sent to your email.</p>
+                <span style="font-size: 12px;color:red;">
+                <?php 
+                  foreach ($error as $err) {
+                    // code...
+                    echo $err . "<br>";
+                  }
+                ?>
+                </span>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope p-1"></span>
+                  </div>
                 </div>
-                <div class="card-body px-lg-5 py-lg-4">
-                  <div class="text-center text-dark mb-4">
-                    <h1 class="text-dark">Recover Password</h1>
-                    <p class="sub-text text-left mt-4">Enter the code sent to your email.</p>
-                    <span style="font-size: 12px;color:red;">
-                      <?php 
-                      foreach ($error as $err) {
-// code...
-                        echo $err . "<br>";
-                      }
-                      ?>
-                    </span>
+                <input type="text" class="form-control" name="code" placeholder="12345" required>
+              </div>
+                <div class="row">
+                  <div class="col-6">
                   </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <span class="fas fa-envelope p-1"></span>
-                      </div>
-                    </div>
-                    <input type="text" class="form-control" name="code" placeholder="12345" required>
+                  <div class="mt-4 mb-3 ml-9 text-end">
+                    <a href="forgot-pw.php" class="btn btn-danger">Start Over</a>
+                    <input type="submit" value="Next" class="btn btn-primary">
                   </div>
-                  <div class="row">
-                    <div class="col-6">
-                    </div>
-                    <div class="mt-4 mb-3 ml-9 text-end">
-                      <a href="forgot-pw.php" class="btn btn-danger">Start Over</a>
-                      <input type="submit" value="Next" class="btn btn-primary">
-                    </div>
-                  </div>
+                </div>
                   <div class="ml-1">
                     <a href="../admin/login.php">Login</a>
                   </div>
@@ -352,7 +359,6 @@ function is_code_correct($code){
       break;
 
       case 'enter_password':
-// code...
       ?>
       <form method="post" action="forgot-pw.php?mode=enter_password"> 
         <div class="container mt--6 pb-5">
@@ -366,62 +372,103 @@ function is_code_correct($code){
                     <h1 class="text-dark">Recover Password</h1>
                     <p class="sub-text text-left mt-3">Enter your new password.</p>
                     <span style="font-size: 12px;color:red;">
-                      <?php 
+                    <?php 
                       foreach ($error as $err) {
-// code...
                         echo $err . "<br>";
                       }
-                      ?>
+                    ?>
                     </span>
-                  </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <span class="fas fa-lock p-1"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <span class="fas fa-lock p-1"></span>
+                        </div>
+                      </div>
+                      <input type="password" class=" active form-control" id="myInput" name="password" placeholder="Password" required>
+                      
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="icon-area">
+                            <i class="fa fa-eye" id="hide" onclick="myFunction()"></i>
+                            <i class="fa fa-eye-slash" id="show" onclick="myFunction()"></i>
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <input type="text" class="form-control" name="password" placeholder="Password" required>
-                  </div>
 
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <span class="fas fa-lock p-1"></span>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <span class="fas fa-lock p-1"></span>
+                        </div>
+                      </div>
+                      <input type="password" class=" active form-control" id="myInput1" name="password2" placeholder="Retype Password" required>
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="icon2-area2">
+                            <i class="fa fa-eye" id="hide1" onclick="myFunction1()"></i>
+                            <i class="fa fa-eye-slash" id="show1" onclick="myFunction1()"></i>
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <input type="text" class="form-control" name="password2" placeholder="Retype Password" required>
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-
+                    <div class="row">
+                      <div class="col-6">
+                      </div>
+                      <div class="mt-4 mb-3 ml-8 text-end">
+                        <a href="forgot-pw.php" class="btn btn-danger">Start Over</a>
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                      </div>
                     </div>
-
-                    <div class="mt-4 mb-3 ml-8 text-end">
-                      <a href="forgot-pw.php" class="btn btn-danger">Start Over</a>
-                      <input type="submit" value="Submit" class="btn btn-primary">
+                      <div class="ml-1">
+                        <a href="../admin/login.php">Login</a>
+                      </div>
                     </div>
-                  </div>
-                  <div class="ml-1">
-                    <a href="../admin/login.php">Login</a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </form>
-      <?php
-      break;
-
-      default:
-// code...
-      break;
-    }
+          </form>
+          <?php
+          break;
+        
+        default:
+          break;
+      }
 
     ?>
 
 
 
-  </body>
+</body>
+<script type="text/javascript">
+  function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type == "password"){
+      x.type = "text";
+      document.getElementById('hide').style.display = "inline-block";
+      document.getElementById('show').style.display = "none";
+    }else{
+      x.type = "password";
+      document.getElementById('hide').style.display = "none";
+      document.getElementById('show').style.display = "inline-block";
+    }
+  }
 
-  </html>
+  function myFunction1() {
+    var y = document.getElementById("myInput1");
+    if (y.type == "password"){
+      y.type = "text";
+      document.getElementById('hide1').style.display = "inline-block";
+      document.getElementById('show1').style.display = "none";
+    }else{
+      y.type = "password";
+      document.getElementById('hide1').style.display = "none";
+      document.getElementById('show1').style.display = "inline-block";
+    }
+  }
+
+</script>
+
+</html>
