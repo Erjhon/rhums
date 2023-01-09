@@ -23,24 +23,24 @@
 
     $id = $_GET['id'];
     if (isset($_POST['submit'])) {
-        $pid = $_POST['pid'];
-        $pfname = $_POST['pfname'];
-        $pcontact = $_POST['pcontact'];
-        $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $age = $_POST['age'];
-        $paddress = $_POST['paddress'];
-        $visit = $_POST['visit'];
-        $incident = $_POST['incident'];
-        $source = $_POST['source'];
-        $part = $_POST['part'];
-        $category = $_POST['category'];
-        $type = $_POST['type'];
-        $owner = $_POST['owner'];
-        $ownercon = $_POST['ownercon'];
-        $location = $_POST['location'];
-        $remark = $_POST['remark'];
-        $assigned = $_POST['assigned'];
+        $pid =  mysqli_real_escape_string($conn, $_POST['pid']);
+        $pfname =  mysqli_real_escape_string($conn, $_POST['pfname']);
+        $pcontact =  mysqli_real_escape_string($conn, $_POST['pcontact']);
+        $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
+        $dob =  mysqli_real_escape_string($conn, $_POST['dob']);
+        $age =  mysqli_real_escape_string($conn, $_POST['age']);
+        $paddress =  mysqli_real_escape_string($conn, $_POST['paddress']);
+        $visit =  mysqli_real_escape_string($conn, $_POST['visit']);
+        $incident =  mysqli_real_escape_string($conn, $_POST['incident']);
+        $source =  mysqli_real_escape_string($conn, $_POST['source']);
+        $part =  mysqli_real_escape_string($conn, $_POST['part']);
+        $category =  mysqli_real_escape_string($conn, $_POST['category']);
+        $type =  mysqli_real_escape_string($conn, $_POST['type']);
+        $owner =  mysqli_real_escape_string($conn, $_POST['owner']);
+        $ownercon =  mysqli_real_escape_string($conn, $_POST['ownercon']);
+        $location =  mysqli_real_escape_string($conn, $_POST['location']);
+        $remark =  mysqli_real_escape_string($conn, $_POST['remark']);
+        $assigned =  mysqli_real_escape_string($conn, $_POST['assigned']);
         $insert = mysqli_query($conn, "INSERT INTO `animalbite` (pid,pfname,pcontact,gender,dob,age,paddress)VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$paddress')") or die('query failed');
 
         $sql = "INSERT INTO animalbite_history (patientId,visit,incident,source,part,category,type,owner,ownercon,location,remark,assigned)

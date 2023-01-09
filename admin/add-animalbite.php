@@ -22,28 +22,31 @@
     <?php
 
     if (isset($_POST['submit'])) {
-        $pid = $_POST['pid'];
-        $pfname = $_POST['pfname'];
-        $pcontact = $_POST['pcontact'];
-        $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $age = $_POST['age'];
-        $paddress = $_POST['paddress'];
-        $visit = $_POST['visit'];
-        $incident = $_POST['incident'];
-        $source = $_POST['source'];
-        $part = $_POST['part'];
-        $category = $_POST['category'];
-        $type = $_POST['type'];
-        $owner = $_POST['owner'];
-        $ownercon = $_POST['ownercon'];
-        $location = $_POST['location'];
-        $remark = $_POST['remark'];
-        $assigned = $_POST['assigned'];
-        $user_id = $_SESSION['userdata']['id'];
-        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$pid', '$pfname', '$user_id')") or die('query failed');
+       
+        $pid = mysqli_real_escape_string($conn, $_POST['pid']);
+        $pfname = mysqli_real_escape_string($conn, $_POST['pfname']);
+        $mname = mysqli_real_escape_string($conn, $_POST['mname']);
+        $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+        $pcontact = mysqli_real_escape_string($conn, $_POST['pcontact']);
+        $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+        $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+        $age = mysqli_real_escape_string($conn, $_POST['age']);
+        $paddress = mysqli_real_escape_string($conn, $_POST['paddress']);
+        $visit = mysqli_real_escape_string($conn, $_POST['visit']);
+        $incident = mysqli_real_escape_string($conn, $_POST['incident']);
+        $source = mysqli_real_escape_string($conn, $_POST['source']);
+        $part = mysqli_real_escape_string($conn, $_POST['part']);
+        $category = mysqli_real_escape_string($conn, $_POST['category']);
+        $type = mysqli_real_escape_string($conn, $_POST['type']);
+        $owner = mysqli_real_escape_string($conn, $_POST['owner']);
+        $ownercon = mysqli_real_escape_string($conn, $_POST['ownercon']);
+        $location = mysqli_real_escape_string($conn, $_POST['location']);
+        $remark = mysqli_real_escape_string($conn, $_POST['remark']);
+        $assigned = mysqli_real_escape_string($conn, $_POST['assigned']);
+        $user_id = mysqli_real_escape_string($conn, $_SESSION['userdata']['id']);
+        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$pid', '$pfname','$mname','$lname', '$user_id')") or die('query failed');
 
-        $sql = "INSERT INTO `animalbite` (pid,pfname,pcontact,gender,dob,age,paddress)
+        $sql = "INSERT INTO `animalbite` (pid,pfname,mname,lname,pcontact,gender,dob,age,paddress)
         VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$paddress')";
         $query=mysqli_query($conn,$sql);
 
@@ -111,19 +114,30 @@
                                 <div class="col-lg-12">
                                     <form action="" method="POST">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-2">
                                                 <div class="form-group">
                                                     <label>Patient No.</label>
                                                     <input class="form-control" name="pid" placeholder="Patient No." value="<?= $lastRowId ?>" readonly>
                                                 </div>
                                                 <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                             </div>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Patient Fullname</label>
-                                                    <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" required>
+                                                    <label>Firstname</label>
+                                                    <input class="form-control" name="pfname" placeholder="Firstname" required>
                                                 </div>
-                                                <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Middle Initial</label>
+                                                    <input class="form-control" name="mname" placeholder="Middle Initial" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Lastname</label>
+                                                    <input class="form-control" name="lname" placeholder="Lastname" required>
+                                                </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">

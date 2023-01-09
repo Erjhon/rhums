@@ -43,7 +43,7 @@ if (!empty($_SESSION['user_id'])) {
 
     $user_id = $row['id'];
     $name =  $row['firstname']; 
-    $mname = "{$row['middleInitial']}.";
+    $mname = "{$row['middleInitial']}";
     $lname = $row['lastname'];
     $contact = "{$row['contact']}";
     $gender = "{$row['gender']}";

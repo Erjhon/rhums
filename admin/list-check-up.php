@@ -49,13 +49,13 @@ $result = mysqli_query($conn,"SELECT * FROM checkup");
 								</thead>
 								<tbody>
 									<?php
-									$i=0;
+									$i=1;
 									while($row = mysqli_fetch_array($result)) {
 										?>
 
 
 										<tr>
-											<td><b>PA-<?php echo $row["pid"]; ?></td>
+											<td><?php echo $i++; ?></td>
 											<td><?php echo $row["pfname"]; ?></td>
 											<td><?php echo $row["age"]; ?></td>
 											<td><?php echo $row["gender"]; ?></td>
