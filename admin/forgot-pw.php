@@ -20,7 +20,6 @@ if(count($_POST) > 0){
 
   switch ($mode) {
     case 'enter_email':
-// code...
     $email = $_POST['email'];
 //validate email
     if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
@@ -37,11 +36,10 @@ if(count($_POST) > 0){
     break;
 
     case 'enter_code':
-// code...
     $code = $_POST['code'];
     $result = is_code_correct($code);
 
-    if($result == "the code is correct"){
+    if($result == "The code is correct"){
 
       $_SESSION['forgot']['code'] = $code;
       header("Location: forgot-pw.php?mode=enter_password");
@@ -52,7 +50,6 @@ if(count($_POST) > 0){
     break;
 
     case 'enter_password':
-// code...
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
 
@@ -74,7 +71,6 @@ if(count($_POST) > 0){
     break;
 
     default:
-// code...
     break;
   }
 }
@@ -114,7 +110,7 @@ function valid_email($email){
 
   $email = addslashes($email);
 
-  $query = "select * from staff where email = '$email' limit 1";    
+  $query = "select * from staff where email = email limit 1";    
   $query2 = "select * from patient where email = '$email' limit 1";    
   $result = mysqli_query($conn,$query);
   $result2 = mysqli_query($conn,$query2);
