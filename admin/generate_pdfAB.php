@@ -6,9 +6,9 @@ require_once '../dompdf/autoload.inc.php';
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
 
-$id = $_GET['id'];
-$sql = mysqli_query($conn,"SELECT * FROM animalbite ");
-$row = mysqli_fetch_assoc($sql);
+// $id = $_GET['id'];
+// $sql = mysqli_query($conn,"SELECT * FROM animalbite ");
+// $row = mysqli_fetch_assoc($sql);
 
 
 

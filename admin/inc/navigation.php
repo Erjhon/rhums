@@ -112,9 +112,7 @@
               <ul class="collapse list-unstyled" id="pageSubmenu">
                  <li><a href="<?php echo base_url ?>admin/?page=list-check-up" class="btn nav-link nav-list-check-up text-info">Check-up</a></li>
                  <li><a href="<?php echo base_url ?>admin/?page=list-animalbite" class="btn nav-link nav-list-animalbite text-info"> Animal Bite</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-immunization" class="btn nav-link nav-list-immunization text-info">Immunization for Child</a></li>
-                 <li><a href="<?php echo base_url ?>admin/?page=list-immunizationSC" class="btn nav-link nav-list-immunizationSC text-info">Immunization for Senior Citizens</a></li>
-                 <!-- <li><a href="<?php echo base_url ?>admin/?page=list-prenatal" class="nav-link nav-prenatal"> Prenatal</a></li> -->
+                <!--  -->
               </ul>
           </li>
 
@@ -124,7 +122,7 @@
             <li class="dropdown">
               <a href="<?php echo base_url ?>admin/?page=user/list"  class="nav-link nav-user_list">
                 <i class="nav-icon fas fa-users text-yellow"></i>
-                  <span class="text-dark"><b>User List</b></span>
+                  <span class="text-dark"><b>Staff List</b></span>
               </a>
             </li>
               <?php }?>

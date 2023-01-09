@@ -80,6 +80,12 @@ if(isset($_POST['change_pw'])){
 <!-- CSS Files -->
 <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 </head>
+<?php 
+ if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="">'.$message.'</div>';
+            }
+         } ?>
 
 <style>
 #selectAll{
@@ -115,20 +121,30 @@ if(isset($_POST['change_pw'])){
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="media align-items-center">
-           <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
-         if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
-         }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-         }
+       <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
       ?>
-
-      </span>
+                </span>
     </div>
 </a>
 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -204,20 +220,30 @@ if(isset($_POST['change_pw'])){
   <li class="nav-item dropdown">
     <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
-        <span class="avatar avatar-sm rounded-circle">
-              <?php
-         $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-         if(mysqli_num_rows($select) > 0){
-            $fetch = mysqli_fetch_assoc($select);
-         }
-         if($fetch['image'] == ''){
-            echo '<img src="../patient/images/default-avatar.png">';
-         }else{
-            echo '<img src="../patient/uploaded_img/'.$fetch['image'].'">';
-         }
+          <!-- Profile picture image -->
+<span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default">
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                   break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
       ?>
-
-      </span>
+                </span>
        <div class="media-body ml-2 d-none d-lg-block">
           <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
       </div>
@@ -288,32 +314,21 @@ if(isset($_POST['change_pw'])){
                   ?>
 
                   <form action="" method="post">
-                    <?php
-// if($fetch['image'] == ''){
-//    echo '<div ><img src="images/default-avatar.png"></div>';
-// }else{
-//    echo '<div><img src="uploaded_img/'.$fetch['image'].'"></div>';
-// }
-                    if(isset($message)){
-                      foreach($message as $message){
-                        echo '<div class="">'.$message.'</div>';
-                      }
-                    }
-                    ?> 
+                   
                     <!-- Form Group (username)-->
                     <div class="mb-3">
                       <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-                      <label class="small mb-1" for="inputUsername">Current Password</label>
-                      <!-- <div class="input-group input-group-alternative mb--1"> -->
-                        <input class="form-control" type="oldpassword" name="update_pass" placeholder="Enter current password" required>
-                        <!-- <span class="input-group-text">
-                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye0" onclick="toggle0()"></i>
+                      <label class="small mb-1 required" for="inputUsername">Current Password</label>               
+                       <div class="input-group input-group-alternative mb--1">
+                        <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter current password" required>
+                         <span class="input-group-text">
+                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle()"></i>
                         </span>
-                      </div> -->
+                      </div>
                     </div>
 
                     <div class="mb-3">
-                      <label class="small mb-1" for="inputUsername">New Password</label>
+                      <label class="small mb-1 required" for="inputUsername">New Password</label>
                       <div class="input-group input-group-alternative mb--1">
                         <input class="form-control" id="password" type="password" name="new_pass" placeholder="Enter new password" required>
                         <span class="input-group-text">
@@ -323,7 +338,7 @@ if(isset($_POST['change_pw'])){
                     </div>
 
                     <div class="mb-3">
-                      <label class="small mb-1" for="inputUsername">Confirm Password</label>
+                      <label class="small mb-1 required" for="inputUsername">Confirm Password</label>
                       <div class="input-group input-group-alternative mb--1">
                         <input class="form-control" id="cpassword" type="password" name="confirm_pass" placeholder="Confirm new password" required>
                         <span class="input-group-text">
@@ -341,17 +356,41 @@ if(isset($_POST['change_pw'])){
 
         </div>
       </div>
-<!--   <script type="text/javascript">
-window.history.forward();
-function noBack()
-{
-window.history.forward();
-}
-</script>
+<style>
+  .avatar--default {
+    position: relative;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin: auto;
 
-<div onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
-
-</div>  -->            
+  }
+  .avatar--default::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 70%;
+    height: 44%;
+    margin: 0 0 0 -35%;
+    border-radius: 100% 100% 0 0;
+  }
+  .avatar--default::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 19%;
+    width: 40%;
+    height: 40%;
+    margin: 0 0 0 -20%;
+    border-radius: 50%;
+  }
+  .required::after{
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
+</style>        
 
 </body>
 
@@ -375,12 +414,12 @@ window.history.forward();
 <!-- show password -->
 <script>
   var state = false;
-  function toggle1(){
+  function toggle(){
     if (state){
-      document.getElementById("oldpassword").setAttribute("type", "password");
+      document.getElementById("update_pass").setAttribute("type", "password");
       state = false;
     } else{
-      document.getElementById("oldpassword").setAttribute("type", "text");
+      document.getElementById("update_pass").setAttribute("type", "text");
       state = true;
     }
   }

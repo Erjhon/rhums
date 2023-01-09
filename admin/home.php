@@ -55,7 +55,7 @@ $sched_arr = array();
       <!-- Card stats -->
       <div class="row">
         <a href=""></a>
-        <div class="col-xl-4 col-lg-6">
+        <div class="col-xl-6 col-lg-6">
           <div class="card card-stats mb-3 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
@@ -92,7 +92,7 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-6">
+        <div class="col-xl-6 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
@@ -124,13 +124,12 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-6">
+        <div class="col-xl-6 col-lg-6 mt-3">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Check-Up</h5>
-                  <h5 class="card-title text-uppercase text-dark mb-0">Records</h5>
+                  <h5 class="card-title text-uppercase text-dark mb-0">Check-Up Records</h5>
                   <p class="links cl-effect-1">
                     <a href="?page=list-check-up">
                       <?php
@@ -156,9 +155,9 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-6 mt-3">
+        <div class="col-xl-6 col-lg-6 mt-3">
           <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
+            <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-dark mb-0">Animal Bite Records</h5>
@@ -187,7 +186,7 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-6 mt-3">
+<!--         <div class="col-xl-4 col-lg-6 mt-3">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
@@ -216,9 +215,9 @@ $sched_arr = array();
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="col-xl-4 col-lg-6 mt-3">
+<!--         <div class="col-xl-4 col-lg-6 mt-3">
           <div class="card card-stats mb-3 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
@@ -247,7 +246,7 @@ $sched_arr = array();
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
 
 
@@ -302,7 +301,7 @@ $sched_arr = array();
   }
 </style>
 <?php
-$sched_query = $conn->query("SELECT a.*,p.name FROM `appointments` a inner join `patient_list` p on a.patient_id = p.id");
+$sched_query = $conn->query("SELECT a.*,CONCAT(p.name,' ',p.mname,'. ',p.lname) as fullname FROM `appointments` a inner join `patient_list` p on a.patient_id = p.id");
 $sched_arr = json_encode($sched_query->fetch_all(MYSQLI_ASSOC));
 ?>
 <script>
@@ -334,15 +333,15 @@ $sched_arr = json_encode($sched_query->fetch_all(MYSQLI_ASSOC));
         var days = moment(event.end).diff(moment(event.start), 'days')
         var events = []
         Object.keys(scheds).map(k => {
-          var bg = 'var(--primary)';
+          var bg = 'var(--info)';
           if (scheds[k].status == 0)
-            bg = 'var(--primary)';
+            bg = 'var(--info)';
           if (scheds[k].status == 1)
             bg = 'var(--success)';
           console.log(bg)
           events.push({
             id: scheds[k].id,
-            title: scheds[k].name,
+            title: scheds[k].fullname,
             start: moment(scheds[k].date_sched).format('YYYY-MM-DD[T]HH:mm'),
             backgroundColor: bg,
             borderColor: bg,

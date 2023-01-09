@@ -18,6 +18,7 @@ $result = mysqli_query($conn,"SELECT * FROM checkup");
 
 <div class="card card-outline card-primary">
 	<div class="card-header">
+		   <a href="#" class="nav-icon ni ni-bold-left text-success"onclick="history.back()"> Back</a>
 		<h2 class="card-title text-center">List for Check-Up</h2>
 		<div class="card-tools">
 			<a href="<?php echo base_url ?>admin/?page=add-check-up" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span> Create New</a>

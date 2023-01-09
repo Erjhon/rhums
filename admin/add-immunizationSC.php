@@ -137,25 +137,24 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                         <label>Eye Complaints <small>(blurred, floaters, blind spots, redness, photopsia, glare) </small></label>
                                         <label><small>/ - with atleast one <br> X - none of the above</small></label>
                                         <select type="text" class="form-control form-select-sm-6" name="eye" required>
-                                            <option>/</option>
-                                            <option>X</option>
+                                            <option value="1">/</option>
+                                            <option value="0">X</option>
                                         </select>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
 
-                                <div class="col-sm-7">
-                                    <label>Visual Acuity <small>(Input results as fraction) </small></label>    
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label>20/40</label>
+                                       <label>Visual Acuity <small>(Input results as fraction) </small></label> 
+                                       <label>20/40</label>
                                         <input class="form-control" name="visual" placeholder="Enter Age in years" required>
                                     </div>
+                                    <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
                                 </div>
-                                </div>
-                                <div class="col-sm-3">
+                                    <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label>> 20/40</label>
+                                        <label>20/40</label>
                                         <input class="form-control" name="ageyears" placeholder="Enter Age in years" required>
                                     </div>
                                     <!-- type="text" value="<?php echo $fetchRow['id'] ?>" -->
@@ -168,6 +167,17 @@ $fetchRow = mysqli_fetch_assoc($rs);
                                         <input type="date" class="form-control" id="immunization" name="immunization" value="<?php echo isset($patient['immunization']) ? $patient['immunization'] : '' ?>" required>
                                     </div>
                                 </div>
+
+                               <!--  <div class="col-sm-7">
+                                    <div class="form-group">
+                                    <label>Visual Acuity <small>(Input results as fraction) </small></label>    
+                                <div class="col-sm-3">
+                                        <label>20/40</label>
+                                        <input class="form-control" name="visual" placeholder="Enter Age in years" required>
+                                    </div>
+                                </div>
+                                </div> -->
+                            
 
                                 
                              

@@ -52,7 +52,7 @@
 								<input type="checkbox" class="form-check-input" id="selectAll">
 							</div></td>
 							<th class="text-center">#</th>
-							<th>Patient No.</th>
+							<th>Appointment No.</th>
 							<th>Patient Name</th>
 							<th>Reason</th>
 							<th>Schedule</th>
@@ -78,7 +78,7 @@
 								</td>
 								<td class="text-center"><?php echo $i++; ?></td>
 								<td><b>PA-<?php echo $row['id'] ?></td>
-									<td><?php echo $row['name'] ?></td>
+									<td><?php echo $row['name'] ?> <?php echo $row['mname'] ?>. <?php echo $row['lname'] ?></td>
 									<td><?php echo $row['reason'] ?></td>
 									<td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
 									<!-- <td><?php echo $row['name'] ?></td> -->
@@ -88,10 +88,10 @@
 										<?php 
 										switch($row['status']){ 
 											case(0): 
-											echo '<span class="badge badge-success">Done</span>';
+											echo '<span class="badge badge-info">Done</span>';
 											break; 
 											case(1): 
-											echo '<span class="badge badge-info">Confirmed</span>';
+											echo '<span class="badge badge-success">Confirmed</span>';
 											break; 
 											case(2): 
 											echo '<span class="badge badge-warning">Cancelled</span>';
@@ -151,7 +151,7 @@
 					uni_modal("Appointment Form","appointments/manage_appointment.php",'mid-large')
 				})
 				$('.edit_data').click(function(){
-					uni_modal("Edit Appointment Details","appointments/manage_appointment.php?id="+$(this).attr('data-id'),'mid-large')
+					uni_modal("Edit Appointment Details","appointments/edit_appointment.php?id="+$(this).attr('data-id'),'mid-large')
 				})
 				$('#selectAll').change(function(){
 // if($(this).is(":checked") == true){

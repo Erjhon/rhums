@@ -1,5 +1,4 @@
 <?php
-
 include '../config.php';
 //session_start();
 $user_id = $_SESSION['user_id'];
@@ -7,14 +6,11 @@ $user_id = $_SESSION['user_id'];
 if (!isset($user_id)) {
   header('location:login.php');
 };
-
 if (isset($_GET['logout'])) {
   unset($user_id);
   session_destroy();
   header('location:login.php');
 }
-
-
 if (isset($_GET['id'])) {  
   $id = $_GET['id'];  
   $query = "DELETE FROM `patient_list` WHERE id = '$id'";  
@@ -26,15 +22,12 @@ if (isset($_GET['id'])) {
   }  
 } 
 
-
 $query = "select * from patient_list";  
 $run = mysqli_query($conn,$query); 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>
     RURAL HEALTH UNIT II
@@ -49,52 +42,53 @@ $run = mysqli_query($conn,$query);
   <link href="../assets/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
-
   <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
 </head>
 
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
+
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <!-- Brand -->
       <a class="navbar-img text-center">
         <img src="../assets/assets/img/brand/rhu.png" height="100" width="100" />
       </a>
-      <!-- User -->
+    
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
-<!--  <li class="nav-item dropdown">
-<a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<i class="ni ni-bell-55"></i>
-</a>
-<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-<a class="dropdown-item" href="#">Action</a>
-<a class="dropdown-item" href="#">Another action</a>
-<div class="dropdown-divider"></div>
-<a class="dropdown-item" href="#">Something else here</a>
-</div>
-</li> -->
 <li class="nav-item dropdown">
   <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <div class="media align-items-center">
-      <span class="avatar avatar-sm rounded-circle">
-        <?php
-        $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-        if (mysqli_num_rows($select) > 0) {
-          $fetch = mysqli_fetch_assoc($select);
-        }
-        if ($fetch['image'] == '') {
-          echo '<img src="../patient/images/default-avatar.png">';
-        } else {
-          echo '<img src="../patient/uploaded_img/' . $fetch['image'] . '">';
-        }
-        ?>
 
-      </span>
+                  <!-- Profile picture image -->
+         <span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default"> 
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                    break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+                  ?>
+                </span>
     </div>
   </a>
   <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -162,27 +156,38 @@ $run = mysqli_query($conn,$query);
   <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
       <!-- Brand -->
-      <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">APPOINTMENT</a>
+      <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#"></a>
 
       <!-- User -->
       <ul class="navbar-nav align-items-center d-none d-md-flex">
         <li class="nav-item dropdown">
           <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <?php
-                $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
-                if (mysqli_num_rows($select) > 0) {
-                  $fetch = mysqli_fetch_assoc($select);
-                }
-                if ($fetch['image'] == '') {
-                  echo '<img src="../patient/images/default-avatar.png">';
-                } else {
-                  echo '<img src="../patient/uploaded_img/' . $fetch['image'] . '">';
-                }
-                ?>
 
-              </span>
+                  <!-- Profile picture image -->
+              <span class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default"> 
+                  <?php
+                  $select = mysqli_query($conn, "SELECT * FROM patient WHERE id = '$user_id'") or die('query failed');
+                  if(mysqli_num_rows($select) > 0){
+                    $fetch = mysqli_fetch_assoc($select);
+                  }
+                  $pathx = "uploaded_img/";
+                  $file = $fetch["image"];
+                  ?>
+                  <?php switch(true)
+                  {
+                    case ($fetch['image'] == (!empty($fetch['gender'])) ):
+                    echo '<img src="'.$pathx.$file.'">';
+                    break;
+                    case ($fetch['gender'] == 'Male'):
+                    echo '<img src="images/male.png"/>';
+                    break;
+                    case ($fetch['gender'] == 'Female'):
+                    echo '<img src="images/female.png"/>';
+                    break;
+                  } 
+                  ?>
+                </span>
               <div class="media-body ml-2 d-none d-lg-block">
                 <span class="mb-0 text-sm text-white  font-weight-bold"> <?php echo $fetch['firstname']; ?> <?php echo $fetch['lastname']; ?></span>
               </div>
@@ -258,7 +263,7 @@ $run = mysqli_query($conn,$query);
                     <table class="table table-bordered table-hover table-stripped" id="indi-list">
 
                       <tr class="text-center">
-                        <th>PATIENT ID</th>
+                        <th>APPOINTMENT NO.</th>
                         <th>REASON FOR APPOINTMENT</th>
                         <th>SCHEDULE</th>
                         <th>STATUS</th>
@@ -276,7 +281,7 @@ $run = mysqli_query($conn,$query);
                           <tr class="text-center">
                             <td><b>PA-<?php echo $row["patient_id"]; ?></td>
                               <td><?php echo $row["reason"]; ?></td>
-                              <td><?php echo date('F d, Y H:i A', strtotime($row["date_sched"])); ?></td>
+                              <td><?php echo date("M d, Y h:i A",strtotime($row["date_sched"])); ?></td>
                               <td class="text-center">
                                 <?php
                                 switch ($row['status']) {
@@ -319,6 +324,39 @@ $i++;
 </table>
 </div>
 
+<style>
+
+.avatar--default {
+  position: relative;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+
+}
+.avatar--default::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 44%;
+  margin: 0 0 0 -35%;
+  border-radius: 100% 100% 0 0;
+}
+.avatar--default::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 19%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 -20%;
+  border-radius: 50%;
+}
+
+</style>
+
 <!--   Core   -->
 <script src="../assets/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
@@ -353,4 +391,5 @@ $i++;
         }
     }
 </script>
+
 </html>

@@ -58,6 +58,12 @@ if (!empty($_SESSION['user_id'])) {
 }
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="admin/appointments/jquery.datetimepicker.min.css">
+</head>
+<body>
 <style>
     #uni_modal .modal-content>.modal-footer {
         display: none;
@@ -75,9 +81,13 @@ if (!empty($_SESSION['user_id'])) {
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
 
-                <div class="form-group">
-                    <label for="name" class="control-label">Fullname</label>
-                    <input type="text" class="form-control" name="name" placeholder="FN, MI, LN" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                 <div class="form-group">
+                    <label for="name" class="control-label">Firstname</label>
+                    <input type="text" class="form-control" name="name" placeholder="Firstname" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
+                </div>
+                   <div class="form-group">
+                    <label for="name" class="control-label">Lastname</label>
+                    <input type="text" class="form-control" name="lname" placeholder="Lastname" value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
                 </div>
                 
                 <div hidden class="form-group">
@@ -94,7 +104,7 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
                     <select type="text" class="form-control form-select" name="gender"  required>
-                        <option class="placeholder" style="display: none" >Select gender</option>
+                        <option class="placeholder" style="display: none"  selected disabled value="" >Select gender</option>
                         <option  <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option  <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>
@@ -103,7 +113,7 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="form-group">
                     <label for="address" class="control-label">Address</label>
                     <select class="form-control"  name="address" rows="2" required>
-                        <option class="placeholder" style="display: none" >Select address</option>
+                        <option class="placeholder" style="display: none"  selected disabled value="" >Select address</option>
                         <option>Angustia, Nabua</option>
                         <option>Antipolo Old, Nabua</option>
                         <option>Antipolo Young, Nabua</option>
@@ -164,6 +174,10 @@ if (!empty($_SESSION['user_id'])) {
                         <option>Relatives</option>
                     </select>
                 </div> -->
+                  <div class="form-group">
+                    <label for="name" class="control-label">Middle Initial</label>
+                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
+                </div>
 
                 <div class="form-group">
                     <label for="dob" class="control-label">Date of Birth</label>
@@ -173,19 +187,34 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="form-group">
                     <label for="reason" class="control-label">Reason for Appointment</label>
                     <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
-                    <select name="reason" id="reason" class="form-control form-select">
-                        <option class="placeholder" style="display: none" >Select reason</option>
+                    <select name="reason" id="reason" class="form-control form-select"required>
+                        <option class="placeholder" style="display: none"  selected disabled value="">Select reason</option>
                         <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
                         <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
-                        <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationC" ? "selected": "" ?>>Immunization for Child</option>
-                        <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "ImmunizationSC" ? "selected": "" ?>>Immunization for Senior Citizen</option>
-                        <!-- <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option> -->
+                       
                     </select>
 
                     </div>
+                <script src="admin/appointments/jquery.datetimepicker.full.min.js" ></script>
+<script>
+    $("#appointment-date").datetimepicker({
+        formatTime: 'h:ia',
+        step:60
+    });
+
+    $('#appointment-date').datetimepicker({
+    minDate: 0
+});
+    $('#appointment-date').datetimepicker({
+    format:'Y-m-d h:ia',
+    allowTimes:['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'], 
+    minDate:0
+});
+
+</script>
                 <div class="form-group">
                     <label for="date_sched" class="control-label">Preferred Date and Time</label>
-                    <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
+                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/>
                 </div>
 
 
