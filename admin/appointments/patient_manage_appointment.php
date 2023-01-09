@@ -207,7 +207,7 @@ if (!empty($_SESSION['user_id'])) {
                 <?php endif; ?>
             <div class="form-group text-center w-100 form-group mt-3">
                 <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-light modal-submit btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
@@ -238,9 +238,15 @@ if (!empty($_SESSION['user_id'])) {
                         // console.log(document.getElementById("hiddencontact").value)
                         // document.getElementById("hiddenform").submit();
 
-                        alert(resp.msg);
+                        // alert(resp.msg);
+                        $(".modal-submit").click()
+                        Swal.fire(
+                          'Good job!',
+                          resp.msg,
+                          'success'
+                        )
                         console.log(resp.sms_respond)
-                        location.reload()
+                        // location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         var el = $('<div>')
                         el.addClass("alert alert-danger err-msg").text(resp.msg)
