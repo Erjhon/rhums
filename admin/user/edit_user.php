@@ -13,7 +13,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 <?php endif;?>
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end"onclick="history.back()">Back</a>
+	<a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end" onclick="history.back()">Back</a>
 		<h2 class="card-title">Add User</h2>
 	</div>
 	<div class="card-body">
@@ -27,26 +27,39 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				<!-- Form Row-->
 				<div class="row gx-3 mb-3">
 					<!-- Form Group (first name)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputFirstName">First Name</label>
 						<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
 					</div>
 					<!-- Form Group (last name)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
+						<label class="small mb-1 required" for="inputLastName">Middle Initial</label>
+						<input type="text" name="middleInitial" id="middleInitial" class="form-control" value="<?php echo isset($meta['middleInitial']) ? $meta['middleInitial']: '' ?>" required>
+					</div>
+					<!-- Form Group (last name)-->
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputLastName">Last Name</label>
 						<input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
 					</div>
 				</div>
 				<!-- Form Row        -->
 				<div class="row gx-3 mb-3">
+					<div class="col-md-4">
+					 	<label class="small mb-1 required" for="inputusername">Gender</label>
+                    <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                        <option class="placeholder" style="display: none" selected disabled value="">Select gender</option>
+                        <option<?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
+                        <option<?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
+                    </select>
+                    </div>
 					<!-- Form Group (username)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputusername">Username</label>
 						<input type="text" name="username" id="username" onkeyup="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 						<span id="user-availability-status1" style="font-size:12px;"></span>
 					</div>
 					<!-- Form Group (email)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputEmailAddress">Email Address</label>
 						<input type="text" name="email" id="email" class="form-control" onkeyup="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required>
 						<span id="user-availability-status2" style="font-size:12px;" ></span>
@@ -66,7 +79,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 								<i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
 							</span>
 						</div>
-						<small><i>Leave this blank if you dont want to change the password.</i></small>
+						<!-- <small><i>Leave this blank if you dont want to change the password.</i></small> -->
 <!--     <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": 'required' ?>>
 <?php if(isset($_GET['id'])): ?>
 <small><i>Leave this blank if you dont want to change the password.</i></small>
@@ -84,6 +97,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 	<small id='message'></small>						             
 </div>
 
+</div>
+<div class="row gx-3 mb-3">
 <!-- Form Group (user type)-->
 <div class="col-md-6">
 	<label class="small mb-1 required" for="inputusertype">User Type</label>
@@ -93,10 +108,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		<option class="text-muted" value=" Super Admin">Super Admin</option>
 	</select>
 </div>
-</div>
-<div class="row gx-3 mb-3">
 	<!-- Form Group (avatar)-->
-	<div class="form-group col-12">
+	<div class="form-group col-md-6 mt-1">
 		<label for="" class="small mb-1">Avatar</label>
 		<div class="custom-file">
 			<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">

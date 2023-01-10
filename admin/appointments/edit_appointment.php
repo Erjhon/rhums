@@ -58,6 +58,12 @@ if (!empty($_SESSION['user_id'])) {
 }
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../admin/appointments/jquery.datetimepicker.min.css">
+</head>
+<body>
 <style>
     #uni_modal .modal-content>.modal-footer {
         display: none;
@@ -88,7 +94,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
+                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
@@ -113,8 +119,8 @@ if (!empty($_SESSION['user_id'])) {
                     <label for="address" class="control-label">Address</label>
                     <!-- <textarea class="form-control" name="address" rows="2" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea> -->
                     <select class="form-control"  name="address" rows="2" required>
-                        <option class="placeholder" style="display: none"selected disabled value="">Select Patient Address</option>
                         <option class="placeholder" style="display: none" ><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></option>
+                        <!-- <option class="placeholder" style="display: none"selected disabled value="">Select Patient Address</option> -->
                         <option>Angustia, Nabua</option>
                         <option>Antipolo Old, Nabua</option>
                         <option>Antipolo Young, Nabua</option>
@@ -187,9 +193,35 @@ if (!empty($_SESSION['user_id'])) {
 
                     </div>
                 <?php endif; ?>
+                <script src="../admin/appointments/jquery.datetimepicker.full.min.js" ></script>
+<script>
+    $("#appointment-date").datetimepicker({
+        formatTime: 'h:ia',
+        step:60
+    });
+
+    $('#appointment-date').datetimepicker({
+    minDate: 0
+});
+    $('#appointment-date').datetimepicker({
+    format:'Y-m-d h:ia',
+    allowTimes:['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'], 
+    minDate:0
+});
+
+
+
+</script>
                 <div class="form-group">
                     <label for="date_sched" class="control-label">Preferred Date and Time</label>
-                    <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
+                       <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fas fa-calendar-day p-1"></span>
+                    </div>
+                  </div>
+                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/> 
+                       </div>
                 </div>
 
                 <?php if ($_settings->userdata('id') > 0) : ?>
@@ -221,7 +253,7 @@ if (!empty($_SESSION['user_id'])) {
             $('.err-msg').remove();
             start_loader();
             $.ajax({
-                url: _base_url_ + "classes/Master.php?f=save_appointment",
+                url: _base_url_ + "classes/App.php?f=save_appointment",
                 data: new FormData($(this)[0]),
                 cache: false,
                 contentType: false,
@@ -239,7 +271,7 @@ if (!empty($_SESSION['user_id'])) {
                         // console.log(document.getElementById("hiddencontact").value)
                         // document.getElementById("hiddenform").submit();
 
-                        alert(resp.msg);
+                        // alert(resp.msg);
                         console.log(resp.sms_respond)
                         location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {

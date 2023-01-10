@@ -3,7 +3,7 @@
 		alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 	</script>
 <?php endif;?>
-
+					
 <style>
 	.img-avatar{
 		width:45px;
@@ -31,6 +31,7 @@
 						<th>Name</th>
 						<th>Username</th>
 						<th>Email</th>
+						<th>Gender</th>
 						<th>User Type</th>
 						<th>Action</th>
 					</tr>
@@ -38,15 +39,34 @@
 				<tbody>
 					<?php 
 					$i = 1;
-					$qry = $conn->query("SELECT *,concat(firstname,' ',lastname) as name from `staff` where id != '1' and id != '{$_settings->userdata('id')}' and `type` != 3 order by concat(firstname,' ',lastname) asc ");
+					$qry = $conn->query("SELECT *,concat(firstname,' ',middleInitial,'. ',lastname) as name, avatar from `staff` where id != '1' and id != '{$_settings->userdata('id')}' and `type` != 3 order by concat(firstname,' ',lastname) asc ");
 					while($row = $qry->fetch_assoc()):
-						?>
-						<tr>
-							<td class="text-center"><?php echo $i++; ?></td>
-							<td class="text-center"><img src="<?php echo validate_image($row['avatar']) ?>" class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar"></td>
+					$pathx = "../";
+					$file = $row["avatar"];
+
+					?>
+					<tr>
+						<td><?php echo $i++; ?></td>
+						<td>
+							<?php switch(true)
+							{
+								case ($row['avatar'] == (!empty($row['gender'])) ):
+								echo '<img src="'.$pathx.$file.'"  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>>';
+								default:
+								case ($row['gender'] == 'Male'):
+								echo '<img src="../dist/img/male_staff.png" class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+								break;
+								case ($row['gender'] == 'Female'):
+								echo '<img src="../dist/img/staff.png"class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+								break;
+							} 
+
+						?>"> 
+					</td>
 							<td><?php echo ucwords($row['name']) ?></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['email'] ?></p></td>
+							<td ><p class="m-0 truncate-1"><?php echo $row['gender'] ?></p></td>
 							<td ><p class="m-0 truncate-1"><?php echo $row['role'] ?></p></td>
 							<td align="center">
 								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
