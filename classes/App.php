@@ -7,13 +7,13 @@ class App extends DBConnection
 	private $settings;
 
 	//instantiate sms class
-	private $sms;
+	private $mess;
 
 	public function __construct()
 	{
 		global $_settings;
 		$this->settings = $_settings;
-		$this->sms = new SMS();
+		$this->mess = new SMS();
 		parent::__construct();
 	}
 	public function __destruct()
@@ -147,13 +147,13 @@ class App extends DBConnection
 				// $message .= " On {$new_sched}";
 
 				//send sms enable this later
-				$res = $this->sms->sendSMS($contact, $message);
+				$res = $this->mess->sendSMS($contact, $message);
 
 				//return json encode to ajax
 				return json_encode([
 					'status' => 'success',
 					'msg' => 'Your appointment is set',
-					'sms_respond' => $res
+					'mess_respond' => $res
 				]);
 
 				// bakit to naka flashdata pero naka ajax kayo?
