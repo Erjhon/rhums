@@ -375,37 +375,35 @@ function is_code_correct($code){
                     ?>
                     </span>
                     </div>
+                    <!-- <h5 class="text-dark required">Password</h5> -->
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
                           <span class="fas fa-lock p-1"></span>
                         </div>
                       </div>
-                      <input type="password" class=" active form-control" id="myInput" name="password" placeholder="Password" required>
+                      <input type="password" class="form-control" id="myInput" id="password" name="password" onkeyup="validatePassword()" placeholder="Password" required>
                       
                       <div class="input-group-append">
                         <div class="input-group-text">
-                          <span class="icon-area">
                             <i class="fa fa-eye" id="hide" onclick="myFunction()"></i>
                             <i class="fa fa-eye-slash" id="show" onclick="myFunction()"></i>
-                          </span>
+                          <span id="validatePassword1" style="font-size:12px;"></span>
                         </div>
                       </div>
                     </div>
-
+                    <!-- <h5 class="text-dark required">Retype Password</h5> -->
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
                           <span class="fas fa-lock p-1"></span>
                         </div>
                       </div>
-                      <input type="password" class=" active form-control" id="myInput1" name="password2" placeholder="Retype Password" required>
+                      <input type="password" class="form-control" id="myInput1" name="password2" placeholder="Retype Password" required>
                       <div class="input-group-append">
                         <div class="input-group-text">
-                          <span class="icon2-area2">
                             <i class="fa fa-eye" id="hide1" onclick="myFunction1()"></i>
                             <i class="fa fa-eye-slash" id="show1" onclick="myFunction1()"></i>
-                          </span>
                         </div>
                       </div>
                     </div>
@@ -414,7 +412,7 @@ function is_code_correct($code){
                       </div>
                       <div class="mt-4 mb-3 ml-8 text-end">
                         <a href="forgot-pw.php" class="btn btn-danger">Start Over</a>
-                        <input type="submit" value="Submit" class="btn btn-primary">
+                        <input type="submit" id="submit" value="Submit" class="btn btn-primary">
                       </div>
                     </div>
                       <div class="ml-1">
@@ -463,6 +461,20 @@ function is_code_correct($code){
       document.getElementById('hide1').style.display = "none";
       document.getElementById('show1').style.display = "inline-block";
     }
+  }
+
+  function validatePassword() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+      url: "../admin/validatePassword.php",
+      data:'password='+$("#password").val(),
+      type: "POST",
+      success:function(data){
+        $("#validatePassword1").html(data);
+        $("#loaderIcon").hide();
+      },
+      error:function (){}
+    });
   }
 
 </script>
