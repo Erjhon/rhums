@@ -218,7 +218,7 @@ if (!empty($_SESSION['user_id'])) {
 
 </script>
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Preferred Date and Time</label>
+                    <label for="date_sched" class="control-label required">Preferred Date and Time</label>
                        <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
