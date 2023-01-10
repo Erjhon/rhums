@@ -44,7 +44,7 @@
         $complaints =  mysqli_real_escape_string($conn, $_POST['complaints']);
         $remark =  mysqli_real_escape_string($conn, $_POST['remark']);
         $assigned =  mysqli_real_escape_string($conn, $_POST['assigned']);
-        $insert = mysqli_query($conn, "INSERT INTO `checkup` (pid,pfname,mname,lname,pcontact,gender,dob,age,placebirth,guardian,paddress) VALUES ('$pid','$pfname','$mname','$lname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress')") or die('query failed');
+        $insert = mysqli_query($conn, "INSERT INTO `checkup` (pid,pfname,mname,lname,pcontact,gender,dob,age,placebirth,guardian,paddress) VALUES ('$pid','$pfname','$mname','$lname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress')") or $warning[] = "";
 
         $sql = "INSERT INTO patient_history (patientId,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
         VALUES ('$pid','$visit','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$bmi','$complaints','$remark','$assigned')";
@@ -140,6 +140,24 @@ if(isset($message)){
                 Swal.fire({
                     icon: 'warning',
                     title: 'Error adding data',
+                    toast: true,
+                    position:'top-end',
+                    showConfirmButton: false,
+                    timer: 1000
+                    })
+                    </script>";
+                };
+            };
+
+            ?>
+             <!-- //display error -->
+        <?php
+        if(isset($warning)){
+            foreach($warning as $warning){
+                echo "<script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Data already exists',
                     toast: true,
                     position:'top-end',
                     showConfirmButton: false,

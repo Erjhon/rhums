@@ -41,7 +41,7 @@
         $location =  mysqli_real_escape_string($conn, $_POST['location']);
         $remark =  mysqli_real_escape_string($conn, $_POST['remark']);
         $assigned =  mysqli_real_escape_string($conn, $_POST['assigned']);
-        $insert = mysqli_query($conn, "INSERT INTO `animalbite` (pid,pfname,pcontact,gender,dob,age,paddress)VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$paddress')") or die('query failed');
+        $insert = mysqli_query($conn, "INSERT INTO `animalbite` (pid,pfname,mname,lname,pcontact,gender,dob,age,paddress)VALUES ('$pid','$pfname','$mname','$lname','$pcontact','$gender','$dob','$age','$paddress')") or $warning[] = "";
 
         $sql = "INSERT INTO animalbite_history (patientId,visit,incident,source,part,category,type,owner,ownercon,location,remark,assigned)
         VALUES ('$pid','$visit','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')";
@@ -87,8 +87,8 @@ function get_record_details($patient_id, $conn)
     $lname = mysqli_fetch_assoc($query3);
     $contact = mysqli_fetch_assoc($query4);
     $dob = mysqli_fetch_assoc($query5);
-    $address = mysqli_fetch_assoc($query6);
-    $gender = mysqli_fetch_assoc($query7);
+    $address = mysqli_fetch_assoc($query7);
+    $gender = mysqli_fetch_assoc($query6);
 
     $data = [
         'name' => $name['meta_value'],
@@ -147,6 +147,24 @@ if(isset($message)){
             };
 
             ?>
+             <!-- //display error -->
+        <?php
+        if(isset($warning)){
+            foreach($warning as $warning){
+                echo "<script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Data already exists',
+                    toast: true,
+                    position:'top-end',
+                    showConfirmButton: false,
+                    timer: 1000
+                    })
+                    </script>";
+                };
+            };
+
+            ?>
 
             <div class="card card-outline card-primary">
                 <div class="card-header">
@@ -159,18 +177,30 @@ if(isset($message)){
                             <div class="col-lg-12">
                                 <form action="" method="POST">
                                     <div class="row" >
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                             <div class="form-group">
                                                 <label>Patient No.</label>
                                                 <input class="form-control" name="pid" placeholder="Patient No." value="<?php echo $_GET['id'] ?>" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-sm-8">
-                                            <div class="form-group">
-                                                <label>Patient Fullname</label>
-                                                <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name'] ?> <?php echo $data_p['mname'] ?>. <?php echo $data_p['lname'] ?>" required>
-                                            </div>                           
-                                        </div>
+                                           <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Firstname</label>
+                                                    <input class="form-control" name="pfname" value="<?php echo $data_p['name'] ?>" placeholder="Firstname" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Middle Initial</label>
+                                                    <input class="form-control" name="mname" value="<?php echo $data_p['mname'] ?>" placeholder="Middle Initial" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Lastname</label>
+                                                    <input class="form-control" name="lname" value="<?php echo $data_p['lname'] ?>" placeholder="Lastname" required>
+                                                </div>
+                                            </div> 
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Patient Contact Number</label>
