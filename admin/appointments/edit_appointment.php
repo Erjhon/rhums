@@ -88,7 +88,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
+                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>

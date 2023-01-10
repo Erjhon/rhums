@@ -16,7 +16,7 @@
 
 <div class="card card-outline card-primary ">
 	<div class="card-header">
-		<h2 class="card-title text-center">List of Registerd Staff</h2>
+		<h2 class="card-title text-center">List of Registered Staff</h2>
 		<div class="card-tools">
 			<a href="?page=user/manage_user" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
