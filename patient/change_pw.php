@@ -318,9 +318,9 @@ if(isset($_POST['change_pw'])){
                     <!-- Form Group (username)-->
                     <div class="mb-3">
                       <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-                      <label class="small mb-1 required" for="inputUsername">Current Password</label>               
+                      <label class="small mb-1 required" for="inputUsername">Old Password</label>               
                        <div class="input-group input-group-alternative mb--1">
-                        <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter current password" required>
+                        <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter old password" required>
                          <span class="input-group-text">
                           <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle()"></i>
                         </span>

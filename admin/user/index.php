@@ -21,20 +21,20 @@ foreach($user->fetch_array() as $k =>$v){
 			<form action="" id="manage-user">	
 				<input type="hidden" name="id" value="<?php echo $_settings->userdata('id') ?>">
 				<div class="form-group">
-					<label for="name" class="required">First Name</label>
+					<label for="name">First Name</label>
 					<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
 				</div>
 				<div class="form-group">
-					<label for="name" class="required">Last Name</label>
+					<label for="name">Last Name</label>
 					<input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
 				</div>
 				<div class="form-group">
-					<label for="username" class="required">Username</label>
+					<label for="username">Username</label>
 					<input type="text" name="username" id="username" onkeyup="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 						<span id="user-availability-status1" style="font-size:12px;"></span>
 				</div>
 				<div class="form-group">
-					<label for="username" class="required">Email Address</label>
+					<label for="username">Email Address</label>
 					<input type="text" name="email" id="email" class="form-control" onkeyup="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>">
 						<span id="user-availability-status2" style="font-size:12px;" required></span>
 				</div>
@@ -88,11 +88,6 @@ foreach($user->fetch_array() as $k =>$v){
 		object-fit: cover;
 		border-radius: 100% 100%;
 	}
-	.required::after{
-      content: " *";
-      color: red;
-      font-size: 16px;
-    }
 </style>
 <!-- Confirm password validation -->
 <script type="text/javascript">

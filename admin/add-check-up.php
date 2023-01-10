@@ -4,22 +4,26 @@
     <?php require_once('../config.php'); ?>
     <?php require_once('inc/header.php') ?>
 </head>
+<style>
+    #uni_modal .modal-content>.modal-footer {
+        display: none;
+    }
+
+    #uni_modal .modal-body {
+        padding-top: 0 !important;
+    }
+    .required::after{
+        content: " *";
+        color: red;
+        font-size: 13px;
+    }
+</style>
 <body>
 
     <?php if ($_settings->chk_flashdata('success')) : ?>
         <script>
             alert_toast("<?php echo $_settings->flashdata('success') ?>", 'success')
         </script>
-
-        <style>
-            #uni_modal .modal-content>.modal-footer {
-                display: none;
-            }
-
-            #uni_modal .modal-body {
-                padding-top: 0 !important;
-            }
-        </style>
     <?php endif; ?>
 
     <?php
@@ -127,34 +131,34 @@
                                                     <input class="form-control" name="pid" placeholder="Patient No." value="<?= $lastRowId ?>" readonly>
                                                 </div>
                                             </div>
-                                             <div class="col-sm-4">
+                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Firstname</label>
+                                                    <label class="required">Firstname</label>
                                                     <input class="form-control" name="pfname" placeholder="Firstname" required>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-2">
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Middle Initial</label>
+                                                    <label class="required">Middle Initial</label>
                                                     <input class="form-control" name="mname" placeholder="Middle Initial" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Lastname</label>
+                                                    <label class="required">Lastname</label>
                                                     <input class="form-control" name="lname" placeholder="Lastname" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="pcontact">Patient Contact Number</label>
+                                                    <label for="pcontact" class="required">Patient Contact Number</label>
                                                     <input type="tel" class="form-control" id="pcontact" placeholder="Contact Number" name="pcontact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                                     <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                                 </div>
                                             </div>
                                             <div class="col-3">
                                                 <div class="form-group">
-                                                    <label for="gender" class="control-label">Gender</label>
+                                                    <label for="gender" class="control-label required">Gender</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
                                                         <option class="placeholder" style="display: none" value="" >Select Gender</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
@@ -164,7 +168,7 @@
                                             </div>
                                             <div class="col-3">
                                                 <div class="form-group">
-                                                    <label for="dob" class="control-label">Date of Birth</label>
+                                                    <label for="dob" class="control-label required">Date of Birth</label>
                                                     <input type="date" class="form-control" id="dob" name="dob" onchange="submitBday()" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                                                 </div>
                                             </div>
@@ -177,18 +181,18 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Place of Birth <small>(for child)</small></label>
-                                                    <input class="form-control" name="placebirth" placeholder="Enter Place of Birth" required>
+                                                    <input class="form-control" name="placebirth" placeholder="Enter Place of Birth">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Guardian/Mother <small>(for child)</small></label>
-                                                    <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother" required>
+                                                    <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>Patient Address</label>
+                                                    <label class="required">Patient Address</label>
                                                     <!-- <input class="form-control" name="paddress" placeholder="Enter Patient Address" required> -->
                                                     <select class="form-control" name="paddress" placeholder="Enter Patient Address" required>
                                                         <option class="placeholder" style="display: none" value="">Select Patient Address</option>
@@ -252,47 +256,47 @@
                                         <div class="row">
                                             <div class="col-3">
                                                 <div class="form-group">
-                                                    <label for="" class="control-label">Date of Visit</label>
+                                                    <label for="" class="control-label required">Date of Visit</label>
                                                     <input type="date" class="form-control" name="visit" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Blood Pressure</label>
+                                                    <label class="required">Blood Pressure</label>
                                                     <input class="form-control" name="bloodpress" placeholder="Sample: 120/80" required>
                                                 </div>                                 
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Blood Sugar</label>
+                                                    <label class="required">Blood Sugar</label>
                                                     <input class="form-control" name="bloodsugar" placeholder="Sample: 70" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Body Temperature</label>
+                                                    <label class="required">Body Temperature</label>
                                                     <input class="form-control" name="bodytemp" placeholder="Sample: 36.5" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Height</label>
+                                                    <label class="required">Height</label>
                                                     <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Weight</label>
+                                                    <label class="required">Weight</label>
                                                     <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter weight in kilograms" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="bmi" >BMI</label>
+                                                    <label for="bmi">BMI</label>
                                                     <textarea class="form-control" rows="1" id="bmi" name="bmi" readonly></textarea>
                                                     <!-- <span class="form-control" id="bmi" name="bmi" ></span> -->
                                                     <!-- <span id="category">Normal weight</span> -->
@@ -301,14 +305,14 @@
 
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Patient Complaints</label>
+                                                    <label class="required">Patient Complaints</label>
                                                     <textarea class="form-control" name="complaints" placeholder="Enter Patient Complaints" required></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-9">
                                                 <div class="form-group">
-                                                    <label>Remarks</label>
+                                                    <label class="required">Remarks</label>
                                                     <textarea class="form-control" name="remark" placeholder="Enter Remarks" required></textarea>
                                                 </div>
                                             </div>

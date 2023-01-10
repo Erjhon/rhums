@@ -72,6 +72,11 @@ if (!empty($_SESSION['user_id'])) {
     #uni_modal .modal-body {
         padding-top: 0 !important;
     }
+    .required::after{
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
 </style>
 <div class="container-fluid">
     <form action="" id="appointment_form" class="py-2">
@@ -80,11 +85,11 @@ if (!empty($_SESSION['user_id'])) {
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
                 <div class="form-group">
-                    <label for="name" class="control-label">Firstname</label>
+                    <label for="name" class="control-label required">Firstname</label>
                     <input type="text" class="form-control" name="name" placeholder="Firstname" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
                 </div>
                    <div class="form-group">
-                    <label for="name" class="control-label">Lastname</label>
+                    <label for="name" class="control-label required">Lastname</label>
                     <input type="text" class="form-control" name="lname" placeholder="Lastname" value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
                 </div>
 
@@ -93,11 +98,11 @@ if (!empty($_SESSION['user_id'])) {
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
                 </div>
                 <div class="form-group">
-                    <label for="contact" class="control-label">Contact Number</label>
+                    <label for="contact" class="control-label required">Contact Number</label>
                     <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
                 </div>
                 <div class="form-group">
-                    <label for="gender" class="control-label">Gender</label>
+                    <label for="gender" class="control-label required">Gender</label>
                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
                         <option class="placeholder" style="display: none" selected disabled value="">Select gender</option>
                         <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
@@ -105,18 +110,18 @@ if (!empty($_SESSION['user_id'])) {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dob" class="control-label">Date of Birth</label>
+                    <label for="dob" class="control-label required">Date of Birth</label>
                     <input type="date" class="form-control" name="dob" value="<?= $dob ?><?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                 </div>
             </div>
             <div class="col-6">
                  <div class="form-group">
-                    <label for="name" class="control-label">Middle Initial</label>
+                    <label for="name" class="control-label required">Middle Initial</label>
                     <input type="text" class="form-control" name="mname" placeholder="Middle Initial" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
                 </div>
               
                 <div class="form-group">
-                    <label for="address" class="control-label">Address</label>
+                    <label for="address" class="control-label required">Address</label>
                     <!-- <textarea class="form-control" name="address" rows="2" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea> -->
                     <select class="form-control"  name="address" rows="2" required>
                         <option class="placeholder" style="display: none"selected disabled value="">Select Patient Address</option>
@@ -168,7 +173,7 @@ if (!empty($_SESSION['user_id'])) {
                 <?php if ($_settings->userdata('id') > 0) : ?>
 
                     <div class="form-group">
-                        <label for="reason" class="control-label">Reason for Appointment</label>
+                        <label for="reason" class="control-label required">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
                         <select name="reason" id="reason" class="form-control form-select-sm-6"required>
                             <option class="placeholder" style="display: none" selected disabled value="">Select reason</option>

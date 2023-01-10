@@ -79,6 +79,11 @@ if (!empty($_SESSION['user_id'])) {
     #uni_modal .modal-body {
         padding-top: 0 !important;
     }
+    .required::after{
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
 </style>
 <div class="container-fluid">
     <form action="" id="appointment_form" class="py-2">
@@ -146,7 +151,7 @@ if (!empty($_SESSION['user_id'])) {
 
                 <?php else : ?>
                     <div class="form-group">
-                        <label for="reason" class="control-label">Reason for Appointment</label>
+                        <label for="reason" class="control-label required">Reason for Appointment</label>
                         <select name="reason" id="reason" class="form-control form-select" required>
                             <option class="placeholder" style="display: none"  selected disabled value="" >Select reason</option>
                             <option   <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
