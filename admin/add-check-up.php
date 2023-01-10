@@ -174,20 +174,20 @@
                                             </div>
                                             <div class="col-2">
                                                 <div class="form-group">
-                                                    <label class="required">Patient Age</label>
+                                                    <label>Patient Age</label>
                                                     <input class="form-control" id="resultBday" name="age" type="text" placeholder="Age" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label class="required">Place of Birth <small>(for child)</small></label>
-                                                    <input class="form-control" name="placebirth" placeholder="Enter Place of Birth" required>
+                                                    <label>Place of Birth <small>(for child)</small></label>
+                                                    <input class="form-control" name="placebirth" placeholder="Enter Place of Birth">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label class="required">Guardian/Mother <small>(for child)</small></label>
-                                                    <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother" required>
+                                                    <label>Guardian/Mother <small>(for child)</small></label>
+                                                    <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
