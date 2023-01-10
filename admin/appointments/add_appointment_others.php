@@ -245,7 +245,7 @@ if (!empty($_SESSION['user_id'])) {
             </div>
             <div class="form-group text-center w-100 form-group">
                 <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-light btn ml-2 modal-submit" type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>

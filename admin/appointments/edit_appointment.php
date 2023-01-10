@@ -173,7 +173,7 @@ if (!empty($_SESSION['user_id'])) {
                         <select name="reason" id="reason" class="form-control form-select-sm-6"required>
                             <option class="placeholder" style="display: none" selected disabled value="">Select reason</option>
                             <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                            <option value="Animal Bite"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
                             
                         </select>
                     </div>
@@ -183,12 +183,10 @@ if (!empty($_SESSION['user_id'])) {
                         <label for="reason" class="control-label">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
                         <select name="reason" id="reason" class="form-control form-select-sm-6"required>
-                            <option class="placeholder" style="display: none" >Select reason</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization for Child</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization for Senior Citizen</option>
-                            <!-- <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option> -->
+                            <option class="placeholder" style="display: none" selected disabled value="">Select reason</option>
+                            <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
+                            <option value="Animal Bite"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                            
                         </select>
 
                     </div>
@@ -240,7 +238,7 @@ if (!empty($_SESSION['user_id'])) {
             </div>
             <div class="form-group text-center w-100 form-group">
                 <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-light btn ml-2 modal-submit" type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
@@ -271,7 +269,16 @@ if (!empty($_SESSION['user_id'])) {
                         // console.log(document.getElementById("hiddencontact").value)
                         // document.getElementById("hiddenform").submit();
 
-                        // alert(resp.msg);
+                          $(".modal-submit").click()
+                         
+                            Swal.fire({
+                             icon: 'success',
+                          title: 'Appointment updated successfully',
+                          toast: true,
+                          position:'top-end',
+                          showConfirmButton: false,
+                          timer: 1000
+                            })
                         console.log(resp.sms_respond)
                         location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {

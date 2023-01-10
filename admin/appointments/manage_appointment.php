@@ -209,9 +209,8 @@ if (!empty($_SESSION['user_id'])) {
     minDate: 0
 });
     $('#appointment-date').datetimepicker({
-    format:'Y-m-d h:ia',
-    allowTimes:['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'], 
-    minDate:0
+    // format:'Y-m-d h:ia',
+    allowTimes:['8:00','9:00','10:00','11:00','12:00','13:00 pm','14:00','15:00','16:00','17:00'], 
 });
 
 
@@ -244,8 +243,8 @@ if (!empty($_SESSION['user_id'])) {
                 <?php endif; ?>
             </div>
             <div class="form-group text-center w-100 form-group">
-                <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-primary btn modal-submit ">Submit Appointment</button>
+                <button class="btn-light btn ml-2 modal-submit" type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
@@ -272,19 +271,9 @@ if (!empty($_SESSION['user_id'])) {
                 // },
                 success: function(resp) {
                     if (resp.status == 'success') {
-                         // document.getElementById("hiddencontact").value = document.getElementById("scontact").value;
-                        // console.log(document.getElementById("hiddencontact").value)
-                        // document.getElementById("hiddenform").submit();
+                      alert_toast(resp.msg);
+                        location.reload()
 
-                        // alert(resp.msg);
-                        $(".modal-submit").click()
-                        Swal.fire(
-                          'Good job!',
-                          resp.msg,
-                          'success'
-                        )
-                        console.log(resp.sms_respond)
-                        // location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         var el = $('<div>')
                         el.addClass("alert alert-danger err-msg").text(resp.msg)
