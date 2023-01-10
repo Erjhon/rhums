@@ -79,7 +79,7 @@ if (!empty($_SESSION['user_id'])) {
     }
 </style>
 <div class="container-fluid">
-    <form action="" id="appointment_form" class="py-2">
+    <form action="" id="appointment_form" class="py-2" onsubmit="return validation()">
         <div class="row" id="appointment">
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
@@ -117,7 +117,7 @@ if (!empty($_SESSION['user_id'])) {
             <div class="col-6">
                  <div class="form-group">
                     <label for="name" class="control-label required">Middle Initial</label>
-                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
+                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" maxlength="2" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
                 </div>
               
                 <div class="form-group">

@@ -92,7 +92,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                    <div class="form-group">
                     <label for="name" class="control-label required">Lastname</label>
-                    <input type="text" class="form-control" name="lname" placeholder="Lastname" value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
+                    <input type="text" class="form-control" name="lname" placeholder="Lastname"  value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
                 </div>
                 
                 <div hidden class="form-group">
@@ -181,7 +181,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div> -->
                   <div class="form-group">
                     <label for="name" class="control-label required">Middle Initial</label>
-                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
+                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" maxlength="2" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
                 </div>
 
                 <div class="form-group">

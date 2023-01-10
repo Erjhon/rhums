@@ -56,7 +56,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 					<!-- Form Group (last name)-->
 					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputLastName">Middle Initial</label>
-						<input type="text" name="middleInitial" id="middleInitial" class="form-control" value="<?php echo isset($meta['middleInitial']) ? $meta['middleInitial']: '' ?>" required>
+						<input type="text" name="middleInitial" id="middleInitial" class="form-control" maxlength="2" value="<?php echo isset($meta['middleInitial']) ? $meta['middleInitial']: '' ?>" required>
 					</div>
 					<!-- Form Group (last name)-->
 					<div class="col-md-4">
