@@ -375,24 +375,23 @@ function is_code_correct($code){
                     ?>
                     </span>
                     </div>
-                    <!-- <h5 class="text-dark required">Password</h5> -->
+                    <div>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
                           <span class="fas fa-lock p-1"></span>
                         </div>
                       </div>
-                      <input type="password" class="form-control" id="myInput" id="password" name="password" onkeyup="validatePassword()" placeholder="Password" required>
-                      
+                      <input type="password" class="form-control" id="myInput" name="password" placeholder="Password" required>
                       <div class="input-group-append">
                         <div class="input-group-text">
                             <i class="fa fa-eye" id="hide" onclick="myFunction()"></i>
                             <i class="fa fa-eye-slash" id="show" onclick="myFunction()"></i>
-                          <span id="validatePassword1" style="font-size:12px;"></span>
                         </div>
                       </div>
                     </div>
-                    <!-- <h5 class="text-dark required">Retype Password</h5> -->
+                  </div>
+              
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -462,21 +461,6 @@ function is_code_correct($code){
       document.getElementById('show1').style.display = "inline-block";
     }
   }
-
-  function validatePassword() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "../admin/validatePassword.php",
-      data:'password='+$("#password").val(),
-      type: "POST",
-      success:function(data){
-        $("#validatePassword1").html(data);
-        $("#loaderIcon").hide();
-      },
-      error:function (){}
-    });
-  }
-
 </script>
 
 </html>
