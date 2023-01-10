@@ -21,7 +21,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 			<div id="msg"></div>
 			<form action="" id="manage-user">
 				<div class="form-group col-12 d-flex justify-content-center">
-					<img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail">
+					<!-- <img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail"> -->
 				</div>	
 				<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
 				<!-- Form Row-->

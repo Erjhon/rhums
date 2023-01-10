@@ -68,7 +68,30 @@ foreach($user->fetch_array() as $k =>$v){
 		            </div>
 				</div>
 				<div class="form-group d-flex justify-content-center">
-					<img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail">
+					<span >
+                  <?php 
+$id=$_SESSION['userdata']['id'];
+$qry = $conn->query("SELECT * From staff where id = '$id'");
+        while($row = $qry->fetch_assoc()):
+          $pathx = "../";
+          $file = $row["avatar"];
+           switch(true)
+              {
+                case ($row['avatar'] == (!empty($row['gender'])) ):
+                echo '<img src="'.$pathx.$file.'"  class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                default:
+                case ($row['gender'] == 'Male'):
+                echo '<img src="../dist/img/male_staff.png" class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                break;
+                case ($row['gender'] == 'Female'):
+                echo '<img src="../dist/img/staff.png"class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                break;
+              } 
+
+            ?>">
+                </span>
+              <?php endwhile?>
+					<!-- <img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail"> -->
 				</div>
 			</form>
 		</div>

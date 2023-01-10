@@ -75,9 +75,29 @@ h3 {
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="<?php echo validate_image($_settings->userdata('avatar')) ?>">
+                <span class="img-avatar avatar rounded-circle">
+                  <?php 
+$id=$_SESSION['userdata']['id'];
+$qry = $conn->query("SELECT * From staff where id = '$id'");
+        while($row = $qry->fetch_assoc()):
+          $pathx = "../";
+          $file = $row["avatar"];
+           switch(true)
+              {
+                case ($row['avatar'] == (!empty($row['gender'])) ):
+                echo '<img src="'.$pathx.$file.'"  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>>';
+                default:
+                case ($row['gender'] == 'Male'):
+                echo '<img src="../dist/img/male_staff.png" class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+                break;
+                case ($row['gender'] == 'Female'):
+                echo '<img src="../dist/img/staff.png"class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+                break;
+              } 
+
+            ?>">
                 </span>
+          <?php  endwhile ?>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></span>
                 </div>
