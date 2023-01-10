@@ -97,8 +97,8 @@ if (!empty($_SESSION['user_id'])) {
   <!-- <div class="input-group-prepend">
     <span class="input-group-text">First and last name</span>
   </div> -->
-  <input input type="text" class="form-control col-3" name="name" value="<?= $name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required readonly>
-  <input type="text" class="form-control col-1" name="mname" value="<?= $mname ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required readonly>
+  <input input type="text" class="form-control col-auto" name="name" value="<?= $name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required readonly>
+  <input type="text" class="form-control col-2" name="mname" value="<?= $mname ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required readonly>
    <input type="text" class="form-control" name="lname" value="<?= $lname ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required readonly>
 </div><br>
                <!--  <div class="form-group">
