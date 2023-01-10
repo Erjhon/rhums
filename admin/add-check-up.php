@@ -51,7 +51,7 @@
         $remark = mysqli_real_escape_string($conn, $_POST['remark']);
         $assigned = mysqli_real_escape_string($conn, $_POST['assigned']);
         $user_id = mysqli_real_escape_string($conn, $_SESSION['userdata']['id']);
-        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$pid', '$pfname','$mname','$lname', '$user_id')") or die('query failed');
+        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name,mname,lname, user_id) VALUES('$pid', '$pfname','$mname','$lname', '$user_id')") or die('query failed');
 
         $sql = "INSERT INTO `checkup` (pid,pfname,mname,lname,pcontact,gender,dob,age,placebirth,guardian,paddress)
         VALUES ('$pid','$pfname','$mname','$lname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress')";

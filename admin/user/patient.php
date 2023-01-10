@@ -52,9 +52,6 @@
 							} 
 
 						?>"> 
-
-
-
 					</td>
 					<td><?php echo ucwords($row['firstname']) ?> <?php echo ucwords($row['lastname']) ?></td>
 					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['username'] ?></p></td>

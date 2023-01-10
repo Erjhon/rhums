@@ -219,7 +219,14 @@ if (!empty($_SESSION['user_id'])) {
 </script>
                 <div class="form-group">
                     <label for="date_sched" class="control-label required">Preferred Date and Time</label>
-                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/>
+                       <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fas fa-calendar-day p-1"></span>
+                    </div>
+                  </div>
+                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/> 
+                       </div>
                 </div>
 
                 <?php if ($_settings->userdata('id') > 0) : ?>
@@ -251,7 +258,7 @@ if (!empty($_SESSION['user_id'])) {
             $('.err-msg').remove();
             start_loader();
             $.ajax({
-                url: _base_url_ + "classes/Master.php?f=save_appointment",
+                url: _base_url_ + "classes/App.php?f=save_appointment",
                 data: new FormData($(this)[0]),
                 cache: false,
                 contentType: false,
@@ -265,13 +272,19 @@ if (!empty($_SESSION['user_id'])) {
                 // },
                 success: function(resp) {
                     if (resp.status == 'success') {
-                        // document.getElementById("hiddencontact").value = document.getElementById("scontact").value;
+                         // document.getElementById("hiddencontact").value = document.getElementById("scontact").value;
                         // console.log(document.getElementById("hiddencontact").value)
                         // document.getElementById("hiddenform").submit();
 
-                        alert(resp.msg);
+                        // alert(resp.msg);
+                        $(".modal-submit").click()
+                        Swal.fire(
+                          'Good job!',
+                          resp.msg,
+                          'success'
+                        )
                         console.log(resp.sms_respond)
-                        location.reload()
+                        // location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         var el = $('<div>')
                         el.addClass("alert alert-danger err-msg").text(resp.msg)
