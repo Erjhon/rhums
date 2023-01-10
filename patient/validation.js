@@ -265,28 +265,31 @@ function validate(id){
 
 
 // <!-- show password -->
-var state = false;
-function toggle1(){
-  if (state){
-    document.getElementById("password").setAttribute("type", "password");
-    state = false;
-  } else{
-    document.getElementById("password").setAttribute("type", "text");
-    state = true;
+function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type == "password"){
+      x.type = "text";
+      document.getElementById('hide').style.display = "inline-block";
+      document.getElementById('show').style.display = "none";
+    }else{
+      x.type = "password";
+      document.getElementById('hide').style.display = "none";
+      document.getElementById('show').style.display = "inline-block";
+    }
   }
-}
-// </script>
-// <script>
-var state = false;
-function toggle2(){
-  if (state){
-    document.getElementById("cpassword").setAttribute("type", "password");
-    state = false;
-  } else{
-    document.getElementById("cpassword").setAttribute("type", "text");
-    state = true;
+
+  function myFunction1() {
+    var y = document.getElementById("cpassword");
+    if (y.type == "password"){
+      y.type = "text";
+      document.getElementById('hide1').style.display = "inline-block";
+      document.getElementById('show1').style.display = "none";
+    }else{
+      y.type = "password";
+      document.getElementById('hide1').style.display = "none";
+      document.getElementById('show1').style.display = "inline-block";
+    }
   }
-}
 // </script>
 
 // <script>

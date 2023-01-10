@@ -42,7 +42,20 @@
       margin-left: 4%;
       text-align: justify;
     }
-
+    #hide{
+      display: none;
+      cursor: pointer;
+    }
+    #show{
+      cursor: pointer;
+    }
+    #hide1{
+      display: none;
+      cursor: pointer;
+    }
+    #show1{
+      cursor: pointer;
+    }
   </style>
 
   <?php
@@ -307,7 +320,8 @@
     </div>
     <input class="form-control" placeholder="Password" id ="password" name ="password" type="password" onkeyup="validatePassword()|| validate('password')" onkeyup="return validate('password')||check('');">
     <span class="input-group-text">
-      <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+      <i class="fa fa-eye" id="hide" onclick="myFunction()"></i>
+      <i class="fa fa-eye-slash" id="show" onclick="myFunction()"></i>
     </span>
   </div>
     <span id="validatePassword1" style="font-size:12px;"></span>
@@ -321,7 +335,8 @@
     </div>
     <input class="form-control" placeholder="Confirm Password" id ="cpassword" name="cpassword" type="password" onkeyup="return validate('cpassword')||check('');">
     <span class="input-group-text">
-      <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+      <i class="fa fa-eye" id="hide1" onclick="myFunction1()"></i>
+      <i class="fa fa-eye-slash" id="show1" onclick="myFunction1()"></i>
     </span>
   </div>
   <p  class="text-danger" id="cpw" style="font-size:12px; padding-top: 3px;"></p>
