@@ -238,7 +238,7 @@ if (!empty($_SESSION['user_id'])) {
             </div>
             <div class="form-group text-center w-100 form-group">
                 <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2 modal-submit" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
@@ -269,17 +269,17 @@ if (!empty($_SESSION['user_id'])) {
                         // console.log(document.getElementById("hiddencontact").value)
                         // document.getElementById("hiddenform").submit();
 
-                          $(".modal-submit").click()
+                          // $(".modal-submit").click()
                          
-                            Swal.fire({
-                             icon: 'success',
-                          title: 'Appointment updated successfully',
-                          toast: true,
-                          position:'top-end',
-                          showConfirmButton: false,
-                          timer: 1000
-                            })
-                        console.log(resp.sms_respond)
+                          //   Swal.fire({
+                          //    icon: 'success',
+                          // title: 'Appointment updated successfully',
+                          // toast: true,
+                          // position:'top-end',
+                          // showConfirmButton: false,
+                          // timer: 1000
+                          //   })
+                        // console.log(resp.sms_respond)
                         location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         var el = $('<div>')

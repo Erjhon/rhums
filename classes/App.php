@@ -139,33 +139,16 @@ class App extends DBConnection
 			$this->conn->query("DELETE FROM `patient_meta` where patient_id = '{$patient_id}'");
 			$save_meta = $this->conn->query($sql);
 			$this->capture_err();
-			if ($save_sched && $save_meta) {
-				//formate date 
-				$new_sched = date('F d, Y H:i A', strtotime($date_sched));
-				//create message text
-				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
-				// $message .= " On {$new_sched}";
-
-				//send sms enable this later
-				$res = $this->mess->sendSMS($contact, $message);
-
-				//return json encode to ajax
-				return json_encode([
-					'status' => 'success',
-					'msg' => 'Your appointment is set',
-					'mess_respond' => $res
-				]);
-
-				// bakit to naka flashdata pero naka ajax kayo?
-				/**
-				 this->settings->set_flashdata('success',' Appointment successfully saved');
-				 * 
-				 */
-			} else {
+			if($save_sched && $save_meta){
+				$resp['status'] = 'success';
+				$resp['name'] = $name;
+				$this->settings->set_flashdata('success',' Appointment successfully saved');
+			}else{
 				$resp['status'] = 'failed';
 				$resp['msg'] = "There's an error while submitting the data.";
 			}
-		} else {
+
+		}else{
 			$resp['status'] = 'failed';
 			$resp['msg'] = "There's an error while submitting the data.";
 		}
