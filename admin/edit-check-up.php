@@ -105,7 +105,7 @@ if(isset($_POST['submit']))
                   </tr>
                   <tr>
                     <th>Date of Birth</th>
-                    <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
+                    <td><?php echo date("F d, Y",strtotime($row['dob'])); ?></td>
                     <th>Age</th>
                     <td><?php  echo $row['age'];?></td>
                   </tr>
@@ -119,7 +119,7 @@ if(isset($_POST['submit']))
                     <th>Address</th>
                     <td><?php  echo $row['paddress'];?></td>
                     <th>Date of Registration</th>
-                    <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
+                    <td><?php echo date("F d, Y", strtotime($row['CreationDate']))?></td>
                   </tr>
                 </tr>
               </table>
