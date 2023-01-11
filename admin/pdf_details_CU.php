@@ -238,11 +238,11 @@ $ret=mysqli_query($conn,"select * from checkup c, patient_history p where c.pid=
       ?>
 			<tr>
 				<td>PA-<?=$row["pid"] ?></td>
-				<td><?php echo date("m/d/Y", strtotime($row['CreationDate']))?></td>
-				<td><?=$row["pfname"] ?></td>
+				<td><?php echo date("F d, Y", strtotime($row['CreationDate']))?></td>
+				<td><?=$row['pfname'];?> <?=$row['mname'];?>. <?=$row['lname'];?></td>
 				<td><?=$row["gender"] ?></td>
 				<td><?=$row["pcontact"] ?></td>
-				<td><?php echo date("M, d, Y", strtotime($row['dob']))?></td>
+				<td><?php echo date("F d, Y", strtotime($row['dob']))?></td>
 				<td><?=$row["age"] ?></td>
 				<td><?=$row["placebirth"] ?></td>
 				<td><?=$row["guardian"] ?></td>
@@ -254,7 +254,7 @@ $ret=mysqli_query($conn,"select * from checkup c, patient_history p where c.pid=
 				<td><?=$row["weight"] ?></td>
 				<td><?=$row["bmi"] ?></td>
 				<td><?=$row["complaints"] ?></td>
-				<td><?php echo date("m/d/Y", strtotime($row['visit']))?></td>
+				<td><?php echo date("F d, Y", strtotime($row['visit']))?></td>
 				<td><?=$row["remark"] ?></td>
 			</tr>
  <?php } ?>

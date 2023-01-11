@@ -9,10 +9,10 @@ if(!empty($_POST["username"])) {
 	$count1=mysqli_num_rows($result1);
 
 	if($count||$count1>0) {
-		echo "<span style='color:red'> Username already exists.</span>";
+		echo "<span class='text-danger'> Username already exists.</span>";
 	 	echo "<script>$('#submit').prop('disabled',true);</script>";
 	} else{
-		echo "<span style='color:green'> Username available.</span>";
+		echo "<span class='text-success'> Username available.</span>";
 	 	echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }
@@ -29,10 +29,10 @@ $result=mysqli_num_rows($select);
 $result1=mysqli_num_rows($select1);
 
 if($result||$result1>0) {
-    	echo "<span style='color:red'> Email already registered.</span>";
+    	echo "<span class='text-danger'> Email already registered.</span>";
 	 	echo "<script>$('#submit').prop('disabled',true);</script>";
 	} else{
-		echo "<span style='color:green'> Email available.</span>";
+		echo "<span class='text-success'> Email available.</span>";
 	 	echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }

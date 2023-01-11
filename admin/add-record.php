@@ -234,13 +234,13 @@ if(isset($message)){
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Place of Birth <small>(for child)</small></label>
-                                                <input class="form-control" name="placebirth" placeholder="Enter Place of Birth" required>
+                                                <input class="form-control" name="placebirth" placeholder="Enter Place of Birth">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Guardian/Mother <small>(for child)</small></label>
-                                                <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother" required>
+                                                <input class="form-control" name="guardian" placeholder="Enter Guardian/Mother">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">

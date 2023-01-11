@@ -83,7 +83,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 					<!-- Form Group (email)-->
 					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputEmailAddress">Email Address</label>
-						<input type="text" name="email" id="email" class="form-control" onkeyup="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required>
+						<input type="text" name="email" id="email" class="form-control" onkeyup="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required autocomplete="off">
 						<span id="user-availability-status2" style="font-size:12px;" ></span>
 					</div>
 

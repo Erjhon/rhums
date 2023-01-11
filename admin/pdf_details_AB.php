@@ -235,11 +235,11 @@ $ret=mysqli_query($conn,"select * from animalbite a join animalbite_history ab o
       ?>
 			<tr>
 				<td>PA-<?=$row["pid"] ?></td>
-				<td><?php echo date("m/d/Y", strtotime($row['CreationDate']))?></td>
-				<td><?=$row["pfname"] ?></td>
+				<td><?php echo date("F d, Y", strtotime($row['CreationDate']))?></td>
+				<td><?=$row['pfname'];?> <?=$row['mname'];?>. <?=$row['lname'];?></td>
 				<td><?=$row["gender"] ?></td>
 				<td><?=$row["pcontact"] ?></td>
-				<td><?php echo date("M, d, Y", strtotime($row['dob']))?></td>
+				<td><?php echo date("F d, Y", strtotime($row['dob']))?></td>
 				<td><?=$row["age"] ?></td>
 				<td><?=$row["paddress"] ?></td>
 				<td><?=$row["incident"] ?></td>
@@ -250,7 +250,7 @@ $ret=mysqli_query($conn,"select * from animalbite a join animalbite_history ab o
 				<td><?=$row["owner"] ?></td>
 				<td><?=$row["ownercon"] ?></td>
 				<td><?=$row["location"] ?></td>
-				<td><?php echo date("m/d/Y", strtotime($row['visit']))?></td>
+				<td><?php echo date("F d, Y", strtotime($row['visit']))?></td>
 				<td><?=$row["remark"] ?></td>
 			</tr>
  <?php } ?>

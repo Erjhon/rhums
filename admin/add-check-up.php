@@ -27,7 +27,8 @@
     <?php endif; ?>
 
     <?php
-
+ error_reporting(0);
+    ini_set('display_errors', 0);
     if (isset($_POST['submit'])) {
         $pid = mysqli_real_escape_string($conn, $_POST['pid']);
         $pfname = mysqli_real_escape_string($conn, $_POST['pfname']);
@@ -134,19 +135,19 @@
                                              <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="required">Firstname</label>
-                                                    <input class="form-control" name="pfname" placeholder="Firstname" required>
+                                                    <input class="form-control" name="pfname" maxlength="10" placeholder="Firstname" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="required">Middle Initial</label>
-                                                    <input class="form-control" name="mname" placeholder="Middle Initial" required>
+                                                    <input class="form-control" name="mname" maxlength="2" placeholder="Middle Initial" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="required">Lastname</label>
-                                                    <input class="form-control" name="lname" placeholder="Lastname" required>
+                                                    <input class="form-control" name="lname" maxlength="10" placeholder="Lastname" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">

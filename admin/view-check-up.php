@@ -27,7 +27,7 @@
               </tr>
               <tr>
                 <th>Name</th>
-                <td><?php  echo $row['pfname'];?></td>
+                <td><?php  echo $row['pfname'];?> <?php  echo $row['mname'];?>. <?php  echo $row['lname'];?></td>
                 <th>Gender</th>
                 <td><?php  echo $row['gender'];?></td>
               </tr>

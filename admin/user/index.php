@@ -99,7 +99,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 	<div class="card-footer">
 			<div class="col-md-12 d-flex justify-content-center">
 				<div class="row">
-					<button class="btn btn-md btn-primary" form="manage-user">Update</button>
+					<button class="btn btn-md btn-primary" id="submit" form="manage-user">Update</button>
 				</div>
 			</div>
 		</div>
