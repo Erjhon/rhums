@@ -62,6 +62,7 @@ if (!empty($_SESSION['user_id'])) {
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../admin/appointments/jquery.datetimepicker.min.css">
+       <script type = "text/javascript" src="../admin/appointments/validation.js"></script>  
 </head>
 <body>
 <style>
@@ -99,7 +100,8 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label required">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
+                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" onkeyup="return validate('scontact')" oninvalid="setCustomValidity(' ')" />
+                    <p  class="text-danger" id="cn" style="font-size:12px;"></p>
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label required">Gender</label>
@@ -250,6 +252,24 @@ if (!empty($_SESSION['user_id'])) {
     </form>
 </div>
 <script>
+
+
+    // Validate PH mobile number
+  var contact = document.getElementById("scontact");
+
+contact.addEventListener('input', () => {
+  contact.setCustomValidity('');
+  contact.checkValidity();
+});
+
+contact.addEventListener('invalid', () => {
+  if(contact.value === '') {
+    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+  } else {
+    document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
+  } 
+});
+
     $(function() {
         $('#appointment_form').submit(function(e) {
             e.preventDefault();

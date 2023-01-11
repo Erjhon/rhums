@@ -80,7 +80,7 @@ class Master extends DBConnection
 		$this->capture_err();
 		if ($check > 4) {
 			$resp['status'] = 'failed';
-			$resp['msg'] = "Selected Schedule DateTime conflicts to other appointment.";
+			$resp['msg'] = "The selected time slot is already full.";
 			return json_encode($resp);
 			exit; // no need for exit.. return automaticall exit after execution
 		}

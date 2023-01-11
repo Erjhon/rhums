@@ -62,6 +62,7 @@ if (!empty($_SESSION['user_id'])) {
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../admin/appointments/jquery.datetimepicker.min.css">
+    <script type = "text/javascript" src="../admin/appointments/validation.js"></script> 
 </head>
 <body>
 <style>
@@ -74,7 +75,7 @@ if (!empty($_SESSION['user_id'])) {
     }
 </style>
 <div class="container-fluid">
-    <form action="" id="appointment_form" class="py-2">
+    <form action="" id="appointment_form" class="py-2" onsubmit="validation()">
         <div class="row" id="appointment">
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
@@ -85,7 +86,7 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                    <div class="form-group">
                     <label for="name" class="control-label">Lastname</label>
-                    <input type="text" class="form-control" name="lname" placeholder="Lastname" > value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
+                    <input type="text" class="form-control" name="lname" placeholder="Lastname" value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
                 </div>
 
                 <div hidden class="form-group">
@@ -94,7 +95,8 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
+                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" onkeyup="return validate('scontact')" oninvalid="setCustomValidity(' ')" />
+                    <p  class="text-danger" id="cn" style="font-size:12px;"></p>
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
@@ -237,13 +239,30 @@ if (!empty($_SESSION['user_id'])) {
                 <?php endif; ?>
             </div>
             <div class="form-group text-center w-100 form-group">
-                <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-primary btn" id="submit">Submit Appointment</button>
+                <button class="btn-light btn ml-2"  type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
 </div>
 <script>
+
+    // Validate PH mobile number
+  var contact = document.getElementById("scontact");
+
+contact.addEventListener('input', () => {
+  contact.setCustomValidity('');
+  contact.checkValidity();
+});
+
+contact.addEventListener('invalid', () => {
+  if(contact.value === '') {
+    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+  } else {
+    document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
+  } 
+});
+
     $(function() {
         $('#appointment_form').submit(function(e) {
             e.preventDefault();
