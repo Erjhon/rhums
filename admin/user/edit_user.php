@@ -264,7 +264,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 		var _this = $(this)
 		start_loader()
 		$.ajax({
-			url:_base_url_+'classes/Users.php?f=save',
+			url:_base_url_+'classes/Users.php?f=saves',
 			data: new FormData($(this)[0]),
 			cache: false,
 			contentType: false,
@@ -273,7 +273,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 			type: 'POST',
 			success:function(resp){
 				if(resp ==1){
-					location.href = './?page=user/manage_user&id=<?php echo("{$_GET['id']}")?>';
+					location.reload()
 				}else{
 					$('#msg').html('<div class="alert alert-danger">Username already exist</div>')
 					$("html, body").animate({ scrollTop: 0 }, "fast");

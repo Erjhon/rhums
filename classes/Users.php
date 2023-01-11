@@ -54,14 +54,74 @@ Class Users extends DBConnection {
 			if($qry){
 				$this->settings->set_flashdata('success','User Details successfully updated.');
 						
+				foreach($_POST as $k => $v){
+					if($k != 'id'){
+						if(empty($data)) $data .=" , ";
+						$this->settings->set_userdata($k,$v);
+					}
+				}
+				if(isset($fname) && isset($move))
+				$this->settings->set_userdata('avatar',$fname);
+
+				return 1;
+			}else{
+				return "UPDATE staff set $data where id = {$id}";
+			}
+			
+		}
+	}
+	public function save_staff(){
+		extract($_POST);
+		$data = '';
+		$chk = $this->conn->query("SELECT * FROM `staff` where username ='{$username}' ".($id>0? " and id!= '{$id}' " : ""))->num_rows;
+		if($chk > 0){
+			return 3;
+			exit;
+		}
+		foreach($_POST as $k => $v){
+			if(!in_array($k,array('id','password'))){
+				if(!empty($data)) $data .=" , ";
+				$data .= " {$k} = '{$v}' ";
+			}
+		}
+		if(!empty($password)){
+			$password = md5($password);
+			if(!empty($data)) $data .=" , ";
+			$data .= " `password` = '{$password}' ";
+		}
+
+		if(isset($_FILES['img']) && $_FILES['img']['tmp_name'] != ''){
+				$fname = 'uploads/'.strtotime(date('y-m-d H:i')).'_'.$_FILES['img']['name'];
+				$move = move_uploaded_file($_FILES['img']['tmp_name'],'../'. $fname);
+				if($move){
+					$data .=" , avatar = '{$fname}' ";
+					if(isset($_SESSION['userdata']['avatar']) && is_file('../'.$_SESSION['userdata']['avatar']) && $_SESSION['userdata']['id'] == $id)
+						unlink('../'.$_SESSION['userdata']['avatar']);
+				}
+		}
+		if(empty($id)){
+			$qry = $this->conn->query("INSERT INTO staff set {$data}");
+			if($qry){
+				$this->settings->set_flashdata('success','User Details successfully saved.');
+				return 1;
+			}
+			else{
+				return 2;
+			}
+
+		}else{
+			$qry = $this->conn->query("UPDATE staff set $data where id = {$id}");
+			if($qry){
+				$this->settings->set_flashdata('success','User Details successfully updated.');
+						
 				// foreach($_POST as $k => $v){
 				// 	if($k != 'id'){
-				// 		if(!empty($data)) $data .=" , ";
+				// 		if(empty($data)) $data .=" , ";
 				// 		$this->settings->set_userdata($k,$v);
 				// 	}
 				// }
 				if(isset($fname) && isset($move))
-				$this->settings->set_userdata('avatar',$fname);
+				$this->settings->set_userdata($fname);
 
 				return 1;
 			}else{
@@ -173,6 +233,9 @@ $action = !isset($_GET['f']) ? 'none' : strtolower($_GET['f']);
 switch ($action) {
 	case 'save':
 		echo $users->save_users();
+	break;
+	case 'saves':
+		echo $users->save_staff();
 	break;
 	case 'fsave':
 		echo $users->save_fusers();

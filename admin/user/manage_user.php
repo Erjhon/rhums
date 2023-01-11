@@ -31,7 +31,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
               {
                 case ($row['avatar'] == (!empty($row['gender'])) ):
                 echo '<img src="'.$pathx.$file.'"  class="alt="" id="cimg" class="img-fluid img-thumbnail';
-                default:
+                break;
                 case ($row['gender'] == 'Male'):
                 echo '<img src="../dist/img/male_staff.png" class="alt="" id="cimg" class="img-fluid img-thumbnail';
                 break;
@@ -134,7 +134,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 	<div class="form-group col-md-6 mt-1">
 		<label for="" class="small mb-1">Avatar</label>
 		<div class="custom-file">
-			<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
+			<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this)">
 			<label class="custom-file-label" for="customFile">Choose file</label>
 		</div>
 	</div>
@@ -269,7 +269,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 			type: 'POST',
 			success:function(resp){
 				if(resp ==1){
-					location.href = './?page=user/list';
+					location.reload()
 				}else{
 					$('#msg').html('<div class="alert alert-danger">Username already exist</div>')
 					$("html, body").animate({ scrollTop: 0 }, "fast");
