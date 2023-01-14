@@ -115,23 +115,9 @@
 
 											<!-- <a class="dropdown-item edit_data" href="<?php if($row['reason'] == 'Check-up') echo 'add-check-up.php'; else echo 'add-animalbite.php';  ?>"> <span class="fa fa-file text-primary"></span> Add Record</a> -->
 
-											<a class="dropdown-item edit_data" href="
-											<?php switch(true)
-											{
-												case ($row['reason'] == 'Check-up'):
-												echo base_url ?>admin/?page=add-record&id=<?php echo $row['id'];
-												break;
-												case ($row['reason'] == 'Animal Bite'):
-												echo base_url ?>admin/?page=add-recordAB&id=<?php echo $row['id'];
-												break;
-												case ($row['reason'] == 'Immunization for Child'):
-												echo base_url ?>admin/?page=add-immunization&id=<?php echo $row['id'];
-												break;
-												case ($row['reason'] == 'Immunization for Senior Citizens'):
-												echo base_url ?>admin/?page=add-immunization&id=<?php echo $row['id'];
-												break;
-											} ?>"> 
-											<span class="fa fa-file text-primary"></span> Add Record</a>
+											<a class="dropdown-item add_record" href="javascript:void(0)" data-id="<?php echo htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8'); ?>" data-reason="<?php echo htmlspecialchars($row['reason'], ENT_QUOTES, 'UTF-8'); ?>">
+    <span class="fa fa-file text-primary"></span> Add Record
+</a>
 										</div>
 									</td>
 								</tr>
@@ -141,6 +127,24 @@
 				</div>
 			</div>
 		</div>
+	<script>
+$(document).on('click', '.add_record', function(){
+    var id = $(this).data('id');
+    var reason = $(this).data('reason');
+
+    switch(true) {
+        case (reason == 'Check-up'):
+            window.location.href = "<?php echo base_url; ?>admin/?page=add-record&id=" + id;
+            break;
+        case (reason == 'Animals Bite'):
+            window.location.href = "<?php echo base_url; ?>admin/?page=add-recordAB&id=" + id;
+            break;
+        case (reason == 'Immunization for Child' || reason == 'Immunization for Senior Citizens'):
+            window.location.href = "<?php echo base_url; ?>admin/?page=add-immunization&id=" + id;
+            break;
+    }
+});
+</script>
 		<script>
 			var indiList;
 			$(document).ready(function(){
