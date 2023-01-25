@@ -49,18 +49,18 @@ $sched_arr = array();
 </head>
 
 <!-- Header -->
-<div class="header pb-8 pt-5 pt-md-3 ">
+<div class="header pb-3 pt-1 pt-md-1">
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
       <div class="row">
         <a href=""></a>
-        <div class="col-xl-6 col-lg-6">
+        <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-3 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Total Registered Patients</h5>
+                  <h6 class="card-title text-uppercase text-dark mb-0">Total Registered Patients</h6>
                   <p class="links cl-effect-1">
                     <a href="?page=user/patient">
                       <?php
@@ -92,12 +92,12 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-6 col-lg-6">
+        <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Today's Total Appointments</h5>
+                  <h6 class="card-title text-uppercase text-dark mb-0">Total Appointments for Today</h6>
                   <p class="links cl-effect-1">
                     <a href="?page=appointments">
                       <?php
@@ -123,13 +123,24 @@ $sched_arr = array();
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="col-xl-6 col-lg-6 mt-3">
-          <div class="card card-stats mb-4 mb-xl-0">
+<!-- Header -->
+<div class="header pb-8 ">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <a href=""></a>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-3 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Check-Up Records</h5>
+                 <h6 class="card-title text-uppercase text-dark mb-0">Check-Up Records</h6>
                   <p class="links cl-effect-1">
                     <a href="?page=list-check-up">
                       <?php
@@ -155,7 +166,75 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-6 col-lg-6 mt-3">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body pb-0">
+              <div class="row">
+                <div class="col">
+                  <h6 class="card-title text-uppercase text-dark mb-0">Animal Bite Records</h6>
+                  <p class="links cl-effect-1">
+                    <a href="?page=list-animalbite">
+                      <?php
+
+                      $animalbite_history = "SELECT * FROM animalbite";
+                      $animalbite_history_run = mysqli_query($conn, $animalbite_history);
+
+                      if ($total = mysqli_num_rows($animalbite_history_run)) {
+                      }
+
+                      ?>
+                      <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
+                    </a>
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-blue text-white rounded-circle shadow">
+                    <i class="fas fa-stethoscope"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--   <div class="header-body">
+<div class="row">
+       <div class="col-xl-4 col-lg-6 mt-3">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body pb-0">
+              <div class="row">
+                <div class="col">
+                  <h6 class="card-title text-uppercase text-dark mb-0">Check-Up Records</h6>
+                  <p class="links cl-effect-1">
+                    <a href="?page=list-check-up">
+                      <?php
+
+                      $patient_history = "SELECT * FROM checkup";
+                      $patient_history_run = mysqli_query($conn, $patient_history);
+
+                      if ($total = mysqli_num_rows($patient_history_run)) {
+                      }
+
+                      ?>
+                      <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
+                    </a>
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                  <i class="fas fa-file-medical-alt"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-6 mt-3">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
@@ -183,77 +262,10 @@ $sched_arr = array();
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-<!--         <div class="col-xl-4 col-lg-6 mt-3">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Immunization For Child Records</h5>
-                  <p class="links cl-effect-1">
-                    <a href="?page=list-immunization">
-                      <?php
-
-                      $patient_history = "SELECT * FROM checkup";
-                      $patient_history_run = mysqli_query($conn, $patient_history);
-
-                      if ($total = mysqli_num_rows($patient_history_run)) {
-                      }
-
-                      ?>
-                      <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
-                    </a>
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-green text-white rounded-circle shadow">
-                    <i class="fas fa-syringe"></i>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div> -->
-
-<!--         <div class="col-xl-4 col-lg-6 mt-3">
-          <div class="card card-stats mb-3 mb-xl-0">
-            <div class="card-body pb-0">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0"> Immunization For Senior Citizens Records</h5>
-                  <p class="links cl-effect-1">
-                    <a href="?page=list-immunizationSC">
-                      <?php
-
-                      $patient_history = "SELECT * FROM checkup";
-                      $patient_history_run = mysqli_query($conn, $patient_history);
-
-                      if ($total = mysqli_num_rows($patient_history_run)) {
-                      }
-
-                      ?>
-                      <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
-                    </a>
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-purple text-white rounded-circle shadow">
-                    <i class="fas fa-crutch"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-
-
-      </div>
-    </div>
-  </div>
-</div>
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col-xl-12 mb-8 mb-xl-0">
