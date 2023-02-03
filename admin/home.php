@@ -197,7 +197,7 @@ $sched_arr = array();
             </div>
           </div>
         </div>
-          <div class="col-xl-6 mt--8">
+          <div class="col-xl-6 mt--9">
          <?php
 // Connect to the database and retrieve the data
 $bite_data = array();
@@ -253,7 +253,7 @@ var chart = new Chart(ctx, {
     data: {
         labels: <?php echo $months; ?>,
         datasets: [{
-            label: 'Animals Bites',
+            label: 'Animal Bite',
             data: <?php echo $bite_data; ?>,
             backgroundColor: 'rgba(231, 76, 60, 0.8)',
             borderColor: 'rgba(255, 99, 132, 1)',
@@ -280,7 +280,7 @@ var chart = new Chart(ctx, {
        
 <div class="container-fluid mt-1">
   <div class="col">
-    <div class="col-xl-12 mb-8 mb-xl-0">
+    <div class="col-xl-13 mb-8 mb-xl-0">
       <div class="card bg-gradient shadow">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
