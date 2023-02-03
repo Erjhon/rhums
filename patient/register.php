@@ -236,19 +236,19 @@
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
-                                  <h5 class="text-dark required">Contact Number</h5>
+                                  <h5 class="text-dark required">Mobile Number</h5>
 <!-- <<<<<<< Updated upstream
 <input type="tel" class="form-control" id="contact" placeholder="09524423145" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="validateContact()|| validate('contact')" onkeyup="return validate('contact')">
 <span id="validateContact1" style="font-size:12px;"></span>
 ======= -->
-<input type="tel" class="form-control" id="contact" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" placeholder="Contact Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')" oninvalid="setCustomValidity(' ')" />
+<input type="tel" class="form-control" id="contact" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" placeholder="Mobile Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')" oninvalid="setCustomValidity(' ')" />
 <p  class="text-danger" id="cn" style="font-size:12px;"></p>
 </div>
 
 <div class="form-group col-sm-3 mb--1">
-  <h5 for="gender" class="text-dark required">Gender</h5>
+  <h5 for="gender" class="text-dark required">Sex</h5>
   <select type="text" class="form-control form-select-sm-6" value="<?php echo isset($_POST['gender']) ? $_POST['gender'] : ''; ?>" name="gender" id="gender" onchange ="return validate('gender')" >
-    <option class="placeholder" value="" style="display: none">Select Gender</option>
+    <option class="placeholder" value="" style="display: none">Select Sex</option>
     <option>Male</option>
     <option>Female</option>
   </select>
@@ -398,7 +398,7 @@
       <h2>Information we collect</h2>
 
       <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
-      <p>When you register for an account, we may ask for your contact information, including items such as name, username, address, email address, and contact number, gender, date of birth, address, password and picture.</p>
+      <p>When you register for an account, we may ask for your contact information, including items such as name, username, address, email address, and mobile number, gender, date of birth, address, password and picture.</p>
       <p>Medical History will also be collected.</p>
       <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
 
@@ -464,7 +464,7 @@ contact.addEventListener('input', () => {
 
 contact.addEventListener('invalid', () => {
   if(contact.value === '') {
-    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+    document.getElementById('cn').innerHTML ="<b> ** Please fill the mobile number field.";
   } else {
     document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
   } 
