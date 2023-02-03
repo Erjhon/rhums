@@ -118,7 +118,7 @@ if (!empty($_SESSION['user_id'])) {
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
                 </div>
                 <div class="form-group">
-                    <label for="contact" class="control-label">Contact Number</label>
+                    <label for="contact" class="control-label">Mobile Number</label>
                     <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" readonly>
                 </div>
                 <div hidden class="form-group">

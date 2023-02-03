@@ -22,13 +22,13 @@
               <tr>
                 <th>Patient No.</th>
                 <td><?php  echo $row['pid'];?></td>
-                <th>Contact Number</th>
+                <th>Mobile Number</th>
                 <td><?php  echo $row['pcontact'];?></td>
               </tr>
               <tr>
                 <th>Name</th>
                 <td><?php  echo $row['pfname'];?> <?php  echo $row['mname'];?>. <?php  echo $row['lname'];?></td>
-                <th>Gender</th>
+                <th>Sex</th>
                 <td><?php  echo $row['gender'];?></td>
               </tr>
               <tr>

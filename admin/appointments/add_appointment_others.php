@@ -88,11 +88,11 @@ if (!empty($_SESSION['user_id'])) {
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
 
                  <div class="form-group">
-                    <label for="name" class="control-label required">Firstname</label>
+                    <label for="name" class="control-label required">First Name</label>
                     <input type="text" id="firstname" class="form-control" name="name" placeholder="Firstname" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required/>
                 </div>
                    <div class="form-group">
-                    <label for="name" class="control-label required">Lastname</label>
+                    <label for="name" class="control-label required">Last Name</label>
                     <input type="text" id="lastname" class="form-control" name="lname" placeholder="Lastname"  value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required/>
                 </div>
                 
@@ -101,7 +101,7 @@ if (!empty($_SESSION['user_id'])) {
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
                 </div>
                 <div class="form-group">
-                    <label for="contact" class="control-label required">Contact Number</label>
+                    <label for="contact" class="control-label required">Mobile Number</label>
                     <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" onkeyup="return validate('scontact')" oninvalid="setCustomValidity(' ')" />
                     <p  class="text-danger" id="cn" style="font-size:12px;"></p>
                 </div>
@@ -109,9 +109,9 @@ if (!empty($_SESSION['user_id'])) {
                 
 
                 <div class="form-group">
-                    <label for="gender" class="control-label required">Gender</label>
+                    <label for="gender" class="control-label required">Sex</label>
                     <select type="text" class="form-control form-select" name="gender"  required>
-                        <option class="placeholder" style="display: none"  selected disabled value="" >Select gender</option>
+                        <option class="placeholder" style="display: none"  selected disabled value="" >Select Sex</option>
                         <option  <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option  <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>

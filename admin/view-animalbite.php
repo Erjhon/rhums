@@ -22,13 +22,13 @@
               <tr>
                 <th scope>Patient No.</th>
                 <td><?php  echo $row['pid'];?></td>
-                <th scope>Contact Number</th>
+                <th scope>Mobile Number</th>
                 <td><?php  echo $row['pcontact'];?></td>
               </tr>
               <tr>
                 <th scope>Name</th>
               <td><?php  echo $row['pfname'];?> <?php  echo $row['mname'];?>. <?php  echo $row['lname'];?></td>
-                <th>Gender</th>
+                <th>Sex</th>
                 <td><?php  echo $row['gender'];?></td>
               </tr>
               <tr>
@@ -64,7 +64,7 @@
               <th>Category</th>
               <th>Type</th>
               <th>Name <small>(Pet Owner)</small></th>
-              <th>Contact Number <small>(Pet Owner)</small></th>
+              <th>Mobile Number <small>(Pet Owner)</small></th>
               <th>Location of biting Incident</th>
               <th>Remarks</th>
               <th>Visit Date</th>

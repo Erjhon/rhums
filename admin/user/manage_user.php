@@ -67,9 +67,9 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 				<!-- Form Row        -->
 				<div class="row gx-3 mb-3">
 					<div class="col-md-4">
-					 	<label class="small mb-1 required" for="inputusername">Gender</label>
+					 	<label class="small mb-1 required" for="inputusername">Sex</label>
                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                        <option class="placeholder" style="display: none" selected disabled value="">Select gender</option>
+                        <option class="placeholder" style="display: none" selected disabled value="">Select Sex</option>
                         <option<?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option<?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>

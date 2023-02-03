@@ -94,13 +94,13 @@ if(isset($_POST['submit']))
                   <tr>
                     <th scope>Patient No.</th>
                     <td><?php  echo $row['pid'];?></td>
-                    <th scope>Contact Number</th>
+                    <th scope>Mobile Number</th>
                     <td><?php  echo $row['pcontact'];?></td>
                   </tr>
                   <tr>
                     <th scope>Name</th>
                     <td><?php  echo $row['pfname'];?></td>
-                    <th>Gender</th>
+                    <th>Sex</th>
                     <td><?php  echo $row['gender'];?></td>
                   </tr>
                   <tr>

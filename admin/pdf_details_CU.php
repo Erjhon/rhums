@@ -213,8 +213,8 @@
 				<th class="row-ID">Patient No.</th>
 				<th class="row-dor">Date of Registration</th>
 				<th class="row-n">Name</th>
-				<th class="row-g">Gender</th>
-				<th class="row-cn">Contact Number</th>
+				<th class="row-g">Sex</th>
+				<th class="row-cn">Mobile Number</th>
 				<th class="row-dob">Date of Birth</th>
 				<th class="row-a">Age</th>
 				<th class="row-pob">Place of Birth <small>(for child)</small></th>

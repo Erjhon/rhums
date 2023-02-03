@@ -209,8 +209,8 @@
 				<th class="row-ID">Patient No.</th>
 				<th class="row-dor">Date of Registration</th>
 				<th class="row-n">Name</th>
-				<th class="row-g">Gender</th>
-				<th class="row-cn">Contact Number</th>
+				<th class="row-g">Sex</th>
+				<th class="row-cn">Mobile Number</th>
 				<th class="row-dob">Date of Birth</th>
 				<th class="row-a">Age</th>
 				<th class="row-ad">Address</th>
@@ -220,7 +220,7 @@
 				<th class="row-c">Category</th>
 				<th class="row-t">Type</th>
 				<th class="row-po">Name <small>(Pet Owner)</small></th>
-				<th class="row-pcn">Contact Number <small>(Pet Owner)</small></th>
+				<th class="row-pcn">Mobile Number <small>(Pet Owner)</small></th>
 				<th class="row-li">Location of biting Incident</th>
 				<th class="row-vd">Visit Date</th>
 				<th class="row-r">Remarks</th>

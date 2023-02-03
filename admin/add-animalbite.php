@@ -128,8 +128,8 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="required">Firstname</label>
-                                                    <input class="form-control" name="pfname" placeholder="Firstname" required>
+                                                    <label class="required">First Name</label>
+                                                    <input class="form-control" name="pfname" placeholder="First Name" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
@@ -140,13 +140,13 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="required">Lastname</label>
-                                                    <input class="form-control" name="lname" placeholder="Lastname" required>
+                                                    <label class="required">Last Name</label>
+                                                    <input class="form-control" name="lname" placeholder="Last Name" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="required">Patient Contact Number</label>
+                                                    <label class="required">Patient Mobile Number</label>
                                                     <!-- <input class="form-control" name="pcontact" placeholder="Enter Patient Contact Number" required maxlength="11"> -->
                                                     <input type="tel" class="form-control" id="pcontact" placeholder="Contact Number" name="pcontact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                                                     <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
@@ -155,9 +155,9 @@
                                             </div>
                                             <div class="col-3">
                                                 <div class="form-group">
-                                                    <label for="gender" class="control-label required">Gender</label>
+                                                    <label for="gender" class="control-label required">Sex</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                                        <option class="placeholder" style="display: none" value="" >Select Gender</option>
+                                                        <option class="placeholder" style="display: none" value="" >Select Sex</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                                                     </select>
@@ -310,7 +310,7 @@
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="required">Contact Number <small>(Pet Owner)</small></label>
+                                                    <label class="required">Mobile Number <small>(Pet Owner)</small></label>
                                                     <input type="tel" class="form-control" id="ownercon" placeholder="Contact Number" name="ownercon" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                                                     <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                                 </div>

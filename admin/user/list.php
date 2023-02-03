@@ -31,7 +31,7 @@
 						<th>Name</th>
 						<th>Username</th>
 						<th>Email</th>
-						<th>Gender</th>
+						<th>Sex</th>
 						<th>User Type</th>
 						<th>Action</th>
 					</tr>

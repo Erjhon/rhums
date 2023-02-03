@@ -21,8 +21,8 @@
 						<th>Name</th>
 						<th>Username</th>
 						<th>Email</th>
-						<th>Contact</th>
-						<th>Gender</th>
+						<th>Mobile Number</th>
+						<th>Sex</th>
 						<th>Date of Birth</th>
 						<th>Address</th>
 					</tr>
