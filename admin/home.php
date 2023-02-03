@@ -210,21 +210,25 @@ while ($row = mysqli_fetch_assoc($result)) {
     $bite_data[] = $row['bites'];
     $checkup_data[] = $row['checkups'];
     $months[] = $row['month'];
+    $total_data[] = $row['bites'] + $row['checkups'];
 }
 
+for ($i = 0; $i < count($bite_data); $i++) {
+    $bite_data[$i] = round(($bite_data[$i] / $total_data[$i]) * 100, 2);
+    $checkup_data[$i] = round(($checkup_data[$i] / $total_data[$i]) * 100, 2);
+}
 // encode the data in json format for use in javascript
 $bite_data = json_encode($bite_data);
 $checkup_data = json_encode($checkup_data);
 $months = json_encode($months);
 ?> 
- 
-    <div class="card shadow ">
+    <div class="card shadow">
       <div class="card-header bg-transparent">
         <div class="row align-items-center">
-          <div class="col">
+         <!--  <div class="col">
             <h6 class="text-uppercase text-muted ls-1 mb-1">Statistics</h6>
             <h2 class="mb-0">Total appointments</h2>
-          </div>
+          </div> -->
         </div>
       </div>
       
@@ -256,10 +260,10 @@ var chart = new Chart(ctx, {
             borderWidth: 1
         },
         {
-            label: 'Checkups',
+            label: 'Check-ups',
             data: <?php echo $checkup_data; ?>,
             backgroundColor: 'rgba(52, 152, 219, 0.8)',
-            borderColor: 'rgba(11, 83, 69, 1)',
+            borderColor: 'rgba(26, 188, 156 , 1)',
             borderWidth: 1
         }]
     },
