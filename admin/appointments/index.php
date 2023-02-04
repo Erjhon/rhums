@@ -137,7 +137,7 @@ $(document).on('click', '.add_record', function(){
         case (reason == 'Check-up'):
             window.location.href = "<?php echo base_url; ?>admin/?page=add-record&id=" + id;
             break;
-        case (reason == 'Animals Bite'):
+        case (reason == 'Animal Bite'):
             window.location.href = "<?php echo base_url; ?>admin/?page=add-recordAB&id=" + id;
             break;
         case (reason == 'Immunization for Child' || reason == 'Immunization for Senior Citizens'):

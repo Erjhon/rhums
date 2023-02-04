@@ -78,7 +78,7 @@ TITLE: Get patient record form patient_meta table
 function get_record_details($patient_id, $conn)
 {
 
-   $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $id = intval($_GET['id']);
     $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'name' ");
     $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'mname' ");
     $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'lname' ");

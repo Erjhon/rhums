@@ -73,14 +73,14 @@ TITLE: Get patient record form patient_meta table
 */
 function get_record_details($patient_id, $conn)
 {
-
-    $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'name' ");
-    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'mname' ");
-    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'lname' ");
-    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'contact' ");
-    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'dob' ");
-    $query6 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'gender' ");
-    $query7 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'address' ");
+    $id = intval($_GET['id']);
+    $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'name' ");
+    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'mname' ");
+    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'lname' ");
+    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'contact' ");
+    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'dob' ");
+    $query6 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'gender' ");
+    $query7 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'address' ");
 
     $name = mysqli_fetch_assoc($query1);
     $mname = mysqli_fetch_assoc($query2);
