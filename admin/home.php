@@ -253,7 +253,7 @@ var chart = new Chart(ctx, {
     data: {
         labels: <?php echo $months; ?>,
         datasets: [{
-            label: 'Animal Bite',
+            label: 'Animal Bites',
             data: <?php echo $bite_data; ?>,
             backgroundColor: 'rgba(231, 76, 60, 0.8)',
             borderColor: 'rgba(255, 99, 132, 1)',

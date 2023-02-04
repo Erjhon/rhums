@@ -173,29 +173,39 @@ class Master extends DBConnection
 	}
 
 	function multiple_action()
-	{
-		extract($_POST);
-		if ($_action != 'delete') {
-			$stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
-			$status = $stat_arr[$_action];
-			$sql = "UPDATE `appointments` set status = '{$status}' where patient_id in (" . (implode(",", $ids)) . ") ";
-			$process = $this->conn->query($sql);
-			$this->capture_err();
-		} else {
-			$sql = "DELETE s.*,i.*,im.* from  `appointments` s inner join `patient_list` i on s.patient_id = i.id  inner join `patient_meta` im on im.patient_id = i.id where s.patient_id in (" . (implode(",", $ids)) . ") ";
-			$process = $this->conn->query($sql);
-			$this->capture_err();
-		}
-		if ($process) {
-			$resp['status'] = 'success';
-			$act = $_action == 'delete' ? "Deleted" : "Updated";
-			$this->settings->set_flashdata("success", "Appointment/s successfully " . $act);
-		} else {
-			$resp['status'] = 'failed';
-			$resp['error_sql'] = $sql;
-		}
-		return json_encode($resp);
-	}
+{
+  extract($_POST);
+  if ($_action != 'delete') {
+    $stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
+    $status = $stat_arr[$_action];
+
+    // Check if the action is 'cancelled'
+    if ($_action == 'cancelled') {
+      $cancelled_by = $_SESSION['userdata']['firstname'].' '.$_SESSION['userdata']['lastname'];
+      $cancelled_time = date("Y-m-d H:i:s");
+
+      $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}' where patient_id in (" . (implode(",", $ids)) . ") ";
+    } else {
+      $sql = "UPDATE `appointments` set status = '{$status}' where patient_id in (" . (implode(",", $ids)) . ") ";
+    }
+
+    $process = $this->conn->query($sql);
+    $this->capture_err();
+  } else {
+    $sql = "DELETE s.*,i.*,im.* from  `appointments` s inner join `patient_list` i on s.patient_id = i.id  inner join `patient_meta` im on im.patient_id = i.id where s.patient_id in (" . (implode(",", $ids)) . ") ";
+    $process = $this->conn->query($sql);
+    $this->capture_err();
+  }
+  if ($process) {
+    $resp['status'] = 'success';
+    $act = $_action == 'delete' ? "Deleted" : "Updated";
+    $this->settings->set_flashdata("success", "Appointment/s successfully " . $act);
+  } else {
+    $resp['status'] = 'failed';
+    $resp['error_sql'] = $sql;
+  }
+  return json_encode($resp);
+}
 
 	function save_sched_settings()
 	{

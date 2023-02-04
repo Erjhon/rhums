@@ -98,7 +98,7 @@ function get_record_details($patient_id, $conn)
         'dob' => $dob['meta_value'],
         'address' => $address['meta_value'],
         'gender' => $gender['meta_value'],
-        'age' => compute_age($dob['meta_value'])
+        'age' => compute_age($dob['meta_value'],)
     ];
 
     return $data;

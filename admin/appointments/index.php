@@ -26,7 +26,7 @@
 						<select id="w_selected" class="custom-select select" >
 							<option value="pending">Mark as Done</option>
 							<option value="cancelled">Mark as Cancelled</option>
-							<!-- <option value="confirmed">Mark as Confirmed</option> -->
+							<option value="confirmed">Mark as Confirmed</option>
 							<!-- <option value="delete">Delete</option> -->
 						</select>
 					</div>
@@ -118,6 +118,7 @@
 											<a class="dropdown-item add_record" href="javascript:void(0)" data-id="<?php echo htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8'); ?>" data-reason="<?php echo htmlspecialchars($row['reason'], ENT_QUOTES, 'UTF-8'); ?>">
     <span class="fa fa-file text-primary"></span> Add Record
 </a>
+
 										</div>
 									</td>
 								</tr>
