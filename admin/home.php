@@ -9,6 +9,7 @@ $sched_arr = array();
 
 <html>
 <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <style>
     /* Effect 1: Brackets */
     .cl-effect-1 a::before,
@@ -43,24 +44,23 @@ $sched_arr = array();
       opacity: 1;
       -webkit-transform: translateX(0px);
       -moz-transform: translateX(0px);
-      transform: translateX(0px);
-    }
+      transform: translateX(0px);}
   </style>
 </head>
 
 <!-- Header -->
-<div class="header pb-8 pt-5 pt-md-3 ">
+<div class="header pb-3 pt-5 pt-md-2">
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
       <div class="row">
         <a href=""></a>
-        <div class="col-xl-6 col-lg-6">
+        <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-3 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Total Registered Patients</h5>
+                  <h6 class="card-title text-uppercase text-dark mb-0">Total Registered Patients</h6>
                   <p class="links cl-effect-1">
                     <a href="?page=user/patient">
                       <?php
@@ -92,12 +92,12 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-6 col-lg-6">
+        <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Today's Total Appointments</h5>
+                  <h6 class="card-title text-uppercase text-dark mb-0">Total Appointments for Today</h6>
                   <p class="links cl-effect-1">
                     <a href="?page=appointments">
                       <?php
@@ -123,13 +123,24 @@ $sched_arr = array();
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="col-xl-6 col-lg-6 mt-3">
-          <div class="card card-stats mb-4 mb-xl-0">
+<!-- Header -->
+<div class="header pb-1 ">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <a href=""></a>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-3 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Check-Up Records</h5>
+                 <h6 class="card-title text-uppercase text-dark mb-0">Check-Up Records</h6>
                   <p class="links cl-effect-1">
                     <a href="?page=list-check-up">
                       <?php
@@ -155,12 +166,12 @@ $sched_arr = array();
           </div>
         </div>
 
-        <div class="col-xl-6 col-lg-6 mt-3">
-          <div class="card card-stats mb-4 mb-xl-0">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-9 mb-xl-0">
             <div class="card-body pb-0">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Animal Bite Records</h5>
+                  <h6 class="card-title text-uppercase text-dark mb-0">Animal Bite Records</h6>
                   <p class="links cl-effect-1">
                     <a href="?page=list-animalbite">
                       <?php
@@ -181,82 +192,95 @@ $sched_arr = array();
                     <i class="fas fa-stethoscope"></i>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
+          <div class="col-xl-6 mt--9">
+         <?php
+// Connect to the database and retrieve the data
+$bite_data = array();
+$checkup_data = array();
+$months = array();
 
-<!--         <div class="col-xl-4 col-lg-6 mt-3">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0">Immunization For Child Records</h5>
-                  <p class="links cl-effect-1">
-                    <a href="?page=list-immunization">
-                      <?php
+$query = "SELECT MONTHNAME(date_sched) as month, SUM(CASE WHEN reason = 'Animal Bite' THEN 1 ELSE 0 END) as bites, SUM(CASE WHEN reason = 'Check-up' THEN 1 ELSE 0 END) as checkups FROM appointments GROUP BY MONTH(date_sched)";
+$result = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($result)) {
+    $bite_data[] = $row['bites'];
+    $checkup_data[] = $row['checkups'];
+    $months[] = $row['month'];
+    $total_data[] = $row['bites'] + $row['checkups'];
+}
 
-                      $patient_history = "SELECT * FROM checkup";
-                      $patient_history_run = mysqli_query($conn, $patient_history);
-
-                      if ($total = mysqli_num_rows($patient_history_run)) {
-                      }
-
-                      ?>
-                      <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
-                    </a>
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-green text-white rounded-circle shadow">
-                    <i class="fas fa-syringe"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-<!--         <div class="col-xl-4 col-lg-6 mt-3">
-          <div class="card card-stats mb-3 mb-xl-0">
-            <div class="card-body pb-0">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-dark mb-0"> Immunization For Senior Citizens Records</h5>
-                  <p class="links cl-effect-1">
-                    <a href="?page=list-immunizationSC">
-                      <?php
-
-                      $patient_history = "SELECT * FROM checkup";
-                      $patient_history_run = mysqli_query($conn, $patient_history);
-
-                      if ($total = mysqli_num_rows($patient_history_run)) {
-                      }
-
-                      ?>
-                      <span class="h1 font-weight-bold mb-0"><?php echo $total; ?></span>
-                    </a>
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-purple text-white rounded-circle shadow">
-                    <i class="fas fa-crutch"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-
-
+for ($i = 0; $i < count($bite_data); $i++) {
+    $bite_data[$i] = round(($bite_data[$i] / $total_data[$i]) * 100, 2);
+    $checkup_data[$i] = round(($checkup_data[$i] / $total_data[$i]) * 100, 2);
+}
+// encode the data in json format for use in javascript
+$bite_data = json_encode($bite_data);
+$checkup_data = json_encode($checkup_data);
+$months = json_encode($months);
+?> 
+    <div class="card shadow">
+      <div class="card-header bg-transparent">
+        <div class="row align-items-center">
+         <!--  <div class="col">
+            <h6 class="text-uppercase text-muted ls-1 mb-1">Statistics</h6>
+            <h2 class="mb-0">Total appointments</h2>
+          </div> -->
+        </div>
       </div>
+      
+      <!-- Chart -->
+      <div style="width:100%;max-width:600px;align-content: flex-end;">
+        <canvas id="animalChart"></canvas>
+      </div>
+      
     </div>
   </div>
+  </div>
 </div>
-<div class="container-fluid mt--7">
-  <div class="row">
-    <div class="col-xl-12 mb-8 mb-xl-0">
+</div>
+</div>
+</div>
+
+
+<script>
+var ctx = document.getElementById('animalChart').getContext('2d');
+var chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+        labels: <?php echo $months; ?>,
+        datasets: [{
+            label: 'Animal Bites',
+            data: <?php echo $bite_data; ?>,
+            backgroundColor: 'rgba(231, 76, 60, 0.8)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'Check-ups',
+            data: <?php echo $checkup_data; ?>,
+            backgroundColor: 'rgba(52, 152, 219, 0.8)',
+            borderColor: 'rgba(26, 188, 156 , 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                stacked: true
+            }]
+        }
+    }
+});
+</script>
+
+       
+<div class="container-fluid mt-1">
+  <div class="col">
+    <div class="col-xl-13 mb-8 mb-xl-0">
       <div class="card bg-gradient shadow">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
@@ -264,23 +288,24 @@ $sched_arr = array();
               <!-- <h6 class="text-uppercase text-dark ls-1 mb-1">Patient Schedule</h6> -->
               <h2 class="text-dark mb-0">Patient Schedule</h2>
               <div class="card-body">
+<div class="table-responsive mt-1">
                 <div id="calendar"></div>
               </div>
             </div>
-
           </div>
         </div>
-        <div class="table-responsive mt-1">
-        </div>
+        
       </div>
     </div>
-
-
-
   </div>
-</div>
-</div>
-</div>
+</div> 
+      </div>
+    </div>
+  </div></div>
+
+
+
+
 
 
 <style>

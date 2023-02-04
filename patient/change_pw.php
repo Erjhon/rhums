@@ -318,11 +318,12 @@ if(isset($_POST['change_pw'])){
                     <!-- Form Group (username)-->
                     <div class="mb-3">
                       <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-                      <label class="small mb-1 required" for="inputUsername">Current Password</label>               
+                      <label class="small mb-1 required" for="inputUsername">Old Password</label>               
                        <div class="input-group input-group-alternative mb--1">
-                        <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter current password" required>
+                        <input class="form-control" type="password" id="update_pass" name="update_pass" placeholder="Enter old password" required>
                          <span class="input-group-text">
-                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle()"></i>
+                          <i class="fa fa-eye" id="hide" onclick="myFunction()"></i>
+                            <i class="fa fa-eye-slash" id="show" onclick="myFunction()"></i>
                         </span>
                       </div>
                     </div>
@@ -330,11 +331,13 @@ if(isset($_POST['change_pw'])){
                     <div class="mb-3">
                       <label class="small mb-1 required" for="inputUsername">New Password</label>
                       <div class="input-group input-group-alternative mb--1">
-                        <input class="form-control" id="password" type="password" name="new_pass" placeholder="Enter new password" required>
+                        <input class="form-control" id="password" type="password" name="new_pass" placeholder="Enter new password" onkeyup="validatePassword()" required>
                         <span class="input-group-text">
-                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                          <i class="fa fa-eye" id="hide1" onclick="myFunction1()"></i>
+                            <i class="fa fa-eye-slash" id="show1" onclick="myFunction1()"></i>
                         </span>
                       </div>
+                      <span id="validatePassword1" style="font-size:12px;"></span>
                     </div>
 
                     <div class="mb-3">
@@ -342,12 +345,13 @@ if(isset($_POST['change_pw'])){
                       <div class="input-group input-group-alternative mb--1">
                         <input class="form-control" id="cpassword" type="password" name="confirm_pass" placeholder="Confirm new password" required>
                         <span class="input-group-text">
-                          <i class="fa fa-eye rounded" aria-hidden="true" id="eye2" onclick="toggle2()"></i>
+                          <i class="fa fa-eye" id="hide2" onclick="myFunction2()"></i>
+                            <i class="fa fa-eye-slash" id="show2" onclick="myFunction2()"></i>
                         </span>
                       </div>
                     </div>
                     <!-- Save changes button-->
-                    <input type="submit" class="btn btn-primary" value="Update" name="change_pw">
+                    <input type="submit" id="submit" class="btn btn-primary" value="Update" name="change_pw">
                   </div>
                 </form>
               </div>
@@ -390,6 +394,27 @@ if(isset($_POST['change_pw'])){
       color: red;
       font-size: 13px;
     }
+  #hide{
+      display: none;
+      cursor: pointer;
+  }
+  #show{
+      cursor: pointer;
+  }
+  #hide1{
+      display: none;
+      cursor: pointer;
+  }
+  #show1{
+      cursor: pointer;
+  }
+  #hide2{
+      display: none;
+      cursor: pointer;
+  }
+  #show2{
+      cursor: pointer;
+  }
 </style>        
 
 </body>
@@ -413,40 +438,56 @@ if(isset($_POST['change_pw'])){
 
 <!-- show password -->
 <script>
-  var state = false;
-  function toggle(){
-    if (state){
-      document.getElementById("update_pass").setAttribute("type", "password");
-      state = false;
-    } else{
-      document.getElementById("update_pass").setAttribute("type", "text");
-      state = true;
+  function myFunction() {
+    var x = document.getElementById("update_pass");
+    if (x.type == "password"){
+      x.type = "text";
+      document.getElementById('hide').style.display = "inline-block";
+      document.getElementById('show').style.display = "none";
+    }else{
+      x.type = "password";
+      document.getElementById('hide').style.display = "none";
+      document.getElementById('show').style.display = "inline-block";
     }
   }
-</script>
 
-<script>
-  var state = false;
-  function toggle1(){
-    if (state){
-      document.getElementById("password").setAttribute("type", "password");
-      state = false;
-    } else{
-      document.getElementById("password").setAttribute("type", "text");
-      state = true;
+  function myFunction1() {
+    var y = document.getElementById("password");
+    if (y.type == "password"){
+      y.type = "text";
+      document.getElementById('hide1').style.display = "inline-block";
+      document.getElementById('show1').style.display = "none";
+    }else{
+      y.type = "password";
+      document.getElementById('hide1').style.display = "none";
+      document.getElementById('show1').style.display = "inline-block";
     }
   }
-</script>
-<script>
-  var state = false;
-  function toggle2(){
-    if (state){
-      document.getElementById("cpassword").setAttribute("type", "password");
-      state = false;
-    } else{
-      document.getElementById("cpassword").setAttribute("type", "text");
-      state = true;
+  function myFunction2() {
+    var a = document.getElementById("cpassword");
+    if (a.type == "password"){
+      a.type = "text";
+      document.getElementById('hide2').style.display = "inline-block";
+      document.getElementById('show2').style.display = "none";
+    }else{
+      a.type = "password";
+      document.getElementById('hide2').style.display = "none";
+      document.getElementById('show2').style.display = "inline-block";
     }
+  }
+
+  function validatePassword() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+        url: "check_availability.php",
+        data:'password='+$("#password").val(),
+        type: "POST",
+        success:function(data){
+            $("#validatePassword1").html(data);
+            $("#loaderIcon").hide();
+        },
+        error:function (){}
+    });
   }
 </script>
 

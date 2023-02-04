@@ -62,6 +62,7 @@ if (!empty($_SESSION['user_id'])) {
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../admin/appointments/jquery.datetimepicker.min.css">
+       <script type = "text/javascript" src="../admin/appointments/validation.js"></script>  
 </head>
 <body>
 <style>
@@ -72,19 +73,24 @@ if (!empty($_SESSION['user_id'])) {
     #uni_modal .modal-body {
         padding-top: 0 !important;
     }
+    .required::after{
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
 </style>
 <div class="container-fluid">
-    <form action="" id="appointment_form" class="py-2">
+    <form action="" id="appointment_form" class="py-2" onsubmit="return validation()">
         <div class="row" id="appointment">
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
                 <input type="hidden" name="patient_id" value="<?php echo isset($patient_id) ? $patient_id : '' ?>">
                 <div class="form-group">
-                    <label for="name" class="control-label">Firstname</label>
+                    <label for="name" class="control-label required">First Name</label>
                     <input type="text" class="form-control" name="name" placeholder="Firstname" value="<?= $full_name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required>
                 </div>
                    <div class="form-group">
-                    <label for="name" class="control-label">Lastname</label>
+                    <label for="name" class="control-label required">Last Name</label>
                     <input type="text" class="form-control" name="lname" placeholder="Lastname" value="<?= $full_name ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required>
                 </div>
 
@@ -93,30 +99,31 @@ if (!empty($_SESSION['user_id'])) {
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
                 </div>
                 <div class="form-group">
-                    <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
+                    <label for="contact" class="control-label required">Mobile Number</label>
+                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" onkeyup="return validate('scontact')" oninvalid="setCustomValidity(' ')" />
+                    <p  class="text-danger" id="cn" style="font-size:12px;"></p>
                 </div>
                 <div class="form-group">
-                    <label for="gender" class="control-label">Gender</label>
+                    <label for="gender" class="control-label required">Sex</label>
                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                        <option class="placeholder" style="display: none" selected disabled value="">Select gender</option>
+                        <option class="placeholder" style="display: none" selected disabled value="">Select sex</option>
                         <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                         <option <?= $gender ?><?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dob" class="control-label">Date of Birth</label>
+                    <label for="dob" class="control-label required">Date of Birth</label>
                     <input type="date" class="form-control" name="dob" value="<?= $dob ?><?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                 </div>
             </div>
             <div class="col-6">
                  <div class="form-group">
-                    <label for="name" class="control-label">Middle Initial</label>
-                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
+                    <label for="name" class="control-label required">Middle Initial</label>
+                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" maxlength="2" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
                 </div>
               
                 <div class="form-group">
-                    <label for="address" class="control-label">Address</label>
+                    <label for="address" class="control-label required">Address</label>
                     <!-- <textarea class="form-control" name="address" rows="2" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea> -->
                     <select class="form-control"  name="address" rows="2" required>
                         <option class="placeholder" style="display: none"selected disabled value="">Select Patient Address</option>
@@ -168,7 +175,7 @@ if (!empty($_SESSION['user_id'])) {
                 <?php if ($_settings->userdata('id') > 0) : ?>
 
                     <div class="form-group">
-                        <label for="reason" class="control-label">Reason for Appointment</label>
+                        <label for="reason" class="control-label required">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required><?php echo isset($reason) ? $reason : "" ?></textarea> -->
                         <select name="reason" id="reason" class="form-control form-select-sm-6"required>
                             <option class="placeholder" style="display: none" selected disabled value="">Select reason</option>
@@ -204,17 +211,23 @@ if (!empty($_SESSION['user_id'])) {
     minDate: 0
 });
     $('#appointment-date').datetimepicker({
-    format:'Y-m-d h:ia',
-    allowTimes:['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'], 
-    minDate:0
+    // format:'Y-m-d h:ia',
+    allowTimes:['8:00','9:00','10:00','11:00','12:00','13:00 pm','14:00','15:00','16:00','17:00'], 
 });
 
 
 
 </script>
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Preferred Date and Time</label>
-                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/>
+                    <label for="date_sched" class="control-label required">Preferred Date and Time</label>
+                       <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fas fa-calendar-day p-1"></span>
+                    </div>
+                  </div>
+                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/> 
+                       </div>
                 </div>
 
                 <?php if ($_settings->userdata('id') > 0) : ?>
@@ -232,13 +245,31 @@ if (!empty($_SESSION['user_id'])) {
                 <?php endif; ?>
             </div>
             <div class="form-group text-center w-100 form-group">
-                <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-primary btn modal-submit ">Submit Appointment</button>
+                <button class="btn-light btn ml-2 modal-submit" type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
 </div>
 <script>
+
+
+    // Validate PH mobile number
+  var contact = document.getElementById("scontact");
+
+contact.addEventListener('input', () => {
+  contact.setCustomValidity('');
+  contact.checkValidity();
+});
+
+contact.addEventListener('invalid', () => {
+  if(contact.value === '') {
+    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+  } else {
+    document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
+  } 
+});
+
     $(function() {
         $('#appointment_form').submit(function(e) {
             e.preventDefault();
@@ -246,7 +277,7 @@ if (!empty($_SESSION['user_id'])) {
             $('.err-msg').remove();
             start_loader();
             $.ajax({
-                url: _base_url_ + "classes/Master.php?f=save_appointment",
+                url: _base_url_ + "classes/App.php?f=save_appointment",
                 data: new FormData($(this)[0]),
                 cache: false,
                 contentType: false,
@@ -260,13 +291,9 @@ if (!empty($_SESSION['user_id'])) {
                 // },
                 success: function(resp) {
                     if (resp.status == 'success') {
-                        // document.getElementById("hiddencontact").value = document.getElementById("scontact").value;
-                        // console.log(document.getElementById("hiddencontact").value)
-                        // document.getElementById("hiddenform").submit();
-
-                        alert(resp.msg);
-                        console.log(resp.sms_respond)
+                      alert_toast(resp.msg);
                         location.reload()
+
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         var el = $('<div>')
                         el.addClass("alert alert-danger err-msg").text(resp.msg)

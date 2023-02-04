@@ -21,20 +21,20 @@ foreach($user->fetch_array() as $k =>$v){
 			<form action="" id="manage-user">	
 				<input type="hidden" name="id" value="<?php echo $_settings->userdata('id') ?>">
 				<div class="form-group">
-					<label for="name" class="required">First Name</label>
+					<label for="name">First Name</label>
 					<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
 				</div>
 				<div class="form-group">
-					<label for="name" class="required">Last Name</label>
+					<label for="name">Last Name</label>
 					<input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
 				</div>
 				<div class="form-group">
-					<label for="username" class="required">Username</label>
+					<label for="username">Username</label>
 					<input type="text" name="username" id="username" onkeyup="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 						<span id="user-availability-status1" style="font-size:12px;"></span>
 				</div>
 				<div class="form-group">
-					<label for="username" class="required">Email Address</label>
+					<label for="username">Email Address</label>
 					<input type="text" name="email" id="email" class="form-control" onkeyup="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>">
 						<span id="user-availability-status2" style="font-size:12px;" required></span>
 				</div>
@@ -68,7 +68,30 @@ foreach($user->fetch_array() as $k =>$v){
 		            </div>
 				</div>
 				<div class="form-group d-flex justify-content-center">
-					<img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail">
+					<span >
+                  <?php 
+$id=$_SESSION['userdata']['id'];
+$qry = $conn->query("SELECT * From staff where id = '$id'");
+        while($row = $qry->fetch_assoc()):
+          $pathx = "../";
+          $file = $row["avatar"];
+           switch(true)
+              {
+                case ($row['avatar'] == (!empty($row['gender'])) ):
+                echo '<img src="'.$pathx.$file.'"  class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                default:
+                case ($row['gender'] == 'Male'):
+                echo '<img src="../dist/img/male_staff.png" class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                break;
+                case ($row['gender'] == 'Female'):
+                echo '<img src="../dist/img/staff.png"class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                break;
+              } 
+
+            ?>">
+                </span>
+              <?php endwhile?>
+					<!-- <img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail"> -->
 				</div>
 			</form>
 		</div>
@@ -76,7 +99,7 @@ foreach($user->fetch_array() as $k =>$v){
 	<div class="card-footer">
 			<div class="col-md-12 d-flex justify-content-center">
 				<div class="row">
-					<button class="btn btn-md btn-primary" form="manage-user">Update</button>
+					<button class="btn btn-md btn-primary" id="submit" form="manage-user">Update</button>
 				</div>
 			</div>
 		</div>
@@ -88,11 +111,6 @@ foreach($user->fetch_array() as $k =>$v){
 		object-fit: cover;
 		border-radius: 100% 100%;
 	}
-	.required::after{
-      content: " *";
-      color: red;
-      font-size: 16px;
-    }
 </style>
 <!-- Confirm password validation -->
 <script type="text/javascript">

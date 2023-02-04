@@ -7,7 +7,7 @@ function end_loader(){
       })
 }
 // function 
-window.alert_toast= function($msg = 'TEST',$bg = 'success' ,$pos=''){
+window.alert_toast= function($msg = 'Success',$bg = 'success' ,$pos=''){
 	   	 var Toast = Swal.mixin({
 	      toast: true,
 	      position: $pos || 'top-end',

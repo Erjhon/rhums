@@ -13,40 +13,79 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 <?php endif;?>
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end"onclick="history.back()">Back</a>
+	<a href="#" class="nav-icon ni ni-bold-left text-success" style = "display: flex; justify-content: flex-end" onclick="history.back()">Back</a>
 		<h2 class="card-title">Add User</h2>
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
 			<div id="msg"></div>
 			<form action="" id="manage-user">
+					<div class="form-group d-flex justify-content-center">
+					<span >
+                  <?php 
+$id=$_GET['id'];
+$qry = $conn->query("SELECT * From staff where id = '$id'");
+        while($row = $qry->fetch_assoc()):
+          $pathx = "../";
+          $file = $row["avatar"];
+           switch(true)
+              {
+                case ($row['avatar'] == (!empty($row['gender'])) ):
+                echo '<img src="'.$pathx.$file.'"  class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                default:
+                case ($row['gender'] == 'Male'):
+                echo '<img src="../dist/img/male_staff.png" class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                break;
+                case ($row['gender'] == 'Female'):
+                echo '<img src="../dist/img/staff.png"class="alt="" id="cimg" class="img-fluid img-thumbnail';
+                break;
+              } 
+
+            ?>">
+                </span>
+              <?php endwhile?>
+					<!-- <img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail"> -->
+				</div>
 				<div class="form-group col-12 d-flex justify-content-center">
-					<img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail">
+					<!-- <img src="<?php echo validate_image(isset($meta['avatar']) ? $meta['avatar'] :'') ?>" alt="" id="cimg" class="img-fluid img-thumbnail"> -->
 				</div>	
 				<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
 				<!-- Form Row-->
 				<div class="row gx-3 mb-3">
 					<!-- Form Group (first name)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputFirstName">First Name</label>
 						<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
 					</div>
 					<!-- Form Group (last name)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
+						<label class="small mb-1 required" for="inputLastName">Middle Initial</label>
+						<input type="text" name="middleInitial" id="middleInitial" class="form-control" maxlength="2" value="<?php echo isset($meta['middleInitial']) ? $meta['middleInitial']: '' ?>" required>
+					</div>
+					<!-- Form Group (last name)-->
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputLastName">Last Name</label>
 						<input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
 					</div>
 				</div>
 				<!-- Form Row        -->
 				<div class="row gx-3 mb-3">
+					<div class="col-md-4">
+					 	<label class="small mb-1 required" for="inputusername">Sex</label>
+                    <select type="text" class="form-control form-select-sm-6" name="gender" required>
+                        <option class="placeholder" style="display: none" selected disabled value="">Select Sex</option>
+                        <option<?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
+                        <option<?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
+                    </select>
+                    </div>
 					<!-- Form Group (username)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputusername">Username</label>
 						<input type="text" name="username" id="username" onkeyup="userAvailability()" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 						<span id="user-availability-status1" style="font-size:12px;"></span>
 					</div>
 					<!-- Form Group (email)-->
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<label class="small mb-1 required" for="inputEmailAddress">Email Address</label>
 						<input type="text" name="email" id="email" class="form-control" onkeyup="userAvailability2()"value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required>
 						<span id="user-availability-status2" style="font-size:12px;" ></span>
@@ -66,7 +105,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 								<i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
 							</span>
 						</div>
-						<small><i>Leave this blank if you dont want to change the password.</i></small>
+						<!-- <small><i>Leave this blank if you dont want to change the password.</i></small> -->
 <!--     <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off" <?php echo isset($meta['id']) ? "": 'required' ?>>
 <?php if(isset($_GET['id'])): ?>
 <small><i>Leave this blank if you dont want to change the password.</i></small>
@@ -84,6 +123,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 	<small id='message'></small>						             
 </div>
 
+</div>
+<div class="row gx-3 mb-3">
 <!-- Form Group (user type)-->
 <div class="col-md-6">
 	<label class="small mb-1 required" for="inputusertype">User Type</label>
@@ -93,10 +134,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		<option class="text-muted" value=" Super Admin">Super Admin</option>
 	</select>
 </div>
-</div>
-<div class="row gx-3 mb-3">
 	<!-- Form Group (avatar)-->
-	<div class="form-group col-12">
+	<div class="form-group col-md-6 mt-1">
 		<label for="" class="small mb-1">Avatar</label>
 		<div class="custom-file">
 			<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
@@ -225,7 +264,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		var _this = $(this)
 		start_loader()
 		$.ajax({
-			url:_base_url_+'classes/Users.php?f=save',
+			url:_base_url_+'classes/Users.php?f=saves',
 			data: new FormData($(this)[0]),
 			cache: false,
 			contentType: false,
@@ -234,7 +273,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 			type: 'POST',
 			success:function(resp){
 				if(resp ==1){
-					location.href = './?page=user/manage_user&id=<?php echo("{$_GET['id']}")?>';
+					location.reload()
 				}else{
 					$('#msg').html('<div class="alert alert-danger">Username already exist</div>')
 					$("html, body").animate({ scrollTop: 0 }, "fast");

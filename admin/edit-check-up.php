@@ -94,18 +94,18 @@ if(isset($_POST['submit']))
                   <tr>
                     <th scope>Patient No.</th>
                     <td><?php  echo $row['pid'];?></td>
-                    <th scope>Contact Number</th>
+                    <th scope>Mobile Number</th>
                     <td><?php  echo $row['pcontact'];?></td>
                   </tr>
                   <tr>
                     <th scope>Name</th>
                     <td><?php  echo $row['pfname'];?></td>
-                    <th>Gender</th>
+                    <th>Sex</th>
                     <td><?php  echo $row['gender'];?></td>
                   </tr>
                   <tr>
                     <th>Date of Birth</th>
-                    <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
+                    <td><?php echo date("F d, Y",strtotime($row['dob'])); ?></td>
                     <th>Age</th>
                     <td><?php  echo $row['age'];?></td>
                   </tr>
@@ -119,7 +119,7 @@ if(isset($_POST['submit']))
                     <th>Address</th>
                     <td><?php  echo $row['paddress'];?></td>
                     <th>Date of Registration</th>
-                    <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
+                    <td><?php echo date("F d, Y", strtotime($row['CreationDate']))?></td>
                   </tr>
                 </tr>
               </table>

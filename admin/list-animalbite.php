@@ -54,11 +54,11 @@ $result = mysqli_query($conn,"SELECT * FROM animalbite");
 
 
 										<tr>
-											<td><b>PA-<?php echo $row["pid"]; ?></td>
-											<td><?php echo $row["pfname"]; ?></td>
-											<td><?php echo $row["age"]; ?></td>
-											<td><?php echo $row["gender"]; ?></td>
-											<td><?php echo $row["paddress"]; ?></td>
+											<td><?php echo $row['pid']; ?></td>
+											<td><?php echo $row['pfname'];?> <?php echo $row['mname'];?>. <?php echo $row['lname'];?></td>
+											<td><?php echo $row['age']; ?></td>
+											<td><?php echo $row['gender']; ?></td>
+											<td><?php echo $row['paddress']; ?></td>
 											<td align="center">
 								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action

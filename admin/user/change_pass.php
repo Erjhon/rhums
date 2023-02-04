@@ -37,9 +37,30 @@ if(isset($_POST['Submit']))
 ?>
 <style>
     .required::after{
-      content: " *";
-      color: red;
-      font-size: 16px;
+        content: " *";
+        color: red;
+        font-size: 16px;
+    }
+    #hide{
+        display: none;
+        cursor: pointer;
+    }
+    #show{
+        cursor: pointer;
+    }
+    #hide1{
+        display: none;
+        cursor: pointer;
+    }
+    #show1{
+        cursor: pointer;
+    }
+    #hide2{
+        display: none;
+        cursor: pointer;
+    }
+    #show2{
+        cursor: pointer;
     }
 </style>
 
@@ -55,31 +76,33 @@ if(isset($_POST['Submit']))
                 <div class="form-group">
                     <label for="password" class="required">Old Password</label>
                     <div class="input-group input-group-alternative mb--1">
-                        <input type="password" name="opwd" id="opwd" class="form-control" value="" autocomplete="off" onkeyup='check();' />
+                        <input type="password" name="opwd" id="myInput" class="form-control" value="" autocomplete="off" onkeyup='check();' />
                         <span class="input-group-text">
-                            <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle1()"></i>
+                            <i class="fa fa-eye" id="hide" onclick="myFunction()"></i>
+                            <i class="fa fa-eye-slash" id="show" onclick="myFunction()"></i>
                         </span>
                     </div>
-
                 </div>
 
                 <div class="form-group">
                     <label for="password" class="required">New Password</label>
                     <div class="input-group input-group-alternative mb--1">
-                        <input  type="password" name="npwd" id="npwd" class="form-control" value="" autocomplete="off" onkeyup='check();' />
+                        <input  type="password" name="npwd" id="myInput1" class="form-control" value="" autocomplete="off" onkeyup="validatePassword()" onkeyup='check();' />
                         <span class="input-group-text">
-                            <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle3()"></i>
+                            <i class="fa fa-eye" id="hide1" onclick="myFunction1()"></i>
+                            <i class="fa fa-eye-slash" id="show1" onclick="myFunction1()"></i>
                         </span>
                     </div>
-
+                    <span id="validatePassword1" style="font-size:12px;"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="password" class="required">Confirm Password</label>
                     <div class="input-group input-group-alternative mb--1">
-                        <input  type="password" name="cpwd" id="cpwd" class="form-control" value="" autocomplete="off" onkeyup='check();' />
+                        <input  type="password" name="cpwd" id="myInput2" class="form-control" value="" autocomplete="off" onkeyup='check();' />
                         <span class="input-group-text">
-                            <i class="fa fa-eye rounded" aria-hidden="true" id="eye1" onclick="toggle2()"></i>
+                            <i class="fa fa-eye" id="hide2" onclick="myFunction2()"></i>
+                            <i class="fa fa-eye-slash" id="show2" onclick="myFunction2()"></i>
                         </span>
                     </div>
 
@@ -108,7 +131,7 @@ if(isset($_POST['Submit']))
 <!-- <div class="card-footer"> -->
     <div class="col-md-12 d-flex justify-content-center">
         <div class="row">
-            <input type="submit" name="Submit" class="btn btn-md btn-primary" value="Update" />
+            <input type="submit" id="submit" name="Submit" class="btn btn-md btn-primary" value="Update">
         </div>
     </div>
     <!-- </div> -->
@@ -188,41 +211,56 @@ if(isset($_POST['Submit']))
 
 
 <!-- show password -->
-<script>
-    var state = false;
-    function toggle1(){
-        if (state){
-            document.getElementById("opwd").setAttribute("type", "password");
-            state = false;
-        } else{
-            document.getElementById("opwd").setAttribute("type", "text");
-            state = true;
-        }
+<script type="text/javascript">
+  function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type == "password"){
+      x.type = "text";
+      document.getElementById('hide').style.display = "inline-block";
+      document.getElementById('show').style.display = "none";
+    }else{
+      x.type = "password";
+      document.getElementById('hide').style.display = "none";
+      document.getElementById('show').style.display = "inline-block";
     }
-</script>
+  }
 
-<script>
-    var state = false;
-    function toggle2(){
-        if (state){
-            document.getElementById("cpwd").setAttribute("type", "password");
-            state = false;
-        } else{
-            document.getElementById("cpwd").setAttribute("type", "text");
-            state = true;
-        }
+  function myFunction1() {
+    var y = document.getElementById("myInput1");
+    if (y.type == "password"){
+      y.type = "text";
+      document.getElementById('hide1').style.display = "inline-block";
+      document.getElementById('show1').style.display = "none";
+    }else{
+      y.type = "password";
+      document.getElementById('hide1').style.display = "none";
+      document.getElementById('show1').style.display = "inline-block";
     }
-</script>
+  }
+  function myFunction2() {
+    var a = document.getElementById("myInput2");
+    if (a.type == "password"){
+      a.type = "text";
+      document.getElementById('hide2').style.display = "inline-block";
+      document.getElementById('show2').style.display = "none";
+    }else{
+      a.type = "password";
+      document.getElementById('hide2').style.display = "none";
+      document.getElementById('show2').style.display = "inline-block";
+    }
+  }
 
-<script>
-    var state = false;
-    function toggle3(){
-        if (state){
-            document.getElementById("npwd").setAttribute("type", "password");
-            state = false;
-        } else{
-            document.getElementById("npwd").setAttribute("type", "text");
-            state = true;
-        }
-    }
+  function validatePassword() {
+    $("#loaderIcon").show();
+    jQuery.ajax({
+        url: "../admin/user/check_availability_users.php",
+        data:'password='+$("#myInput1").val(),
+        type: "POST",
+        success:function(data){
+            $("#validatePassword1").html(data);
+            $("#loaderIcon").hide();
+        },
+        error:function (){}
+    });
+  }
 </script>

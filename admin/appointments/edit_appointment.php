@@ -58,6 +58,13 @@ if (!empty($_SESSION['user_id'])) {
 }
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../admin/appointments/jquery.datetimepicker.min.css">
+    <script type = "text/javascript" src="../admin/appointments/validation.js"></script> 
+</head>
+<body>
 <style>
     #uni_modal .modal-content>.modal-footer {
         display: none;
@@ -68,7 +75,7 @@ if (!empty($_SESSION['user_id'])) {
     }
 </style>
 <div class="container-fluid">
-    <form action="" id="appointment_form" class="py-2">
+    <form action="" id="appointment_form" class="py-2" onsubmit="validation()">
         <div class="row" id="appointment">
             <div class="col-6" id="frm-field">
                 <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
@@ -88,7 +95,8 @@ if (!empty($_SESSION['user_id'])) {
                 </div>
                 <div class="form-group">
                     <label for="contact" class="control-label">Contact Number</label>
-                    <input type="text" class="form-control" id="scontact" name="contact" value="09<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required>
+                    <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"required pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" onkeyup="return validate('scontact')" oninvalid="setCustomValidity(' ')" />
+                    <p  class="text-danger" id="cn" style="font-size:12px;"></p>
                 </div>
                 <div class="form-group">
                     <label for="gender" class="control-label">Gender</label>
@@ -106,15 +114,15 @@ if (!empty($_SESSION['user_id'])) {
             <div class="col-6">
                  <div class="form-group">
                     <label for="name" class="control-label">Middle Initial</label>
-                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
+                    <input type="text" class="form-control" name="mname" placeholder="Middle Initial" maxlength="2" value="<?= $full_name ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required>
                 </div>
               
                 <div class="form-group">
                     <label for="address" class="control-label">Address</label>
                     <!-- <textarea class="form-control" name="address" rows="2" required><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></textarea> -->
                     <select class="form-control"  name="address" rows="2" required>
-                        <option class="placeholder" style="display: none"selected disabled value="">Select Patient Address</option>
                         <option class="placeholder" style="display: none" ><?= $address ?><?php echo isset($patient['address']) ? $patient['address'] : '' ?></option>
+                        <!-- <option class="placeholder" style="display: none"selected disabled value="">Select Patient Address</option> -->
                         <option>Angustia, Nabua</option>
                         <option>Antipolo Old, Nabua</option>
                         <option>Antipolo Young, Nabua</option>
@@ -167,7 +175,7 @@ if (!empty($_SESSION['user_id'])) {
                         <select name="reason" id="reason" class="form-control form-select-sm-6"required>
                             <option class="placeholder" style="display: none" selected disabled value="">Select reason</option>
                             <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option value="Animal Bite" <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                            <option value="Animal Bite"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
                             
                         </select>
                     </div>
@@ -177,19 +185,43 @@ if (!empty($_SESSION['user_id'])) {
                         <label for="reason" class="control-label">Reason for Appointment</label>
                         <!-- <textarea class="form-control" name="reason" rows="1" required></textarea> -->
                         <select name="reason" id="reason" class="form-control form-select-sm-6"required>
-                            <option class="placeholder" style="display: none" >Select reason</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization for Child</option>
-                            <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Immunization" ? "selected": "" ?>>Immunization for Senior Citizen</option>
-                            <!-- <option <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Pre-Natal" ? "selected": "" ?>>Prenatal</option> -->
+                            <option class="placeholder" style="display: none" selected disabled value="">Select reason</option>
+                            <option value="Check-up"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
+                            <option value="Animal Bite"<?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Animal Bite" ? "selected": "" ?>>Animal Bite </option>
+                            
                         </select>
 
                     </div>
                 <?php endif; ?>
+                <script src="../admin/appointments/jquery.datetimepicker.full.min.js" ></script>
+<script>
+    $("#appointment-date").datetimepicker({
+        formatTime: 'h:ia',
+        step:60
+    });
+
+    $('#appointment-date').datetimepicker({
+    minDate: 0
+});
+    $('#appointment-date').datetimepicker({
+    format:'Y-m-d h:ia',
+    allowTimes:['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'], 
+    minDate:0
+});
+
+
+
+</script>
                 <div class="form-group">
                     <label for="date_sched" class="control-label">Preferred Date and Time</label>
-                    <input type="datetime-local" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required>
+                       <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fas fa-calendar-day p-1"></span>
+                    </div>
+                  </div>
+                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/> 
+                       </div>
                 </div>
 
                 <?php if ($_settings->userdata('id') > 0) : ?>
@@ -207,13 +239,30 @@ if (!empty($_SESSION['user_id'])) {
                 <?php endif; ?>
             </div>
             <div class="form-group text-center w-100 form-group">
-                <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-primary btn" id="submit">Submit Appointment</button>
+                <button class="btn-light btn ml-2"  type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
 </div>
 <script>
+
+    // Validate PH mobile number
+  var contact = document.getElementById("scontact");
+
+contact.addEventListener('input', () => {
+  contact.setCustomValidity('');
+  contact.checkValidity();
+});
+
+contact.addEventListener('invalid', () => {
+  if(contact.value === '') {
+    document.getElementById('cn').innerHTML ="<b> ** Please fill the contact number field.";
+  } else {
+    document.getElementById('cn').innerHTML ="<b> ** Invalid mobile number";
+  } 
+});
+
     $(function() {
         $('#appointment_form').submit(function(e) {
             e.preventDefault();
@@ -221,7 +270,7 @@ if (!empty($_SESSION['user_id'])) {
             $('.err-msg').remove();
             start_loader();
             $.ajax({
-                url: _base_url_ + "classes/Master.php?f=save_appointment",
+                url: _base_url_ + "classes/App.php?f=save_appointment",
                 data: new FormData($(this)[0]),
                 cache: false,
                 contentType: false,
@@ -239,8 +288,17 @@ if (!empty($_SESSION['user_id'])) {
                         // console.log(document.getElementById("hiddencontact").value)
                         // document.getElementById("hiddenform").submit();
 
-                        alert(resp.msg);
-                        console.log(resp.sms_respond)
+                          // $(".modal-submit").click()
+                         
+                          //   Swal.fire({
+                          //    icon: 'success',
+                          // title: 'Appointment updated successfully',
+                          // toast: true,
+                          // position:'top-end',
+                          // showConfirmButton: false,
+                          // timer: 1000
+                          //   })
+                        // console.log(resp.sms_respond)
                         location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         var el = $('<div>')

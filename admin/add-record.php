@@ -18,31 +18,34 @@
     <?php endif; ?>
 
     <?php
+    
     error_reporting(0);
     ini_set('display_errors', 0);
 
-    $id = $_GET['id'];
+    // $id = $_GET['id'];
     if (isset($_POST['submit'])) {
-        $pid = $_POST['pid'];
-        $pfname = $_POST['pfname'];
-        $pcontact = $_POST['pcontact'];
-        $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $age = $_POST['age'];
-        $placebirth = $_POST['placebirth'];
-        $guardian = $_POST['guardian'];
-        $paddress = $_POST['paddress'];
-        $visit = $_POST['visit'];
-        $bloodpress = $_POST['bloodpress'];
-        $bloodsugar = $_POST['bloodsugar'];
-        $bodytemp = $_POST['bodytemp'];
-        $weight = $_POST['weight'];
-        $height = $_POST['height'];
-        $bmi = $_POST['bmi'];
-        $complaints = $_POST['complaints'];
-        $remark = $_POST['remark'];
-        $assigned = $_POST['assigned'];
-        $insert = mysqli_query($conn, "INSERT INTO `checkup` (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress) VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress')") or die('query failed');
+        $pid =  mysqli_real_escape_string($conn, $_POST['pid']);
+        $pfname =  mysqli_real_escape_string($conn, $_POST['pfname']);
+        $mname =  mysqli_real_escape_string($conn, $_POST['mname']);
+        $lname =  mysqli_real_escape_string($conn, $_POST['lname']);
+        $pcontact =  mysqli_real_escape_string($conn, $_POST['pcontact']);
+        $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
+        $dob =  mysqli_real_escape_string($conn, $_POST['dob']);
+        $age =  mysqli_real_escape_string($conn, $_POST['age']);
+        $placebirth =  mysqli_real_escape_string($conn, $_POST['placebirth']);
+        $guardian =  mysqli_real_escape_string($conn, $_POST['guardian']);
+        $paddress =  mysqli_real_escape_string($conn, $_POST['paddress']);
+        $visit =  mysqli_real_escape_string($conn, $_POST['visit']);
+        $bloodpress =  mysqli_real_escape_string($conn, $_POST['bloodpress']);
+        $bloodsugar =  mysqli_real_escape_string($conn, $_POST['bloodsugar']);
+        $bodytemp =  mysqli_real_escape_string($conn, $_POST['bodytemp']);
+        $weight =  mysqli_real_escape_string($conn, $_POST['weight']);
+        $height =  mysqli_real_escape_string($conn, $_POST['height']);
+        $bmi =  mysqli_real_escape_string($conn, $_POST['bmi']);
+        $complaints =  mysqli_real_escape_string($conn, $_POST['complaints']);
+        $remark =  mysqli_real_escape_string($conn, $_POST['remark']);
+        $assigned =  mysqli_real_escape_string($conn, $_POST['assigned']);
+        $insert = mysqli_query($conn, "INSERT INTO `checkup` (pid,pfname,mname,lname,pcontact,gender,dob,age,placebirth,guardian,paddress) VALUES ('$pid','$pfname','$mname','$lname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress')") or $warning[] = "";
 
         $sql = "INSERT INTO patient_history (patientId,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
         VALUES ('$pid','$visit','$bloodpress','$bloodsugar','$bodytemp','$weight','$height','$bmi','$complaints','$remark','$assigned')";
@@ -75,21 +78,23 @@ TITLE: Get patient record form patient_meta table
 function get_record_details($patient_id, $conn)
 {
 
-    $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'name' ");
-    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'mname' ");
-    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'lname' ");
-    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'contact' ");
-    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'dob' ");
-    $query6 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'gender' ");
-    $query7 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '{$_GET['id']}' AND `meta_field` = 'address' ");
+   $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $query1 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'name' ");
+    $query2 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'mname' ");
+    $query3 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'lname' ");
+    $query4 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'contact' ");
+    $query5 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'dob' ");
+    $query6 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'gender' ");
+    $query7 = mysqli_query($conn, "SELECT `meta_value` FROM `patient_meta` WHERE `patient_id` = '$id' AND `meta_field` = 'address' ");
+    
 
     $name = mysqli_fetch_assoc($query1);
     $mname = mysqli_fetch_assoc($query2);
     $lname = mysqli_fetch_assoc($query3);
     $contact = mysqli_fetch_assoc($query4);
     $dob = mysqli_fetch_assoc($query5);
-    $address = mysqli_fetch_assoc($query6);
-    $gender = mysqli_fetch_assoc($query7);
+    $gender = mysqli_fetch_assoc($query6);
+    $address = mysqli_fetch_assoc($query7);
 
     $data = [
         'name' => $name['meta_value'],
@@ -99,7 +104,7 @@ function get_record_details($patient_id, $conn)
         'dob' => $dob['meta_value'],
         'address' => $address['meta_value'],
         'gender' => $gender['meta_value'],
-        'age' => compute_age($dob['meta_value'])
+        'age' => compute_age($dob['meta_value'],)
     ];
 
     return $data;
@@ -148,6 +153,24 @@ if(isset($message)){
             };
 
             ?>
+             <!-- //display error -->
+        <?php
+        if(isset($warning)){
+            foreach($warning as $warning){
+                echo "<script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Data already exists',
+                    toast: true,
+                    position:'top-end',
+                    showConfirmButton: false,
+                    timer: 1000
+                    })
+                    </script>";
+                };
+            };
+
+            ?>
 
             <div class="card card-outline card-primary">
                 <div class="card-header">
@@ -160,18 +183,32 @@ if(isset($message)){
                             <div class="col-lg-12">
                                 <form action="" method="POST">
                                     <div class="row" >
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                             <div class="form-group">
                                                 <label>Patient No.</label>
                                                 <input class="form-control" name="pid" placeholder="Patient No." value="<?php echo $_GET['id'] ?>" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-sm-8">
-                                            <div class="form-group">
-                                                <label>Patient Fullname</label>
-                                                <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name'] ?> <?php echo $data_p['mname'] ?>. <?php echo $data_p['lname'] ?>" required>
+                                        
+                                             <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Firstname</label>
+                                                    <input class="form-control" name="pfname" value="<?php echo $data_p['name'] ?>" placeholder="Firstname" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Middle Initial</label>
+                                                    <input class="form-control" name="mname" value="<?php echo $data_p['mname'] ?>" placeholder="Middle Initial" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Lastname</label>
+                                                    <input class="form-control" name="lname" value="<?php echo $data_p['lname'] ?>" placeholder="Lastname" required>
+                                                </div>
                                             </div>                           
-                                        </div>
+                                        <!-- </div> -->
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Patient Contact Number</label>
@@ -288,7 +325,7 @@ if(isset($message)){
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>Blood Sugar</label>
-                                                <input class="form-control" name="bloodsugar" placeholder="Sample: 70">
+                                                <input class="form-control" name="bloodsugar" placeholder="Sample: 70" required>
                                             </div>
                                         </div>
 

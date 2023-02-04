@@ -4,51 +4,58 @@
     <?php require_once('../config.php'); ?>
     <?php require_once('inc/header.php') ?>
 </head>
+<style>
+    #uni_modal .modal-content>.modal-footer {
+        display: none;
+    }
+
+    #uni_modal .modal-body {
+        padding-top: 0 !important;
+    }
+    .required::after{
+        content: " *";
+        color: red;
+        font-size: 13px;
+    }
+</style>
 <body>
 
     <?php if ($_settings->chk_flashdata('success')) : ?>
         <script>
             alert_toast("<?php echo $_settings->flashdata('success') ?>", 'success')
         </script>
-
-        <style>
-            #uni_modal .modal-content>.modal-footer {
-                display: none;
-            }
-
-            #uni_modal .modal-body {
-                padding-top: 0 !important;
-            }
-        </style>
     <?php endif; ?>
 
     <?php
-
+ error_reporting(0);
+    ini_set('display_errors', 0);
     if (isset($_POST['submit'])) {
-        $pid = $_POST['pid'];
-        $pfname = $_POST['pfname'];
-        $pcontact = $_POST['pcontact'];
-        $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $age = $_POST['age'];
-        $placebirth = $_POST['placebirth'];
-        $guardian = $_POST['guardian'];
-        $paddress = $_POST['paddress'];
-        $visit = $_POST['visit'];
-        $bloodpress = $_POST['bloodpress'];
-        $bloodsugar = $_POST['bloodsugar'];
-        $bodytemp = $_POST['bodytemp'];
-        $weight = $_POST['weight'];
-        $height = $_POST['height'];
-        $bmi = $_POST['bmi'];
-        $complaints = $_POST['complaints'];
-        $remark = $_POST['remark'];
-        $assigned = $_POST['assigned'];
-        $user_id = $_SESSION['userdata']['id'];
-        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name, user_id) VALUES('$pid', '$pfname', '$user_id')") or die('query failed');
+        $pid = mysqli_real_escape_string($conn, $_POST['pid']);
+        $pfname = mysqli_real_escape_string($conn, $_POST['pfname']);
+        $mname = mysqli_real_escape_string($conn, $_POST['mname']);
+        $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+        $pcontact = mysqli_real_escape_string($conn, $_POST['pcontact']);
+        $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+        $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+        $age = mysqli_real_escape_string($conn, $_POST['age']);
+        $placebirth = mysqli_real_escape_string($conn, $_POST['placebirth']);
+        $guardian = mysqli_real_escape_string($conn, $_POST['guardian']);
+        $paddress = mysqli_real_escape_string($conn, $_POST['paddress']);
+        $visit = mysqli_real_escape_string($conn, $_POST['visit']);
+        $bloodpress = mysqli_real_escape_string($conn, $_POST['bloodpress']);
+        $bloodsugar = mysqli_real_escape_string($conn, $_POST['bloodsugar']);
+        $bodytemp =mysqli_real_escape_string($conn, $_POST['bodytemp']);
+        $weight = mysqli_real_escape_string($conn, $_POST['weight']);
+        $height = mysqli_real_escape_string($conn, $_POST['height']);
+        $bmi = mysqli_real_escape_string($conn, $_POST['bmi']);
+        $complaints = mysqli_real_escape_string($conn, $_POST['complaints']);
+        $remark = mysqli_real_escape_string($conn, $_POST['remark']);
+        $assigned = mysqli_real_escape_string($conn, $_POST['assigned']);
+        $user_id = mysqli_real_escape_string($conn, $_SESSION['userdata']['id']);
+        $insert = mysqli_query($conn, "INSERT INTO `patient_list`(id, name,mname,lname, user_id) VALUES('$pid', '$pfname','$mname','$lname', '$user_id')") or die('query failed');
 
-        $sql = "INSERT INTO `checkup` (pid,pfname,pcontact,gender,dob,age,placebirth,guardian,paddress)
-        VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress')";
+        $sql = "INSERT INTO `checkup` (pid,pfname,mname,lname,pcontact,gender,dob,age,placebirth,guardian,paddress)
+        VALUES ('$pid','$pfname','$mname','$lname','$pcontact','$gender','$dob','$age','$placebirth','$guardian','$paddress')";
         $query=mysqli_query($conn,$sql);
 
         $sql = "INSERT INTO `patient_history` (patientId,visit,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)
@@ -119,30 +126,42 @@
                                 <div class="col-lg-12">
                                     <form action="" method="POST">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-2">
                                                 <div class="form-group">
                                                     <label>Patient No.</label>
                                                     <input class="form-control" name="pid" placeholder="Patient No." value="<?= $lastRowId ?>" readonly>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-8">
+                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Patient Fullname</label>
-                                                    <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" required>
-                                                </div>                           
+                                                    <label class="required">First Name</label>
+                                                    <input class="form-control" name="pfname" maxlength="10" placeholder="First Name" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="required">Middle Initial</label>
+                                                    <input class="form-control" name="mname" maxlength="2" placeholder="Middle Initial" required>
+                                                </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="pcontact">Patient Contact Number</label>
+                                                    <label class="required">Last Name</label>
+                                                    <input class="form-control" name="lname" maxlength="10" placeholder="Last Name" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="pcontact" class="required">Patient Mobile Number</label>
                                                     <input type="tel" class="form-control" id="pcontact" placeholder="Contact Number" name="pcontact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                                     <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                                 </div>
                                             </div>
                                             <div class="col-3">
                                                 <div class="form-group">
-                                                    <label for="gender" class="control-label">Gender</label>
+                                                    <label for="gender" class="control-label required">Sex</label>
                                                     <select type="text" class="form-control form-select-sm-6" name="gender" required>
-                                                        <option class="placeholder" style="display: none" >Select Gender</option>
+                                                        <option class="placeholder" style="display: none" value="" >Select Sex</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
                                                         <option <?php echo isset($patient['gender']) && $patient['gender'] == "Female" ? "selected" : "" ?>>Female</option>
                                                     </select>
@@ -150,7 +169,7 @@
                                             </div>
                                             <div class="col-3">
                                                 <div class="form-group">
-                                                    <label for="dob" class="control-label">Date of Birth</label>
+                                                    <label for="dob" class="control-label required">Date of Birth</label>
                                                     <input type="date" class="form-control" id="dob" name="dob" onchange="submitBday()" value="<?php echo isset($patient['dob']) ? $patient['dob'] : '' ?>" required>
                                                 </div>
                                             </div>
@@ -174,10 +193,10 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>Patient Address</label>
+                                                    <label class="required">Patient Address</label>
                                                     <!-- <input class="form-control" name="paddress" placeholder="Enter Patient Address" required> -->
                                                     <select class="form-control" name="paddress" placeholder="Enter Patient Address" required>
-                                                        <option class="placeholder" style="display: none" >Select Patient Address</option>
+                                                        <option class="placeholder" style="display: none" value="">Select Patient Address</option>
                                                         <option>Angustia, Nabua</option>
                                                         <option>Antipolo Old, Nabua</option>
                                                         <option>Antipolo Young, Nabua</option>
@@ -238,47 +257,47 @@
                                         <div class="row">
                                             <div class="col-3">
                                                 <div class="form-group">
-                                                    <label for="" class="control-label">Date of Visit</label>
+                                                    <label for="" class="control-label required">Date of Visit</label>
                                                     <input type="date" class="form-control" name="visit" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Blood Pressure</label>
+                                                    <label class="required">Blood Pressure</label>
                                                     <input class="form-control" name="bloodpress" placeholder="Sample: 120/80" required>
                                                 </div>                                 
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Blood Sugar</label>
-                                                    <input class="form-control" name="bloodsugar" placeholder="Sample: 70" >
+                                                    <label class="required">Blood Sugar</label>
+                                                    <input class="form-control" name="bloodsugar" placeholder="Sample: 70" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Body Temperature</label>
+                                                    <label class="required">Body Temperature</label>
                                                     <input class="form-control" name="bodytemp" placeholder="Sample: 36.5" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Height</label>
+                                                    <label class="required">Height</label>
                                                     <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Weight</label>
+                                                    <label class="required">Weight</label>
                                                     <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter weight in kilograms" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="bmi" >BMI</label>
+                                                    <label for="bmi">BMI</label>
                                                     <textarea class="form-control" rows="1" id="bmi" name="bmi" readonly></textarea>
                                                     <!-- <span class="form-control" id="bmi" name="bmi" ></span> -->
                                                     <!-- <span id="category">Normal weight</span> -->
@@ -287,14 +306,14 @@
 
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Patient Complaints</label>
+                                                    <label class="required">Patient Complaints</label>
                                                     <textarea class="form-control" name="complaints" placeholder="Enter Patient Complaints" required></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-9">
                                                 <div class="form-group">
-                                                    <label>Remarks</label>
+                                                    <label class="required">Remarks</label>
                                                     <textarea class="form-control" name="remark" placeholder="Enter Remarks" required></textarea>
                                                 </div>
                                             </div>

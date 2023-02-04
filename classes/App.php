@@ -2,18 +2,18 @@
 require_once('../config.php');
 include_once('SMS.php'); //include the SMS class
 
-class Master extends DBConnection
+class App extends DBConnection
 {
 	private $settings;
 
 	//instantiate sms class
-	private $sms;
+	private $mess;
 
 	public function __construct()
 	{
 		global $_settings;
 		$this->settings = $_settings;
-		$this->sms = new SMS();
+		$this->mess = new SMS();
 		parent::__construct();
 	}
 	public function __destruct()
@@ -118,8 +118,8 @@ class Master extends DBConnection
 						$sql = "INSERT INTO `appointments`(`patient_id`, `date_sched`, `reason`, `status`, `p_id`,`created`) VALUES ('$patient_id','$date_sched','$reason','$status', '$current_user_id','$created')";
 					}
 				}
-				// else
-				// 	$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
+				else
+					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}' where id = '{$id}' ";
 			}
 			// $sql = "INSERT INTO `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}'";
 
@@ -139,33 +139,16 @@ class Master extends DBConnection
 			$this->conn->query("DELETE FROM `patient_meta` where patient_id = '{$patient_id}'");
 			$save_meta = $this->conn->query($sql);
 			$this->capture_err();
-			if ($save_sched && $save_meta) {
-				//formate date 
-				$new_sched = date('F d, Y H:i A', strtotime($date_sched));
-				//create message text
-				$message = "Hi {$name}, thank you for making an appointment with RHU II Nabua. \nYou are scheduled for an appointment on {$new_sched}.\nPlease arrive 10 minutes before the scheduled time.";
-				// $message .= " On {$new_sched}";
-
-				//send sms enable this later
-				$res = $this->sms->sendSMS($contact, $message);
-
-				//return json encode to ajax
-				return json_encode([
-					'status' => 'success',
-					'msg' => 'Your appointment is set',
-					'sms_respond' => $res
-				]);
-
-				// bakit to naka flashdata pero naka ajax kayo?
-				/**
-				 this->settings->set_flashdata('success',' Appointment successfully saved');
-				 * 
-				 */
-			} else {
+			if($save_sched && $save_meta){
+				$resp['status'] = 'success';
+				$resp['name'] = $name;
+				$this->settings->set_flashdata('success',' Appointment successfully saved');
+			}else{
 				$resp['status'] = 'failed';
 				$resp['msg'] = "There's an error while submitting the data.";
 			}
-		} else {
+
+		}else{
 			$resp['status'] = 'failed';
 			$resp['msg'] = "There's an error while submitting the data.";
 		}
@@ -173,39 +156,29 @@ class Master extends DBConnection
 	}
 
 	function multiple_action()
-{
-  extract($_POST);
-  if ($_action != 'delete') {
-    $stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
-    $status = $stat_arr[$_action];
-
-    // Check if the action is 'cancelled'
-    if ($_action == 'cancelled') {
-      $cancelled_by = $_SESSION['userdata']['firstname'].' '.$_SESSION['userdata']['lastname'];
-      $cancelled_time = date("Y-m-d H:i:s");
-
-      $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}' where patient_id in (" . (implode(",", $ids)) . ") ";
-    } else {
-      $sql = "UPDATE `appointments` set status = '{$status}' where patient_id in (" . (implode(",", $ids)) . ") ";
-    }
-
-    $process = $this->conn->query($sql);
-    $this->capture_err();
-  } else {
-    $sql = "DELETE s.*,i.*,im.* from  `appointments` s inner join `patient_list` i on s.patient_id = i.id  inner join `patient_meta` im on im.patient_id = i.id where s.patient_id in (" . (implode(",", $ids)) . ") ";
-    $process = $this->conn->query($sql);
-    $this->capture_err();
-  }
-  if ($process) {
-    $resp['status'] = 'success';
-    $act = $_action == 'delete' ? "Deleted" : "Updated";
-    $this->settings->set_flashdata("success", "Appointment/s successfully " . $act);
-  } else {
-    $resp['status'] = 'failed';
-    $resp['error_sql'] = $sql;
-  }
-  return json_encode($resp);
-}
+	{
+		extract($_POST);
+		if ($_action != 'delete') {
+			$stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
+			$status = $stat_arr[$_action];
+			$sql = "UPDATE `appointments` set status = '{$status}' where patient_id in (" . (implode(",", $ids)) . ") ";
+			$process = $this->conn->query($sql);
+			$this->capture_err();
+		} else {
+			$sql = "DELETE s.*,i.*,im.* from  `appointments` s inner join `patient_list` i on s.patient_id = i.id  inner join `patient_meta` im on im.patient_id = i.id where s.patient_id in (" . (implode(",", $ids)) . ") ";
+			$process = $this->conn->query($sql);
+			$this->capture_err();
+		}
+		if ($process) {
+			$resp['status'] = 'success';
+			$act = $_action == 'delete' ? "Deleted" : "Updated";
+			$this->settings->set_flashdata("success", "Appointment/s successfully " . $act);
+		} else {
+			$resp['status'] = 'failed';
+			$resp['error_sql'] = $sql;
+		}
+		return json_encode($resp);
+	}
 
 	function save_sched_settings()
 	{
@@ -234,18 +207,18 @@ class Master extends DBConnection
 	}
 }
 
-$Master = new Master();
+$App = new App();
 $action = !isset($_GET['f']) ? 'none' : strtolower($_GET['f']);
 $sysset = new SystemSettings();
 switch ($action) {
 	case 'save_appointment':
-		echo $Master->save_appointment();
+		echo $App->save_appointment();
 		break;
 	case 'multiple_action':
-		echo $Master->multiple_action();
+		echo $App->multiple_action();
 		break;
 	case 'save_sched_settings':
-		echo $Master->save_sched_settings();
+		echo $App->save_sched_settings();
 		break;
 	default:
 		// echo $sysset->index();

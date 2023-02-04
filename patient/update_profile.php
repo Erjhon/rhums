@@ -394,7 +394,7 @@ if(isset($_POST['update_profile'])){
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
                             <div class="col-md-4">
-                                <label class="small mb-1" for="inputFirstName">First name</label>
+                                <label class="small mb-1" for="inputFirstName">First Name</label>
                                 <input class="form-control" id="inputFirstName" type="text" name="update_fname" value="<?php echo $fetch['firstname']; ?>">
                             </div>
                             <!-- Form Group (middle initial)-->
@@ -404,7 +404,7 @@ if(isset($_POST['update_profile'])){
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-4">
-                                <label class="small mb-1" for="inputLastName">Last name</label>
+                                <label class="small mb-1" for="inputLastName">Last Name</label>
                                 <input class="form-control" id="inputLastName" type="text" name="update_lname" value="<?php echo $fetch['lastname']; ?>">
                             </div>
                         </div>
@@ -412,7 +412,7 @@ if(isset($_POST['update_profile'])){
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (organization name)-->
                             <div class="col-md-4">
-                                <label class="small mb-1" for="inputOrgName">Gender</label>
+                                <label class="small mb-1" for="inputOrgName">Sex</label>
                                 <select type="text" class="form-control form-select" name="update_gender" value="<?php echo $fetch['gender']; ?>" >
                 <option hidden><?php echo $fetch['gender']; ?></option>
                 <option <?php echo isset($patient['gender']) && $patient['gender'] == "Male" ? "selected" : "" ?>>Male</option>
@@ -475,7 +475,7 @@ if(isset($_POST['update_profile'])){
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (phone number)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <label class="small mb-1" for="inputPhone">Mobile Number</label>
                                 <input class="form-control" id="inputPhone" type="tel" name="update_contact" maxlength="11" value="<?php echo $fetch['contact']; ?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                             </div>
 

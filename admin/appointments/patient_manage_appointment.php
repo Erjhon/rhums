@@ -43,7 +43,7 @@ if (!empty($_SESSION['user_id'])) {
 
     $user_id = $row['id'];
     $name =  $row['firstname']; 
-    $mname = "{$row['middleInitial']}.";
+    $mname = "{$row['middleInitial']}";
     $lname = $row['lastname'];
     $contact = "{$row['contact']}";
     $gender = "{$row['gender']}";
@@ -79,6 +79,11 @@ if (!empty($_SESSION['user_id'])) {
     #uni_modal .modal-body {
         padding-top: 0 !important;
     }
+    .required::after{
+      content: " *";
+      color: red;
+      font-size: 13px;
+    }
 </style>
 <div class="container-fluid">
     <form action="" id="appointment_form" class="py-2">
@@ -92,8 +97,8 @@ if (!empty($_SESSION['user_id'])) {
   <!-- <div class="input-group-prepend">
     <span class="input-group-text">First and last name</span>
   </div> -->
-  <input input type="text" class="form-control col-3" name="name" value="<?= $name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required readonly>
-  <input type="text" class="form-control col-1" name="mname" value="<?= $mname ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required readonly>
+  <input input type="text" class="form-control col-auto" name="name" value="<?= $name ?><?php echo isset($patient['name']) ? $patient['name'] : '' ?>" required readonly>
+  <input type="text" class="form-control col-2" name="mname" value="<?= $mname ?><?php echo isset($patient['mname']) ? $patient['mname'] : '' ?>" required readonly>
    <input type="text" class="form-control" name="lname" value="<?= $lname ?><?php echo isset($patient['lname']) ? $patient['lname'] : '' ?>" required readonly>
 </div><br>
                <!--  <div class="form-group">
@@ -113,7 +118,7 @@ if (!empty($_SESSION['user_id'])) {
                     <input type="email" class="form-control" name="email" value="<?php echo isset($patient['email']) ? $patient['email'] : '' ?>">
                 </div>
                 <div class="form-group">
-                    <label for="contact" class="control-label">Contact Number</label>
+                    <label for="contact" class="control-label">Mobile Number</label>
                     <input type="text" class="form-control" id="scontact" name="contact" value="<?= $contact ?><?php echo isset($patient['contact']) ? $patient['contact'] : '' ?>" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" readonly>
                 </div>
                 <div hidden class="form-group">
@@ -146,7 +151,7 @@ if (!empty($_SESSION['user_id'])) {
 
                 <?php else : ?>
                     <div class="form-group">
-                        <label for="reason" class="control-label">Reason for Appointment</label>
+                        <label for="reason" class="control-label required">Reason for Appointment</label>
                         <select name="reason" id="reason" class="form-control form-select" required>
                             <option class="placeholder" style="display: none"  selected disabled value="" >Select reason</option>
                             <option   <?= $reason ?><?php echo isset($patient['reason']) && $patient['reason'] == "Check-up" ? "selected": "" ?>>Check-up</option>
@@ -178,8 +183,15 @@ if (!empty($_SESSION['user_id'])) {
 
 
                 <div class="form-group">
-                    <label for="date_sched" class="control-label">Preferred Date and Time</label>
-                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/>
+                    <label for="date_sched" class="control-label required">Preferred Date and Time</label>
+                       <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fas fa-calendar-day p-1"></span>
+                    </div>
+                  </div>
+                    <input type="" class="form-control" id="appointment-date" name="date_sched" value="<?php echo isset($date_sched) ? date("Y-m-d\TH:i", strtotime($date_sched)) : "" ?>" required readonly autocomplete="off"/> 
+                       </div>
                 </div>
 
             </div>
@@ -207,7 +219,7 @@ if (!empty($_SESSION['user_id'])) {
                 <?php endif; ?>
             <div class="form-group text-center w-100 form-group mt-3">
                 <button class="btn-primary btn">Submit Appointment</button>
-                <button class="btn-light btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn-light modal-submit btn ml-2" type="submit" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </form>
@@ -238,9 +250,15 @@ if (!empty($_SESSION['user_id'])) {
                         // console.log(document.getElementById("hiddencontact").value)
                         // document.getElementById("hiddenform").submit();
 
-                        alert(resp.msg);
+                        // alert(resp.msg);
+                        $(".modal-submit").click()
+                        Swal.fire(
+                          'Good job!',
+                          resp.msg,
+                          'success'
+                        )
                         console.log(resp.sms_respond)
-                        location.reload()
+                        // location.reload()
                     } else if (resp.status == 'failed' && !!resp.msg) {
                         var el = $('<div>')
                         el.addClass("alert alert-danger err-msg").text(resp.msg)

@@ -23,25 +23,25 @@
 
     $id = $_GET['id'];
     if (isset($_POST['submit'])) {
-        $pid = $_POST['pid'];
-        $pfname = $_POST['pfname'];
-        $pcontact = $_POST['pcontact'];
-        $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $age = $_POST['age'];
-        $paddress = $_POST['paddress'];
-        $visit = $_POST['visit'];
-        $incident = $_POST['incident'];
-        $source = $_POST['source'];
-        $part = $_POST['part'];
-        $category = $_POST['category'];
-        $type = $_POST['type'];
-        $owner = $_POST['owner'];
-        $ownercon = $_POST['ownercon'];
-        $location = $_POST['location'];
-        $remark = $_POST['remark'];
-        $assigned = $_POST['assigned'];
-        $insert = mysqli_query($conn, "INSERT INTO `animalbite` (pid,pfname,pcontact,gender,dob,age,paddress)VALUES ('$pid','$pfname','$pcontact','$gender','$dob','$age','$paddress')") or die('query failed');
+        $pid =  mysqli_real_escape_string($conn, $_POST['pid']);
+        $pfname =  mysqli_real_escape_string($conn, $_POST['pfname']);
+        $pcontact =  mysqli_real_escape_string($conn, $_POST['pcontact']);
+        $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
+        $dob =  mysqli_real_escape_string($conn, $_POST['dob']);
+        $age =  mysqli_real_escape_string($conn, $_POST['age']);
+        $paddress =  mysqli_real_escape_string($conn, $_POST['paddress']);
+        $visit =  mysqli_real_escape_string($conn, $_POST['visit']);
+        $incident =  mysqli_real_escape_string($conn, $_POST['incident']);
+        $source =  mysqli_real_escape_string($conn, $_POST['source']);
+        $part =  mysqli_real_escape_string($conn, $_POST['part']);
+        $category =  mysqli_real_escape_string($conn, $_POST['category']);
+        $type =  mysqli_real_escape_string($conn, $_POST['type']);
+        $owner =  mysqli_real_escape_string($conn, $_POST['owner']);
+        $ownercon =  mysqli_real_escape_string($conn, $_POST['ownercon']);
+        $location =  mysqli_real_escape_string($conn, $_POST['location']);
+        $remark =  mysqli_real_escape_string($conn, $_POST['remark']);
+        $assigned =  mysqli_real_escape_string($conn, $_POST['assigned']);
+        $insert = mysqli_query($conn, "INSERT INTO `animalbite` (pid,pfname,mname,lname,pcontact,gender,dob,age,paddress)VALUES ('$pid','$pfname','$mname','$lname','$pcontact','$gender','$dob','$age','$paddress')") or $warning[] = "";
 
         $sql = "INSERT INTO animalbite_history (patientId,visit,incident,source,part,category,type,owner,ownercon,location,remark,assigned)
         VALUES ('$pid','$visit','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')";
@@ -87,8 +87,8 @@ function get_record_details($patient_id, $conn)
     $lname = mysqli_fetch_assoc($query3);
     $contact = mysqli_fetch_assoc($query4);
     $dob = mysqli_fetch_assoc($query5);
-    $address = mysqli_fetch_assoc($query6);
-    $gender = mysqli_fetch_assoc($query7);
+    $address = mysqli_fetch_assoc($query7);
+    $gender = mysqli_fetch_assoc($query6);
 
     $data = [
         'name' => $name['meta_value'],
@@ -98,7 +98,7 @@ function get_record_details($patient_id, $conn)
         'dob' => $dob['meta_value'],
         'address' => $address['meta_value'],
         'gender' => $gender['meta_value'],
-        'age' => compute_age($dob['meta_value'])
+        'age' => compute_age($dob['meta_value'],)
     ];
 
     return $data;
@@ -147,6 +147,24 @@ if(isset($message)){
             };
 
             ?>
+             <!-- //display error -->
+        <?php
+        if(isset($warning)){
+            foreach($warning as $warning){
+                echo "<script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Data already exists',
+                    toast: true,
+                    position:'top-end',
+                    showConfirmButton: false,
+                    timer: 1000
+                    })
+                    </script>";
+                };
+            };
+
+            ?>
 
             <div class="card card-outline card-primary">
                 <div class="card-header">
@@ -159,18 +177,30 @@ if(isset($message)){
                             <div class="col-lg-12">
                                 <form action="" method="POST">
                                     <div class="row" >
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                             <div class="form-group">
                                                 <label>Patient No.</label>
                                                 <input class="form-control" name="pid" placeholder="Patient No." value="<?php echo $_GET['id'] ?>" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-sm-8">
-                                            <div class="form-group">
-                                                <label>Patient Fullname</label>
-                                                <input class="form-control" name="pfname" placeholder="Enter Patient Fullname" value="<?php echo $data_p['name'] ?> <?php echo $data_p['mname'] ?>. <?php echo $data_p['lname'] ?>" required>
-                                            </div>                           
-                                        </div>
+                                           <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Firstname</label>
+                                                    <input class="form-control" name="pfname" value="<?php echo $data_p['name'] ?>" placeholder="Firstname" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Middle Initial</label>
+                                                    <input class="form-control" name="mname" value="<?php echo $data_p['mname'] ?>" placeholder="Middle Initial" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Lastname</label>
+                                                    <input class="form-control" name="lname" value="<?php echo $data_p['lname'] ?>" placeholder="Lastname" required>
+                                                </div>
+                                            </div> 
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Patient Contact Number</label>
@@ -277,7 +307,7 @@ if(isset($message)){
                                             <div class="form-group">
                                                 <label for="source" class="control-label">Source</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="source" required>
-                                                    <option class="placeholder" style="display: none" >Select Source</option>
+                                                    <option class="placeholder" style="display: none" value="">Select Source</option>
                                                     <option <?php echo isset($patient['source']) && $patient['source'] == "Dog" ? "selected" : "" ?>>Dog</option>
                                                     <option <?php echo isset($patient['source']) && $patient['source'] == "Cat" ? "selected" : "" ?>>Cat</option>
                                                 </select>
@@ -295,7 +325,7 @@ if(isset($message)){
                                             <div class="form-group">
                                                 <label for="category" class="control-label">Category</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="category" required>
-                                                    <option class="placeholder" style="display: none" >Select Category</option>
+                                                    <option class="placeholder" style="display: none" value="">Select Category</option>
                                                     <option <?php echo isset($patient['category']) && $patient['category'] == "I" ? "selected" : "" ?>>I</option>
                                                     <option <?php echo isset($patient['category']) && $patient['category'] == "II" ? "selected" : "" ?>>II</option>
                                                     <option <?php echo isset($patient['category']) && $patient['category'] == "III" ? "selected" : "" ?>>III</option>
@@ -307,7 +337,7 @@ if(isset($message)){
                                             <div class="form-group">
                                                 <label for="type" class="control-label">Type</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="type" required>
-                                                    <option class="placeholder" style="display: none" >Select Type</option>
+                                                    <option class="placeholder" style="display: none" value="">Select Type</option>
                                                     <option <?php echo isset($patient['type']) && $patient['type'] == "Bite" ? "selected" : "" ?>>Bite</option>
                                                     <option <?php echo isset($patient['type']) && $patient['type'] == "Scratch" ? "selected" : "" ?>>Scratch</option>
                                                 </select>
@@ -317,7 +347,7 @@ if(isset($message)){
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Name <small>(Pet Owner)</small></label>
-                                                <input class="form-control" name="owner" placeholder="Enter Name"></textarea>
+                                                <input class="form-control" name="owner" placeholder="Enter Name" required></textarea>
                                             </div>
                                         </div>
 

@@ -21,8 +21,8 @@
 						<th>Name</th>
 						<th>Username</th>
 						<th>Email</th>
-						<th>Contact</th>
-						<th>Gender</th>
+						<th>Mobile Number</th>
+						<th>Sex</th>
 						<th>Date of Birth</th>
 						<th>Address</th>
 					</tr>
@@ -52,9 +52,6 @@
 							} 
 
 						?>"> 
-
-
-
 					</td>
 					<td><?php echo ucwords($row['firstname']) ?> <?php echo ucwords($row['lastname']) ?></td>
 					<td ><p class="m-0 truncate-1" style="font-size:8pt;"><?php echo $row['username'] ?></p></td>

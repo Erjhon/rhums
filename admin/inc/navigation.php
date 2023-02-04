@@ -94,13 +94,29 @@
                
               </a>
             </li>
-
+<!-- 
             <li class="dropdown">
-              <a href="<?php echo base_url ?>admin/?page=appointments" class="nav-link nav-appointments">
+              <a href="#app" data-toggle="collapse" aria-expanded="false" class="nav-link nav-appointments">
                 <i class="nav-icon ni ni-ruler-pencil"></i>
-                  <span class="text-dark"><b>Appointment List</b></span>
+                  <span class="text-dark"><b>Appointments</b></span>
+                   <ul class="collapse list-unstyled" id="app">
+                 <li><a href="<?php echo base_url ?>admin/?page=appointments" class="btn nav-link nav-appointments text-info">Appointment List</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=" class="btn nav-link nav- text-info">Cancelled Appointments</a></li>
+              </ul>
               </a>
-            </li>
+            </li> -->
+
+               <li class="dropdown">
+            <!-- <a  href="<?php echo base_url ?>admin/?page=consultation" class="nav-link nav-consultation"> -->
+              <a  href="#app" data-toggle="collapse" aria-expanded="false" class="nav-link nav-consultation">
+              <i class="nav-icon ni ni-ruler-pencil"></i>
+              <span class="text-dark"><b>Appointments</b></span></a>
+              <ul class="collapse list-unstyled" id="app">
+                 <li><a href="<?php echo base_url ?>admin/?page=appointments" class="btn nav-link nav-appointments text-info">Appointment List</a></li>
+                 <li><a href="<?php echo base_url ?>admin/?page=cancelled" class="btn nav-link nav-cancelled text-info"> Cancelled Appointments</a></li>
+                <!--  -->
+              </ul>
+          </li>
 
            
 

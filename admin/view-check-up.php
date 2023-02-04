@@ -22,18 +22,18 @@
               <tr>
                 <th>Patient No.</th>
                 <td><?php  echo $row['pid'];?></td>
-                <th>Contact Number</th>
+                <th>Mobile Number</th>
                 <td><?php  echo $row['pcontact'];?></td>
               </tr>
               <tr>
                 <th>Name</th>
-                <td><?php  echo $row['pfname'];?></td>
-                <th>Gender</th>
+                <td><?php  echo $row['pfname'];?> <?php  echo $row['mname'];?>. <?php  echo $row['lname'];?></td>
+                <th>Sex</th>
                 <td><?php  echo $row['gender'];?></td>
               </tr>
               <tr>
                 <th>Date of Birth</th>
-                <td><?php echo date("M d, Y",strtotime($row['dob'])); ?></td>
+                <td><?php echo date("F d, Y",strtotime($row['dob'])); ?></td>
                 <th>Age</th>
                 <td><?php  echo $row['age'];?></td>
               </tr>
@@ -47,7 +47,7 @@
                 <th>Address</th>
                 <td><?php  echo $row['paddress'];?></td>
                 <th>Date of Registration</th>
-                <td><?php echo date("m-d-Y", strtotime($row['CreationDate']))?></td>
+                <td><?php echo date("F d, Y", strtotime($row['CreationDate']))?></td>
               </tr>
             </tr>
           </table>
