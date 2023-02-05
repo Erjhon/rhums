@@ -260,7 +260,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 		var _this = $(this)
 		start_loader()
 		$.ajax({
-			url:_base_url_+'classes/Users.php?f=save',
+			url:_base_url_+'classes/Users.php?f=csave',
 			data: new FormData($(this)[0]),
 			cache: false,
 			contentType: false,
