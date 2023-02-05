@@ -1,20 +1,26 @@
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
 
+<style>
+    #uni_modal .modal-content>.modal-footer {
+        display: none;
+    }
+
+    #uni_modal .modal-body {
+        padding-top: 0 !important;
+    }
+    .required::after{
+        content: " *";
+        color: red;
+        font-size: 13px;
+    }
+</style>
+
 <body>
     <?php if ($_settings->chk_flashdata('success')) : ?>
         <script>
             alert_toast("<?php echo $_settings->flashdata('success') ?>", 'success')
         </script>
-        <style>
-            #uni_modal .modal-content>.modal-footer {
-                display: none;
-            }
-
-            #uni_modal .modal-body {
-                padding-top: 0 !important;
-            }
-        </style>
     <?php endif; ?>
 
     <?php
@@ -192,7 +198,7 @@ if(isset($message)){
                                         
                                              <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Firstname</label>
+                                                    <label>First Name</label>
                                                     <input class="form-control" name="pfname" value="<?php echo $data_p['name'] ?>" placeholder="Firstname" required>
                                                 </div>
                                             </div>
@@ -204,21 +210,21 @@ if(isset($message)){
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Lastname</label>
+                                                    <label>Last Name</label>
                                                     <input class="form-control" name="lname" value="<?php echo $data_p['lname'] ?>" placeholder="Lastname" required>
                                                 </div>
                                             </div>                           
                                         <!-- </div> -->
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Patient Contact Number</label>
+                                                <label>Patient Mobile Number</label>
                                                 <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="pcontact" maxlength="11" value="<?php echo $data_p['contact_n'] ?>"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                                 <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="gender" class="control-label">Gender</label>
+                                                <label for="gender" class="control-label">Sex</label>
                                                 <input class="form-control" name="gender" value="<?php echo $data_p['gender'] ?>" required>
                                             </div>
                                         </div>
@@ -312,40 +318,40 @@ if(isset($message)){
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="" class="control-label">Date of Visit</label>
+                                                <label for="" class="control-label required">Date of Visit</label>
                                                 <input type="date" class="form-control" name="visit" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Blood Pressure</label>
+                                                <label class="required">Blood Pressure</label>
                                                 <input class="form-control" name="bloodpress" placeholder="Sample: 120/80" required>
                                             </div>                                 
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Blood Sugar</label>
+                                                <label class="required">Blood Sugar</label>
                                                 <input class="form-control" name="bloodsugar" placeholder="Sample: 70" required>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Body Temperature</label>
+                                                <label class="required">Body Temperature</label>
                                                 <input class="form-control" name="bodytemp" placeholder="Sample: 36.5"required>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Height</label>
+                                                <label class="required">Height</label>
                                                 <input type="number" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Weight</label>
+                                                <label class="required">Weight</label>
                                                 <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter weight in kilograms" required>
                                             </div>
                                         </div>
@@ -359,14 +365,14 @@ if(isset($message)){
 
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label>Patient Complaints</label>
+                                                <label class="required">Patient Complaints</label>
                                                 <textarea class="form-control" name="complaints" placeholder="Enter Patient Complaints" required ></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-9">
                                             <div class="form-group">
-                                                <label>Remarks</label>
+                                                <label class="required">Remarks</label>
                                                 <textarea class="form-control" name="remark" placeholder="Enter Remarks"required ></textarea>
                                             </div>
                                         </div>

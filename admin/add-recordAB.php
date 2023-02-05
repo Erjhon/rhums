@@ -1,20 +1,26 @@
 <?php require_once('../config.php'); ?>
 <?php require_once('inc/header.php') ?>
 
+<style>
+    #uni_modal .modal-content>.modal-footer {
+        display: none;
+    }
+
+    #uni_modal .modal-body {
+        padding-top: 0 !important;
+    }
+    .required::after{
+        content: " *";
+        color: red;
+        font-size: 13px;
+    }
+</style>
+
 <body>
     <?php if ($_settings->chk_flashdata('success')) : ?>
         <script>
             alert_toast("<?php echo $_settings->flashdata('success') ?>", 'success')
         </script>
-        <style>
-            #uni_modal .modal-content>.modal-footer {
-                display: none;
-            }
-
-            #uni_modal .modal-body {
-                padding-top: 0 !important;
-            }
-        </style>
     <?php endif; ?>
 
     <?php
@@ -185,7 +191,7 @@ if(isset($message)){
                                         </div>
                                            <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Firstname</label>
+                                                    <label>First Name</label>
                                                     <input class="form-control" name="pfname" value="<?php echo $data_p['name'] ?>" placeholder="Firstname" required>
                                                 </div>
                                             </div>
@@ -197,20 +203,20 @@ if(isset($message)){
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Lastname</label>
+                                                    <label>Last Name</label>
                                                     <input class="form-control" name="lname" value="<?php echo $data_p['lname'] ?>" placeholder="Lastname" required>
                                                 </div>
                                             </div> 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Patient Contact Number</label>
+                                                <label>Patient Mobile Number</label>
                                                 <input type="tel" class="form-control" id="contact" placeholder="Contact Number" name="pcontact" maxlength="11" value="<?php echo $data_p['contact_n'] ?>"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                                 <p class="text-danger" id="cn" style="font-size: 13px; margin-top: 4px"></p>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="gender" class="control-label">Gender</label>
+                                                <label for="gender" class="control-label">Sex</label>
                                                 <input class="form-control" name="gender" value="<?php echo $data_p['gender'] ?>" required>
                                             </div>
                                         </div>
@@ -293,19 +299,19 @@ if(isset($message)){
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="" class="control-label">Date of Visit</label>
+                                                <label for="" class="control-label required">Date of Visit</label>
                                                 <input type="date" class="form-control" name="visit" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="incident" class="control-label">Date of Incident</label>
+                                                <label for="incident" class="control-label required">Date of Incident</label>
                                                 <input type="date" class="form-control" name="incident" required>
                                             </div>                                 
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="source" class="control-label">Source</label>
+                                                <label for="source" class="control-label required">Source</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="source" required>
                                                     <option class="placeholder" style="display: none" value="">Select Source</option>
                                                     <option <?php echo isset($patient['source']) && $patient['source'] == "Dog" ? "selected" : "" ?>>Dog</option>
@@ -316,14 +322,14 @@ if(isset($message)){
 
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label>Part of Body Bitten</label>
+                                                <label class="required">Part of Body Bitten</label>
                                                 <input class="form-control" name="part" placeholder="Sample: Left Leg"required>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="category" class="control-label">Category</label>
+                                                <label for="category" class="control-label required">Category</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="category" required>
                                                     <option class="placeholder" style="display: none" value="">Select Category</option>
                                                     <option <?php echo isset($patient['category']) && $patient['category'] == "I" ? "selected" : "" ?>>I</option>
@@ -335,7 +341,7 @@ if(isset($message)){
 
                                         <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="type" class="control-label">Type</label>
+                                                <label for="type" class="control-label required">Type</label>
                                                 <select type="text" class="form-control form-select-sm-6" name="type" required>
                                                     <option class="placeholder" style="display: none" value="">Select Type</option>
                                                     <option <?php echo isset($patient['type']) && $patient['type'] == "Bite" ? "selected" : "" ?>>Bite</option>
@@ -346,28 +352,28 @@ if(isset($message)){
 
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Name <small>(Pet Owner)</small></label>
+                                                <label class="required">Name <small>(Pet Owner)</small></label>
                                                 <input class="form-control" name="owner" placeholder="Enter Name" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Contact Number <small>(Pet Owner)</small></label>
+                                                <label class="required">Mobile Number <small>(Pet Owner)</small></label>
                                                 <input type="tel" class="form-control" id="ownercon" name="ownercon" placeholder="Contact Number" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required> 
                                             </div>
                                         </div>
 
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label>Location of biting incident</label>
+                                                <label class="required">Location of biting incident</label>
                                                 <input class="form-control" name="location" placeholder="Enter Location of biting incident"required />
                                             </div>
                                         </div>
 
                                         <div class="col-sm-9">
                                             <div class="form-group">
-                                                <label>Remarks</label>
+                                                <label class="required">Remarks</label>
                                                 <textarea class="form-control" name="remark" placeholder="Enter Remarks"required ></textarea>
                                             </div>
                                         </div>
