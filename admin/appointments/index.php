@@ -65,10 +65,11 @@
 					</thead>
 					<tbody>
 						<?php 
-						$i = 1;
-						$qry = $conn->query("SELECT p.*,a.date_sched,a.reason,a.status,a.created,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id  order by unix_timestamp(a.date_sched) desc ");
-						while($row = $qry->fetch_assoc()):
-							?>
+$i = 1;
+$qry = $conn->query("SELECT p.*,a.date_sched,a.reason,a.status,a.created,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id WHERE a.status != '2' order by unix_timestamp(a.date_sched) desc ");
+while($row = $qry->fetch_assoc()):
+?>
+
 
 							<tr>
 								<td class="text-center">
