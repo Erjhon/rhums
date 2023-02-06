@@ -5,29 +5,24 @@
 <?php
 if(isset($_POST['submit']))
 {
-  $vid=$_GET['viewid'];
-  $incident=$_POST['incident'];
-  $source=$_POST['source'];
-  $part=$_POST['part'];
-  $category=$_POST['category'];
-  $type=$_POST['type'];
-  $owner=$_POST['owner'];
-  $ownercon=$_POST['ownercon'];
-  $location=$_POST['location'];
-  $remark=$_POST['remark'];
-// $visit=$_POST['visit'];
-  $assigned=$_POST['assigned'];
+  $vid = mysqli_real_escape_string($conn, $_GET['viewid']);
+  $incident = mysqli_real_escape_string($conn, $_POST['incident']);
+  $source = mysqli_real_escape_string($conn, $_POST['source']);
+  $part = mysqli_real_escape_string($conn, $_POST['part']);
+  $category = mysqli_real_escape_string($conn, $_POST['category']);
+  $type = mysqli_real_escape_string($conn, $_POST['type']);
+  $owner = mysqli_real_escape_string($conn, $_POST['owner']);
+  $ownercon = mysqli_real_escape_string($conn, $_POST['ownercon']);
+  $location = mysqli_real_escape_string($conn, $_POST['location']);
+  $remark = mysqli_real_escape_string($conn, $_POST['remark']);
+  $assigned = mysqli_real_escape_string($conn, $_POST['assigned']);
 
-
-  $query=mysqli_query($conn, "insert animalbite_history(patientId,incident,source,part,category,type,owner,ownercon,location,remark,assigned)value('$vid','$incident','$source','$part','$category','$type','$owner','$ownercon','$location','$remark','$assigned')");
+  $query = mysqli_query($conn, "INSERT INTO animalbite_history (patientId, incident, source, part, category, type, owner, ownercon, location, remark, assigned) VALUES ('$vid', '$incident', '$source', '$part', '$category', '$type', '$owner', '$ownercon', '$location', '$remark', '$assigned')");
   if ($query) {
-
     $message[] = "";
-
   }
-  else
-  {
-    $error[] ="";
+  else {
+    $error[] = "";
   } 
 }
 
