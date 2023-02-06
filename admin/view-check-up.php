@@ -10,11 +10,15 @@
       <h2 class="card-title text-center">Patient Records for Check-Up</h2>
     </div>
     <?php
-    $vid=$_GET['viewid'];
-    $ret=mysqli_query($conn,"select * from checkup where pid='$vid'");
-    $cnt=1;
-    while ($row=mysqli_fetch_array($ret)) {
-      ?>
+    $vid = mysqli_real_escape_string($conn, $_GET['viewid']);
+    $sql = "SELECT * FROM checkup WHERE pid=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $vid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $cnt = 1;
+    while ($row = mysqli_fetch_array($result)) {
+?>
       <div class="col-lg-12">
         <div class="table-responsive">
           <table class="table table-bordered">
