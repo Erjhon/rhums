@@ -198,7 +198,7 @@ $sched_arr = array();
           </div>
         </div>
           <div class="col-xl-6 mt--9">
-         <?php
+   <?php
 // Connect to the database and retrieve the data
 $bite_data = array();
 $checkup_data = array();
@@ -207,21 +207,38 @@ $months = array();
 $query = "SELECT MONTHNAME(date_sched) as month, SUM(CASE WHEN reason = 'Animal Bite' THEN 1 ELSE 0 END) as bites, SUM(CASE WHEN reason = 'Check-up' THEN 1 ELSE 0 END) as checkups FROM appointments GROUP BY MONTH(date_sched)";
 $result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_assoc($result)) {
-    $bite_data[] = $row['bites'];
-    $checkup_data[] = $row['checkups'];
-    $months[] = $row['month'];
-    $total_data[] = $row['bites'] + $row['checkups'];
+    $bite_data[$row['month']] = $row['bites'];
+    $checkup_data[$row['month']] = $row['checkups'];
 }
 
-for ($i = 0; $i < count($bite_data); $i++) {
-    $bite_data[$i] = round(($bite_data[$i] / $total_data[$i]) * 100, 2);
-    $checkup_data[$i] = round(($checkup_data[$i] / $total_data[$i]) * 100, 2);
+// Get all the months even if there are no appointments
+$all_months = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+foreach ($all_months as $month) {
+if (!array_key_exists($month, $bite_data)) {
+$bite_data[$month] = null;
 }
+if (!array_key_exists($month, $checkup_data)) {
+$checkup_data[$month] = null;
+}
+$months[] = $month;
+$total_data[$month] = $bite_data[$month] + $checkup_data[$month];
+}
+
+foreach ($months as $month) {
+if ($total_data[$month] === 0) {
+$bite_data[$month] = null;
+$checkup_data[$month] = null;
+} else {
+$bite_data[$month] = round(($bite_data[$month] / $total_data[$month]) * 100, 2);
+$checkup_data[$month] = round(($checkup_data[$month] / $total_data[$month]) * 100, 2);
+}
+}
+
 // encode the data in json format for use in javascript
-$bite_data = json_encode($bite_data);
-$checkup_data = json_encode($checkup_data);
-$months = json_encode($months);
-?> 
+$bite_data = json_encode(array_values($bite_data));
+$checkup_data = json_encode(array_values($checkup_data));
+$months = json_encode(array_values($months));
+?>
     <div class="card shadow">
       <div class="card-header bg-transparent">
         <div class="row align-items-center">
@@ -233,7 +250,7 @@ $months = json_encode($months);
       </div>
       
       <!-- Chart -->
-      <div style="width:100%;max-width:600px;align-content: flex-end;">
+    <div style="width:100%;max-width:600px;align-content: flex-end;">
         <canvas id="animalChart"></canvas>
       </div>
       
@@ -244,7 +261,6 @@ $months = json_encode($months);
 </div>
 </div>
 </div>
-
 
 <script>
 var ctx = document.getElementById('animalChart').getContext('2d');
@@ -269,7 +285,7 @@ var chart = new Chart(ctx, {
     },
     options: {
         scales: {
-            yAxes: [{
+            xAxes: [{
                 stacked: true
             }]
         }
