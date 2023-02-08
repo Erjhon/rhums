@@ -107,9 +107,9 @@ class Master extends DBConnection
 			// $sql = "INSERT INTO `appointments`(`patient_id`, `user_id`, `date_sched`, `reason`, `status`) VALUES ('$patient_id','$user_id','$date_sched','$reason','$status')";
 			if (!empty($current_user_id)) {
 				if (empty($id))
-					$sql = "INSERT INTO `appointments` SET `date_sched` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `p_id`='{$current_user_id}',`created`='{$created}'";
+					$sql = "INSERT INTO `appointments` SET `date_sched` = '{$date_sched}',`sched_date` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}', `p_id`='{$current_user_id}',`created`='{$created}'";
 				else
-					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}',`created`='{$created}' where id = '{$id}' ";
+					$sql = "UPDATE `appointments` set date_sched = '{$date_sched}',`sched_date` = '{$date_sched}',patient_id = '{$patient_id}',`status` = '{$status}',`reason` = '{$reason}',`created`='{$created}' where id = '{$id}' ";
 			} else {
 				if (empty($id)) {
 					if ($user_id) {
@@ -171,31 +171,37 @@ class Master extends DBConnection
 		}
 		return json_encode($resp);
 	}
-
-	function multiple_action()
-{
+function multiple_action() {
   extract($_POST);
-  if ($_action != 'delete') {
+
+  if ($_action == 'cancelled') {
     $stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
     $status = $stat_arr[$_action];
 
-    // Check if the action is 'cancelled'
-    if ($_action == 'cancelled') {
-      $cancelled_by = $_SESSION['userdata']['firstname'].' '.$_SESSION['userdata']['lastname'];
-      $cancelled_time = date("Y-m-d H:i:s");
+    $cancelled_by = $_SESSION['userdata']['firstname'] . ' ' . $_SESSION['userdata']['lastname'];
+    $cancelled_time = date("Y-m-d H:i:s");
 
-      $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}' where patient_id in (" . (implode(",", $ids)) . ") ";
-    } else {
-      $sql = "UPDATE `appointments` set status = '{$status}' where patient_id in (" . (implode(",", $ids)) . ") ";
-    }
-
+    $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}' where patient_id in (" . (implode(",", $ids)) . ") ";
     $process = $this->conn->query($sql);
     $this->capture_err();
-  } else {
+
+    // remove the schedule time but store the date_sched in new column
+    $sql_remove = "UPDATE `appointments` set date_sched = null where patient_id in (" . (implode(",", $ids)) . ")";
+    $process_remove = $this->conn->query($sql_remove);
+    $this->capture_err();
+  } else if ($_action == 'delete') {
     $sql = "DELETE s.*,i.*,im.* from  `appointments` s inner join `patient_list` i on s.patient_id = i.id  inner join `patient_meta` im on im.patient_id = i.id where s.patient_id in (" . (implode(",", $ids)) . ") ";
     $process = $this->conn->query($sql);
     $this->capture_err();
+  } else {
+    $stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
+    $status = $stat_arr[$_action];
+
+    $sql = "UPDATE `appointments` set status = '{$status}' where patient_id in (" . (implode(",", $ids)) . ") ";
+    $process = $this->conn->query($sql);
+    $this->capture_err();
   }
+
   if ($process) {
     $resp['status'] = 'success';
     $act = $_action == 'delete' ? "Deleted" : "Updated";
@@ -206,6 +212,7 @@ class Master extends DBConnection
   }
   return json_encode($resp);
 }
+
 
 	function save_sched_settings()
 	{

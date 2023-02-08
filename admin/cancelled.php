@@ -11,9 +11,6 @@
 <div class="card card-outline card-primary">
     <div class="card-header">
         <h2 class="card-title text-center">List of Cancelled Appointments</h2>
-        <div class="card-tools">
-            <a href="javascript:void(0)" id="create_new" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
-        </div>
     </div>
     <div class="card-body">
         <div class="container-fluid">
@@ -27,7 +24,7 @@
                             <option value="pending">Mark as Done</option>
                             <option value="cancelled">Mark as Cancelled</option>
                             <option value="confirmed">Mark as Confirmed</option>
-                            <!-- <option value="delete">Delete</option> -->
+                            <option value="delete">Delete</option>
                         </select>
                     </div>
                     <div class="col">
@@ -66,7 +63,7 @@
                     <tbody>
                         <?php 
                         $i = 1;
-                        $qry = $conn->query("SELECT p.*,a.date_sched,a.reason,a.status,a.cancelled_by,a.cancelled_time,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id WHERE a.status = 2 order by unix_timestamp(a.date_sched) desc ");
+                        $qry = $conn->query("SELECT p.*,a.sched_date,a.reason,a.status,a.cancelled_by,a.cancelled_time,a.id as aid from `patient_list` p inner join `appointments` a on p.id = a.patient_id WHERE a.status = 2 order by unix_timestamp(a.date_sched) desc ");
 
                         while($row = $qry->fetch_assoc()):
                             ?>
@@ -81,7 +78,7 @@
                                 <td><b>PA-<?php echo $row['id'] ?></td>
                                     <td><?php echo $row['name'] ?> <?php echo $row['mname'] ?>. <?php echo $row['lname'] ?></td>
                                     <td><?php echo $row['reason'] ?></td>
-                                    <td><?php echo date("M d, Y h:i A",strtotime($row['date_sched'])) ?></td>
+                                    <td><?php echo date("M d, Y h:i A",strtotime($row['sched_date'])) ?></td>
                                     <td><?php echo $row['cancelled_by'] ?></td>
                                     <!-- <td><?php echo $row['name'] ?></td> -->
                                     <td><?php echo date("M d, Y h:i A",strtotime($row['cancelled_time'])) ?></td>
