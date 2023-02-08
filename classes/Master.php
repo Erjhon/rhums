@@ -180,8 +180,9 @@ function multiple_action() {
 
     $cancelled_by = $_SESSION['userdata']['firstname'] . ' ' . $_SESSION['userdata']['lastname'];
     $cancelled_time = date("Y-m-d H:i:s");
+    $seen_status = 0;
 
-    $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}' where patient_id in (" . (implode(",", $ids)) . ") ";
+    $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}',seen_status = '{$seen_status}' where patient_id in (" . (implode(",", $ids)) . ") ";
     $process = $this->conn->query($sql);
     $this->capture_err();
 

@@ -28,6 +28,7 @@ h3 {
   ;
 }
 </style>
+
           <h3 class="text-white col-10 text-right m-b-5">Welcome to <?php echo $_settings->info('name') ?></h3>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
@@ -69,7 +70,21 @@ h3 {
               </div>
           </li>
          -->
-       
+
+  <span>
+             <!-- Notification -->
+        <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+         <span class="badge badge-primary count"style="font-size: 9pt;"></span>
+        <!-- <span class="label label-pill text-white count"  ></span> -->
+      <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
+      </li>
+    </ul>
+    </div>
+  </nav>
+  </span>
   <!-- User -->
         <ul class="">
           <li class="nav-item dropdown">
@@ -157,5 +172,58 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
         </ul>
       </nav>
       <!-- /.navbar -->
+      <script type = "text/javascript">
+$(document).ready(function(){
+  
+  function load_unseen_notification(view = '')
+  {
+    $.ajax({
+      url:"../admin/notif/fetch.php",
+      method:"POST",
+      data:{view:view},
+      dataType:"json",
+      success:function(data)
+      {
+      $('#drop').html(data.notification);
+      if(data.unseen_notification > 0){
+      $('.count').html(data.unseen_notification);
+      }
+      }
+    });
+  }
+ 
+  load_unseen_notification();
+ 
+  $('#add_form').on('submit', function(event){
+    event.preventDefault();
+    if($('#firstname').val() != '' && $('#lastname').val() != ''){
+    var form_data = $(this).serialize();
+    $.ajax({
+      url:"addnew.php",
+      method:"POST",
+      data:form_data,
+      success:function(data)
+      {
+      $('#add_form')[0].reset();
+      load_unseen_notification();
+      }
+    });
+    }
+    else{
+      alert("Enter Data First");
+    }
+  });
+ 
+  $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+  });
+ 
+  setInterval(function(){ 
+    load_unseen_notification();; 
+  }, 5000);
+ 
+});
+</script>
 
       
