@@ -160,6 +160,20 @@ $run = mysqli_query($conn,$query);
 
       <!-- User -->
       <ul class="navbar-nav align-items-center d-none d-md-flex">
+          <span>
+             <!-- Notification -->
+        <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+         <span class="badge badge-primary count"style="font-size: 9pt;"></span>
+        <!-- <span class="label label-pill text-white count"  ></span> -->
+      <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
+      </li>
+    </ul>
+    </div>
+  </nav>
+  </span>
         <li class="nav-item dropdown">
           <a class="nav-lin658k pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
@@ -267,7 +281,7 @@ $run = mysqli_query($conn,$query);
                         <th>REASON FOR APPOINTMENT</th>
                         <th>SCHEDULE</th>
                         <th>STATUS</th>
-                        <th>CANCELLED BY</th>
+                        <!-- <th>CANCELLED BY</th> -->
                         <th>ACTION</th>
                         <!-- <th>ACTION</th> -->
                       </tr>
@@ -300,7 +314,7 @@ $run = mysqli_query($conn,$query);
                                 }
                                 ?>
                               </td>
-                              <td><?php echo $row["cancelled_by"]; ?></td>
+                              <!-- <td><?php echo $row["cancelled_by"]; ?></td> -->
                               <td align="center">
                                 <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id=<?php echo $row['patient_id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
                                 </button>
@@ -392,6 +406,59 @@ $i++;
             window.location = "../admin/login.php";
         }
     }
+</script>
+ <script type = "text/javascript">
+$(document).ready(function(){
+  
+  function load_unseen_notification(view = '')
+  {
+    $.ajax({
+      url:"../admin/notif/fetch.php",
+      method:"POST",
+      data:{view:view},
+      dataType:"json",
+      success:function(data)
+      {
+      $('#drop').html(data.notification);
+      if(data.unseen_notification > 0){
+      $('.count').html(data.unseen_notification);
+      }
+      }
+    });
+  }
+ 
+  load_unseen_notification();
+ 
+  $('#add_form').on('submit', function(event){
+    event.preventDefault();
+    if($('#firstname').val() != '' && $('#lastname').val() != ''){
+    var form_data = $(this).serialize();
+    $.ajax({
+      url:"addnew.php",
+      method:"POST",
+      data:form_data,
+      success:function(data)
+      {
+      $('#add_form')[0].reset();
+      load_unseen_notification();
+      }
+    });
+    }
+    else{
+      alert("Enter Data First");
+    }
+  });
+ 
+  $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+  });
+ 
+  setInterval(function(){ 
+    load_unseen_notification();; 
+  }, 5000);
+ 
+});
 </script>
 
 </html>

@@ -38,6 +38,8 @@ if(isset($_GET['logout'])){
   }
 </style>
 
+
+
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
@@ -142,16 +144,32 @@ if(isset($_GET['logout'])){
       </div>
     </div>
   </nav>
+
+
   <div class="main-content">
+
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Patient Dashboard</a>
         <!-- Form -->
-
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
+  <span>
+             <!-- Notification -->
+        <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+         <span class="badge badge-primary count"style="font-size: 9pt;"></span>
+        <!-- <span class="label label-pill text-white count"  ></span> -->
+      <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
+      </li>
+    </ul>
+    </div>
+  </nav>
+  </span>
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
@@ -234,6 +252,7 @@ if(isset($_GET['logout'])){
             </div>
           </div>
         </div>
+
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -323,6 +342,61 @@ function CheckSessionTime() {
   }
 }
 </script>
+
+    <script type = "text/javascript">
+$(document).ready(function(){
+  
+  function load_unseen_notification(view = '')
+  {
+    $.ajax({
+      url:"admin/notif/fetch.php",
+      method:"POST",
+      data:{view:view},
+      dataType:"json",
+      success:function(data)
+      {
+      $('#drop').html(data.notification);
+      if(data.unseen_notification > 0){
+      $('.count').html(data.unseen_notification);
+      }
+      }
+    });
+  }
+ 
+  load_unseen_notification();
+ 
+  $('#add_form').on('submit', function(event){
+    event.preventDefault();
+    if($('#firstname').val() != '' && $('#lastname').val() != ''){
+    var form_data = $(this).serialize();
+    $.ajax({
+      url:"addnew.php",
+      method:"POST",
+      data:form_data,
+      success:function(data)
+      {
+      $('#add_form')[0].reset();
+      load_unseen_notification();
+      }
+    });
+    }
+    else{
+      alert("Enter Data First");
+    }
+  });
+ 
+  $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+  });
+ 
+  setInterval(function(){ 
+    load_unseen_notification();; 
+  }, 5000);
+ 
+});
+</script>
+
 
 <style>
 
