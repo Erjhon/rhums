@@ -13,7 +13,7 @@ if (isset($_GET['logout'])) {
 }
 if (isset($_GET['id'])) {  
   $id = $_GET['id'];  
-  $query = "DELETE FROM `patient_list` WHERE id = '$id'";  
+  $query = "DELETE FROM `appointments` WHERE id = '$id'";  
   $run = mysqli_query($conn,$query);  
   if ($run) {  
     header('location:view.php');  
