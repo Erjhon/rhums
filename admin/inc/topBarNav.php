@@ -11,6 +11,11 @@
         border-radius: 50px;
   }
 </style>
+  <style>
+        .dropdown-toggle::after {
+            content: none;
+        }
+    </style>
 <!-- Navbar -->
       <nav class="navbar navbar-expand navbar-dark border border-white border-top-0 bg-gradient-success navbar-dark text-sm">
         <!-- Left navbar links -->
@@ -29,8 +34,22 @@ h3 {
 }
 </style>
 
-          <h3 class="text-white col-10 text-right m-b-5">Welcome to <?php echo $_settings->info('name') ?></h3>
+          <h3 class="text-white col-10 text-right ml--7">Welcome to <?php echo $_settings->info('name') ?></h3>
         <!-- Right navbar links -->
+         <!-- Notification -->
+         <span>
+          <nav class="nav ml-4">
+            <div class="container-fluid">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                  <span class="badge badge-primary count"style="font-size: 9pt;"></span>
+                  <!-- <span class="label label-pill text-white count"  ></span> -->
+                  <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </span>
         <ul class="navbar-nav ml-auto">
 
           <!-- Navbar Search -->
@@ -71,22 +90,8 @@ h3 {
           </li>
          -->
 
-  <span>
-             <!-- Notification -->
-        <nav class="navbar navbar-default">
-    <div class="container-fluid">
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-         <span class="badge badge-primary count"style="font-size: 9pt;"></span>
-        <!-- <span class="label label-pill text-white count"  ></span> -->
-      <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
-      </li>
-    </ul>
-    </div>
-  </nav>
-  </span>
   <!-- User -->
-        <ul class="">
+        <ul class="col-10 text-right ml--5">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
