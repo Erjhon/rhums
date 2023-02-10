@@ -6,22 +6,15 @@ if(isset($_POST["view"])){
 	if($_POST["view"] != ''){
 		mysqli_query($conn,"update `appointments` set seen_status='1' where seen_status='0'");
 	}
-	
-	$query=mysqli_query($conn,"select * from `appointments` order by id desc limit 5");
+	$user_id = $_SESSION['user_id'];
+	$query=mysqli_query($conn,"select * from `appointments` where p_id = $user_id");
 	$output = '';
-// <li>
-// <h4 class="text-dark">
-// Appointment ID:<br></h4>'.$row['patient_id'].'<br>
-// <h4 class="text-dark">
-// Cancelled by:<br></h4>'.$row['cancelled_by'].'
-// <h4 class="text-dark">Cancelled time:<br></h4>'.date("M d, Y h:i A",strtotime($row['cancelled_time'])).'
-
-// </li>
  
 	if(mysqli_num_rows($query) > 0){
 	while($row = mysqli_fetch_array($query)){
 		if(!empty($row['cancelled_by']) && !empty($row['cancelled_time'])){
-			$output .= '<li class="">
+			$output .= '
+				<li class="">
 <div class="dropdown-menu-lg">
 <a href="#!" class="list-group-item list-group-item-action">
 <div class="row align-items-center">
@@ -42,8 +35,8 @@ if(isset($_POST["view"])){
 </div>
 </div>
 </a>
-</div>
-</li>
+</div>			
+		</li>
 			';
 		}
 	}

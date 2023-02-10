@@ -9,6 +9,7 @@
   <title>
     RURAL HEALTH UNIT II
   </title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Favicon -->
   <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
   <!-- Fonts -->

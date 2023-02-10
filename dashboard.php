@@ -162,7 +162,7 @@ if(isset($_GET['logout'])){
     <div class="container-fluid">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-         <span class="badge badge-primary count"style="font-size: 9pt;"></span>
+         <span class="badge badge-warning count"style="font-size: 9pt;"></span>
         <!-- <span class="label label-pill text-white count"  ></span> -->
       <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
       </li>
@@ -349,7 +349,7 @@ $(document).ready(function(){
   function load_unseen_notification(view = '')
   {
     $.ajax({
-      url:"admin/notif/fetch.php",
+      url:"admin/notif/fetch_patient.php",
       method:"POST",
       data:{view:view},
       dataType:"json",

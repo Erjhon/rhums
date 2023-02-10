@@ -42,13 +42,17 @@ h3 {
             <div class="container-fluid">
               <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item dropdown">
-                  <span class="badge badge-primary count"style="font-size: 9pt;"></span>
+                  <span class="badge badge-warning count"style="font-size: 9pt;"></span>
                   <!-- <span class="label label-pill text-white count"  ></span> -->
                   <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
+
                 </li>
               </ul>
             </div>
           </nav>
+         <!--  <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+<i class="ni ni-bell-55"></i>
+</a> -->
         </span>
         <ul class="navbar-nav ml-auto">
 

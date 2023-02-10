@@ -166,7 +166,7 @@ $run = mysqli_query($conn,$query);
     <div class="container-fluid">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-         <span class="badge badge-primary count"style="font-size: 9pt;"></span>
+         <span class="badge badge-warning count"style="font-size: 9pt;"></span>
         <!-- <span class="label label-pill text-white count"  ></span> -->
       <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
       </li>
@@ -281,7 +281,7 @@ $run = mysqli_query($conn,$query);
                         <th>REASON FOR APPOINTMENT</th>
                         <th>SCHEDULE</th>
                         <th>STATUS</th>
-                        <!-- <th>CANCELLED BY</th> -->
+                        <th>CANCELLED BY</th>
                         <th>ACTION</th>
                         <!-- <th>ACTION</th> -->
                       </tr>
@@ -296,7 +296,7 @@ $run = mysqli_query($conn,$query);
                           <tr class="text-center">
                             <td><b>PA-<?php echo $row["patient_id"]; ?></td>
                               <td><?php echo $row["reason"]; ?></td>
-                              <td><?php echo date("M d, Y h:i A",strtotime($row["date_sched"])); ?></td>
+                              <td><?php echo date("M d, Y h:i A",strtotime($row["sched_date"])); ?></td>
                               <td class="text-center">
                                 <?php
                                 switch ($row['status']) {
@@ -314,7 +314,7 @@ $run = mysqli_query($conn,$query);
                                 }
                                 ?>
                               </td>
-                              <!-- <td><?php echo $row["cancelled_by"]; ?></td> -->
+                              <td><?php echo $row["cancelled_by"]; ?></td>
                               <td align="center">
                                 <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id=<?php echo $row['patient_id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
                                 </button>
@@ -413,7 +413,7 @@ $(document).ready(function(){
   function load_unseen_notification(view = '')
   {
     $.ajax({
-      url:"../admin/notif/fetch.php",
+      url:"../admin/notif/fetch_patient.php",
       method:"POST",
       data:{view:view},
       dataType:"json",
