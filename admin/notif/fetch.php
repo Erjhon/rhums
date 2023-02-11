@@ -9,14 +9,6 @@ if(isset($_POST["view"])){
 	
 	$query=mysqli_query($conn,"select * from `appointments` order by id desc limit 5");
 	$output = '';
-// <li>
-// <h4 class="text-dark">
-// Appointment ID:<br></h4>'.$row['patient_id'].'<br>
-// <h4 class="text-dark">
-// Cancelled by:<br></h4>'.$row['cancelled_by'].'
-// <h4 class="text-dark">Cancelled time:<br></h4>'.date("M d, Y h:i A",strtotime($row['cancelled_time'])).'
-
-// </li>
  
 	if(mysqli_num_rows($query) > 0){
 	while($row = mysqli_fetch_array($query)){

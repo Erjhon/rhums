@@ -309,13 +309,21 @@ $months = json_encode(array_values($months));
       }]
     },
     options: {
-      scales: {
-        xAxes: [{
-          stacked: true
-
-        }]
+  scales: {
+    xAxes: [{
+      stacked: true
+    }]
+  },
+  tooltips: {
+    callbacks: {
+      label: function(tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var dataValue = dataset.data[tooltipItem.index];
+        return dataset.label + ': ' + dataValue + '%';
       }
     }
+  }
+}
   });
 </script>
  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -373,7 +381,7 @@ $sched_arr = json_encode($sched_query->fetch_all(MYSQLI_ASSOC));
         var days = moment(event.end).diff(moment(event.start), 'days')
         var events = []
         Object.keys(scheds).map(k => {
-          var bg = 'var(--info)';
+          var bg = 'var(--warning)';
           if (scheds[k].status == 0)
             bg = 'var(--info)';
           if (scheds[k].status == 1)

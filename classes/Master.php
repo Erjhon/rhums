@@ -175,22 +175,38 @@ function multiple_action() {
   extract($_POST);
 
   if ($_action == 'cancelled') {
-    $stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
-    $status = $stat_arr[$_action];
+  $stat_arr = array("pending" => 0, "confirmed" => 1, "cancelled" => 2);
+  $status = $stat_arr[$_action];
 
-    $cancelled_by = $_SESSION['userdata']['firstname'] . ' ' . $_SESSION['userdata']['lastname'];
-    $cancelled_time = date("Y-m-d H:i:s");
-    $seen_status = 0;
+  $cancelled_by = $_SESSION['userdata']['firstname'] . ' ' . $_SESSION['userdata']['lastname'];
+  $cancelled_time = date("Y-m-d H:i:s");
+  $seen_status = 0;
 
-    $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}',seen_status = '{$seen_status}' where patient_id in (" . (implode(",", $ids)) . ") ";
-    $process = $this->conn->query($sql);
-    $this->capture_err();
+  $sql = "UPDATE `appointments` set status = '{$status}', cancelled_by='{$cancelled_by}', cancelled_time='{$cancelled_time}',seen_status = '{$seen_status}' where patient_id in (" . (implode(",", $ids)) . ") ";
+  $process = $this->conn->query($sql);
+  $this->capture_err();
 
-    // remove the schedule time but store the date_sched in new column
-    $sql_remove = "UPDATE `appointments` set date_sched = null where patient_id in (" . (implode(",", $ids)) . ")";
-    $process_remove = $this->conn->query($sql_remove);
-    $this->capture_err();
-  } else if ($_action == 'delete') {
+  // remove the schedule time but store the date_sched in new column
+  $sql_remove = "UPDATE `appointments` set date_sched = null where patient_id in (" . (implode(",", $ids)) . ")";
+  $process_remove = $this->conn->query($sql_remove);
+  $this->capture_err();
+
+//get the patient contact and name from patient_meta table
+  $sql_contact = "SELECT patient_meta.patient_id, patient_meta.meta_value as name, patient_meta.meta_value as contact, appointments.sched_date FROM `patient_meta` JOIN appointments ON patient_meta.patient_id = appointments.patient_id WHERE (patient_meta.meta_field = 'contact') AND patient_meta.patient_id IN (" . (implode(",", $ids)) . ")";
+  $contact_res = $this->conn->query($sql_contact);
+  while ($row = $contact_res->fetch_assoc()) {
+    $name = $row['name'];
+    $contact = $row['contact'];
+    $sched_date = date('F d, Y H:i A', strtotime($row['sched_date']));
+
+    // create message text
+    $message = "Hi your appointment on {$sched_date} has been cancelled. Thank you for choosing RHU II Nabua for your health needs.";
+
+    // send sms
+    $res = $this->sms->sendSMS($contact, $message);
+  }
+}
+ else if ($_action == 'delete') {
     $sql = "DELETE s.*,i.*,im.* from  `appointments` s inner join `patient_list` i on s.patient_id = i.id  inner join `patient_meta` im on im.patient_id = i.id where s.patient_id in (" . (implode(",", $ids)) . ") ";
     $process = $this->conn->query($sql);
     $this->capture_err();

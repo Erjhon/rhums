@@ -13,7 +13,10 @@ if (isset($_GET['logout'])) {
 }
 if (isset($_GET['id'])) {  
   $id = $_GET['id'];  
-  $query = "DELETE FROM `appointments` WHERE id = '$id'";  
+   $cancelled_by = 'Patient';
+    $cancelled_time = date("Y-m-d H:i:s");
+    $seen_status = 0;
+  $query = "UPDATE `appointments` SET status = 2, cancelled_by='$cancelled_by', cancelled_time='$cancelled_time',seen_status = '$seen_status' WHERE id = '$id'";
   $run = mysqli_query($conn,$query);  
   if ($run) {  
     header('location:view.php');  
@@ -316,8 +319,32 @@ $run = mysqli_query($conn,$query);
                               </td>
                               <td><?php echo $row["cancelled_by"]; ?></td>
                               <td align="center">
-                                <button class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="view.php?id=<?php echo $row['patient_id'] ?>" id='btn' onClick="return confirm('Are you sure you want to cancel this appointment?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
-                                </button>
+                               <button class="btn btn-flat btn-danger btn-sm cancel-appointment-btn">Cancel</button>
+
+<script>
+  var cancelBtns = document.querySelectorAll('.cancel-appointment-btn');
+
+  cancelBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      event.preventDefault();
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to cancel this appointment?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, cancel it!'
+      }).then((result) => {
+        if (result.value) {
+           var id = <?php echo $row['patient_id'] ?>;
+          window.location.href = "view.php?id=" + id;
+        }
+      });
+    });
+  });
+</script>
+
                               </td>
 <!--   <td align="center">
 <button id="delete" class="btn btn-flat btn-danger btn-sm"><a class="text-white" href="#cancel" data-toggle="modal" data-target="#cancel" id='btn_delete' >Cancel appointment</a>
