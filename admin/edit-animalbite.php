@@ -85,10 +85,10 @@ if(isset($message)){
           <h2 class="card-title text-center">Patient Records for Animal Bite</h2>
         </div>
         <?php
-        $vid=$_GET['viewid'];
-        $ret=mysqli_query($conn,"select * from animalbite where pid='$vid'");
-        $cnt=1;
-        while ($row=mysqli_fetch_array($ret)) {
+        $vid = mysqli_real_escape_string($conn, $_GET['viewid']);
+        $ret = mysqli_query($conn, "SELECT * FROM animalbite WHERE pid='$vid'");
+        $cnt = 1;
+        while ($row = mysqli_fetch_array($ret)) {
           ?>
           <div class="col-md-12">
             <div class="table-responsive">

@@ -5,16 +5,16 @@
 <?php
 if(isset($_POST['submit']))
 {
-  $vid=$_GET['viewid'];
-  $bloodpress=$_POST['bloodpress'];
-  $bloodsugar=$_POST['bloodsugar'];
-  $bodytemp=$_POST['bodytemp'];
-  $weight=$_POST['weight'];
-  $height=$_POST['height'];
-  $bmi=$_POST['bmi'];
-  $complaints=$_POST['complaints'];
-  $remark=$_POST['remark'];
-  $assigned=$_POST['assigned'];
+  $vid= mysqli_real_escape_string($conn, $_GET['viewid']);
+  $bloodpress=mysqli_real_escape_string($conn,$_POST['bloodpress']);
+  $bloodsugar=mysqli_real_escape_string($conn,$_POST['bloodsugar']);
+  $bodytemp=mysqli_real_escape_string($conn,$_POST['bodytemp']);
+  $weight=mysqli_real_escape_string($conn,$_POST['weight']);
+  $height=mysqli_real_escape_string($conn,$_POST['height']);
+  $bmi=mysqli_real_escape_string($conn,$_POST['bmi']);
+  $complaints=mysqli_real_escape_string($conn,$_POST['complaints']);
+  $remark=mysqli_real_escape_string($conn,$_POST['remark']);
+  $assigned=mysqli_real_escape_string($conn,$_POST['assigned']);
 
 
   $query=mysqli_query($conn, "insert  patient_history(patientId,bloodpress,bloodsugar,bodytemp,weight,height,bmi,complaints,remark,assigned)value('$vid','$bloodpress','$bloodsugar','$bodytemp','$weight','$height', '$bmi', '$complaints','$remark','$assigned')");
@@ -81,11 +81,11 @@ if(isset($_POST['submit']))
           <a href="#" class="nav-icon ni ni-bold-left text-success" onclick="history.back()"> Back</a>
           <h2 class="card-title text-center">Patient Records for Check-Up</h2>
         </div>
-        <?php
-        $vid=$_GET['viewid'];
-        $ret=mysqli_query($conn,"select * from checkup where pid='$vid'");
-        $cnt=1;
-        while ($row=mysqli_fetch_array($ret)) {
+       <?php
+        $vid = mysqli_real_escape_string($conn, $_GET['viewid']);
+        $ret = mysqli_query($conn, "SELECT * FROM checkup WHERE pid='$vid'");
+        $cnt = 1;
+        while ($row = mysqli_fetch_array($ret)) {
           ?>
           <div class="col-md-12">
             <div class="table-responsive">

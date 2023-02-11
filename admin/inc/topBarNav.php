@@ -34,11 +34,11 @@ h3 {
 }
 </style>
 
-          <h3 class="text-white col-10 text-right ml--7">Welcome to <?php echo $_settings->info('name') ?></h3>
+          <h3 class="text-white col-10 text-right ml--6">Welcome to <?php echo $_settings->info('name') ?></h3>
         <!-- Right navbar links -->
          <!-- Notification -->
          <span>
-          <nav class="nav ml-4">
+          <nav class="nav ml-7">
             <div class="container-fluid">
               <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item dropdown">
@@ -95,7 +95,8 @@ h3 {
          -->
 
   <!-- User -->
-        <ul class="col-10 text-right ml--5">
+  <div class="media-body ml--9">
+        <ul class="col-10 text-right">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
@@ -123,13 +124,13 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
                 </span>
           <?php  endwhile ?>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></span>
+                  <span class="mb-0 text-sm  font-weight-bold"></span>
                 </div>
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
               <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
+                <h4 class="text-overflow m-0"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></h4>
               </div>
               <a href="<?php echo base_url.'admin/?page=user' ?>" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
@@ -149,6 +150,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
         </ul>
       </div>
     </nav>
+  </div>
 
 
 
