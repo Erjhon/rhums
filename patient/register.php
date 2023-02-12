@@ -201,7 +201,7 @@
                                 <div class="col-sm-4" id="frm-field">
                                   <div class="form-group mb--1">
                                     <h5 class="text-dark required">First Name</h5>
-                                    <input class="form-control" placeholder="First Name" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>" name="firstname" id="firstname" type="firstname" onkeyup="validateFirstname()|| validate('firstname')" onkeyup="return validate('firstname')">
+                                    <input class="form-control" placeholder="First Name" value="<?php echo htmlspecialchars(isset($_POST['firstname']) ? $_POST['firstname'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="firstname" id="firstname" type="firstname" onkeyup="validateFirstname()|| validate('firstname')" onkeyup="return validate('firstname')">
                                     <span id="validatefirstname1" style="font-size:12px;"></span>
                                     <p  class="text-danger" id="fn" style="font-size:12px;"></p>
                                   </div>
@@ -209,45 +209,42 @@
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Middle Initial</h5>
-                                  <input class="form-control" placeholder="Middle Initial" value="<?php echo isset($_POST['middleInitial']) ? $_POST['middleInitial'] : ''; ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="validateMI()|| validate('middleInitial')" onkeyup="return validate('middleInitial')" maxlength="2">
+                                  <input class="form-control" placeholder="Middle Initial" value="<?php echo htmlspecialchars(isset($_POST['middleInitial']) ? $_POST['middleInitial'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="middleInitial" id="middleInitial" type="middleInitial" onkeyup="validateMI()|| validate('middleInitial')" onkeyup="return validate('middleInitial')" maxlength="2">
                                   <span id="validateMI1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="mI" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Last Name</h5>
-                                  <input class="form-control" placeholder="Last Name" value="<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>" name="lastname" id="lastname" type="lastname" onkeyup="validateLN()|| validate('lastname')" onkeyup="return validate('lastname')">
+                                  <input class="form-control" placeholder="Last Name" value="<?php echo htmlspecialchars(isset($_POST['lastname']) ? $_POST['lastname'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="lastname" id="lastname" type="lastname" onkeyup="validateLN()|| validate('lastname')" onkeyup="return validate('lastname')">
                                   <span id="validateLN1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="ln" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Username</h5>
-                                  <input type="username" class="form-control" value="<?php echo isset($_POST['username']) ? $_POST['username'] : ''; ?>" name="username" id="username"  onkeyup="userAvailability()|| validate('username')" placeholder="Username">
+                                  <input type="username" class="form-control" value="<?php echo htmlspecialchars(isset($_POST['username']) ? $_POST['username'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="username" id="username"  onkeyup="userAvailability()|| validate('username')" placeholder="Username">
                                   <span id="user-availability-status1" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="un" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Email Address</h5>
-                                  <input type="email" class="form-control" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" name="email" id="email"  onkeyup="userAvailability2()|| validate('email')" placeholder="Email Address" onkeyup="return validate('email')">
+                                  <input type="email" class="form-control" value="<?php echo htmlspecialchars(isset($_POST['email']) ? $_POST['email'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="email" id="email"  onkeyup="userAvailability2()|| validate('email')" placeholder="Email Address" onkeyup="return validate('email')">
                                   <span id="user-availability-status2" style="font-size:12px;"></span>
                                   <p  class="text-danger" id="em" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="form-group col-sm-4 mb--1">
                                   <h5 class="text-dark required">Mobile Number</h5>
-<!-- <<<<<<< Updated upstream
-<input type="tel" class="form-control" id="contact" placeholder="09524423145" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="validateContact()|| validate('contact')" onkeyup="return validate('contact')">
-<span id="validateContact1" style="font-size:12px;"></span>
-======= -->
-<input type="tel" class="form-control" id="contact" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" placeholder="Mobile Number" value="<?php echo isset($_POST['contact']) ? $_POST['contact'] : ''; ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')" oninvalid="setCustomValidity(' ')" />
+
+<input type="tel" class="form-control" id="contact" pattern="(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})" placeholder="Mobile Number" value="<?php echo htmlspecialchars(isset($_POST['contact']) ? $_POST['contact'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="contact" maxlength="11" value="09" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" onkeyup="return validate('contact')" oninvalid="setCustomValidity(' ')" />
 <p  class="text-danger" id="cn" style="font-size:12px;"></p>
 </div>
 
 <div class="form-group col-sm-3 mb--1">
   <h5 for="gender" class="text-dark required">Sex</h5>
-  <select type="text" class="form-control form-select-sm-6" value="<?php echo isset($_POST['gender']) ? $_POST['gender'] : ''; ?>" name="gender" id="gender" onchange ="return validate('gender')" >
+  <select type="text" class="form-control form-select-sm-6" value="<?php echo htmlspecialchars(isset($_POST['gender']) ? $_POST['gender'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="gender" id="gender" onchange ="return validate('gender')" >
     <option class="placeholder" value="" style="display: none">Select Sex</option>
     <option>Male</option>
     <option>Female</option>
@@ -257,14 +254,13 @@
 
 <div class="form-group col-sm-3 mb--1">
   <h5 for="dob" class="control-label required">Date of Birth</h5>
-  <input type="date" class="form-control" id="dob" value="<?php echo isset($_POST['dob']) ? $_POST['dob'] : ''; ?>" name="dob" onkeyup="return validate('dob')">
+  <input type="date" class="form-control" id="dob" value="<?php echo htmlspecialchars(isset($_POST['dob']) ? $_POST['dob'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="dob" onkeyup="return validate('dob')">
   <p  class="text-danger" id="db" style="font-size:12px;"></p>
 </div>
 
 <div class="form-group col-sm-6 mb--1">
   <h5 class="text-dark required">Address</h5>
-  <!-- <input class="form-control" placeholder="Address" id="address" name="address" type="address"> -->
-  <select class="form-control" id="address" value="<?php echo isset($_POST['address']) ? $_POST['address'] : ''; ?>" name="address" rows="2" onchange ="return validate('address')" >
+  <select class="form-control" id="address" value="<?php echo htmlspecialchars(isset($_POST['address']) ? $_POST['address'] : '', ENT_QUOTES, 'UTF-8'); ?>" name="address" rows="2" onchange ="return validate('address')" >
     <option class="placeholder" style="display: none" value="">Select Address</option>
     <option>Angustia, Nabua</option>
     <option>Antipolo Old, Nabua</option>
