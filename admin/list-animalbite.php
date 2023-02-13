@@ -48,13 +48,13 @@ $result = mysqli_query($conn,"SELECT * FROM animalbite");
 								</thead>
 								<tbody>
 									<?php
-									$i=0;
+									$i=1;
 									while($row = mysqli_fetch_array($result)) {
 										?>
 
 
 										<tr>
-											<td><?php echo $row['pid']; ?></td>
+											 <td><?php echo $i;?>.</td>
 											<td><?php echo $row['pfname'];?> <?php echo $row['mname'];?>. <?php echo $row['lname'];?></td>
 											<td><?php echo $row['age']; ?></td>
 											<td><?php echo $row['gender']; ?></td>

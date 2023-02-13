@@ -209,7 +209,7 @@ if ($total = mysqli_num_rows($appointment_run)) {
 
           </div>
         </div>
-        <div class="table-responsive mt-1">
+        <div class="table-responsive mt--1">
         </div>
       </div>
     </div>

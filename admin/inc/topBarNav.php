@@ -37,101 +37,56 @@ h3 {
           <h3 class="text-white col-10 text-right ml--6">Welcome to <?php echo $_settings->info('name') ?></h3>
         <!-- Right navbar links -->
          <!-- Notification -->
-         <span>
-          <nav class="nav ml-7">
-            <div class="container-fluid">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item dropdown">
-                  <span class="badge badge-warning count"style="font-size: 9pt;"></span>
-                  <!-- <span class="label label-pill text-white count"  ></span> -->
-                  <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
+      <span>
+  <nav class="nav ml-7">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item dropdown">
+          <span class="badge badge-warning count"style="font-size: 9pt;"></span>
+          <i href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="ni ni-bell-55 mr-2 text-white" style="font-size: 1.5em;"></i></i><ul class="dropdown-menu" id="drop"></ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</span>
 
-                </li>
-              </ul>
-            </div>
-          </nav>
-         <!--  <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-<i class="ni ni-bell-55"></i>
-</a> -->
-        </span>
-        <ul class="navbar-nav ml-auto">
-
-          <!-- Navbar Search -->
-          <!-- <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
-            </a>
-            <div class="navbar-search-block">
-              <form class="form-inline">
-                <div class="input-group input-group-sm">
-                  <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                  <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                    </button>
-                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li> -->
-          <!-- Messages Dropdown Menu -->
-      <!--     <li class="nav-item">
-            <div class="btn-group nav-link">
-                  <button type="button" class="btn btn-flat badge badge-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                    <span><img src="<?php echo validate_image($_settings->userdata('avatar')) ?>" class="img-circle elevation-2 user-img" alt="User Image"></span>
-                    <span class="ml-3"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="<?php echo base_url.'admin/?page=user' ?>"><span class="fa fa-user"></span> My Account</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo base_url.'/classes/Login.php?f=logout' ?>"><span class="fas fa-sign-out-alt"></span> Logout</a>
-                  </div>
-              </div>
-          </li>
-         -->
-
+<ul class="navbar-nav ml-auto">
   <!-- User -->
   <div class="media-body ml--9">
-        <ul class="col-10 text-right">
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="media align-items-center">
-                <span class="img-avatar avatar rounded-circle">
-                  <?php 
-$id=$_SESSION['userdata']['id'];
-$qry = $conn->query("SELECT * From staff where id = '$id'");
-        while($row = $qry->fetch_assoc()):
-          $pathx = "../";
-          $file = $row["avatar"];
-           switch(true)
-              {
-                case ($row['avatar'] == (!empty($row['gender'])) ):
-                echo '<img src="'.$pathx.$file.'"  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>>';
-                default:
-                case ($row['gender'] == 'Male'):
-                echo '<img src="../dist/img/male_staff.png" class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
-                break;
-                case ($row['gender'] == 'Female'):
-                echo '<img src="../dist/img/staff.png"class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
-                break;
-              } 
-
-            ?>">
-                </span>
-          <?php  endwhile ?>
-                <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold"></span>
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h4 class="text-overflow m-0"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></h4>
-              </div>
+    <ul class="d-flex align-items-center text-right">
+      <li class="nav-item dropdown">
+        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="media align-items-center">
+            <span class="img-avatar avatar rounded-circle">
+              <?php 
+                $id=$_SESSION['userdata']['id'];
+                $qry = $conn->query("SELECT * From staff where id = '$id'");
+                while($row = $qry->fetch_assoc()):
+                  $pathx = "../";
+                  $file = $row["avatar"];
+                  switch(true) {
+                    case ($row['avatar'] == (!empty($row['gender'])) ):
+                      echo '<img src="'.$pathx.$file.'"  class="img-avatar img-thumbnail p-0 border-2 avatar avatar--default>>';
+                    default:
+                      case ($row['gender'] == 'Male'):
+                        echo '<img src="../dist/img/male_staff.png" class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+                        break;
+                      case ($row['gender'] == 'Female'):
+                        echo '<img src="../dist/img/staff.png"class="img-avatar img-thumbnail p-0 border-2" alt="user_avatar';
+                        break;
+                  } 
+              ?>">
+            </span>
+            <?php  endwhile ?>
+            <div class="media-body ml-2 d-none d-md-block">
+              <span class="mb-0 text-sm font-weight-bold"></span>
+            </div>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+          <div class=" dropdown-header noti-title">
+            <h4 class="text-overflow m-0"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></h4>
+          </div>
               <a href="<?php echo base_url.'admin/?page=user' ?>" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>

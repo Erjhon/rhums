@@ -74,10 +74,11 @@
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
     $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
-    $image = $_FILES['image']['name'];
+    $image = mysqli_real_escape_string($conn, $_FILES['image']['name']);
     $image_size = $_FILES['image']['size'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
     $image_folder = 'uploaded_img/'.$image;
+
 //   $select = mysqli_query($conn, "SELECT * FROM `patient` WHERE username = '$username' AND password = '$pass'") or die('query failed');
 
 //   if(mysqli_num_rows($select) > 0){

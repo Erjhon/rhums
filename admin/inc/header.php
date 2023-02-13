@@ -3,12 +3,12 @@
   
 ?>
 <head>
-
-  <meta charset="utf-8" />
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
   <title>
     RURAL HEALTH UNIT II
   </title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Favicon -->
   <link href="../assets/assets/img/brand/doh.png" rel="icon" type="image/png">
@@ -20,9 +20,6 @@
   <!-- CSS Files -->
   <link href="../assets/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 
-
-    <!-- <meta charset="utf-8"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $_settings->info('title') != false ? $_settings->info('title').' | ' : '' ?><?php echo $_settings->info('name') ?></title>
     <link rel="icon" href="<?php echo validate_image($_settings->info('logo')) ?>" />
     <!-- Google Font: Source Sans Pro -->

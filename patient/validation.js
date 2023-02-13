@@ -10,17 +10,17 @@ var check = function() {
 
 function validation(){
 
-  var firstname = document.getElementById('firstname').value;
-  var middleInitial = document.getElementById('middleInitial').value;
-  var lastname = document.getElementById('lastname').value;
-  var username = document.getElementById('username').value;
-  var email = document.getElementById('email').value;
-  var contact = document.getElementById('contact').value;
-  var gender = document.getElementById('gender').value;
-  var dob = document.getElementById('dob').value;
-  var address = document.getElementById('address').value;
-  var password = document.getElementById('password').value;
-  var cpassword = document.getElementById('cpassword').value;
+  let firstname = escape(document.getElementById('firstname').value);
+  let middleInitial = escape(document.getElementById('middleInitial').value);
+  let lastname = escape(document.getElementById('lastname').value);
+  let username = escape(document.getElementById('username').value);
+  let email = escape(document.getElementById('email').value);
+  let contact = escape(document.getElementById('contact').value);
+  let gender = escape(document.getElementById('gender').value);
+  let dob = escape(document.getElementById('dob').value);
+  let address = escape(document.getElementById('address').value);
+  let password = escape(document.getElementById('password').value);
+  let cpassword = escape(document.getElementById('cpassword').value);
 
   if(firstname == ""){
     document.getElementById('fn').innerHTML ="<b> ** Please fill the firstname field.";
@@ -156,7 +156,7 @@ function validation(){
 }
 
 function validate(id){
-  var input_id = document.getElementById(''+id).value;
+  let input_id = escape(document.getElementById(''+id).value);
 
   if(id == 'firstname' ){
     if(input_id == ""){

@@ -70,11 +70,22 @@
     A passion for putting patients first.</p> <br>
 
     <center>
-        <a href="admin/login.php" onClick="return confirm('You need to log in first before setting an appointment')" title="Set an Appointment" tooltip-placement="top" tooltip="Login" >
-            <input type="button" value="Set an Appointment" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
-        </a>
+ <a href="admin/login.php" title="Set an Appointment" tooltip-placement="top" tooltip="Login">
+    <input type="button" value="Set an Appointment" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;" onClick="Swal.fire({
+        text: 'You need to log in first before setting an appointment',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Login',
+        cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = 'admin/login.php';
+            }
+        });
+        
+        return false;
+    ">
+</a>
     </div>
-
-
 </body>
 </html>

@@ -31,6 +31,8 @@
     if (isset($_POST['submit'])) {
         $pid =  mysqli_real_escape_string($conn, $_POST['pid']);
         $pfname =  mysqli_real_escape_string($conn, $_POST['pfname']);
+        $mname =  mysqli_real_escape_string($conn, $_POST['mname']);
+        $lname =  mysqli_real_escape_string($conn, $_POST['lname']);
         $pcontact =  mysqli_real_escape_string($conn, $_POST['pcontact']);
         $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
         $dob =  mysqli_real_escape_string($conn, $_POST['dob']);

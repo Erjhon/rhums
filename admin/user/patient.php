@@ -7,7 +7,7 @@
 		border-radius:100%;
 	}
 </style>
-<div class="card card-outline card-primary ">
+<div class="card card-outline card-primary table-responsive ">
 	<div class="card-header">
 		<h2 class="card-title text-center">List of Registered Patient</h2>
 	</div>
