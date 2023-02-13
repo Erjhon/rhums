@@ -11,6 +11,13 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <style>
+
+      @media (max-width: 767px) {
+  .card-stats {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
 /* Effect 1: Brackets */
 .cl-effect-1 a::before,
 .cl-effect-1 a::after {
@@ -50,16 +57,16 @@
 </head>
 <!-- Header -->
 <div class="header pb-8 pt-md-0" data-aos="zoom-in-up">
-  <div class="container-fluid">
+  <div class="">
     <div class="header-body">
       <!-- Card stats -->
       <div class="row">
         <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
+            <div class="card-body mb--4">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Registered Patients</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Registered Patients</h5>
                   <p class="links cl-effect-1">
                     <a href="?page=user/patient">
                       <?php
@@ -82,24 +89,20 @@
                   </p>
                 </div>
                 <div class="col-auto">
-                  <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                  <div class="icon-sm icon-shape bg-success text-white rounded-circle shadow">
                     <i class="fas fa-users"></i>
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-<!--  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-  <span class="text-nowrap">Since last week</span> -->
-</p>
 </div>
 </div>
 </div>
 <div class="col-xl-3 col-lg-6">
   <div class="card card-stats mb-4 mb-xl-0">
-    <div class="card-body">
+    <div class="card-body mb--4">
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-uppercase text-muted mb-0" style="font-size: 8.3pt;">Today's Total Appointments</h5>
+          <h5 class="card-title text-uppercase text-muted mb-0">Today's Total Appointments</h5>
           <p class="links cl-effect-1">
             <a href="?page=appointments">
               <?php
@@ -117,21 +120,17 @@ if ($total = mysqli_num_rows($appointment_run)) {
 </p>
 </div>
 <div class="col-auto">
-  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+  <div class="icon-sm icon-shape bg-warning text-white rounded-circle shadow">
     <i class="fas fa-chart-pie"></i>
   </div>
 </div>
 </div>
-<p class="mt-3 mb-0 text-muted text-sm">
-<!--  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-  <span class="text-nowrap">Since last week</span> -->
-</p>
 </div>
 </div>
 </div>
 <div class="col-xl-3 col-lg-6">
   <div class="card card-stats mb-4 mb-xl-0">
-    <div class="card-body">
+    <div class="card-body mb--4">
       <div class="row">
         <div class="col">
           <h5 class="card-title text-uppercase text-muted mb-0">Check-Up Records</h5>
@@ -151,21 +150,17 @@ if ($total = mysqli_num_rows($appointment_run)) {
           </p>
         </div>
         <div class="col-auto">
-          <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+          <div class="icon-sm icon-shape bg-yellow text-white rounded-circle shadow">
             <i class="fas fa-stethoscope"></i>
           </div>
         </div>
       </div>
-      <p class="mt-3 mb-0 text-muted text-sm">
-<!-- <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-  <span class="text-nowrap">Since yesterday</span> -->
-</p>
 </div>
 </div>
 </div>
 <div class="col-xl-3 col-lg-6">
   <div class="card card-stats mb-4 mb-xl-0">
-    <div class="card-body">
+    <div class="card-body mb--4">
       <div class="row">
         <div class="col">
           <h5 class="card-title text-uppercase text-muted mb-0">Animal Bite Records</h5>
@@ -185,15 +180,11 @@ if ($total = mysqli_num_rows($appointment_run)) {
           </p>
         </div>
         <div class="col-auto">
-          <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+          <div class="icon-sm icon-shape bg-info text-white rounded-circle shadow">
             <i class="fas fa-file-medical-alt"></i>
           </div>
         </div>
       </div>
-      <p class="mt-3 mb-0 text-muted text-sm">
-<!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-  <span class="text-nowrap">Since last month</span> -->
-</p>
 </div>
 </div>
 </div>
@@ -201,49 +192,49 @@ if ($total = mysqli_num_rows($appointment_run)) {
 </div>
 </div>
 </div>
-<!-- Calendar -->
-<div class="container-fluid mt--7"   data-aos="fade-up"
+<div class="mt--7" data-aos="fade-up"
     data-aos-offset="100"
     data-aos-delay="50"
     data-aos-duration="1000">
   <div class="row">
-    <div class="col-xl-8 mb-5 mb-xl-0">
-      <div class="card bg-gradient-white shadow">
-        <div class="card-header bg-transparent">
-          <div class="row align-items-center">
-
-            <div class="card-body pb-8 table-responsive">
-              <!-- Chart -->
-              <div class="chart">
-                <!-- Chart wrapper -->
-                <div id="calendar" class="chart-canvas mt--4"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- graph -->
-    <div class="col-xl-4" data-aos="zoom-out-left">
-      <div class="card shadow">
+    <div class="col-xl-7 mb-8 mb-xl-0">
+      <div class="card bg-gradient shadow">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h4 class="text-uppercase text-muted ls-1 mb-1">Total</h4>
-              <h2 class="mb-0">Checkup and Animal Bite Records</h2>
+              <div class="card-body">
+                <div id="calendar" class="chart-canvas mt--4" width="30" height="10" ></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="table-responsive mt-1">
+        </div>
+      </div>
+    </div>
+   
+      <!-- graph -->
+    <div class="col-md-5 mb-xl-0" data-aos="zoom-out-left">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">            
+              <h4 class="mb-0">Total Checkup and Animal Bite Records</h4>
             </div>
           </div>
         </div>
-        <div class="card-body table-responsive">
+        <div class="card-body">
           <!-- Chart -->
-          <div class="chart " >
-            <canvas id="animalChart" class="chart-canvas" width="40" height="60" ></canvas>
+          <div class="card-body">
+            <canvas id="animalChart" class="chart-canvas" width="50" height="50" ></canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <?php
 // Connect to the database and retrieve the data
