@@ -127,7 +127,7 @@ $qry = $conn->query("SELECT * From staff where id = '$id'");
 	<select  class="form-control input-group input-group-alternative" name="role" required>
 		<!-- <option class="placeholder" style="display: none" >Select user type</option> -->
 		<option class="text-muted" value="Staff">Staff</option>
-		<option class="text-muted" value=" Super Admin">Super Admin</option>
+		<option class="text-muted" value="Admin">Admin</option>
 	</select>
 </div>
 	<!-- Form Group (avatar)-->
