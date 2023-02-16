@@ -20,7 +20,7 @@
           <table border="0" class="table table-bordered">
             <tr align="center">
               <tr>
-                <th scope>Patient No.</th>
+                <th scope>Appointment No.</th>
                 <td><?php  echo $row['pid'];?></td>
                 <th scope>Mobile Number</th>
                 <td><?php  echo $row['pcontact'];?></td>

@@ -24,7 +24,7 @@
           <table class="table table-bordered">
             <tr align="center">
               <tr>
-                <th>Patient No.</th>
+                <th>Appointment No.</th>
                 <td><?php  echo $row['pid'];?></td>
                 <th>Mobile Number</th>
                 <td><?php  echo $row['pcontact'];?></td>
