@@ -34,7 +34,7 @@ h3 {
 }
 </style>
 
-          <h3 class="text-white col-10 text-right ml--6">Welcome to <?php echo $_settings->info('name') ?></h3>
+          <h3 class="text-white col-10 text-right ml--2">Welcome to <?php echo $_settings->info('name') ?></h3>
         <!-- Right navbar links -->
          <!-- Notification -->
       <span>
@@ -52,7 +52,7 @@ h3 {
 
 <ul class="navbar-nav ml-auto">
   <!-- User -->
-  <div class="media-body ml--9">
+  <div class="media-body ml--6">
     <ul class="d-flex align-items-center text-right">
       <li class="nav-item dropdown">
         <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

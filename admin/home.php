@@ -220,16 +220,16 @@ if ($total = mysqli_num_rows($appointment_run)) {
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">            
-              <h4 class="mb-0">Total Checkup and Animal Bite Records</h4>
+              <h4 class="mb--1">Summary of Total Check-up and Animal Bite Records</h4>
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <!-- <div class="card-body"> -->
           <!-- Chart -->
           <div class="card-body">
-            <canvas id="animalChart" class="chart-canvas" width="50" height="50" ></canvas>
+            <canvas id="animalChart" class="chart-canvas" width="50" height="50"></canvas>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
